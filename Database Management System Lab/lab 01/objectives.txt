@@ -1,0 +1,42 @@
+Creating Database Schema:
+-----------------------------
+-CREATE DATABASE IF NOT EXISTS databasename;
+Data types:
+------------
+{c.p.}-INT[(M)] [INSINGED][ZEROFILL]
+FLOAT[(M,D)] [INSINGED][ZEROFILL]
+{c.p.}-DOUBLE[(M,D)] [INSINGED][ZEROFILL]
+{c.p.}-DATE ="YY-MM-DD"/"YYMMDD"[bad practice]/"YYYY-MM-DD"/"YYYYMMDD"[bad practice]
+{c.p.}-TIME ="HH:MM:SS"
+{c.p.}-CHAR[(M)]
+{c.p.}-VARCHAR(M)
+BINARY[(M)]
+VARBINARY[(M)]
+BLOB[(M)] "BLOB"="Binary Large Object Block"
+TEXT[(M)]
+BIT[(M)]
+
+Contrains:
+----------------
+NOT NULL-set condition ollumn can't be null.
+UNIQUE-all the data in collumns has to be unique.
+PRIMARY KEY-primary is the key one or combined some collumns that can identify whole table's collumns.
+FOREIGN KEY-to get other table's data use it's primary key ,primary is the foriegn key of that table.
+DEFAULT-if there is no data inserted defult set a data.
+CHECK-ORACLE Database Practice not widely use in MYSQL.
+
+Creating Database Table:
+---------------------------
+CREATE TABLE IF NOT EXISTS tablename(
+column_name1 datatype [NOT NULL|NULL][DEFAULT def_value][AUTO_INCREMENT][PRIMARY KEY],
+column_name2 datatype [NOT NULL|NULL][DEFAULT def_value][AUTO_INCREMENT][PRIMARY KEY],
+column_namen datatype [NOT NULL|NULL][DEFAULT def_value][AUTO_INCREMENT][PRIMARY KEY]
+);
+
+Example:
+--------
+CREATE TABLE IF NOT EXISTS student(
+id INT NOT NULL PRIMARY KEY,
+name VARCHAR(30) NOT NULL PRIMARY KEY,
+email VARCHAR(30) NOT NULL PRIMARY KEY
+);

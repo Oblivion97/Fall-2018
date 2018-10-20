@@ -1,0 +1,120 @@
+shell commands:
+-------------------------
+[1]-identity: uname whoami
+
+[2]-manual :man [whoami/uname]
+
+[3]-present working directory :pwd
+
+[4]-list all the files of the directory :ls
+
+--------------------------------------------------------
+drwxr-xr-x 3 student student 4096 অক্টো  16 14:04 Desktop
+[permission][leak][user][size][creation date][file name]
+--------------------------------------------------------
+ls :
+-----------
+
+	ls -a=file list of hidden foler & files of a 		directory.
+	
+	ls -l=list of all file
+
+	ls -ls=list of all file & folders details
+
+	ls -lS=list of all file & folders details[sort by 		Size]
+
+	ls -la=file list of hidden foler & files & their 	 information
+
+	ls -laS=list of all file[with hidden files] & 		folders details[sort by Size]
+
+	ls -lh=list of all file & folders details with 		human readable size
+
+ls command to find file of a particular extention:
+--------------------------------------------------
+
+	ls *.html=html file
+
+	ls *.txt=text file 
+	
+	ls *.*=all type of file show
+
+ls command to list out only directory:
+--------------------------------------
+
+	ls -d */=directory list
+
+[5]-change directory:cd
+
+change directory=[Absolute path|relative path]
+
+cd:
+--------------------
+	Relative path:
+	---------------	
+	"desktop" to "home" to "download"
+
+	cd Desktop
+	cd
+	cd Downloads
+	
+	Absolute path:
+	---------------
+	"desktop" to "download"
+	cd /home/student/Downloads
+
+[6]-cat command :
+
+	cat command takes input from user.
+	
+	cat stands for "Catenate".it reads data from files 		& outputs their contents.
+
+	to get out from cat command:Ctrl+D
+	
+cat:
+--------	
+	cat 
+	cat -b abc.txt=line count
+	cat -n abc.txt=line count with new line
+	cat -s abc.txt=reduce new line to 1 between lines.
+
+[7]-I/O redirection :
+	I/O redirection using cat command:
+	----------------------------------
+	cat> temp.txt=create new file using "cat".
+	[using same command to the existing file it will 		replace]
+
+	cat>> temp.txt=append file.keep prev data and 		writes new.
+	
+	cat test1.txt test2.txt > out.txt=concate two files 		data into one and create new file.
+	
+	cat test3.txt >> out.txt=append two files
+
+
+[8]-mkdir command :
+
+	mkdir images=creates new directory to the woking 		directory.
+
+	mkdir -p newfolder/pic=create folder with sub 		folder.[-p keeps parent folder path]
+	
+	mkdir -p name/{mark,bob,jhon}=create new folder & 		sibling folders.
+
+[9]-rm & rmdir :
+	rmdir images=delete directory.
+	
+	rmdir newfolder/pic=delete child folder
+
+	rmdir -p newfolder/pic=delete parent childe both 		folder.
+
+	rm -r a=when there is a file in sub folder "rmdir" doesn't work.so we use "rm" instead.& "-r" is means recursive.which starts delete from file then sub folder .
+
+[10]-cp :
+
+[11]-mv :
+
+[12]-less :
+
+[13]-echo :
+
+[14]-file permission :
+
+[15]-directory permission :

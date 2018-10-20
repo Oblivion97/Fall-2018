@@ -1,0 +1,139 @@
+Day 1 :october 9,2018
+
+Till mid-shell command+shell script.
+
+for work up to mid-ubuntu OS/VR box installed ubuntuu
+
+https://www.overleaf.com/
+
+shell=interface for accessing an Os services.
+interface=CLI[commandline interface(shell command)]
+-GUI[graphical user interface.]
+
+
+commands:
+1.[uname]-current operating system.
+2.[whoami]-current user name.
+3.[clear]-clean terminal screen.
+4.[man whoami/uname]-command manuals.
+5.[pwd]-current working directory.
+6.[cd]-change directory[if we want to go back -go back the way we came.]
+[example:1. goto music directory.
+	2. from music directory goto download directory.
+	3. from download directory goto document directory.
+	{
+	student@student-Vostro-3668:~$ pwd
+	/home/student
+	student@student-Vostro-3668:~$ cd Music
+	student@student-Vostro-3668:~/Music$ pwd
+	/home/student/Music
+	student@student-Vostro-3668:~/Music$ cd
+	student@student-Vostro-3668:~$ pwd
+	/home/student
+	student@student-Vostro-3668:~$ cd Downloads
+	student@student-Vostro-3668:~/Downloads$ pwd
+	/home/student/Downloads
+	student@student-Vostro-3668:~/Downloads$ cd
+	student@student-Vostro-3668:~$ pwd
+	/home/student
+	student@student-Vostro-3668:~$ cd Documents
+	student@student-Vostro-3668:~/Documents$ pwd
+	/home/student/Documents
+	student@student-Vostro-3668:~/Documents$ cd
+	student@student-Vostro-3668:~$ pwd
+	/home/student
+	student@student-Vostro-3668:~$ 
+	}
+]
+
+7.[cd..]-step backward or goto parent directory.
+[example:
+
+	{/home/student/Music}
+	/home/student/<-Music={/home/student/}
+	{/home/<-student/}={/home/}
+	{/<-home/}={/}=ROOT
+]
+8.[cd/]-to the root directory.
+9.[ls]-file list of current directory.
+[Example:
+	student@student-Vostro-3668:/$ ls
+	bin    dev   initrd.img      lib64       mnt   root  snap  tmp  	vmlinuz
+	boot   etc   initrd.img.old  lost+found  opt   run   srv   usr
+	cdrom  home  lib             media       proc  sbin  sys   var
+]
+10.[ls -a]-file list of hidden foler & files of a directory.
+[Example:
+	student@student-Vostro-3668:/$ ls -a
+	.     cdrom  initrd.img      lost+found  proc  snap  usr
+	..    dev    initrd.img.old  media       root  srv   var
+	bin   etc    lib             mnt         run   sys   vmlinuz
+	boot  home   lib64           opt         sbin  tmp
+]
+11.[ls -l]-file list details infromation information.
+[Example:
+	student@student-Vostro-3668:/$ ls -a
+	.     cdrom  initrd.img      lost+found  proc  snap  usr
+	..    dev    initrd.img.old  media       root  srv   var
+	bin   etc    lib             mnt         run   sys   vmlinuz
+	boot  home   lib64           opt         sbin  tmp
+]
+12.[ls -al]-file information of hidden & non hidden files information.
+[
+	student@student-Vostro-3668:~$ ls -al
+	total 96
+	drwxr-xr-x 17 student student 4096 অক্টোব  9 15:01 .
+	drwxr-xr-x  4 root    root    4096 অক্টোব  9 07:51 ..
+	-rw-r--r--  1 student student  220 অক্টোব  9 07:51 .bash_logout
+	-rw-r--r--  1 student student 3771 অক্টোব  9 07:51 .bashrc
+	drwx------ 14 student student 4096 অক্টোব  9 15:01 .cache
+	drwx------ 12 student student 4096 অক্টোব  9 15:02 .config
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Desktop
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Documents
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Downloads
+	-rw-r--r--  1 student student 8980 অক্টোব  9 07:51 examples.desktop
+	drwx------  3 student student 4096 অক্টোব  9 15:01 .gnupg
+	-rw-------  1 student student  370 অক্টোব  9 13:58 .ICEauthority
+	drwx------  3 student student 4096 অক্টোব  9 13:57 .local
+	drwx------  5 student student 4096 অক্টোব  9 15:01 .mozilla
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Music
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Pictures
+	-rw-r--r--  1 student student  807 অক্টোব  9 07:51 .profile
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Public
+	drwx------  2 student student 4096 অক্টোব  9 15:01 .ssh
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Templates
+	drwx------  4 student student 4096 অক্টোব  9 13:58 .thunderbird
+	drwxr-xr-x  2 student student 4096 অক্টোব  9 13:58 Videos
+]
+
+after mid:IPC inter process communication[prefered language :java]
+
+-------------------------------------------------------------------------------------------
+* [cd-] - go back to previous working directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
