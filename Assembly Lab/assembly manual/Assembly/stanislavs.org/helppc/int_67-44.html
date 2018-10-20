@@ -1,0 +1,33 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_67-44.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:35 GMT -->
+<HEAD>
+<TITLE>int 67,44</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 67,44 - Map Logical Page Into Physical Page Window (LIM EMS)</H2>
+
+<PRE>
+
+
+	AH = 44h
+	AL = physical page number (0-3)
+	BX = logical page number (0 to total allocated minus 1)
+	DX = EMM handle
+
+
+	on return:
+	AH = 00  success
+	   = error code (see <A HREF="int_67-40.html">EMS STATUS</A>)
+
+
+	- registers not listed are preserved
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_67-44.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:35 GMT -->
+</HTML>

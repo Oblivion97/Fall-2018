@@ -1,0 +1,34 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-39.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:09 GMT -->
+<HEAD>
+<TITLE>int 21,39</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 21,39 - Create Subdirectory (mkdir)</H2>
+
+<PRE>
+
+
+	AH = 39h
+	DS:DX = pointer to ASCIIZ path name
+
+
+	on return:
+	CF = 0 if successful
+	   = 1 if error
+	AX = error code  (see <A HREF="dos_error_codes.html">DOS ERROR CODES</A>)
+
+
+	- creates specified subdirectory
+	- returns error if directory already exists, element of the path
+	  is not found, directory full or write protected disk
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-39.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:09 GMT -->
+</HTML>

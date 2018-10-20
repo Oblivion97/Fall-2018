@@ -1,0 +1,33 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_15-40.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:33 GMT -->
+<HEAD>
+<TITLE>int 15,40</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 15,40 - Read / Modify Profiles (convertible only)</H2>
+
+<PRE>
+
+
+	AH = 40h
+
+	AL = 00 - return system profile in CX,BX
+	     01 - modify system profile
+	     CX,BX = profile info
+
+
+	AL = 02 - return internal modem profile in BX
+
+
+	AL = 03 - modify internal modem profile
+	     BX = profile info
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_15-40.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:33 GMT -->
+</HTML>

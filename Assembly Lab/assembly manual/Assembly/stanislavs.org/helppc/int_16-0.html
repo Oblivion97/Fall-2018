@@ -1,0 +1,31 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_16-0.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:31 GMT -->
+<HEAD>
+<TITLE>int 16,0</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 16,0 - Wait for Keypress and Read Character</H2>
+
+<PRE>
+
+
+	AH = 00
+
+
+	on return:
+	AH = keyboard scan code
+	AL = ASCII character or zero if special function key
+
+
+	- halts program until key with a scancode is pressed
+	- see  <A HREF="scan_codes.html">SCAN CODES</A>
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_16-0.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:31 GMT -->
+</HTML>

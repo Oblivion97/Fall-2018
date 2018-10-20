@@ -1,0 +1,32 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-8.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:04 GMT -->
+<HEAD>
+<TITLE>int 21,8</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 21,8 - Console Input Without Echo</H2>
+
+<PRE>
+
+
+	AH = 08
+
+
+	on return:
+	AL = character from STDIN
+
+
+	- returns 0 for extended keystroke, then function must be
+	  called again to return scan code
+	- waits for character from STDIN and returns data in AL
+	- if <A HREF="int_1b.html">Ctrl-Break</A> is detected, <A HREF="int_23.html">INT 23</A> is executed
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-8.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:04 GMT -->
+</HTML>

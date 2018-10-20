@@ -1,0 +1,30 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_67-5a.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:35 GMT -->
+<HEAD>
+<TITLE>int 67,5a</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 67,5A - Allocate Standard/Raw Pages  (LIM EMS 4.0+)</H2>
+
+<PRE>
+
+
+	AH = 5A
+	AL = 00  allocate standard pages
+	     01  allocate raw pages
+	BX = number of pages to allocate
+
+
+	on return:
+	DX = EMM handle
+	AH = status  (see <A HREF="int_67-40.html">EMS STATUS</A>)
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_67-5a.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:35 GMT -->
+</HTML>

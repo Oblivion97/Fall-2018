@@ -1,0 +1,34 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-2a.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:06 GMT -->
+<HEAD>
+<TITLE>int 21,2a</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 21,2A - Get Date</H2>
+
+<PRE>
+
+
+	AH = 2A
+
+
+	on return:
+	AL = day of the week (0=Sunday)
+	CX = year (1980-2099)
+	DH = month (1-12)
+	DL = day (1-31)
+
+
+	- retrieves system date based on the DOS maintained clock
+	- updates <A HREF="bios_data_area.html">BIOS Data Area</A> current date and date rollover flag
+	  at location 40:70
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-2a.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:06 GMT -->
+</HTML>

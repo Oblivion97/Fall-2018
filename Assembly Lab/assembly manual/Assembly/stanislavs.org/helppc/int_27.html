@@ -1,0 +1,33 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_27.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:23 GMT -->
+<HEAD>
+<TITLE>int 27</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 27 - Terminate and Stay Resident</H2>
+
+<PRE>
+
+
+	DX = offset of last byte in program to remain resident plus 1
+	CS = segment of <A HREF="program_segment_prefix.html">PSP</A>
+
+
+	returns nothing
+
+
+	- terminates process without closing open files
+	- memory beyond the offset in DX is freed
+
+
+	- see	<A HREF="int_21-31.html">INT 21,31</A>
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_27.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:23 GMT -->
+</HTML>
