@@ -7,7 +7,7 @@ _name db "HM Mahmudul Hasan$"
 _studentid db "011 152 041$"
 _school db "Chandpur M A Khaleque Memorial High School$"
 _college db "Ideal College, Dhanmondi, Dhaka$"
-_msg db "press any key to continue....$"
+_msg db "press any key to Exit....$"
 _nl db 10, 13, '$'
 .code
 
@@ -55,7 +55,7 @@ lea dx, _nl
 int 21h 
     
 ;wait for input
-mov ah,1
+mov ah,8 ;ah,8=without echo|ah,1=with echo
 int 21h
     
 ;after getting input go to exit levle
