@@ -15,19 +15,19 @@ drwxr-xr-x 3 student student 4096 অক্টো  16 14:04 Desktop
 ls :
 -----------
 
-	ls -a=file list of hidden foler & files of a 		directory.
+	ls -a=file list of hidden foler & files of a directory.
 	
 	ls -l=list of all file
 
 	ls -ls=list of all file & folders details
 
-	ls -lS=list of all file & folders details[sort by 		Size]
+	ls -lS=list of all file & folders details[sort by Size]
 
-	ls -la=file list of hidden foler & files & their 	 information
+	ls -la=file list of hidden foler & files & their information
 
-	ls -laS=list of all file[with hidden files] & 		folders details[sort by Size]
+	ls -laS=list of all file[with hidden files] & folders details[sort by Size]
 
-	ls -lh=list of all file & folders details with 		human readable size
+	ls -lh=list of all file & folders details with human readable size
 
 ls command to find file of a particular extention:
 --------------------------------------------------
@@ -66,7 +66,7 @@ cd:
 
 	cat command takes input from user.
 	
-	cat stands for "Catenate".it reads data from files 		& outputs their contents.
+	cat stands for "Catenate".it reads data from files & outputs their contents.
 
 	to get out from cat command:Ctrl+D
 	
@@ -81,31 +81,31 @@ cat:
 	I/O redirection using cat command:
 	----------------------------------
 	cat> temp.txt=create new file using "cat".
-	[using same command to the existing file it will 		replace]
+	[using same command to the existing file it will replace]
 
-	cat>> temp.txt=append file.keep prev data and 		writes new.
+	cat>> temp.txt=append file.keep prev data and writes new.
 	
-	cat test1.txt test2.txt > out.txt=concate two files 		data into one and create new file.
+	cat test1.txt test2.txt > out.txt=concate two files data into one and create new file.
 	
 	cat test3.txt >> out.txt=append two files
 
 
 [8]-mkdir command :
 
-	mkdir images=creates new directory to the woking 		directory.
+	mkdir images=creates new directory to the woking directory.
 
-	mkdir -p newfolder/pic=create folder with sub 		folder.[-p keeps parent folder path]
+	mkdir -p newfolder/pic=create folder with sub folder.[-p keeps parent folder path]
 	
-	mkdir -p name/{mark,bob,jhon}=create new folder & 		sibling folders.
+	mkdir -p name/{mark,bob,jhon}=create new folder & sibling folders.
 
 [9]-rm & rmdir :
 	rmdir images=delete directory.
 	
 	rmdir newfolder/pic=delete child folder
 
-	rmdir -p newfolder/pic=delete parent childe both 		folder.
+	rmdir -p newfolder/pic=delete parent childe both folder.
 
-	rm -r a=when there is a file in sub folder "rmdir" doesn't work.so we use "rm" instead.& "-r" is means recursive.which starts delete from file then sub folder .
+	rm -r a=when there is a file in sub folder "rmdir" doesn't work.so we use "rm" instead.& "-r" is means recursive.which starts delete from file 		then sub folder .
 
 [10]-cp :
 
