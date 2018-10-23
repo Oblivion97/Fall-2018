@@ -1,0 +1,159 @@
+[1]-cp :cp stands for copy[files or folder].
+
+	file copy:
+	----------------
+	cp file1.txt file2.txt=[only copy & replace contents to the 		destination file.]
+
+	cp -i file1.txt file2.txt=[ask user permission to copy/overwrite 		the contentents to the destination file]
+
+	file copy to directory:
+	-----------------------
+	cp file11.txt file22.txt dir1=[file copy the directory]
+
+	folder copy:
+	-----------------
+	cp -r dir1 dir2=[copy folder to the other directory]
+
+	copy content of a folder into on-create folder
+	----------------------------------------------
+	cp -r dir1 dir2=[copy content of a folder into on-create folder]
+
+	copy file to the working directory[dir1] from other folder[destop]:
+	------------------------------------------------------------------
+	 cp ../file1.txt ../file2.txt .
+
+	show details of copied file 
+	-------------------------------
+	cp -v ../file1.txt ../file2.txt .
+
+	
+
+
+[2]-mv :mv stands for move
+	move file:
+	-----------	
+	mv file1.txt file2.txt=[move "file1" content to the "file2"]
+
+	move file to the directory:
+	--------------------------
+	mv file2.txt dir1=[cut file and paste to the destination directory]
+
+	move folder to other folder:
+	-----------------------------
+	mv dir1 dir2=[cut directory & paste to the destination directory]
+
+	show how file cut & paste:
+	----------------------------
+	mv -v dir1 dir2=[visualize cut paste]
+
+
+[3]-less :
+
+[4]-echo :echo used for print.
+
+	print something:
+	--------------------
+	echo i am idiot=[print i am idiot]
+
+	-	------
+	>>value of x
+	>>echo 'value of x' $x
+	output:value of x 10
+
+	>>echo -e 'value of x\n' $x=[new line]
+	>>echo -e 'value of x\t' $x=[tab]
+
+
+[5]-chmod [unfinished]:
+
+[6]-head,tail,sort,wc :
+	print first 10 line of a file:
+	-------------------------------
+	file2 contents2
+
+	print first 5 line of a file:
+	--------------------------------
+	head -5 file11.txt
+
+	multiple files 10 line print:
+	------------------------------
+	head file11.txt file22.txt
+
+	show last 10 line of a file:
+	--------------------------------
+	tail file11.txt file22.txt
+	
+	show [line][word][byte]:
+	---------------------------
+	wc file11.txt
+	
+	wc -l file11.txt=[line]
+	wc -w file11.txt=[word]
+	wc -b file11.txt=[byte]
+
+	sort:
+	-----
+	sort file11.txt=[ascending order sorting]
+	sort -r file11.txt=[descending order sorting]	
+	
+
+[7]- find :find files in current directory
+	find all the files whose name is file.txt in a current working 		directory.
+
+	find file11.txt=[search file if its exists in working directory]
+
+	find a file if its exists on working directory or its child 		directory:
+	----------------------------
+	find . -name file11.txt
+	find . -iname file11.txt=[case insensetive]
+
+	find all the directories:
+	--------------------------
+	find -type d
+
+	find all the files:
+	--------------------------
+	find -type f
+
+	find files under home directory:
+	--------------------------------
+	find /home -name file11.txt
+
+	find directories using name,find all directories whose name "dir1":
+	-----------------------------------------------------------------
+	find  . -type d -name dir1
+
+	show file/folder of a directory while working directory is 		different:
+	--------------------------------------------------------------
+	find  /home/student/Downloads -type d -name dir1=[folder or 		directory]
+	find  /home/student/Downloads -type f -name dir1=[file]
+
+	find all the .txt file in desktop:
+	----------------------------------
+	find . -type f -name '*.txt'
+	
+
+[8]-pipe :#piping means second command use as first commands input.
+	pipe:#print line between [4-7]:
+	---------------------------------
+	head -7 file11.txt|tail -4
+
+[9]-grep :
+	grep search string:
+	-------------------
+	grep apple file11.txt
+
+	cat file11.txt | grep apple
+	
+	print all except contents of file22:
+	-----------------------------------
+	cat -v file22.txt | grep contents
+
+	cat -c file22.txt | grep contents=[count]
+	cat -n file22.txt | grep contents=[line no]
+	cat -i file22.txt | grep contents=[case insensative all match 		output]
+	cat -l file22.txt | grep contents==[on which file content matched]
+
+
+[10]-pushd,popd [unfinished]:
+
