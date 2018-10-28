@@ -1,0 +1,17 @@
+Declare a variable called  sum in the data segment. Calculate the summation of the following series using loops and save the summation inside that variable. 
+
+1 + 3 + 5 + ...  n-th term
+
+where n = 15 - the last digit of your student ID 
+
+e.g. if you have student ID 011 121 012 then n = 13
+
+ 
+
+You do not need to take any inputs.
+
+You do not need to show any outputs. 
+
+ 
+
+Attach the solution code (.asm) file only. 
