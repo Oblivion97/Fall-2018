@@ -1,0 +1,68 @@
+1.
+
+head -5 a.txt |tail -2 && head -2 b.txt | tail -5
+
+2.
+
+grep fruit file1.txt | file2.txt head -6 file1.txt|tail -5 && head -7 file2.txt|tail -5 && sort file1.txt | sort file2.txt
+
+3.
+
+cat a.txt b.txt > out.txt
+
+4.
+
+cat >> out.txt
+
+5.
+
+mkdir dir2
+mkdir dir2
+mkdir dir2
+mkdir dir2
+cd dir2
+cp ../one.txt ../two.txt ../three .
+
+6.
+
+cat>>products
+our products
+our maximum products
+our minimum products
+grep -e  our products  products.txt
+
+7.
+
+cd Downloads
+mkdir dir3
+cd /home/student/Desktop/dir2
+cd /home/student/Downloads/dir3
+
+8.
+
+mkdir -p a/b
+cd a/b
+mkdir -p d/f && mkdir e
+
+9.
+
+cat >abc.txt
+rm abc.txt
+
+10.
+
+cd Music && ls -l
+
+11.
+
+date=30/10/2018
+echo 'HM Mahmudul Hasan ' $date
+
+12.
+
+cat>> out.txt && ls -ls
+
+13.
+
+find . -type f -name '*.html'
+

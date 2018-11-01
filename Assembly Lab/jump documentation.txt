@@ -1,0 +1,16 @@
+﻿Op Code    | mnemonic  | Description
+ -----------|-----------|-----------------------------------------------  
+ 74 cb      | JE rel8   | Jump short if equal (ZF=1).
+ 74 cb      | JZ rel8   | Jump short if zero (ZF ← 1).
+
+ 0F 84 cw   | JE rel16  | Jump near if equal (ZF=1). Not supported in 64-bit mode.
+ 0F 84 cw   | JZ rel16  | Jump near if 0 (ZF=1). Not supported in 64-bit mode.
+
+ 0F 84 cd   | JE rel32  | Jump near if equal (ZF=1).
+ 0F 84 cd   | JZ rel32  | Jump near if 0 (ZF=1).
+
+ 75 cb      | JNE rel8  | Jump short if not equal (ZF=0).
+ 75 cb      | JNZ rel8  | Jump short if not zero (ZF=0).
+
+ 0F 85 cd   | JNE rel32 | Jump near if not equal (ZF=0).
+ 0F 85 cd   | JNZ rel32 | Jump near if not zero (ZF=0).

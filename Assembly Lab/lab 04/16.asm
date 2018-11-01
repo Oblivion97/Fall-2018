@@ -4,7 +4,7 @@
 .code
 main proc
     ;value is stored in 32 register,created by    DX:AX
-    mov ax,65535
+    mov ax,00000
     mov dx,0
     
     mov cl,0

@@ -1,0 +1,251 @@
+
+!0+1=2
+
+
+
+LIKE
+
+
+
+WHERE
+
+
+
+charecter functions:upper/concate/strcmp/substring/left /right
+
+
+
+mysql indexing 1
+
+
+-1 reverse indexng from the last
+
+
+
+trim(str)
+
+
+
+rpad
+
+
+lpad
+
+
+
+replace
+
+
+
+locate
+
+
+
+insert(str,pos,len,newstr)
+
+
+
+date & time function:
+
+now()
+
+
+
+curdate
+
+
+las day
+
+datediff
+
+dateadd
+
+date formate
+
+str_to_date(str,format)
+
+round
+
+truncate
+
+pow sqrt
+
+exp
+
+log
+
+pi
+
+degree
+
+radians
+
+conv(n,from base to base)
+
+case when cond then res
+
+ifnull
+
+Online:upto function[7 nov 2018]
+
+database joining in MYSQL:
+---------------------------
+select....
+from table_name...............
+where...........
+order by...........
+limit................
+.
+.
+.
+.
+table reference:
+[1].table_name[[AS] tablealias]
+[2].table_name1{left|right}[outer] join table_name2 join condition
+[3].table_name1[inner|cross]join(,) table_name2 join condition
+
+join_condition:
+[1].On cinditon_expr
+[2]using(col1,col2)
+
+inner join*
+
+select t1.c1 t1.c4,2.c2 
+from t1 join t2 on t1.c2=t2.c3
+
+limiting row coount:
+--------------------------
+SELECT
+  country_id,
+  country_name
+FROM
+  countries
+WHERE
+  [ CONDITION ]
+ORDER BY
+  collumn1 [ ASC | DESC ],
+  collumn2 [ ASC | DESC ],
+  ../.
+LIMIT [ OFFSET, ] ROW_COUNT;
+##limit indexing start from 0.
+
+example:
+-------
+SELECT
+  *
+FROM
+  employees
+WHERE
+  department_id = 30 AND FIRST_NAME LIKE "%s%";
+---------
+SELECT
+  *
+FROM
+  employees
+WHERE
+  department_id = 30
+ORDER BY
+  SALARY DESC
+LIMIT 3;
+----------------
+3rd most salary:
+----------------
+SELECT
+  *
+FROM
+  employees
+WHERE
+  department_id = 30
+ORDER BY
+  SALARY DESC
+LIMIT 2,1
+-----------------------------------------------------
+hire date of all employees in 13 february 2018 format:
+-----------------------------------------------------
+SELECT
+  FIRST_NAME,
+  DATE_FORMAT(HIRE_DATE,
+  "%D %M, %Y") AS "join_date"
+FROM
+  employees
+--------------------------------------
+show commition pct greater than 0.20
+--------------------------------------
+SELECT
+  FIRST_NAME,
+  COMMISSION_PCT
+FROM
+  employees
+WHERE IFNULL
+  (COMMISSION_PCT,
+  0) >= 0.20
+-----------------------------------------
+working day of hired month:
+-----------------------------------------
+SELECT
+  FIRST_NAME,
+  EMPLOYEE_ID, DATEDIFF(LAST_DAY(HIRE_DATE), HIRE_DATE) +1 AS "WORKING_DAYS"
+FROM
+  employees
+--------------------------------------
+working years:
+-------------------------------------
+SELECT
+  FIRST_NAME,
+  LAST_NAME EMPLOYEE_ID,
+  ROUND(
+    (
+      DATEDIFF(CURRENT_DATE,
+      HIRE_DATE) +1
+    ) / 365,
+    3
+  ) AS "WORKING_YEARS"
+FROM
+  employees
+-------------------------
+lpad example
+-------------------------
+SELECT
+  LPAD(
+    CONCAT(FIRST_NAME,
+    ' ' ,LAST_NAME),
+    20,
+    '*'
+  ) AS "FULL NAME"
+FROM
+  employees
+-----------------------
+search job type
+-----------------------
+SELECT
+  LAST_NAME,SALARY,COMMISSION_PCT
+FROM
+  employees
+  WHERE
+  JOB_ID="AD_PRES"
+  ORDER BY COMMISSION_PCT ASC,SALARY DESC;
+---------------------------------------------
+show last name start with 's' & ends with 'n'
+----------------------------------------------
+SELECT
+  FIRST_NAME
+FROM
+  employees
+WHERE
+  LAST_NAME LIKE "s%n";
+----------------------------
+who join before "example date":
+---------------------------
+SELECT
+  *
+FROM
+  employees
+WHERE STR_TO_DATE
+  ("January 01,1998",
+  "%M %d,%Y") >= HIRE_DATE
+-----------------------
+address:
+--------------------
+SELECT
+  location_id,concat(street_address,',',city,',',state_province,',',postal_code) AS "ADDRESS"
+FROM locations;
