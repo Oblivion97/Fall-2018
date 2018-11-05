@@ -1,0 +1,69 @@
+;Count How many zeros and ones in a bit String
+org 100h
+
+.stack 100h
+
+.data
+   i db 1
+   ones db 0
+   zeros db 0
+   
+   
+.code
+proc main
+    
+    mov dx, @data
+    mov ds, dx
+    
+    mov ax, 2000
+    mov bx, 2018
+    
+    mul bx   ;Result will be in DX and AX Register
+    
+    L1:
+      test ax, 1
+      jz axZeroConditoin
+      jnz axOneCondition
+      
+      axZeroConditoin:
+        ror ax, 1
+        inc i
+        inc zeros
+        cmp i, 16
+        jl L1
+      
+      axOneCondition:
+        ror ax, 1
+        inc i
+        inc ones
+        cmp i, 16
+        jl L1
+    L2:     
+      test dx, 1
+      jz dxZeroCondition
+      jnz dxOneCondition
+      
+      dxZeroCondition:
+        ror dx, 1
+        inc i
+        inc zeros
+        cmp i, 32
+        jl L2
+       
+      dxOneCondition:
+        ror dx, 1
+        inc i
+        inc ones
+        cmp i, 32
+        jl L2
+       
+   
+    
+    Exit: 
+        mov ah, 4ch
+        int 21h
+        
+endp main
+end main
+    
+    
