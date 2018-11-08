@@ -1,4 +1,4 @@
-Day 1 :october 9,2018
+﻿Day 1 :october 9,2018
 
 Till mid-shell command+shell script.
 
@@ -110,7 +110,7 @@ after mid:IPC inter process communication[prefered language :java]
 
 -------------------------------------------------------------------------------------------
 * [cd-] - go back to home directory.
-[cd..] - go back to prev directory.
+[cd ..] - go back to prev directory.
 
 
 
