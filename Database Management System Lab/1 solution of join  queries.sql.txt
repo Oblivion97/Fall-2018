@@ -1,0 +1,28 @@
+1. select e.first_name, m.first_name
+from employees e join employees m on e.MANAGER_ID=m.employee_id;
+
+2. SELECT d.department_name, concat(l.street_address,',',l.postal_code,',',l.city) as 'location details', c.country_name
+FROM departments d join locations l on d.LOCATION_ID=l.LOCATION_ID join countries c on l.COUNTRY_ID=c.country_id
+
+3.select e.employee_id, e.first_name, j.job_title
+from employees e join jobs j on e.JOB_ID = j.JOB_ID
+where j.JOB_TITLE not like "%clerk%"
+order by e.EMPLOYEE_ID
+
+4.select e.*, d.department_name
+from employees e left join departments d on e.DEPARTMENT_ID=d.department_id
+
+5.select e1.first_name, e1.salary, e2.first_name, e2.salary
+from employees e1 join employees e2 on e1.SALARY<e2.SALARY and e1.DEPARTMENT_ID = e2.DEPARTMENT_ID
+
+6. select e.first_name, e.hire_date
+from employees e join employees e1 on e.HIRE_DATE>e1.HIRE_DATE and e1.FIRST_NAME LIKE "Bruce"
+
+7. select jh.employee_id, j.job_title, datediff(jh.end_date, jh.start_date)
+from job_history jh join jobs j on jh.job_id=j.job_id and jh.department_id = 90
+
+8. select d.department_name, concat(m.first_name, m.last_name) as "full name", m.hire_date, m.salary
+from departments d join employees m on d.MANAGER_ID=m.employee_id 
+where datediff(curdate(), m.hire_date)/365 > 15
+
+

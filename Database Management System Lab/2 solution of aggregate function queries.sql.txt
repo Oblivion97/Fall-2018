@@ -1,0 +1,54 @@
+1. select max(salary), min(salary), count(*)
+from employees
+
+2. select DEPARTMENT_ID, max(salary)
+from employees
+group by DEPARTMENT_ID
+
+3. select d.department_name, count(*), avg(e.salary)
+from departments d join employees e on e.DEPARTMENT_ID=d.DEPARTMENT_ID
+group by d.DEPARTMENT_ID
+
+4. select MANAGER_ID, count(*)
+from employees
+group by MANAGER_ID
+
+5. select m.employee_id, m.first_name, count(*)
+from employees m join employees e on m.EMPLOYEE_ID=e.MANAGER_ID
+group by m.EMPLOYEE_ID, m.FIRST_NAME
+
+6. select r.region_name, count(*) as no_of_locations
+from regions r join countries c on c.REGION_ID = r.REGION_ID
+join locations l on l.COUNTRY_ID = c.COUNTRY_ID
+where c.COUNTRY_NAME NOT IN( "Israel", "Nigeria")
+group by r.REGION_ID
+HAVING no_of_locations >= 7
+order by no_of_locations
+
+7. select department_id, job_id ,count(distinct salary)
+from employees
+group by department_id, job_id
+
+8. SELECT JOB_ID, AVG(SALARY)
+FROM employees
+GROUP BY JOB_ID
+HAVING AVG(SALARY) <= 5000
+
+9. select e1.last_name, count(*)
+from employees e1 join employees e2 on e1.HIRE_DATE > e2.HIRE_DATE
+group by e1.EMPLOYEE_ID
+
+10. select DEPARTMENT_ID, count(*)
+from employees
+where SALARY>=10000
+group by department_id
+
+11. select DEPARTMENT_ID, avg(SALARY)
+from employees 
+group by DEPARTMENT_ID
+HAVING count(*)>10
+
+12. select e1.*
+from employees e1 join employees e2 on e1.SALARY>e2.SALARY
+group by e1.SALARY
+having count(*) > 3
