@@ -1,0 +1,29 @@
+1.
+cd Downloads && mkdir -p myfolder2/myfolder1 && touch myfolder2/myfolder1/myfile.txt
+
+2.
+paste -s taskfile1.txt taskfile2.txt >myfile.txt && cat myfile.txt
+
+3.
+ wc taskfile1.txt taskfile2.txt
+
+4.
+wc taskfile1.txt taskfile2.txt > myoutput.txt
+
+5.
+sort -r taskfile1.txt taskfile2.txt
+
+6.
+sort -r taskfile1.txt taskfile2.txt | head -n 15 | tail -n 6 > myfile.txt && cat myfile.txt
+
+7.
+rm -r myfolder1
+
+8.
+grep -o '\bJ\w*' profile.txt
+
+9.
+grep -v '834' profile.txt
+
+10.
+grep -o "N.*700" profile.txt
