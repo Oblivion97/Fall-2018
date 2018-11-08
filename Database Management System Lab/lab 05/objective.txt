@@ -1,0 +1,49 @@
+where using:
+------------
+SELECT
+    c.country_name,
+    r.region_name
+FROM
+    countries AS c
+JOIN regions AS r
+ON
+    c.REGION_ID = r.REGION_ID
+    WHERE r.REGION_NAME like "ASIA"
+
+and using:
+---------
+SELECT
+    c.country_name,
+    r.region_name
+FROM
+    countries AS c
+JOIN regions AS r
+ON
+    c.REGION_ID = r.REGION_ID AND r.REGION_NAME LIKE "%ASIA%"
+
+self join:
+---------
+
+SELECT
+    emp.first_name,
+    man.first_name,
+    d.department_name
+FROM
+    employees AS emp
+JOIN employees AS man
+ON
+    emp.MANAGER_ID = man.MANAGER_ID
+JOIN departments AS d
+ON
+    emp.DEPARTMENT_ID = d.dpartment_id
+
+aggregate function:
+---------------------
+SELECT
+    DEPARTMENT_ID,
+    COUNT(*) no_of_emp,
+    SUM(SALARY) AS total
+FROM
+    employees
+GROUP BY
+    DEPARTMENT_ID,EMPLOYEE_ID

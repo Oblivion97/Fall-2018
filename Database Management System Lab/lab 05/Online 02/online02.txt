@@ -1,0 +1,35 @@
+2.
+SELECT
+    LPAD(
+        LAST_NAME,
+        JOB_ID,
+        HIRE_DATE,
+        CONCAT(
+            DATEDIF(
+                HIRE_DATE(HIRE_DATE) - CURRENT_DATE
+            ) / 365,
+            "YEARS",
+            ',',
+            DATEDIF(
+                HIRE_DATE(HIRE_DATE) - CURRENT_DATE
+            ) / 12,
+            "MONTHS",
+            ',',
+            DATEDIF(
+                HIRE_DATE(HIRE_DATE) - CURRENT_DATE
+            ),
+            "DAYS"
+        ) AS experience,
+        6,
+        "0"
+    )
+WHERE
+    LAST_NAME LIKE "%b%" AND "%c%";
+
+3.
+SELECT
+    EMPLOYEE_ID,
+    SALARY,
+    PHONE_NUMBER
+WHERE
+    SALARY > 15000 OR SALARY < 10000 ;
