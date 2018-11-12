@@ -1,0 +1,18 @@
+=================================================================
+===================ACL Simple Question and Answer================
+=================================================================
+
+Q1. Prevent(Deny) LAB#7 Network to Access Datacenter Network.
+
+Q2. Prevent(Deny) LAB-7 PC01 to Access Datacenter Network.
+
+Q3. LAB#6 Network can not Access Office Server using http,
+	but All other Traffic is Permitted for Lab#6 Network
+
+Q4. Office Server canbe Access by only Office Network,
+	but all other permition permitted for other Network
+
+Q5. LAB-7 PC01 can not ping File server but only acccess by http, 
+	All other Traffic is Permitted for Data Center Network
+
+Q6. Prevent all Private IP Address to Access Internet  (Please follw the order)

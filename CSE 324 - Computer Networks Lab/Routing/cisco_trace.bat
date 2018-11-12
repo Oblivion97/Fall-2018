@@ -1,0 +1,50 @@
+@echo off
+@echo   	127.0.0.1	ccna.org >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna.net >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna.ma >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna4u.org >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna5.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna5.net >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna5ccnp.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna5blog.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna6exam.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ciscoccnaanswers.blogspot.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	cisco-ccna4answers.blogspot.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccnaanswers.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	ccna-v5.net >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	cisacad.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	orbitco-ccna-pastquestions.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	wiziq.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	quizlet.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	proprofs.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	4routing.net >> C:\Windows\System32\Drivers\etc\hosts
+
+@echo   	127.0.0.1	www.ccna.org >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna.net >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna.ma >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna4u.org >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna5.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna5.net >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna5ccnp.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna5blog.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna6exam.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ciscoccnaanswers.blogspot.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.cisco-ccna4answers.blogspot.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccnaanswers.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.ccna-v5.net >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.cisacad.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.orbitco-ccna-pastquestions.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.wiziq.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.quizlet.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.proprofs.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.4routing.net >> C:\Windows\System32\Drivers\etc\hosts
+
+@echo   	127.0.0.1	www.facebook.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	facebook.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	fb.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.youtube.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	youtube.com >> C:\Windows\System32\Drivers\etc\hosts
+
+@echo   	127.0.0.1	livestream.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.espn.com >> C:\Windows\System32\Drivers\etc\hosts
+@echo   	127.0.0.1	www.espncricinfo.com >> C:\Windows\System32\Drivers\etc\hosts

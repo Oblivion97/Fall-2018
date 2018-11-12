@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://www.binarytides.com/python-socket-programming-tutorial/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Python socket – network programming tutorial</title>
+<link rel="stylesheet" type="text/css" media="all" href="./Python socket – network programming tutorial_files/style.css">
+
+
+
+<!-- All in One SEO Pack 2.3.11.4 by Michael Torbert of Semper Fi Web Design[108,186] -->
+<meta name="description" content="Tutorial on how to code simple network servers and clients using low level Socket api in python.">
+
+<link rel="canonical" href="http://www.binarytides.com/python-socket-programming-tutorial/">
+<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="http://www.binarytides.com/">
+<link rel="alternate" type="application/rss+xml" title="BinaryTides » Python socket – network programming tutorial Comments Feed" href="http://www.binarytides.com/python-socket-programming-tutorial/feed/">
+<link rel="stylesheet" id="yarppWidgetCss-css" href="./Python socket – network programming tutorial_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="digg-digg-css" href="./Python socket – network programming tutorial_files/diggdigg-style.css" type="text/css" media="screen">
+<script src="./Python socket – network programming tutorial_files/rules-p-PydpEyknvJJzJ.js.download"></script><script src="./Python socket – network programming tutorial_files/cb=gapi.loaded_1" async=""></script><script src="./Python socket – network programming tutorial_files/quant.js.download" async="" type="text/javascript"></script><script src="./Python socket – network programming tutorial_files/cb=gapi.loaded_0" async=""></script><script src="./Python socket – network programming tutorial_files/ca-pub-5814774904969415.js.download"></script><script async="" src="./Python socket – network programming tutorial_files/analytics.js.download"></script><script type="text/javascript" src="./Python socket – network programming tutorial_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/jquery-migrate.min.js.download"></script>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/jquery.lazyload.min.js.download"></script>
+<link rel="https://api.w.org/" href="http://www.binarytides.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.binarytides.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.binarytides.com/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Best php ide and web development tools on ubuntu" href="http://www.binarytides.com/best-php-web-development-tools-on-ubuntu/">
+<link rel="next" title="Java socket programming tutorial" href="http://www.binarytides.com/java-socket-programming-tutorial/">
+<meta name="generator" content="WordPress 4.7.5">
+<link rel="shortlink" href="http://www.binarytides.com/?p=2204">
+<link rel="alternate" type="application/json+oembed" href="http://www.binarytides.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.binarytides.com%2Fpython-socket-programming-tutorial%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://www.binarytides.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.binarytides.com%2Fpython-socket-programming-tutorial%2F&amp;format=xml">
+
+<!-- Schema.org markup for Google+ --> 
+<meta itemprop="name" content="Python socket – network programming tutorial"> 
+<meta itemprop="description" content="Tutorial on how to code simple network servers and clients using low level Socket api in python.">
+
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Python socket – network programming tutorial">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://www.binarytides.com/python-socket-programming-tutorial/">
+<meta property="og:description" content="Tutorial on how to code simple network servers and clients using low level Socket api in python.">
+<meta property="og:site_name" content="BinaryTides">
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@binarytides">
+<meta name="twitter:creator" content="@binarytides">
+<meta name="twitter:title" content="Python socket – network programming tutorial">
+<meta name="twitter:description" content="Tutorial on how to code simple network servers and clients using low level Socket api in python.">
+<meta name="twitter:creator" content="@binarytides">
+<!-- Twitter summary card with large image must be at least 280x150px -->
+
+	<meta name="google-site-verification" content="raSOdoQJjGURKn_sXYoe_n3Zqslc-LFFapomtBs69nY">
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2702' + '686-20', 'auto');
+
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Google Plus Publisher Markup -->
+<link href="https://plus.google.com/+binarytides" rel="publisher"><style type="text/css">
+img.lazy { display: none; }
+</style>
+<script type="text/javascript">
+	window._wp_rp_static_base_url = 'https://wprp.zemanta.com/static/';
+	window._wp_rp_wp_ajax_url = "http://www.binarytides.com/blog/wp-admin/admin-ajax.php";
+	window._wp_rp_plugin_version = '3.6.3';
+	window._wp_rp_post_id = '2204';
+	window._wp_rp_num_rel_posts = '6';
+	window._wp_rp_thumbnails = true;
+	window._wp_rp_post_title = 'Python+socket+-+network+programming+tutorial';
+	window._wp_rp_post_tags = ['python', 'network+programming', 'python', 'network', 'code', '4', 'tutori', 'program', 'famili', 'stream', 'web', 'ip', 'socket', 'skype', 'a', 'python', 'comput', 'commun'];
+	window._wp_rp_promoted_content = true;
+</script>
+<link rel="stylesheet" href="./Python socket – network programming tutorial_files/modern.css">
+<link rel="stylesheet" type="text/css" href="./Python socket – network programming tutorial_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Python socket – network programming tutorial_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+<link href="./Python socket – network programming tutorial_files/css" rel="stylesheet" type="text/css">
+<link href="./Python socket – network programming tutorial_files/css(1)" rel="stylesheet" type="text/css">
+<link href="./Python socket – network programming tutorial_files/css(2)" rel="stylesheet" type="text/css">
+
+<script src="./Python socket – network programming tutorial_files/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link{height:1% !important;}#li_ui_li_gen_1500485010970_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1500485010970_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link:link, #li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link:visited, #li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link:hover, #li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1500485010970_0 a#li_ui_li_gen_1500485010970_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-webkit-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-webkit-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#0077b5 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b5), color-stop(100%,#0077b5)) !important; background-image: -webkit-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0369a0), color-stop(100%,#0369a0)) !important; background-image: -webkit-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title, #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#066094), color-stop(100%,#066094)) !important; background-image: -webkit-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title{}.IN-shadowed #li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title{}.IN-shadowed #li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title, .IN-shadowed #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title{}#li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title-text, #li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title-text, #li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title-text *{color:#fff !important;}#li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title-text, #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title-text, #li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title-text *, #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title-text *{color:#fff !important;}#li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title #li_ui_li_gen_1500485010970_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0077b5), color-stop(100%,#0077b5)) !important; background-image: -webkit-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title-text, .success #li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1500485010970_0 #li_ui_li_gen_1500485010970_0-title{}.success #li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#0369a0), color-stop(100%,#0369a0)) !important; background-image: -webkit-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title-text, .success #li_ui_li_gen_1500485010970_0.hovered #li_ui_li_gen_1500485010970_0-title-text *{color:#fff !important;}.success #li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title, .success #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#066094), color-stop(100%,#066094)) !important; background-image: -webkit-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title-text, .success #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title-text, .success #li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title-text *, .success #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1500485010970_0.clicked #li_ui_li_gen_1500485010970_0-title, .IN-shadowed .success #li_ui_li_gen_1500485010970_0.down #li_ui_li_gen_1500485010970_0-title{}#li_ui_li_gen_1500485010994_1-container.IN-top {display:inline-block !important;overflow:visible !important;position:relative !important;height:42px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1500485010994_1.IN-top {display:inline-block !important;height:42px !important;width:60px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:-207px -470px !important;}#li_ui_li_gen_1500485010994_1-content.IN-top {display:inline !important;font-size:16px !important;color:#4e4e4e !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:38px !important;}#li_ui_li_gen_1500485010994_1-container.IN-empty #li_ui_li_gen_1500485010994_1-inner.IN-top {background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -560px !important;background-size:initial !important;overflow:hidden !important;margin:4px auto 0 auto !important;width:28px !important;height:28px !important;display:block !important;}#li_ui_li_gen_1500485010994_1-container.IN-empty #li_ui_li_gen_1500485010994_1-content.IN-top {text-indent:-999px !important;display:inline-block !important;}#li_ui_li_gen_1500485010994_1-container.IN-hidden #li_ui_li_gen_1500485010994_1 {display:none !important;}</style><script type="text/javascript" charset="utf-8" async="" src="./Python socket – network programming tutorial_files/button.38c92cc0f88c473b4a9509c5027be028.js.download"></script></head>
+<body>
+
+<!-- Begin #wrapper -->
+<div id="wrapper">
+	<!-- Begin #header -->
+	<div id="header">
+	<div id="header2">
+	<div id="logo"><a href="http://www.binarytides.com/">BinaryTides</a></div>
+<div id="tagline">Genuine how-to guides on Linux, Ubuntu and FOSS</div>
+		<!-- Begin #topMenuRight -->
+			<div id="topMenuRight">
+			
+			</div>
+		<!-- End #topMenuRight -->
+	</div>
+	</div>
+	<!-- End #header -->
+
+
+
+	<!-- Begin #nav_menu -->
+	<div id="nav_menu">
+	<div id="nav_menu_contents">
+	<!-- Begin #topMenu -->
+	<div id="topMenu" class="ddsmoothmenu"><ul id="menu-header-navigation" class="menu"><li id="menu-item-7601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-7601"><a href="http://www.binarytides.com/">Home</a></li>
+<li id="menu-item-7528" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7528"><a href="http://www.binarytides.com/category/apps/">Apps</a></li>
+<li id="menu-item-7530" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-7530"><a href="http://www.binarytides.com/category/programming/">Coding</a>
+<ul class="sub-menu">
+	<li id="menu-item-7532" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7532"><a href="http://www.binarytides.com/category/programming/html5-2/">Html5</a>
+	<ul class="sub-menu">
+		<li id="menu-item-7533" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7533"><a href="http://www.binarytides.com/category/programming/html5-2/box2d-game-programming/">Box2d</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7534" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7534"><a href="http://www.binarytides.com/category/programming/javascript/">Javascript</a></li>
+	<li id="menu-item-7531" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7531"><a href="http://www.binarytides.com/category/programming/database/">Database</a></li>
+	<li id="menu-item-7535" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7535"><a href="http://www.binarytides.com/category/programming/php-tutorials/">PHP</a>
+	<ul class="sub-menu">
+		<li id="menu-item-7536" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7536"><a href="http://www.binarytides.com/category/programming/php-tutorials/php-snippets/">Php Snippets</a></li>
+		<li id="menu-item-7537" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7537"><a href="http://www.binarytides.com/category/programming/php-tutorials/tutorial/">Tutorial</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7538" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-7538"><a href="http://www.binarytides.com/category/programming/sockets/">Socket Programming</a>
+	<ul class="sub-menu">
+		<li id="menu-item-7539" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7539"><a href="http://www.binarytides.com/category/programming/sockets/c-sockets/">C</a></li>
+		<li id="menu-item-7540" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7540"><a href="http://www.binarytides.com/category/programming/sockets/java-sockets-sockets/">Java</a></li>
+		<li id="menu-item-7541" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7541"><a href="http://www.binarytides.com/category/programming/sockets/perl/">Perl</a></li>
+		<li id="menu-item-7542" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7542"><a href="http://www.binarytides.com/category/programming/sockets/php-sockets-sockets/">PHP</a></li>
+		<li id="menu-item-7543" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7543"><a href="http://www.binarytides.com/category/programming/sockets/python-sockets-sockets/">Python</a></li>
+		<li id="menu-item-7544" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7544"><a href="http://www.binarytides.com/category/programming/sockets/winsock-sockets/">Winsock</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-7545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7545"><a href="http://www.binarytides.com/category/distros/">Distros</a>
+<ul class="sub-menu">
+	<li id="menu-item-7546" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7546"><a href="http://www.binarytides.com/category/distros/centos-linux/">CentOS</a></li>
+	<li id="menu-item-7547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7547"><a href="http://www.binarytides.com/category/distros/debian-linux/">Debian</a></li>
+	<li id="menu-item-7548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7548"><a href="http://www.binarytides.com/category/distros/fedora-linux/">Fedora</a></li>
+	<li id="menu-item-7549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7549"><a href="http://www.binarytides.com/category/distros/linux-mint/">Linux Mint</a></li>
+	<li id="menu-item-7550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7550"><a href="http://www.binarytides.com/category/distros/opensuse/">openSuse</a></li>
+	<li id="menu-item-7551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7551"><a href="http://www.binarytides.com/category/distros/ubuntu-2/">Ubuntu</a></li>
+</ul>
+</li>
+<li id="menu-item-7552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7552"><a href="http://www.binarytides.com/category/general/">General</a>
+<ul class="sub-menu">
+	<li id="menu-item-7555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7555"><a href="http://www.binarytides.com/category/general/freelancing-general/">Freelancing</a></li>
+	<li id="menu-item-7556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7556"><a href="http://www.binarytides.com/category/general/networking-2/">Networking</a></li>
+	<li id="menu-item-7557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7557"><a href="http://www.binarytides.com/category/general/virtualbox/">Virtualbox</a></li>
+	<li id="menu-item-7558" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7558"><a href="http://www.binarytides.com/category/general/windows/">Windows</a></li>
+	<li id="menu-item-7559" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7559"><a href="http://www.binarytides.com/category/general/windows/windows-8/">Windows 8</a></li>
+</ul>
+</li>
+<li id="menu-item-7561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7561"><a href="http://www.binarytides.com/category/linux/">Linux</a>
+<ul class="sub-menu">
+	<li id="menu-item-7562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7562"><a href="http://www.binarytides.com/category/linux/hardware/">Hardware</a></li>
+	<li id="menu-item-7563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7563"><a href="http://www.binarytides.com/category/linux/linux-commands-linux/">Linux Commands</a></li>
+</ul>
+</li>
+<li id="menu-item-7564" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7564"><a href="http://www.binarytides.com/category/reviews/">Reviews</a></li>
+<li id="menu-item-7565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7565"><a href="http://www.binarytides.com/category/security/">Security</a>
+<ul class="sub-menu">
+	<li id="menu-item-7566" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7566"><a href="http://www.binarytides.com/category/security/burp-suite-hacking-2/">Burp Suite</a></li>
+	<li id="menu-item-7567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7567"><a href="http://www.binarytides.com/category/security/kali-linux-hacking-2/">Kali Linux</a></li>
+	<li id="menu-item-7568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7568"><a href="http://www.binarytides.com/category/security/metasploit-hacking-2/">Metasploit</a></li>
+</ul>
+</li>
+<li id="menu-item-7569" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7569"><a href="http://www.binarytides.com/category/server-2/">Server</a>
+<ul class="sub-menu">
+	<li id="menu-item-7570" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7570"><a href="http://www.binarytides.com/category/server-2/ftp-server-2/">FTP</a></li>
+	<li id="menu-item-7571" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7571"><a href="http://www.binarytides.com/category/server-2/http-server-2/">Http</a></li>
+	<li id="menu-item-7572" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7572"><a href="http://www.binarytides.com/category/server-2/monitoring/">Monitoring</a></li>
+	<li id="menu-item-7573" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7573"><a href="http://www.binarytides.com/category/server-2/smtp/">Smtp</a></li>
+</ul>
+</li>
+<li id="menu-item-7574" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7574"><a href="http://www.binarytides.com/category/super-tips/">Super Tips</a></li>
+</ul></div>			
+	<!-- End #topMenu -->
+	</div>
+	</div>
+	<!-- End #nav_menu -->
+
+
+	<!-- Begin #content -->
+	<div id="content" class="clearfix">	<div id="title">
+
+				<h1>Python socket – network programming tutorial</h1>
+
+
+
+<div class="postMetaSingle" style="overflow:hidden;">
+
+<div class="info" style="font-size:90%; float:left;">
+
+	
+	<a class="category" href="http://www.binarytides.com/category/programming/sockets/python-sockets-sockets/" title="View all posts in Python">Python</a>	
+	<!-- author and date -->
+	<span style="margin-left:15px;">By</span> 
+	<span style="color: #07c;">Silver Moon</span> 
+
+	<!-- date -->
+	<span style="margin-left:15px;">On</span> 
+	<span style="color: #07c;">Jul 22, 2012</span>
+	
+	<!-- comments link -->
+	<span style="margin-left:15px;">
+		<a href="http://www.binarytides.com/python-socket-programming-tutorial/#comments">113 Comments</a>	</span>
+</div>
+<!-- info div close -->	
+
+
+</div>
+
+
+</div>
+
+<div id="colwrap">
+<!-- Begin #colLeft -->
+		<div id="colLeft">
+		<div id="colLeftInner">
+		<!-- Begin .postBox -->
+		<div class="postBox">
+
+			<div class="postBoxMid">
+				<div class="postBoxMidInner first clearfix">
+
+
+
+
+
+
+				
+
+<a id="dd_start"></a><div id="post_start"></div>
+<h2>Network programming in python</h2>
+<p>This is a quick guide/tutorial on socket programming in python. Socket programming python is very similar to C.</p>
+<pre class="adflexi"><div class="adcontent">
+<script async="" src="./Python socket – network programming tutorial_files/adsbygoogle.js.download"></script>
+<!-- binarytides.com 336x280 post top -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-5814774904969415" data-ad-slot="0700059493" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:336px;height:280px;" src="./Python socket – network programming tutorial_files/saved_resource.html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+</pre>
+<p><!-- Time : 6.103515625E-5, Pos : 154 --></p>
+<p>To summarise the basics, sockets are the fundamental "things" behind any kind of network communications done by your computer. For example when you type www.google.com in your web browser, it opens a socket and connects to google.com to fetch the page and show it to you. Same with any chat client like gtalk or skype. Any network communication goes through a socket.</p>
+<p>In this tutorial we shall be programming tcp sockets in python. You can also <a href="http://www.binarytides.com/programming-udp-sockets-in-python/">program udp sockets in python</a>.</p>
+<h3>Before you begin</h3>
+<p>This tutorial assumes that you already have a basic knowledge of python.</p>
+<p>So lets begin with sockets.</p>
+<h3>Creating a socket</h3>
+<p>This first thing to do is create a socket. The <code>socket.socket</code> function does this.<br>
+Quick Example :</p>
+<div><div id="highlighter_132702" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python comments">#Socket client example in python</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="python keyword">import</code> <code class="python plain">socket&nbsp;&nbsp; </code><code class="python comments">#for sockets</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="python comments">#create an AF_INET, STREAM socket (TCP)</code></div><div class="line number6 index5 alt1"><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="python functions">print</code> <code class="python string">'Socket Created'</code></div></div></td></tr></tbody></table></div></div>
+<p>Function <code>socket.socket</code> creates a socket and returns a socket descriptor which can be used in other socket related functions</p>
+<p>The above code will create a socket with the following properties ...</p>
+<p>Address Family : AF_INET (this is IP version 4 or IPv4)<br>
+Type : SOCK_STREAM (this means connection oriented TCP protocol)</p>
+<p><b>Error handling</b></p>
+<p>If any of the socket functions fail then python throws an exception called socket.error which must be caught.</p>
+<div><div id="highlighter_794419" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python comments">#handling errors in python socket programs</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="python keyword">import</code> <code class="python plain">socket&nbsp;&nbsp; </code><code class="python comments">#for sockets</code></div><div class="line number4 index3 alt1"><code class="python keyword">import</code> <code class="python plain">sys&nbsp; </code><code class="python comments">#for exit</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number7 index6 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#create an AF_INET, STREAM socket (TCP)</code></div><div class="line number8 index7 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number9 index8 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error, msg:</code></div><div class="line number10 index9 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Failed to create socket. Error code: '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' , Error message : '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number11 index10 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit();</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="python functions">print</code> <code class="python string">'Socket Created'</code></div></div></td></tr></tbody></table></div></div>
+<p>Ok , so you have created a socket successfully. But what next ? Next we shall try to connect to some server using this socket. We can connect to www.google.com</p>
+<p><b>Note</b></p>
+<p>Apart from SOCK_STREAM type of sockets there is another type called SOCK_DGRAM which indicates the UDP protocol. This type of socket is non-connection socket. In this tutorial we shall stick to SOCK_STREAM or TCP sockets.</p>
+<h3>Connect to a Server</h3>
+<p>We connect to a remote server on a certain port number. So we need 2 things , IP address and port number to connect to. So you need to know the IP address of the remote server you are connecting to. Here we used the ip address of google.com as a sample.</p>
+<pre class="adwrap" style="border:1px solid #ddd; text-align:center; background:#fafafa; white-space:normal; height:90px;">
+<script async="" src="./Python socket – network programming tutorial_files/adsbygoogle.js.download"></script>
+<!-- binarytides.com post middle horizontal -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-5814774904969415" data-ad-slot="7125586293" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Python socket – network programming tutorial_files/saved_resource(3).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</pre>
+<p><!-- Time : 0.00040006637573242 --></p>
+<p><b>First get the IP address of the remote host/url</b></p>
+<p>Before connecting to a remote host, its ip address is needed. In python the getting the ip address is quite simple.</p>
+<div><div id="highlighter_341973" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket&nbsp;&nbsp; </code><code class="python comments">#for sockets</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys&nbsp; </code><code class="python comments">#for exit</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number5 index4 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#create an AF_INET, STREAM socket (TCP)</code></div><div class="line number6 index5 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number7 index6 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error, msg:</code></div><div class="line number8 index7 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Failed to create socket. Error code: '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' , Error message : '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number9 index8 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit();</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="python functions">print</code> <code class="python string">'Socket Created'</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="python plain">host </code><code class="python keyword">=</code> <code class="python string">'www.google.com'</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number16 index15 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">remote_ip </code><code class="python keyword">=</code> <code class="python plain">socket.gethostbyname( host )</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="python keyword">except</code> <code class="python plain">socket.gaierror:</code></div><div class="line number19 index18 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#could not resolve</code></div><div class="line number20 index19 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Hostname could not be resolved. Exiting'</code></div><div class="line number21 index20 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number22 index21 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number23 index22 alt2"><code class="python functions">print</code> <code class="python string">'Ip address of '</code> <code class="python keyword">+</code> <code class="python plain">host </code><code class="python keyword">+</code> <code class="python string">' is '</code> <code class="python keyword">+</code> <code class="python plain">remote_ip</code></div></div></td></tr></tbody></table></div></div>
+<p>Now that we have the ip address of the remote host/system, we can connect to ip on a certain 'port' using the connect function.</p>
+<p>Quick example</p>
+<div><div id="highlighter_391619" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket&nbsp;&nbsp; </code><code class="python comments">#for sockets</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys&nbsp; </code><code class="python comments">#for exit</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number5 index4 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#create an AF_INET, STREAM socket (TCP)</code></div><div class="line number6 index5 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number7 index6 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error, msg:</code></div><div class="line number8 index7 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Failed to create socket. Error code: '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' , Error message : '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number9 index8 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit();</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="python functions">print</code> <code class="python string">'Socket Created'</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="python plain">host </code><code class="python keyword">=</code> <code class="python string">'www.google.com'</code></div><div class="line number14 index13 alt1"><code class="python plain">port </code><code class="python keyword">=</code> <code class="python value">80</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number17 index16 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">remote_ip </code><code class="python keyword">=</code> <code class="python plain">socket.gethostbyname( host )</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="python keyword">except</code> <code class="python plain">socket.gaierror:</code></div><div class="line number20 index19 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#could not resolve</code></div><div class="line number21 index20 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Hostname could not be resolved. Exiting'</code></div><div class="line number22 index21 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number23 index22 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number24 index23 alt1"><code class="python functions">print</code> <code class="python string">'Ip address of '</code> <code class="python keyword">+</code> <code class="python plain">host </code><code class="python keyword">+</code> <code class="python string">' is '</code> <code class="python keyword">+</code> <code class="python plain">remote_ip</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="python comments">#Connect to remote server</code></div><div class="line number27 index26 alt2"><code class="python plain">s.connect((remote_ip , port))</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="python functions">print</code> <code class="python string">'Socket Connected to '</code> <code class="python keyword">+</code> <code class="python plain">host </code><code class="python keyword">+</code> <code class="python string">' on ip '</code> <code class="python keyword">+</code> <code class="python plain">remote_ip</code></div></div></td></tr></tbody></table></div></div>
+<p>Run the program</p>
+<pre class="terminal">$ python client.py
+Socket Created
+Ip address of www.google.com is 74.125.236.83
+Socket Connected to www.google.com on ip 74.125.236.83</pre>
+<p>It creates a socket and then connects. Try connecting to a port different from port 80 and you should not be able to connect which indicates that the port is not open for connection. This logic can be used to build a port scanner.</p>
+<p>OK, so we are now connected. Lets do the next thing , sending some data to the remote server.</p>
+<p><b>Free Tip</b></p>
+<p>The concept of "connections" apply to SOCK_STREAM/TCP type of sockets. Connection means a reliable "stream" of data such that there can be multiple such streams each having communication of its own. Think of this as a pipe which is not interfered by data from other pipes. Another important property of stream connections is that packets  have an "order" or "sequence".</p>
+<p>Other sockets like UDP , ICMP , ARP dont have a concept of "connection". These are non-connection based communication. Which means you keep sending or receiving packets from anybody and everybody.</p>
+<h3>Sending Data</h3>
+<p>Function <code>sendall</code> will simply send data.<br>
+Lets send some data to google.com</p>
+<div><div id="highlighter_912741" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket&nbsp;&nbsp; </code><code class="python comments">#for sockets</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys&nbsp; </code><code class="python comments">#for exit</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number5 index4 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#create an AF_INET, STREAM socket (TCP)</code></div><div class="line number6 index5 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number7 index6 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error, msg:</code></div><div class="line number8 index7 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Failed to create socket. Error code: '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' , Error message : '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number9 index8 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit();</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="python functions">print</code> <code class="python string">'Socket Created'</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="python plain">host </code><code class="python keyword">=</code> <code class="python string">'www.google.com'</code></div><div class="line number14 index13 alt1"><code class="python plain">port </code><code class="python keyword">=</code> <code class="python value">80</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number17 index16 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">remote_ip </code><code class="python keyword">=</code> <code class="python plain">socket.gethostbyname( host )</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="python keyword">except</code> <code class="python plain">socket.gaierror:</code></div><div class="line number20 index19 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#could not resolve</code></div><div class="line number21 index20 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Hostname could not be resolved. Exiting'</code></div><div class="line number22 index21 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number23 index22 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number24 index23 alt1"><code class="python functions">print</code> <code class="python string">'Ip address of '</code> <code class="python keyword">+</code> <code class="python plain">host </code><code class="python keyword">+</code> <code class="python string">' is '</code> <code class="python keyword">+</code> <code class="python plain">remote_ip</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="python comments">#Connect to remote server</code></div><div class="line number27 index26 alt2"><code class="python plain">s.connect((remote_ip , port))</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="python functions">print</code> <code class="python string">'Socket Connected to '</code> <code class="python keyword">+</code> <code class="python plain">host </code><code class="python keyword">+</code> <code class="python string">' on ip '</code> <code class="python keyword">+</code> <code class="python plain">remote_ip</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="python comments">#Send some data to remote server</code></div><div class="line number32 index31 alt1"><code class="python plain">message </code><code class="python keyword">=</code> <code class="python string">"GET / HTTP/1.1\r\n\r\n"</code></div><div class="line number33 index32 alt2">&nbsp;</div><div class="line number34 index33 alt1"><code class="python keyword">try</code> <code class="python plain">:</code></div><div class="line number35 index34 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#Set the whole string</code></div><div class="line number36 index35 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.sendall(message)</code></div><div class="line number37 index36 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error:</code></div><div class="line number38 index37 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#Send failed</code></div><div class="line number39 index38 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Send failed'</code></div><div class="line number40 index39 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number41 index40 alt2">&nbsp;</div><div class="line number42 index41 alt1"><code class="python functions">print</code> <code class="python string">'Message send successfully'</code></div></div></td></tr></tbody></table></div></div>
+<p>In the above example , we first connect to an ip address and then send the string message "GET / HTTP/1.1\r\n\r\n" to it. The message is actually an "http command" to fetch the mainpage of a website.</p>
+<p>Now that we have send some data , its time to receive a reply from the server. So lets do it.</p>
+<h3>Receiving Data</h3>
+<p>Function <code>recv</code> is used to receive data on a socket. In the following example we shall send the same message as the last example and receive a reply from the server.</p>
+<div><div id="highlighter_888688" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python comments">#Socket client example in python</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="python keyword">import</code> <code class="python plain">socket&nbsp;&nbsp; </code><code class="python comments">#for sockets</code></div><div class="line number4 index3 alt1"><code class="python keyword">import</code> <code class="python plain">sys&nbsp; </code><code class="python comments">#for exit</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="python comments">#create an INET, STREAMing socket</code></div><div class="line number7 index6 alt2"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number8 index7 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number9 index8 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error:</code></div><div class="line number10 index9 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Failed to create socket'</code></div><div class="line number11 index10 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number12 index11 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number13 index12 alt2"><code class="python functions">print</code> <code class="python string">'Socket Created'</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="python plain">host </code><code class="python keyword">=</code> <code class="python string">'www.google.com'</code><code class="python plain">;</code></div><div class="line number16 index15 alt1"><code class="python plain">port </code><code class="python keyword">=</code> <code class="python value">80</code><code class="python plain">;</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number19 index18 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">remote_ip </code><code class="python keyword">=</code> <code class="python plain">socket.gethostbyname( host )</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="python keyword">except</code> <code class="python plain">socket.gaierror:</code></div><div class="line number22 index21 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#could not resolve</code></div><div class="line number23 index22 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Hostname could not be resolved. Exiting'</code></div><div class="line number24 index23 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="python comments">#Connect to remote server</code></div><div class="line number27 index26 alt2"><code class="python plain">s.connect((remote_ip , port))</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="python functions">print</code> <code class="python string">'Socket Connected to '</code> <code class="python keyword">+</code> <code class="python plain">host </code><code class="python keyword">+</code> <code class="python string">' on ip '</code> <code class="python keyword">+</code> <code class="python plain">remote_ip</code></div><div class="line number30 index29 alt1">&nbsp;</div><div class="line number31 index30 alt2"><code class="python comments">#Send some data to remote server</code></div><div class="line number32 index31 alt1"><code class="python plain">message </code><code class="python keyword">=</code> <code class="python string">"GET / HTTP/1.1\r\n\r\n"</code></div><div class="line number33 index32 alt2">&nbsp;</div><div class="line number34 index33 alt1"><code class="python keyword">try</code> <code class="python plain">:</code></div><div class="line number35 index34 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#Set the whole string</code></div><div class="line number36 index35 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.sendall(message)</code></div><div class="line number37 index36 alt2"><code class="python keyword">except</code> <code class="python plain">socket.error:</code></div><div class="line number38 index37 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#Send failed</code></div><div class="line number39 index38 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Send failed'</code></div><div class="line number40 index39 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number41 index40 alt2">&nbsp;</div><div class="line number42 index41 alt1"><code class="python functions">print</code> <code class="python string">'Message send successfully'</code></div><div class="line number43 index42 alt2">&nbsp;</div><div class="line number44 index43 alt1"><code class="python comments">#Now receive data</code></div><div class="line number45 index44 alt2"><code class="python plain">reply </code><code class="python keyword">=</code> <code class="python plain">s.recv(</code><code class="python value">4096</code><code class="python plain">)</code></div><div class="line number46 index45 alt1">&nbsp;</div><div class="line number47 index46 alt2"><code class="python functions">print</code> <code class="python plain">reply</code></div></div></td></tr></tbody></table></div></div>
+<p>Here is the output of the above code :</p>
+<pre class="terminal">$ python client.py
+Socket Created
+Ip address of www.google.com is 74.125.236.81
+Socket Connected to www.google.com on ip 74.125.236.81
+Message send successfully
+HTTP/1.1 302 Found
+Location: http://www.google.co.in/
+Cache-Control: private
+Content-Type: text/html; charset=UTF-8
+Set-Cookie: expires=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=www.google.com
+Set-Cookie: path=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=www.google.com
+Set-Cookie: domain=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=www.google.com
+Set-Cookie: expires=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=.www.google.com
+Set-Cookie: path=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=.www.google.com
+Set-Cookie: domain=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=.www.google.com
+Set-Cookie: expires=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=google.com
+Set-Cookie: path=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=google.com
+Set-Cookie: domain=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=google.com
+Set-Cookie: expires=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=.google.com
+Set-Cookie: path=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=.google.com
+Set-Cookie: domain=; expires=Mon, 01-Jan-1990 00:00:00 GMT; path=/; domain=.google.com
+Set-Cookie: PREF=ID=51f26964398d27b0:FF=0:TM=1343026094:LM=1343026094:S=pa0PqX9FCPvyhBHJ; expires=Wed, 23-Jul-2014 06:48:14 GMT; path=/; domain=.google.com</pre>
+<p>Google.com replied with the content of the page we requested. Quite simple!<br>
+Now that we have received our reply, its time to close the socket.</p>
+<h3>Close socket</h3>
+<p>Function <code>close</code> is used to close the socket.</p>
+<div><div id="highlighter_857808" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python plain">s.close()</code></div></div></td></tr></tbody></table></div></div>
+<p>Thats it.</p>
+<h3>Lets Revise</h3>
+<p>So in the above example we learned how to :<br>
+1. Create a socket<br>
+2. Connect to remote server<br>
+3. Send some data<br>
+4. Receive a reply</p>
+<p>Its useful to know that your web browser also does the same thing when you open www.google.com<br>
+This kind of socket activity represents a <b>CLIENT</b>. A client is a system that connects to a remote system to fetch data.</p>
+<p>The other kind of socket activity is called a <strong>SERVER</strong>. A server is a system that uses sockets to receive incoming connections and provide them with data. It is just the opposite of Client. So www.google.com is a server and your web browser is a client. Or more technically www.google.com is a HTTP Server and your web browser is an HTTP client.</p>
+<p>Now its time to do some server tasks using sockets.</p>
+<h2>Programming socket servers</h2>
+<p>OK now onto server things. Servers basically do the following :</p>
+<p>1. Open a socket<br>
+2. Bind to a address(and port).<br>
+3. Listen for incoming connections.<br>
+4. Accept connections<br>
+5. Read/Send</p>
+<p>We have already learnt how to open a socket. So the next thing would be to bind it.</p>
+<h3>Bind a socket</h3>
+<p>Function <code>bind</code> can be used to bind a socket to a particular address and port. It needs a sockaddr_in structure similar to connect function.</p>
+<p>Quick example</p>
+<div><div id="highlighter_68606" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python plain">HOST </code><code class="python keyword">=</code> <code class="python plain">''&nbsp;&nbsp; </code><code class="python comments"># Symbolic name meaning all available interfaces</code></div><div class="line number5 index4 alt2"><code class="python plain">PORT </code><code class="python keyword">=</code> <code class="python value">8888</code> <code class="python comments"># Arbitrary non-privileged port</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number8 index7 alt1"><code class="python functions">print</code> <code class="python string">'Socket created'</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number11 index10 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.bind((HOST, PORT))</code></div><div class="line number12 index11 alt1"><code class="python keyword">except</code> <code class="python plain">socket.error , msg:</code></div><div class="line number13 index12 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Bind failed. Error Code : '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' Message '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number14 index13 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number15 index14 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number16 index15 alt1"><code class="python functions">print</code> <code class="python string">'Socket bind complete'</code></div></div></td></tr></tbody></table></div></div>
+<p>Now that bind is done, its time to make the socket listen to connections. We bind a socket to a particular IP address and a certain port number. By doing this we ensure that all incoming data which is directed towards this port number is received by this application. </p>
+<p>This makes it obvious that you cannot have 2 sockets bound to the same port. There are exceptions to this rule but we shall look into that in some other article.</p>
+<h3>Listen for incoming connections</h3>
+<p>After binding a socket to a port the next thing we need to do is listen for connections. For this we need to put the socket in listening mode. Function <code>socket_listen</code> is used to put the socket in listening mode. Just add the following line after bind.</p>
+<div><div id="highlighter_5076" class="syntaxhighlighter  cpp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp plain">s.listen(10)</code></div><div class="line number2 index1 alt1"><code class="cpp plain">print </code><code class="cpp string">'Socket now listening'</code></div></div></td></tr></tbody></table></div></div>
+<p>The parameter of the function listen is called backlog. It controls the number of incoming connections that are kept "waiting" if the program is already busy. So by specifying 10, it means that if 10 connections are already waiting to be processed, then the 11th connection request shall be rejected. This will be more clear after checking socket_accept.</p>
+<p>Now comes the main part of accepting new connections.</p>
+<h3>Accept connection</h3>
+<p>Function <code>socket_accept</code> is used for this.</p>
+<div><div id="highlighter_919387" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python plain">HOST </code><code class="python keyword">=</code> <code class="python plain">''&nbsp;&nbsp; </code><code class="python comments"># Symbolic name meaning all available interfaces</code></div><div class="line number5 index4 alt2"><code class="python plain">PORT </code><code class="python keyword">=</code> <code class="python value">8888</code> <code class="python comments"># Arbitrary non-privileged port</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number8 index7 alt1"><code class="python functions">print</code> <code class="python string">'Socket created'</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number11 index10 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.bind((HOST, PORT))</code></div><div class="line number12 index11 alt1"><code class="python keyword">except</code> <code class="python plain">socket.error , msg:</code></div><div class="line number13 index12 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Bind failed. Error Code : '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' Message '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number14 index13 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number15 index14 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number16 index15 alt1"><code class="python functions">print</code> <code class="python string">'Socket bind complete'</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="python plain">s.listen(</code><code class="python value">10</code><code class="python plain">)</code></div><div class="line number19 index18 alt2"><code class="python functions">print</code> <code class="python string">'Socket now listening'</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="python comments">#wait to accept a connection - blocking call</code></div><div class="line number22 index21 alt1"><code class="python plain">conn, addr </code><code class="python keyword">=</code> <code class="python plain">s.accept()</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="python comments">#display client information</code></div><div class="line number25 index24 alt2"><code class="python functions">print</code> <code class="python string">'Connected with '</code> <code class="python keyword">+</code> <code class="python plain">addr[</code><code class="python value">0</code><code class="python plain">] </code><code class="python keyword">+</code> <code class="python string">':'</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(addr[</code><code class="python value">1</code><code class="python plain">])</code></div></div></td></tr></tbody></table></div></div>
+<p><strong>Output</strong></p>
+<p>Run the program. It should show</p>
+<pre class="terminal">$ python server.py
+Socket created
+Socket bind complete
+Socket now listening</pre>
+<p>So now this program is waiting for incoming connections on port 8888. Dont close this program , keep it running.<br>
+Now a client can connect to it on this port. We shall use the telnet client for testing this. Open a terminal and type </p>
+<pre class="terminal">$ telnet localhost 8888</pre>
+<p>It will immediately show</p>
+<pre class="terminal">$ telnet localhost 8888
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+Connection closed by foreign host.</pre>
+<p>And the server output will show</p>
+<pre class="terminal">$ python server.py
+Socket created
+Socket bind complete
+Socket now listening
+Connected with 127.0.0.1:59954</pre>
+<p>So we can see that the client connected to the server. Try the above steps till you get it working perfect.</p>
+<p>We accepted an incoming connection but closed it immediately. This was not very productive. There are lots of things that can be done after an incoming connection is established. Afterall the connection was established for the purpose of communication. So lets reply to the client. </p>
+<p>Function <code>sendall</code> can be used to send something to the socket of the incoming connection and the client should see it. Here is an example :</p>
+<div><div id="highlighter_34891" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python plain">HOST </code><code class="python keyword">=</code> <code class="python plain">''&nbsp;&nbsp; </code><code class="python comments"># Symbolic name meaning all available interfaces</code></div><div class="line number5 index4 alt2"><code class="python plain">PORT </code><code class="python keyword">=</code> <code class="python value">8888</code> <code class="python comments"># Arbitrary non-privileged port</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number8 index7 alt1"><code class="python functions">print</code> <code class="python string">'Socket created'</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number11 index10 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.bind((HOST, PORT))</code></div><div class="line number12 index11 alt1"><code class="python keyword">except</code> <code class="python plain">socket.error , msg:</code></div><div class="line number13 index12 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Bind failed. Error Code : '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' Message '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number14 index13 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number15 index14 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number16 index15 alt1"><code class="python functions">print</code> <code class="python string">'Socket bind complete'</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="python plain">s.listen(</code><code class="python value">10</code><code class="python plain">)</code></div><div class="line number19 index18 alt2"><code class="python functions">print</code> <code class="python string">'Socket now listening'</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="python comments">#wait to accept a connection - blocking call</code></div><div class="line number22 index21 alt1"><code class="python plain">conn, addr </code><code class="python keyword">=</code> <code class="python plain">s.accept()</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="python functions">print</code> <code class="python string">'Connected with '</code> <code class="python keyword">+</code> <code class="python plain">addr[</code><code class="python value">0</code><code class="python plain">] </code><code class="python keyword">+</code> <code class="python string">':'</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(addr[</code><code class="python value">1</code><code class="python plain">])</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="python comments">#now keep talking with the client</code></div><div class="line number27 index26 alt2"><code class="python plain">data </code><code class="python keyword">=</code> <code class="python plain">conn.recv(</code><code class="python value">1024</code><code class="python plain">)</code></div><div class="line number28 index27 alt1"><code class="python plain">conn.sendall(data)</code></div><div class="line number29 index28 alt2">&nbsp;</div><div class="line number30 index29 alt1"><code class="python plain">conn.close()</code></div><div class="line number31 index30 alt2"><code class="python plain">s.close()</code></div></div></td></tr></tbody></table></div></div>
+<p>Run the above code in 1 terminal. And connect to this server using telnet from another terminal and you should see this :</p>
+<pre class="terminal">$ telnet localhost 8888
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+happy
+happy
+Connection closed by foreign host.</pre>
+<p>So the client(telnet) received a reply from server.</p>
+<p>We can see that the connection is closed immediately after that simply because the server program ends after accepting and sending reply. A server like www.google.com is always up to accept incoming connections. </p>
+<p>It means that a server is supposed to be running all the time. Afterall its a server meant to serve. So we need to keep our server RUNNING non-stop. The simplest way to do this is to put the <code>accept</code> in a loop so that it can receive incoming connections all the time.</p>
+<h3>Live Server</h3>
+<p>So a live server will be alive always. Lets code this up</p>
+<div><div id="highlighter_369909" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="python plain">HOST </code><code class="python keyword">=</code> <code class="python plain">''&nbsp;&nbsp; </code><code class="python comments"># Symbolic name meaning all available interfaces</code></div><div class="line number5 index4 alt2"><code class="python plain">PORT </code><code class="python keyword">=</code> <code class="python value">5000</code> <code class="python comments"># Arbitrary non-privileged port</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number8 index7 alt1"><code class="python functions">print</code> <code class="python string">'Socket created'</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number11 index10 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.bind((HOST, PORT))</code></div><div class="line number12 index11 alt1"><code class="python keyword">except</code> <code class="python plain">socket.error , msg:</code></div><div class="line number13 index12 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Bind failed. Error Code : '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' Message '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number14 index13 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number15 index14 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number16 index15 alt1"><code class="python functions">print</code> <code class="python string">'Socket bind complete'</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="python plain">s.listen(</code><code class="python value">10</code><code class="python plain">)</code></div><div class="line number19 index18 alt2"><code class="python functions">print</code> <code class="python string">'Socket now listening'</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="python comments">#now keep talking with the client</code></div><div class="line number22 index21 alt1"><code class="python keyword">while</code> <code class="python value">1</code><code class="python plain">:</code></div><div class="line number23 index22 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#wait to accept a connection - blocking call</code></div><div class="line number24 index23 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">conn, addr </code><code class="python keyword">=</code> <code class="python plain">s.accept()</code></div><div class="line number25 index24 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Connected with '</code> <code class="python keyword">+</code> <code class="python plain">addr[</code><code class="python value">0</code><code class="python plain">] </code><code class="python keyword">+</code> <code class="python string">':'</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(addr[</code><code class="python value">1</code><code class="python plain">])</code></div><div class="line number26 index25 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number27 index26 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">data </code><code class="python keyword">=</code> <code class="python plain">conn.recv(</code><code class="python value">1024</code><code class="python plain">)</code></div><div class="line number28 index27 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">reply </code><code class="python keyword">=</code> <code class="python string">'OK...'</code> <code class="python keyword">+</code> <code class="python plain">data</code></div><div class="line number29 index28 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">if</code> <code class="python keyword">not</code> <code class="python plain">data: </code></div><div class="line number30 index29 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">break</code></div><div class="line number31 index30 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number32 index31 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">conn.sendall(reply)</code></div><div class="line number33 index32 alt2">&nbsp;</div><div class="line number34 index33 alt1"><code class="python plain">conn.close()</code></div><div class="line number35 index34 alt2"><code class="python plain">s.close()</code></div></div></td></tr></tbody></table></div></div>
+<p>We havent done a lot there. Just put the socket_accept in a loop.</p>
+<p>Now run the server program in 1 terminal , and open 3 other terminals.<br>
+From each of the 3 terminal do a telnet to the server port.</p>
+<p>Each of the telnet terminal would show :</p>
+<pre class="terminal">$ telnet localhost 5000
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+happy
+OK .. happy
+Connection closed by foreign host.</pre>
+<p>And the server terminal would show</p>
+<pre class="terminal">$ python server.py
+Socket created
+Socket bind complete
+Socket now listening
+Connected with 127.0.0.1:60225
+Connected with 127.0.0.1:60237
+Connected with 127.0.0.1:60239</pre>
+<p>So now the server is running nonstop and the telnet terminals are also connected nonstop. Now close the server program. All telnet terminals would show "Connection closed by foreign host."</p>
+<p>Good so far. But still there is not effective communication between the server and the client. The server program accepts connections in a loop and just send them a reply, after that it does nothing with them. Also it is not able to handle more than 1 connection at a time. So now its time to handle the connections , and handle multiple connections together.</p>
+<h3>Handling Connections</h3>
+<p>To handle every connection we need a separate handling code to run along with the main server accepting connections. One way to achieve this is using threads. The main server program accepts a connection and creates a new thread to handle communication for the connection, and then the server goes back to accept more connections.</p>
+<p>We shall now use threads to create handlers for each connection the server accepts.</p>
+<div><div id="highlighter_631557" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python keyword">import</code> <code class="python plain">socket</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">sys</code></div><div class="line number3 index2 alt2"><code class="python keyword">from</code> <code class="python plain">thread </code><code class="python keyword">import</code> <code class="python keyword">*</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="python plain">HOST </code><code class="python keyword">=</code> <code class="python plain">''&nbsp;&nbsp; </code><code class="python comments"># Symbolic name meaning all available interfaces</code></div><div class="line number6 index5 alt1"><code class="python plain">PORT </code><code class="python keyword">=</code> <code class="python value">8888</code> <code class="python comments"># Arbitrary non-privileged port</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="python plain">s </code><code class="python keyword">=</code> <code class="python plain">socket.socket(socket.AF_INET, socket.SOCK_STREAM)</code></div><div class="line number9 index8 alt2"><code class="python functions">print</code> <code class="python string">'Socket created'</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="python comments">#Bind socket to local host and port</code></div><div class="line number12 index11 alt1"><code class="python keyword">try</code><code class="python plain">:</code></div><div class="line number13 index12 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">s.bind((HOST, PORT))</code></div><div class="line number14 index13 alt1"><code class="python keyword">except</code> <code class="python plain">socket.error , msg:</code></div><div class="line number15 index14 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Bind failed. Error Code : '</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(msg[</code><code class="python value">0</code><code class="python plain">]) </code><code class="python keyword">+</code> <code class="python string">' Message '</code> <code class="python keyword">+</code> <code class="python plain">msg[</code><code class="python value">1</code><code class="python plain">]</code></div><div class="line number16 index15 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">sys.exit()</code></div><div class="line number17 index16 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number18 index17 alt1"><code class="python functions">print</code> <code class="python string">'Socket bind complete'</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="python comments">#Start listening on socket</code></div><div class="line number21 index20 alt2"><code class="python plain">s.listen(</code><code class="python value">10</code><code class="python plain">)</code></div><div class="line number22 index21 alt1"><code class="python functions">print</code> <code class="python string">'Socket now listening'</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="python comments">#Function for handling connections. This will be used to create threads</code></div><div class="line number25 index24 alt2"><code class="python keyword">def</code> <code class="python plain">clientthread(conn):</code></div><div class="line number26 index25 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#Sending message to connected client</code></div><div class="line number27 index26 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">conn.send(</code><code class="python string">'Welcome to the server. Type something and hit enter\n'</code><code class="python plain">) </code><code class="python comments">#send only takes string</code></div><div class="line number28 index27 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number29 index28 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#infinite loop so that function do not terminate and thread do not end.</code></div><div class="line number30 index29 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">while</code> <code class="python color1">True</code><code class="python plain">:</code></div><div class="line number31 index30 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number32 index31 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#Receiving from client</code></div><div class="line number33 index32 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">data </code><code class="python keyword">=</code> <code class="python plain">conn.recv(</code><code class="python value">1024</code><code class="python plain">)</code></div><div class="line number34 index33 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">reply </code><code class="python keyword">=</code> <code class="python string">'OK...'</code> <code class="python keyword">+</code> <code class="python plain">data</code></div><div class="line number35 index34 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">if</code> <code class="python keyword">not</code> <code class="python plain">data: </code></div><div class="line number36 index35 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">break</code></div><div class="line number37 index36 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number38 index37 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">conn.sendall(reply)</code></div><div class="line number39 index38 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number40 index39 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#came out of loop</code></div><div class="line number41 index40 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">conn.close()</code></div><div class="line number42 index41 alt1">&nbsp;</div><div class="line number43 index42 alt2"><code class="python comments">#now keep talking with the client</code></div><div class="line number44 index43 alt1"><code class="python keyword">while</code> <code class="python value">1</code><code class="python plain">:</code></div><div class="line number45 index44 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#wait to accept a connection - blocking call</code></div><div class="line number46 index45 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">conn, addr </code><code class="python keyword">=</code> <code class="python plain">s.accept()</code></div><div class="line number47 index46 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python string">'Connected with '</code> <code class="python keyword">+</code> <code class="python plain">addr[</code><code class="python value">0</code><code class="python plain">] </code><code class="python keyword">+</code> <code class="python string">':'</code> <code class="python keyword">+</code> <code class="python functions">str</code><code class="python plain">(addr[</code><code class="python value">1</code><code class="python plain">])</code></div><div class="line number48 index47 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number49 index48 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments">#start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.</code></div><div class="line number50 index49 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">start_new_thread(clientthread ,(conn,))</code></div><div class="line number51 index50 alt2">&nbsp;</div><div class="line number52 index51 alt1"><code class="python plain">s.close()</code></div></div></td></tr></tbody></table></div></div>
+<p>Run the above server and open 3 terminals like before. Now the server will create a thread for each client connecting to it.</p>
+<p>The telnet terminals would show :</p>
+<pre class="terminal">$ telnet localhost 8888
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+Welcome to the server. Type something and hit enter
+hi
+OK...hi
+asd
+OK...asd
+cv
+OK...cv</pre>
+<p>The server terminal might look like this</p>
+<pre class="terminal">$ python server.py
+Socket created
+Socket bind complete
+Socket now listening
+Connected with 127.0.0.1:60730
+Connected with 127.0.0.1:60731</pre>
+<p>The above connection handler takes some input from the client and replies back with the same.</p>
+<p>So now we have a server thats communicative. Thats useful now.</p>
+<h3>Conclusion</h3>
+<p>By now you must have learned the basics of socket programming in python. You can try out some experiments like writing a chat client or something similar.</p>
+<p>When testing the code you might face this error</p>
+<pre class="terminal">Bind failed. Error Code : 98 Message Address already in use</pre>
+<p>When it comes up, simply change the port number and the server would run fine.</p>
+<p>If you think that the tutorial needs some addons or improvements or any of the code snippets above dont work then feel free to make a comment below so that it gets fixed.</p>
+<div class="updated_on">Last Updated On : 9th January 2014</div>
+<script type="text/javascript">var dd_offset_from_content = 40;var dd_top_offset_from_content = 0;var dd_override_start_anchor_id = "";var dd_override_top_offset = "";</script><script type="text/javascript" src="./Python socket – network programming tutorial_files/diggdigg-floating-bar.js.download"></script>
+
+
+
+
+
+                    <div class="postTags">
+<a href="http://www.binarytides.com/tag/network-programming/"><b>network programming</b></a><a href="http://www.binarytides.com/tag/python/"><b>python</b></a></div>
+
+
+
+
+
+				</div>
+	
+
+<input type="hidden" name="IL_IN_TAG" value="2">
+				
+
+<div id="subscribe_feedburner"> 
+
+<form style="text-align:center;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#39;http://feedburner.google.com/fb/a/mailverify?uri=binarytides&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true">
+
+
+<p style="margin:0; font-weight:bold;">
+Subscribe to get updates delivered to your inbox 
+
+<input type="text" name="email" placeholder="Enter email to subscribe" style="width: 200px;
+border:none;
+padding: 5px;
+line-height: 20px;
+outline: none;
+margin-left: 10px;">
+
+<input type="submit" value="Subscribe" style="background: #07c;
+color: #fff;
+border:none;
+margin:0 0 0 10px;
+outline: none;
+font-weight:bold;
+line-height: 20px;
+background:#E26A1A;
+padding: 5px 10px;">
+</p>
+
+<input type="hidden" value="binarytides" name="uri"><input type="hidden" name="loc" value="en_US">
+
+
+</form>
+</div>
+
+
+
+
+<div class="postCredentials">
+				
+<div id="relatedPosts">
+		
+							
+							<!-- Related Posts-->
+
+<div class="yarpp-related">
+<h3>Related Posts</h3>
+<ul>
+		<li>
+		<a href="http://www.binarytides.com/programming-udp-sockets-in-python/" rel="bookmark" title="Programming udp sockets in python">
+	<img width="220" height="120" src="./Python socket – network programming tutorial_files/elementary-os-luna-220x120.png">
+</a>	
+
+		
+	<a href="http://www.binarytides.com/programming-udp-sockets-in-python/">Programming udp sockets in python</a><!-- (34.5)-->
+
+</li>
+		<li>
+		<a href="http://www.binarytides.com/perl-socket-programming-tutorial/" rel="bookmark" title="Perl socket programming tutorial">
+	<img width="220" height="120" src="./Python socket – network programming tutorial_files/elementary-os-luna-220x120.png">
+</a>	
+
+		
+	<a href="http://www.binarytides.com/perl-socket-programming-tutorial/">Perl socket programming tutorial</a><!-- (34.3)-->
+
+</li>
+		<li>
+		<a href="http://www.binarytides.com/java-socket-programming-tutorial/" rel="bookmark" title="Java socket programming tutorial">
+	<img width="220" height="120" src="./Python socket – network programming tutorial_files/elementary-os-luna-220x120.png">
+</a>	
+
+		
+	<a href="http://www.binarytides.com/java-socket-programming-tutorial/">Java socket programming tutorial</a><!-- (32.8)-->
+
+</li>
+	</ul>
+
+<div style="clear:both;"></div>
+</div>
+
+</div>
+
+														<!-- end Related Posts-->
+							
+
+
+<div id="authorDetails">
+								<img alt="" src="./Python socket – network programming tutorial_files/e23f2767e6907e798da5b28694a2bf28" srcset="http://2.gravatar.com/avatar/e23f2767e6907e798da5b28694a2bf28?s=128&amp;r=g 2x" class="avatar avatar-64 photo" height="64" width="64">				About <b>Silver Moon</b>
+						<p>
+Php developer, blogger and Linux enthusiast. 
+He can be reached at <a href="mailto:binarytides@gmail.com">binarytides@gmail.com</a>.
+Or find him on <a href="https://plus.google.com/117145272367995638274/posts" rel="author">Google+</a>
+
+</p>
+						</div>
+					
+		</div>
+		<!-- postboxcredentials -->
+	
+
+<div class="ad728x90 adwrap" style="margin:20px 0;">
+
+<!-- BEGIN IFRAME TAG - binarytides.com RON Global Display Rev Share < - DO NOT MODIFY -->
+<iframe src="./Python socket – network programming tutorial_files/tt.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="728" height="90"></iframe>
+<!-- END TAG -->
+
+</div>
+
+<div class="postBoxMidInner" id="comments">
+		
+		
+		
+        
+<!-- You can start editing here. -->
+
+	<h2 class="h2comments">113 Comments <a href="http://www.binarytides.com/python-socket-programming-tutorial/#respond" class="addComment">+ Add Comment</a></h2>
+
+	<ul class="commentlist">
+	   <li class="comment even thread-even depth-1 clearfix" id="li-comment-118079">
+	 <img alt="" src="./Python socket – network programming tutorial_files/2bc96174c668344266425c11a6859b7d" srcset="http://2.gravatar.com/avatar/2bc96174c668344266425c11a6859b7d?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-118079">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Christos Pras</strong> <span>May 13, 2017 at 9:09 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Hi, Perfect example! One question – suggestion only:<br>
+How can I add a timeout for each of the thread?<br>
+If a client is inactive for 60 seconds the server must disconnect him.<br>
+Thank you!</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=118079#respond" onclick="return addComment.moveForm( &quot;comment-118079&quot;, &quot;118079&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Christos Pras">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="li-comment-101810">
+	 <img alt="" src="./Python socket – network programming tutorial_files/c9d9e414ae8f5a6335cdd359e8a3e149" srcset="http://0.gravatar.com/avatar/c9d9e414ae8f5a6335cdd359e8a3e149?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-101810">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>GreenAsJade</strong> <span>January 5, 2017 at 2:33 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Such a simple but totally helpful tutorial.    Made my server app work first time.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=101810#respond" onclick="return addComment.moveForm( &quot;comment-101810&quot;, &quot;101810&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to GreenAsJade">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1 clearfix" id="li-comment-100823">
+	 <img alt="" src="./Python socket – network programming tutorial_files/d12d603535c4cfbef6464d9e710f7161" srcset="http://1.gravatar.com/avatar/d12d603535c4cfbef6464d9e710f7161?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-100823">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>jiachinzhao</strong> <span>December 21, 2016 at 12:36 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>thx! it helps me a lot! Expect more interesting articles</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=100823#respond" onclick="return addComment.moveForm( &quot;comment-100823&quot;, &quot;100823&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to jiachinzhao">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="li-comment-99728">
+	 <img alt="" src="./Python socket – network programming tutorial_files/872ef1ed6bd03fbc4aa2cbf96d8d01db" srcset="http://2.gravatar.com/avatar/872ef1ed6bd03fbc4aa2cbf96d8d01db?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-99728">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Chuggz</strong> <span>December 5, 2016 at 6:34 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>First sockets tutorial where things finally clicked for me! Very clear and easy to understand, thanks so much.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=99728#respond" onclick="return addComment.moveForm( &quot;comment-99728&quot;, &quot;99728&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Chuggz">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1 clearfix" id="li-comment-93362">
+	 <img alt="" src="./Python socket – network programming tutorial_files/cc27fc3670d51b0e0a36ca6fdba85aae" srcset="http://0.gravatar.com/avatar/cc27fc3670d51b0e0a36ca6fdba85aae?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-93362">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Sam</strong> <span>September 10, 2016 at 11:06 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Great work man.Keep making videos about python network programming.Really helpful</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=93362#respond" onclick="return addComment.moveForm( &quot;comment-93362&quot;, &quot;93362&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Sam">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="li-comment-92159">
+	 <img alt="" src="./Python socket – network programming tutorial_files/d50c57bd2d54e68359eb5915b10649e6" srcset="http://1.gravatar.com/avatar/d50c57bd2d54e68359eb5915b10649e6?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-92159">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong><a target="_blank" href="http://blog.omaration.com/" rel="external nofollow" class="url">Omar</a></strong> <span>August 24, 2016 at 6:27 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>oh, and a small mod here to make the connection close and release the port quickly.. I added a shutdown as follows </p>
+<p>s.shutdown(socket.SHUT_RDWR)<br>
+s.close()</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=92159#respond" onclick="return addComment.moveForm( &quot;comment-92159&quot;, &quot;92159&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Omar">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1 clearfix" id="li-comment-92158">
+	 <img alt="" src="./Python socket – network programming tutorial_files/d50c57bd2d54e68359eb5915b10649e6" srcset="http://1.gravatar.com/avatar/d50c57bd2d54e68359eb5915b10649e6?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-92158">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong><a target="_blank" href="http://blog.omaration.com/" rel="external nofollow" class="url">Omar</a></strong> <span>August 24, 2016 at 6:17 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Thank you so much for this amazing clear tutorial. It was a great help to me!</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=92158#respond" onclick="return addComment.moveForm( &quot;comment-92158&quot;, &quot;92158&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Omar">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="li-comment-87167">
+	 <img alt="" src="./Python socket – network programming tutorial_files/563988a626ad522fcf9214bec7312e4b" srcset="http://2.gravatar.com/avatar/563988a626ad522fcf9214bec7312e4b?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-87167">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Ryan</strong> <span>July 3, 2016 at 5:48 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>This helped me alot, any explanation as to why AF_INET and SOCK_STREAM are capitalised?</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=87167#respond" onclick="return addComment.moveForm( &quot;comment-87167&quot;, &quot;87167&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Ryan">Reply</a>      </div>
+     </div>
+<ul class="children">
+   <li class="comment even depth-2 clearfix" id="li-comment-92525">
+	 <img alt="" src="./Python socket – network programming tutorial_files/23d95a34df57bacad4962a594c607356" srcset="http://2.gravatar.com/avatar/23d95a34df57bacad4962a594c607356?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-92525">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>FooAnonymous</strong> <span>August 30, 2016 at 11:42 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>That’s just the way the variables are named.<br>
+Normally variables which value doesn’t change (so called constants) are written ALL_CAPITALIZED.</p>
+<p>Cheers.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=92525#respond" onclick="return addComment.moveForm( &quot;comment-92525&quot;, &quot;92525&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to FooAnonymous">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-87038">
+	 <img alt="" src="./Python socket – network programming tutorial_files/d024dd5d169b65fcb408cf7b09bfa335" srcset="http://1.gravatar.com/avatar/d024dd5d169b65fcb408cf7b09bfa335?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-87038">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>weibo cao</strong> <span>July 2, 2016 at 2:02 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>simple and useful, thanks a lot.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=87038#respond" onclick="return addComment.moveForm( &quot;comment-87038&quot;, &quot;87038&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to weibo cao">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-71414">
+	 <img alt="" src="./Python socket – network programming tutorial_files/f318ed198501f235d03e3683c6914e09" srcset="http://0.gravatar.com/avatar/f318ed198501f235d03e3683c6914e09?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-71414">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>james</strong> <span>March 23, 2016 at 9:18 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>great help. I still have one question, after I quite the thread loop , always get error in main thread </p>
+<p>Unhandled exception in thread started by<br>
+Traceback (most recent call last):<br>
+  File “D:\code\Learn\python\mySocketServer.py”, line 26, in clientthread<br>
+    data = conn.recv(1024)<br>
+socket.error: [Errno 10053] </p>
+<p>my code like this:</p>
+<p>def clientthread(conn):<br>
+    #Send message to connected client<br>
+    conn.send(‘Welcome to the server, type bye to quit’)<br>
+    run = True<br>
+    while run:<br>
+        #Receiving from client<br>
+        data = conn.recv(1024)<br>
+        reply = ‘OK…..’ + data<br>
+        if data ==’bye’:<br>
+            conn.close()<br>
+            return<br>
+        else:<br>
+            conn.sendall(reply)</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=71414#respond" onclick="return addComment.moveForm( &quot;comment-71414&quot;, &quot;71414&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to james">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-69651">
+	 <img alt="" src="./Python socket – network programming tutorial_files/5e5b0ef4dfc961be48f035d2288993f3" srcset="http://2.gravatar.com/avatar/5e5b0ef4dfc961be48f035d2288993f3?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-69651">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>aayush patel</strong> <span>March 8, 2016 at 11:42 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>what if i need concurrency and 1000k plus concurrent clients ? any suggestions what to use with python itself …this is an IOT project along with android users….</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=69651#respond" onclick="return addComment.moveForm( &quot;comment-69651&quot;, &quot;69651&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to aayush patel">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-68044">
+	 <img alt="" src="./Python socket – network programming tutorial_files/7f85a610258f0d8342d3fed1912a2688" srcset="http://1.gravatar.com/avatar/7f85a610258f0d8342d3fed1912a2688?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-68044">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Ninve</strong> <span>September 20, 2015 at 9:52 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Excellent step by step approach!<br>
+No unnecessary complicated command. GREAT!</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=68044#respond" onclick="return addComment.moveForm( &quot;comment-68044&quot;, &quot;68044&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Ninve">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67966">
+	 <img alt="" src="./Python socket – network programming tutorial_files/bb762aecae241b2a24380190eb54548a" srcset="http://2.gravatar.com/avatar/bb762aecae241b2a24380190eb54548a?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67966">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>nilesh</strong> <span>June 9, 2015 at 7:21 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>in Handling Connections section</p>
+<p>start_new_thread(clientthread ,(conn,))</p>
+<p>you should replace with</p>
+<p>thread.start_new_thread(clientthread ,(conn,))</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67966#respond" onclick="return addComment.moveForm( &quot;comment-67966&quot;, &quot;67966&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to nilesh">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67873">
+	 <img alt="" src="./Python socket – network programming tutorial_files/cd27a02c7384b60cc2f36be90783d66b" srcset="http://0.gravatar.com/avatar/cd27a02c7384b60cc2f36be90783d66b?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67873">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>James</strong> <span>March 15, 2015 at 4:00 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Thank you !</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67873#respond" onclick="return addComment.moveForm( &quot;comment-67873&quot;, &quot;67873&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to James">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67856">
+	 <img alt="" src="./Python socket – network programming tutorial_files/0f261b279230d3dab163a9e62853c05c" srcset="http://0.gravatar.com/avatar/0f261b279230d3dab163a9e62853c05c?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67856">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>learningbear</strong> <span>February 28, 2015 at 9:09 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Silver, thank you so much for contributing such a comprehensive article, i am new to socket programming nut enjoy a lot by reading your article and programming the code.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67856#respond" onclick="return addComment.moveForm( &quot;comment-67856&quot;, &quot;67856&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to learningbear">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67848">
+	 <img alt="" src="./Python socket – network programming tutorial_files/bb8f2d5adeab2f305e2f7c7db4efd9c5" srcset="http://2.gravatar.com/avatar/bb8f2d5adeab2f305e2f7c7db4efd9c5?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67848">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Naga Rajesh Anandan</strong> <span>February 25, 2015 at 1:24 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>excellent tutorial</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67848#respond" onclick="return addComment.moveForm( &quot;comment-67848&quot;, &quot;67848&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Naga Rajesh Anandan">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67841">
+	 <img alt="" src="./Python socket – network programming tutorial_files/e4fa44a485fa7c2f411792438eb21acf" srcset="http://2.gravatar.com/avatar/e4fa44a485fa7c2f411792438eb21acf?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67841">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Hong Kong</strong> <span>February 23, 2015 at 8:17 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)<br>
+I suggest to add this line if you dont want to change the port manually every time<br>
+Just set the option and the system will know that the port could be reused</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67841#respond" onclick="return addComment.moveForm( &quot;comment-67841&quot;, &quot;67841&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Hong Kong">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67814">
+	 <img alt="" src="./Python socket – network programming tutorial_files/25e2c1d7892a59212aa29caaa2a20463" srcset="http://2.gravatar.com/avatar/25e2c1d7892a59212aa29caaa2a20463?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67814">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>luu</strong> <span>February 14, 2015 at 5:18 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>love it</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67814#respond" onclick="return addComment.moveForm( &quot;comment-67814&quot;, &quot;67814&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to luu">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67718">
+	 <img alt="" src="./Python socket – network programming tutorial_files/a220733d767f1ba710fd6dbc63a91f9e" srcset="http://1.gravatar.com/avatar/a220733d767f1ba710fd6dbc63a91f9e?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67718">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Abhijeet</strong> <span>January 5, 2015 at 1:11 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>data = s.recv(1024)</p>
+<p>OSError: [WinError 10057] A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied</p>
+<p>getting this error every time<br>
+i am running python 3.4</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67718#respond" onclick="return addComment.moveForm( &quot;comment-67718&quot;, &quot;67718&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Abhijeet">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67588">
+	 <img alt="" src="./Python socket – network programming tutorial_files/354ca41e23a62a6d24d258bf5e356649" srcset="http://0.gravatar.com/avatar/354ca41e23a62a6d24d258bf5e356649?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67588">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>sly</strong> <span>November 16, 2014 at 1:55 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Very good step-by-step tutorial.  You’re a good instructor.  Thank you</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67588#respond" onclick="return addComment.moveForm( &quot;comment-67588&quot;, &quot;67588&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to sly">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67516">
+	 <img alt="" src="./Python socket – network programming tutorial_files/d137dc318c3c0aa76655e475404ace24" srcset="http://1.gravatar.com/avatar/d137dc318c3c0aa76655e475404ace24?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67516">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>yorker</strong> <span>October 17, 2014 at 4:11 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Are there any tutorials for commands list, get, wiseget?<br>
+Thanks</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67516#respond" onclick="return addComment.moveForm( &quot;comment-67516&quot;, &quot;67516&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to yorker">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67464">
+	 <img alt="" src="./Python socket – network programming tutorial_files/7e459cafafd6033d7338cd28d9571c8a" srcset="http://1.gravatar.com/avatar/7e459cafafd6033d7338cd28d9571c8a?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67464">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Tadeo</strong> <span>October 3, 2014 at 7:08 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Dude I love you srsly, but I have a question. How can I modify this code to send files from a client to the server? Thanks a lot!</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67464#respond" onclick="return addComment.moveForm( &quot;comment-67464&quot;, &quot;67464&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Tadeo">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67462">
+	 <img alt="" src="./Python socket – network programming tutorial_files/2e37a0496c47c6a12d38470bd9e95502" srcset="http://2.gravatar.com/avatar/2e37a0496c47c6a12d38470bd9e95502?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67462">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>siddiq</strong> <span>October 1, 2014 at 10:44 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Thanks . This was great and very helpful</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67462#respond" onclick="return addComment.moveForm( &quot;comment-67462&quot;, &quot;67462&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to siddiq">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67443">
+	 <img alt="" src="./Python socket – network programming tutorial_files/a4668efe0185babb80b6ee92f7270368" srcset="http://1.gravatar.com/avatar/a4668efe0185babb80b6ee92f7270368?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67443">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>pawan kandel</strong> <span>September 24, 2014 at 9:10 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>awesome tutorial.first time got satisfied with the programming tutorials</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67443#respond" onclick="return addComment.moveForm( &quot;comment-67443&quot;, &quot;67443&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to pawan kandel">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67405">
+	 <img alt="" src="./Python socket – network programming tutorial_files/59a35ec9f64450940015d61c6598df0e" srcset="http://2.gravatar.com/avatar/59a35ec9f64450940015d61c6598df0e?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67405">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>safti</strong> <span>September 15, 2014 at 5:06 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>gr8 tutorial thank you very much m8 – just straight forward, very good explained – nothing uneccesary</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67405#respond" onclick="return addComment.moveForm( &quot;comment-67405&quot;, &quot;67405&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to safti">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67372">
+	 <img alt="" src="./Python socket – network programming tutorial_files/7ab07f80f3055b05003b3aab6d7f5c36" srcset="http://1.gravatar.com/avatar/7ab07f80f3055b05003b3aab6d7f5c36?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67372">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Rusty</strong> <span>September 3, 2014 at 3:11 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>are your examples cross-platforms?</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67372#respond" onclick="return addComment.moveForm( &quot;comment-67372&quot;, &quot;67372&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Rusty">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67353">
+	 <img alt="" src="./Python socket – network programming tutorial_files/6e146092581c0219f5ba2efadabe4e54" srcset="http://0.gravatar.com/avatar/6e146092581c0219f5ba2efadabe4e54?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67353">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Patrick Wai</strong> <span>August 28, 2014 at 6:08 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>if not data:<br>
+  break</p>
+<p>I think this can be never touched.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67353#respond" onclick="return addComment.moveForm( &quot;comment-67353&quot;, &quot;67353&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Patrick Wai">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67351">
+	 <img alt="" src="./Python socket – network programming tutorial_files/6e146092581c0219f5ba2efadabe4e54" srcset="http://0.gravatar.com/avatar/6e146092581c0219f5ba2efadabe4e54?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67351">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Patrick Wai</strong> <span>August 28, 2014 at 12:47 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>very well thank you.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67351#respond" onclick="return addComment.moveForm( &quot;comment-67351&quot;, &quot;67351&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Patrick Wai">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67300">
+	 <img alt="" src="./Python socket – network programming tutorial_files/142e3a92d8dee400d15eccbad3fa0931" srcset="http://1.gravatar.com/avatar/142e3a92d8dee400d15eccbad3fa0931?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67300">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Suku John George</strong> <span>August 13, 2014 at 10:39 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>very cool. Thanks for sharing..</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67300#respond" onclick="return addComment.moveForm( &quot;comment-67300&quot;, &quot;67300&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Suku John George">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-67298">
+	 <img alt="" src="./Python socket – network programming tutorial_files/a7fbbdac71d6d37b804779dfb30ae707" srcset="http://1.gravatar.com/avatar/a7fbbdac71d6d37b804779dfb30ae707?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67298">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>morris</strong> <span>August 12, 2014 at 7:41 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Thank you for this great tutorial!</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67298#respond" onclick="return addComment.moveForm( &quot;comment-67298&quot;, &quot;67298&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to morris">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-67267">
+	 <img alt="" src="./Python socket – network programming tutorial_files/a50a35638bce32c534f2449eddad3142" srcset="http://1.gravatar.com/avatar/a50a35638bce32c534f2449eddad3142?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-67267">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Earth Defender</strong> <span>July 31, 2014 at 9:37 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Hey Man, Thanks . I completely fell in love with your page that i didn’t want to close it.<br>
+Nice design and i love how you took the lesson step by step. I haven’t learnt something so fast like how i learnt your lesson</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=67267#respond" onclick="return addComment.moveForm( &quot;comment-67267&quot;, &quot;67267&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Earth Defender">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-66308">
+	 <img alt="" src="./Python socket – network programming tutorial_files/5267af2a337209e27e2f86e6c5245689" srcset="http://2.gravatar.com/avatar/5267af2a337209e27e2f86e6c5245689?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66308">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>kangbalja</strong> <span>July 4, 2014 at 6:09 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Awesome post!! Thank you.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66308#respond" onclick="return addComment.moveForm( &quot;comment-66308&quot;, &quot;66308&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to kangbalja">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-66307">
+	 <img alt="" src="./Python socket – network programming tutorial_files/462ab3497908022c99f86186353e520f" srcset="http://1.gravatar.com/avatar/462ab3497908022c99f86186353e520f?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66307">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Akshay Kolte</strong> <span>July 3, 2014 at 9:52 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>I am writing code in python for a chat client.H<br>
+ow do i broadcast a message to all connected computers in the network? or get a list of all connected ip’s?</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66307#respond" onclick="return addComment.moveForm( &quot;comment-66307&quot;, &quot;66307&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Akshay Kolte">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-66294">
+	 <img alt="" src="./Python socket – network programming tutorial_files/448637ab2aff462274542d99a657da3c" srcset="http://1.gravatar.com/avatar/448637ab2aff462274542d99a657da3c?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66294">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>sri</strong> <span>June 30, 2014 at 12:42 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>I tried the above example…it worked but when i use data = conn.recv(1024) and send data…i see output as connected with 127.0.0.1:57721 but no change after tat…it stands still ..i dont understand</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66294#respond" onclick="return addComment.moveForm( &quot;comment-66294&quot;, &quot;66294&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to sri">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-66288">
+	 <img alt="" src="./Python socket – network programming tutorial_files/448637ab2aff462274542d99a657da3c" srcset="http://1.gravatar.com/avatar/448637ab2aff462274542d99a657da3c?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66288">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>deepu</strong> <span>June 27, 2014 at 12:39 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Super…. clear Explanation…I love it…keep it up…</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66288#respond" onclick="return addComment.moveForm( &quot;comment-66288&quot;, &quot;66288&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to deepu">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-66285">
+	 <img alt="" src="./Python socket – network programming tutorial_files/c3865315debd9c801ec39d33cae3773b" srcset="http://0.gravatar.com/avatar/c3865315debd9c801ec39d33cae3773b?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66285">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Hari</strong> <span>June 27, 2014 at 12:59 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>I’m using Python 3.4.1, can you share the code snippet for both server.py and client.py file?</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66285#respond" onclick="return addComment.moveForm( &quot;comment-66285&quot;, &quot;66285&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Hari">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-even depth-1 clearfix" id="li-comment-66260">
+	 <img alt="" src="./Python socket – network programming tutorial_files/71dcc546a1764fdbb9e6626280f11a70" srcset="http://1.gravatar.com/avatar/71dcc546a1764fdbb9e6626280f11a70?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66260">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>RepentSinnerTheEndIsNigh</strong> <span>June 19, 2014 at 7:46 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>You could explain basic difference between TCP (reliable delivery of an ordered stream of bytes) and UDP (best-effort delivery of individual messages).</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66260#respond" onclick="return addComment.moveForm( &quot;comment-66260&quot;, &quot;66260&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to RepentSinnerTheEndIsNigh">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-odd thread-alt depth-1 clearfix" id="li-comment-66216">
+	 <img alt="" src="./Python socket – network programming tutorial_files/d6c9ce52862245288f71ee6ad7a58083" srcset="http://1.gravatar.com/avatar/d6c9ce52862245288f71ee6ad7a58083?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66216">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>lolasdfafadbbba</strong> <span>June 5, 2014 at 2:18 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>If this server was running on a MAC, how would you connect to it on a Windows machine</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66216#respond" onclick="return addComment.moveForm( &quot;comment-66216&quot;, &quot;66216&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to lolasdfafadbbba">Reply</a>      </div>
+     </div>
+<ul class="children">
+   <li class="comment odd alt depth-2 clearfix" id="li-comment-66259">
+	 <img alt="" src="./Python socket – network programming tutorial_files/71dcc546a1764fdbb9e6626280f11a70" srcset="http://1.gravatar.com/avatar/71dcc546a1764fdbb9e6626280f11a70?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66259">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>RepentSinnerTheEndIsNigh</strong> <span>June 19, 2014 at 7:42 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>There is no difference at the basic level. Byte ordering is an advanced topic and only affects communications between big-endian and little-endian machines. You can google that.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66259#respond" onclick="return addComment.moveForm( &quot;comment-66259&quot;, &quot;66259&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to RepentSinnerTheEndIsNigh">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1 clearfix" id="li-comment-66210">
+	 <img alt="" src="./Python socket – network programming tutorial_files/facef583b3bcd2fa16a9928f2b8152ae" srcset="http://0.gravatar.com/avatar/facef583b3bcd2fa16a9928f2b8152ae?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66210">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Mateusz</strong> <span>June 2, 2014 at 7:36 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>I run the last version (with handling connections). When all of three telnet connections opened in other terminals are closed main program (server) is still running. It’s because of while loop, but how to finish the program efficiently? I mean, how to make it stop?</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66210#respond" onclick="return addComment.moveForm( &quot;comment-66210&quot;, &quot;66210&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Mateusz">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="li-comment-66195">
+	 <img alt="" src="./Python socket – network programming tutorial_files/ef7ceec22dfe946ddb15d6acaaaf53f6" srcset="http://2.gravatar.com/avatar/ef7ceec22dfe946ddb15d6acaaaf53f6?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66195">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Nate</strong> <span>May 29, 2014 at 10:57 am	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Great post, very helpful and had me understanding how to write a client and server in under an hour.  Thank you very much for posting this.</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66195#respond" onclick="return addComment.moveForm( &quot;comment-66195&quot;, &quot;66195&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Nate">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+   <li class="comment even thread-even depth-1 clearfix" id="li-comment-66173">
+	 <img alt="" src="./Python socket – network programming tutorial_files/0592697ccafd2deaa22221951063e295" srcset="http://0.gravatar.com/avatar/0592697ccafd2deaa22221951063e295?s=76&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F61a58ec1c1fba116f8424035089b7c71%3Fs%3D32%26d%3D%26r%3DG&amp;r=g 2x" class="avatar avatar-38 photo" height="38" width="38">     <div id="comment-66173">
+	  <div class="comment-meta commentmetadata clearfix">
+	    <strong>Andriy</strong> <span>May 18, 2014 at 5:10 pm	  </span>
+	  </div>
+	  
+      <div class="text">
+		  <p>Good article! Thanks!</p>
+	  </div>
+	  
+	  
+      <div class="reply">
+         <a rel="nofollow" class="comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/?replytocom=66173#respond" onclick="return addComment.moveForm( &quot;comment-66173&quot;, &quot;66173&quot;, &quot;respond&quot;, &quot;2204&quot; )" aria-label="Reply to Andriy">Reply</a>      </div>
+     </div>
+</li><!-- #comment-## -->
+	</ul>
+<div style="height:30px;">
+<span style="float:left;">	
+ 
+</span>
+
+<span style="float:right;">	
+<a href="http://www.binarytides.com/python-socket-programming-tutorial/comment-page-1/#comments">Older Comments</a></span>
+</div>
+ 
+
+
+<div id="respond">
+
+<h2 id="commentsForm">Leave a comment</h2>
+
+<div class="cancel-comment-reply">
+	<small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.binarytides.com/python-socket-programming-tutorial/#respond" style="display:none;">Click here to cancel reply.</a></small>
+</div>
+
+
+<form action="http://www.binarytides.com/blog/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><label for="author">Name (required)</label>
+<input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required="true">
+</p>
+
+<p><label for="email">Mail (will not be published) (required)</label>
+<input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required="true">
+</p>
+
+<p><label for="url">Website</label>
+<input type="text" name="url" id="url" value="" size="22" tabindex="3">
+</p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><label for="comment">Comment</label>
+<textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="POST COMMENT">
+<input type="hidden" name="comment_post_ID" value="2204" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"></p>
+<input type="hidden" id="ak_js" name="ak_js" value="1500485011326"></form>
+
+</div>
+
+			</div>
+			</div>
+
+		</div>
+				
+		</div>
+		<!-- End #colLeftInner -->
+		</div>
+		<!-- End #colLeft -->
+
+<!-- Begin #colRight -->
+<div id="colRight">
+	
+	<div id="adsense_search" class="rightBox">
+<div class="widget_content">
+<form action="http://www.binarytides.com/search" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-5814774904969415:4586881861">
+    <input type="hidden" name="cof" value="FORID:10">
+    <input type="hidden" name="ie" value="UTF-8">
+<table><tbody><tr><td>
+    <input type="text" name="q" size="55" placeholder="Custom Search" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;"></td><td>
+    <input type="submit" name="sa" value="Search"></td></tr></tbody></table>
+  </div>
+<input name="siteurl" type="hidden" value="www.binarytides.com/python-socket-programming-tutorial/"><input name="ref" type="hidden" value="www.binarytides.com/python-socket-server-code-example/"><input name="ss" type="hidden" value=""></form>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/brand"></script>
+
+</div></div>
+<!-- search box ends here -->
+<center>
+<script async="" src="./Python socket – network programming tutorial_files/adsbygoogle.js.download"></script>
+<!-- binarytides 300x250 sidebar -->
+<ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-5814774904969415" data-ad-slot="7101063767" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:300px;height:250px;" src="./Python socket – network programming tutorial_files/saved_resource(4).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</center>
+<br><center>
+<a target="_blank" href="http://feedburner.google.com/fb/a/mailverify?uri=binarytides&amp;loc=en_US" style="display:block;"><img src="./Python socket – network programming tutorial_files/free-linux-ebooks.png"></a>
+</center>
+<br><div class="rightBox"><span class="title">Connect with us</span><div class="widget_content"><ul class="lsi-social-icons icon-set-lsi_widget-2" style="text-align: left"><li class="lsi-social-facebook"><a class="tooltip tooltipstered" rel="nofollow" aria-label="Facebook" href="https://www.facebook.com/binarytides" target="_blank"><i class="lsicon lsicon-facebook"></i></a></li><li class="lsi-social-twitter"><a class="tooltip tooltipstered" rel="nofollow" aria-label="Twitter" href="https://twitter.com/binarytides" target="_blank"><i class="lsicon lsicon-twitter"></i></a></li><li class="lsi-social-gplus"><a class="tooltip tooltipstered" rel="nofollow" aria-label="Google+" href="https://plus.google.com/+binarytides" target="_blank"><i class="lsicon lsicon-gplus"></i></a></li><li class="lsi-social-rss"><a class="tooltip tooltipstered" rel="nofollow" aria-label="RSS" href="https://feedburner.google.com/fb/a/mailverify?uri=binarytides" target="_blank"><i class="lsicon lsicon-rss"></i></a></li></ul></div></div><div class="rightBox">
+<div class="wp_rp_wrap  wp_rp_modern" id="wp_rp_first"><div class="wp_rp_content"><span class="title">Other interesting stuff</span><div class="widget_content"><ul class="related_post wp_rp"><li data-position="0" data-poid="in-5578" data-post-type="none"><a href="http://www.binarytides.com/python-socket-server-code-example/" class="wp_rp_thumbnail"><img src="./Python socket – network programming tutorial_files/python-150x150.png" alt="Code a simple socket server in Python" width="150" height="150"></a><a href="http://www.binarytides.com/python-socket-server-code-example/" class="wp_rp_title">Code a simple socket server in Python</a></li><li data-position="1" data-poid="in-1271" data-post-type="none"><a href="http://www.binarytides.com/socket-programming-c-linux-tutorial/" class="wp_rp_thumbnail"><img src="./Python socket – network programming tutorial_files/14.jpg" alt="Socket programming in C on Linux – tutorial" width="150" height="150"></a><a href="http://www.binarytides.com/socket-programming-c-linux-tutorial/" class="wp_rp_title">Socket programming in C on Linux – tutorial</a></li><li data-position="2" data-poid="in-3119" data-post-type="none"><a href="http://www.binarytides.com/raw-socket-programming-in-python-linux/" class="wp_rp_thumbnail"><img src="./Python socket – network programming tutorial_files/23.jpg" alt="Raw socket programming in python (Linux)" width="150" height="150"></a><a href="http://www.binarytides.com/raw-socket-programming-in-python-linux/" class="wp_rp_title">Raw socket programming in python (Linux)</a></li><li data-position="3" data-poid="in-3102" data-post-type="none"><a href="http://www.binarytides.com/python-syn-flood-program-raw-sockets-linux/" class="wp_rp_thumbnail"><img src="./Python socket – network programming tutorial_files/5.jpg" alt="Syn flood program in python using raw sockets (Linux)" width="150" height="150"></a><a href="http://www.binarytides.com/python-syn-flood-program-raw-sockets-linux/" class="wp_rp_title">Syn flood program in python using raw sockets (Linux)</a></li><li data-position="4" data-poid="in-1018" data-post-type="none"><a href="http://www.binarytides.com/python-packet-sniffer-code-linux/" class="wp_rp_thumbnail"><img src="./Python socket – network programming tutorial_files/9.jpg" alt="Code a network packet sniffer in python for Linux" width="150" height="150"></a><a href="http://www.binarytides.com/python-packet-sniffer-code-linux/" class="wp_rp_title">Code a network packet sniffer in python for Linux</a></li><li data-position="5" data-poid="in-4628" data-post-type="none"><a href="http://www.binarytides.com/code-telnet-client-sockets-python/" class="wp_rp_thumbnail"><img src="./Python socket – network programming tutorial_files/17.jpg" alt="Code a simple telnet client using sockets in python" width="150" height="150"></a><a href="http://www.binarytides.com/code-telnet-client-sockets-python/" class="wp_rp_title">Code a simple telnet client using sockets in python</a></li></ul></div></div>
+</div></div><center>
+<!-- BEGIN IFRAME TAG - binarytides.com RON Global Display Rev Share < - DO NOT MODIFY -->
+<iframe src="./Python socket – network programming tutorial_files/tt(1).html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
+<!-- END TAG -->
+</center>
+</div>
+<!-- End #colRight -->	
+
+</div>
+<!-- end of colwrap -->
+
+</div>
+		<!-- end content -->
+	
+	</div>
+	<!-- end wrapper -->
+	<!-- begin footer -->
+	
+	<div id="footer">
+		<div id="copyrightInner">
+
+<div style="line-height:32px;">			
+
+<div id="footer_links">
+	<a href="http://www.binarytides.com/about">About us</a>
+	<a href="http://www.binarytides.com/contact">Contact us</a>
+	<a href="http://www.binarytides.com/faq">Faq</a>
+	<a href="http://www.binarytides.com/advertise">Advertise</a>
+	<a href="http://www.binarytides.com/privacy">Privacy Policy</a>
+<!--	<a href="/terms">Terms of Service</a>-->
+</div>
+
+Copyright © 2017 BinaryTides
+
+</div>
+		
+
+		</div>
+
+
+
+	</div>
+	<!-- end footer -->
+
+	
+
+<!-- google analytics event tracking -->
+<script type="text/javascript">
+
+if(window.jQuery)
+{
+
+jQuery(document).ready(function() {
+
+jQuery('li.SPOSTARBUST-Related-Post a').click(function() 
+{ 
+	ga('send', 'event', 'clicks', 'related_posts_right', $(this).html(), {'nonInteraction': 1});
+});
+	
+//For adverts and offers, save the href/link
+jQuery('a.offer').click(function() 
+{ 
+//	_gaq.push(['_trackEvent', 'clicks', 'offer', $(this).attr('href') , 5, true]);
+});
+
+jQuery('.postBoxMidInner p img').closest('p').css('clear','both');
+
+
+// detect ad blocking
+if( jQuery('.adcontent').height() == 0 )
+{
+	// console.log('Sad. You have ad blocker enabled');
+	ga('send', 'event', 'adblocks', 'adblocks', 'adblocks', {'nonInteraction': 1});
+
+	// add some content to the empty ad area
+}
+});
+
+}
+
+</script>
+
+
+
+<!-- Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+(function() {
+var elem = document.createElement('script');
+elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+elem.async = true;
+elem.type = "text/javascript";
+var scpt = document.getElementsByTagName('script')[0];
+scpt.parentNode.insertBefore(elem, scpt);
+})();
+
+_qevents.push({
+qacct:"p-PydpEyknvJJzJ"
+});
+</script>
+
+<noscript>
+&lt;div style="display:none;"&gt;
+&lt;img src="//pixel.quantserve.com/pixel/p-PydpEyknvJJzJ.gif" border="0" height="1" width="1" alt="Quantcast"/&gt;
+&lt;/div&gt;
+</noscript>
+<!-- End Quantcast tag --><script type="text/javascript" src="./Python socket – network programming tutorial_files/form.js.download"></script>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/shCore.js.download"></script>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/shBrushPython.js.download"></script>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/shBrushCpp.js.download"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.binarytides.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.binarytides.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<link rel="stylesheet" id="yarppRelatedCss-css" href="./Python socket – network programming tutorial_files/related.css" type="text/css" media="all">
+<link rel="stylesheet" id="lsi-style-css" href="./Python socket – network programming tutorial_files/style-min.css" type="text/css" media="all">
+<style id="lsi-style-inline-css" type="text/css">
+
+			.icon-set-lsi_widget-2 a, 
+			.icon-set-lsi_widget-2 a:visited, 
+			.icon-set-lsi_widget-2 a:focus {
+				border-radius: 2px;
+				background: #1E72BD !important;
+				color: #FFFFFF !important;
+				font-size: 32px !important;
+			}
+			.icon-set-lsi_widget-2 a:hover {
+				background: #dd3333 !important;
+				color: #FFFFFF !important;
+			}
+</style>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/wp-embed.min.js.download"></script>
+<script type="text/javascript" src="./Python socket – network programming tutorial_files/jquery.tooltipster.min.js.download"></script>
+<script>/* <![CDATA[ */(function(d,s,a,i,j,r,l,m,t){try{l=d.getElementsByTagName('a');t=d.createElement('textarea');for(i=0;l.length-i;i++){try{a=l[i].href;s=a.indexOf('/cdn-cgi/l/email-protection');m=a.length;if(a&&s>-1&&m>28){j=28+s;s='';if(j<m){r='0x'+a.substr(j,2)|0;for(j+=2;j<m&&a.charAt(j)!='X';j+=2)s+='%'+('0'+('0x'+a.substr(j,2)^r).toString(16)).slice(-2);j++;s=decodeURIComponent(s)+a.substr(j,m-j)}t.innerHTML=s.replace(/</g,'&lt;').replace(/\>/g,'&gt;');l[i].href='mailto:'+t.value}}catch(e){}}}catch(e){}})(document);/* ]]> */</script>
+
+<!-- *´¨)
+     ¸.•´¸.•*´¨) ¸.•*¨)
+     (¸.•´ (¸.•` ¤ Comet Cache is Fully Functional ¤ ´¨) -->
+
+<!-- Cache File Version Salt:       n/a -->
+
+<!-- Cache File URL:                http://www.binarytides.com/python-socket-programming-tutorial/ -->
+<!-- Cache File Path:               /cache/comet-cache/cache/http/www-binarytides-com/python-socket-programming-tutorial.html -->
+
+<!-- Cache File Generated Via:      HTTP request -->
+<!-- Cache File Generated On:       Jul 18th, 2017 @ 11:36 pm UTC -->
+<!-- Cache File Generated In:       0.30793 seconds -->
+
+<!-- Cache File Expires On:         Jul 25th, 2017 @ 11:36 pm UTC -->
+<!-- Cache File Auto-Rebuild On:    Jul 25th, 2017 @ 11:36 pm UTC -->
+
+<!-- Loaded via Cache On:    Jul 19th, 2017 @ 5:23 pm UTC -->
+<!-- Loaded via Cache In:    0.04408 seconds --><div class="dd_outer" style="position: fixed;"><div class="dd_inner" style="width: 1080px;"><div id="dd_ajax_float" style="position: absolute; top: 30px; left: -95px; display: block;"><div class="dd_button_v"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="./Python socket – network programming tutorial_files/tweet_button.5f60791584f95f2ec483faec8b16a58b.en.html" style="position: static; visibility: visible; width: 60px; height: 20px;" data-url="http://www.binarytides.com/python-socket-programming-tutorial/"></iframe><script type="text/javascript" src="./Python socket – network programming tutorial_files/widgets.js.download"></script></div><div style="clear:left"></div><div class="dd_button_v"><iframe src="./Python socket – network programming tutorial_files/like.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:62px;" allowtransparency="true"></iframe></div><div style="clear:left"></div><div class="dd_button_v"><script type="text/javascript" src="./Python socket – network programming tutorial_files/plusone.js.download" gapi_processed="true"></script><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 50px; height: 60px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 60px;" tabindex="0" vspace="0" width="100%" id="I0_1500485012433" name="I0_1500485012433" src="./Python socket – network programming tutorial_files/fastbutton.html" data-gapiattached="true" title="G+"></iframe></div></div><div style="clear:left"></div><div class="dd_button_v"><script src="./Python socket – network programming tutorial_files/in.js.download" type="text/javascript"></script><span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1500485010994_1-container" class="IN-top"><span id="li_ui_li_gen_1500485010994_1" class="IN-top"><span id="li_ui_li_gen_1500485010994_1-inner" class="IN-top"><span id="li_ui_li_gen_1500485010994_1-content" class="IN-top">10</span></span></span></span></span><br><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1500485010970_0"><a id="li_ui_li_gen_1500485010970_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1500485010970_0-logo">in</span><span id="li_ui_li_gen_1500485010970_0-title"><span id="li_ui_li_gen_1500485010970_0-mark"></span><span id="li_ui_li_gen_1500485010970_0-title-text">Share</span></span></a></span></span></span><script type="IN/Share+init" data-url="http://www.binarytides.com/python-socket-programming-tutorial/" data-counter="top"></script></div><div style="clear:left"></div></div></div></div><iframe name="oauth2relay275805653" id="oauth2relay275805653" src="./Python socket – network programming tutorial_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./Python socket – network programming tutorial_files/saved_resource(5).html"></iframe></body></html>

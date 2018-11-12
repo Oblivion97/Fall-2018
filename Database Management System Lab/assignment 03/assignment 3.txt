@@ -1,0 +1,10 @@
+1. Write a query to find the manager name and the salary of the lowest-paid employee for that manager.
+
+2. Write a query to get the average salary for all departments employing more than 10 employees. 
+Show the department id, department name and average salary columns only.
+
+3. For each employee, find the total number of employees those are hired before him/her. 
+Print employee last name and total employees
+
+4. To show each job categories maximum salary, minimum salary, total salary, 
+no of employees employed for only DEPARTMENT_ID 80.
