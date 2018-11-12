@@ -1,0 +1,6 @@
+1.basics of 8086
+2.branching
+3.loops
+4.nested loops
+5.multiply/div/rotation/shift
+6.stack/procedure
