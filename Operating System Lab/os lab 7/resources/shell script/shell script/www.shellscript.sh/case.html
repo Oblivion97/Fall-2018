@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/case.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:30:52 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="theme-color" content="#dab084"/>
+        <meta property="og:description" content="
+        Case - From the Shell Scripting Tutorial at https://www.shellscript.sh/        "/>
+        <meta property="og:title" content="Shell Scripting Tutorial" />
+<meta property='og:image' content='img/wordcloud.png' />
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="case.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Case - Shell Scripting Tutorial        </title>
+        <meta name="description" content="
+	"Case" - A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell.	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="case.html" />
+        <link rel="stylesheet" href="css/shellscript.css">
+        <script src="js/vendor/jquery-1.10.2.min.js"></script>
+        <link rel="alternate" type="application/rss+xml" href="rss.xml" title="Shell Scripting RSS Feed">
+<!-- auto ads -->
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">The Linux Shell Scripting Tutorial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+                    <li><a href="tips/index.html"><i class="fa fa-star-o"></i>NEW: Shell Scripting Tips</a><br/></li> 
+                    <li><a href="index-2.html"><i class="fa fa-arrow-right"></i>1. Introduction</a></li>
+                    <li><a href="philosophy.html"><i class="fa fa-arrow-right"></i>2. Philosophy</a></li>
+                    <li><a href="first.html"><i class="fa fa-arrow-right"></i>3. A First Script</a></li>
+                    <li><a href="variables1.html"><i class="fa fa-arrow-right"></i>4. Variables (Part 1)</a></li>
+                    <li><a href="wildcards.html"><i class="fa fa-arrow-right"></i>5. Wildcards</a></li>
+                    <li><a href="escape.html"><i class="fa fa-arrow-right"></i>6. Escape Characters</a></li>
+                    <li><a href="loops.html"><i class="fa fa-arrow-right"></i>7. Loops</a></li>
+                    <li><a href="test.html"><i class="fa fa-arrow-right"></i>8. Test</a></li>
+                    <li><a href="case.html"><i class="fa fa-arrow-right"></i>9. Case</a></li>
+                    <li><a href="variables2.html"><i class="fa fa-arrow-right"></i>10. Variables (Part 2)</a></li>
+                    <li><a href="variables3.html"><i class="fa fa-arrow-right"></i>11. Variables (Part 3)</a></li>
+                    <li><a href="external.html"><i class="fa fa-arrow-right"></i>12. External Programs</a></li>
+                    <li><a href="functions.html"><i class="fa fa-arrow-right"></i>13. Functions</a></li>
+                    <li><a href="hints.html"><i class="fa fa-arrow-right"></i>14. Hints and Tips</a></li>
+                    <li><a href="quickref.html"><i class="fa fa-arrow-right"></i>15. Quick Reference</a></li>
+                    <li><a href="interactive.html"><i class="fa fa-arrow-right"></i>16. Interactive Shell</a></li>
+                    <li><a href="exercises.html"><i class="fa fa-arrow-right"></i>17. Exercises</a></li>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                    <img src="img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell. Learn Linux / Unix shell scripting by example along with the theory. I'll have you mastering Unix shell scripting in no time.<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+<center>
+<script src="../gumroad.com/js/gumroad.html"></script>
+<a class="gumroad-button" href="https://gum.co/shellscript" target="_blank">Buy this tutorial as a PDF ($5)</a>
+</center>
+                <ul>
+                    <li><a href="tips/index.html"><i class="fa fa-star-o"></i>NEW: Shell Scripting Tips</a><br/></li>
+                    <li><a href="index-2.html"><i class="fa fa-arrow-right"></i>1. Introduction</a></li>
+                    <li><a href="philosophy.html"><i class="fa fa-arrow-right"></i>2. Philosophy</a></li>
+                    <li><a href="first.html"><i class="fa fa-arrow-right"></i>3. A First Script</a></li>
+                    <li><a href="variables1.html"><i class="fa fa-arrow-right"></i>4. Variables (Part 1)</a></li>
+                    <li><a href="wildcards.html"><i class="fa fa-arrow-right"></i>5. Wildcards</a></li>
+                    <li><a href="escape.html"><i class="fa fa-arrow-right"></i>6. Escape Characters</a></li>
+                    <li><a href="loops.html"><i class="fa fa-arrow-right"></i>7. Loops</a></li>
+                    <li><a href="test.html"><i class="fa fa-arrow-right"></i>8. Test</a></li>
+                    <li><a href="case.html"><i class="fa fa-arrow-right"></i>9. Case</a></li>
+                    <li><a href="variables2.html"><i class="fa fa-arrow-right"></i>10. Variables (Part 2)</a></li>
+                    <li><a href="variables3.html"><i class="fa fa-arrow-right"></i>11. Variables (Part 3)</a></li>
+                    <li><a href="external.html"><i class="fa fa-arrow-right"></i>12. External Programs</a></li>
+                    <li><a href="functions.html"><i class="fa fa-arrow-right"></i>13. Functions</a></li>
+                    <li><a href="hints.html"><i class="fa fa-arrow-right"></i>14. Hints and Tips</a></li>
+                    <li><a href="quickref.html"><i class="fa fa-arrow-right"></i>15. Quick Reference</a></li>
+                    <li><a href="interactive.html"><i class="fa fa-arrow-right"></i>16. Interactive Shell</a></li>
+                    <li><a href="exercises.html"><i class="fa fa-arrow-right"></i>17. Exercises</a></li>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#publications"><i class="fa fa-book"></i>Publications</a></li>
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial</h2>
+                <h3>Case</h3>                <!-- <h5>A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell. Learn Linux / Unix shell scripting by example along with the theory. </h5> -->
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="rss.xml"><img src="img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Case%20-%20https://www.shellscript.sh/case.html" target="_blank"><img src="img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Fcase.html&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/case.html&title=Case&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/case.html" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/case.html&title=Case" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<p>
+<script src="../gumroad.com/js/gumroad.html"></script>
+<a class="gumroad-button" href="https://gum.co/shellscript" target="_blank">You can now buy this tutorial as a PDF for $5!</a>
+
+                
+<h1>
+9. Case
+</h1>
+The <code>case</code> statement saves going through a whole set of 
+<code>if .. then .. else</code> statements. Its syntax is really quite
+simple: 
+<hr noshade="noshade" align="left" width="40%"/> <a href="eg/talk.sh.txt">talk.sh</a>
+<pre class="prettyprint lang-sh">
+#!/bin/sh
+
+echo "Please talk to me ..."
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	hello)
+		echo "Hello yourself!"
+		;;
+	bye)
+		echo "See you again!"
+		break
+		;;
+	*)
+		echo "Sorry, I don't understand"
+		;;
+  esac
+done
+echo 
+echo "That's all folks!"
+</pre>
+
+<hr noshade="noshade" align="left" width="40%"/>
+Okay, so it's not the best conversationalist in the world; it's only an
+example!
+<p>
+Try running it and check how it works...</p>
+<pre class="prettyprint lang-sh">
+$ ./talk.sh
+Please talk to me ...
+hello
+Hello yourself!
+<span class="nocode">What do you think of politics?
+Sorry, I don't understand
+bye
+See you again!
+
+That's all folks!</span>
+$
+</pre>
+The syntax is quite simple: 
+<br/>
+The <code>case</code> line itself is always of the same format, and it
+means that we are testing the value of the variable <code>INPUT_STRING</code>.
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-3578434180456831";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "text_image";
+//2007-09-26: sh_case_med_rect
+google_ad_channel = "1486019875";
+//-->
+</script>
+<script type="text/javascript"
+  src="../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+<br/>
+The options we understand are then listed and followed by a right bracket,
+as <code>hello)</code> and <code>bye)</code>. 
+<br/>This means that if
+<code>INPUT_STRING</code> matches <code>hello</code> then that section
+of code is executed, up to the double semicolon.
+
+<br/>
+If <code>INPUT_STRING</code> matches <code>bye</code> then the goodbye
+message is printed and the loop exits. Note that if we wanted to exit
+the script completely then we would use the command <code>exit</code> 
+instead of <code>break</code>.
+<br/>
+The third option here, the <code>*)</code>, is the default catch-all
+condition; it is not required, but is often useful for debugging purposes
+even if we think we know what values the test variable will have.
+
+</p><p>
+The whole case statement is ended with <code>esac</code> (case backwards!)
+then we end the while loop with a <code>done</code>.
+</p><p>
+That's about as complicated as <code>case</code> conditions get, but they can be a
+very useful and powerful tool. They are often used to parse the
+parameters passed to a shell script, amongst other uses.
+</p>
+ 
+ 
+            
+
+    <center>
+      <div class="g-plusone" data-annotation="none"></div>
+<a href="rss.xml"><img src="img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Case%20-%20https://www.shellscript.sh/case.html" target="_blank"><img src="img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Fcase.html&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/case.html&title=Case&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/case.html" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/case.html&title=Case" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+<br />
+      <a class="btn btn-primary btn-lg" href="test.html" role="button"><i class="fa fa-chevron-left"></i> Back:  Test</a>
+      <a class="btn btn-primary btn-lg" href="variables2.html" role="button">Next: Variables (Part 2) <i class="fa fa-chevron-right"></i></a>
+    </center>
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/case.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:30:52 GMT -->
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-basic-utilities.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:15:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Unix / Linux Basic Utilities Printing, Email</title>
+<meta name="description" content="Unix / Linux Basic Utilities Printing, Email - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Getting Started, Unix Korn and Bourne Shell and Programming, File Permission / Access Modes, Environment, Utilities, Pipes and Filters, Network Communication Utilities, File System, Directories, Memory Management, Special Variables, vi editor, What is Shell?, Using Shell Variables, Arrays, Basic Operators, Decision Making, Loop Types, Control, Substitution, Quoting Mechanisms, Input / Output Redirections, Functions, Man Page Help, Regular Expressions with SED, User Administration, System Performance, Logging, Signals and Traps, Processes." />
+<meta name="keywords" content="Unix, Linux, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Getting Started, File Permission / Access Modes, Environment, Utilities, Pipes and Filters, Network Communication Utilities, File System, Directories, Memory Management, Special Variables, vi editor, What is Shell?, Using Shell Variables, Arrays, Basic Operators, Decision Making, Loop Types, Control, Substitution, Quoting Mechanisms, Input / Output Redirections, Functions, Man Page Help, Regular Expressions with SED, User Administration, System Performance, Logging, Signals and Traps, Processes." />
+<base  />
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="fb:app_id" content="471319149685276" />
+<meta property="og:site_name" content="www.tutorialspoint.com" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="../theme/js/script-min-v45e1f.js?v=2"></script>
+<link rel="stylesheet" href="../theme/css/style-minc9e4.css?v=3.1">
+<script>
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #01adb9 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #01adb9 url(../images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #01adb9 !important;}
+.submenu-item{ border-bottom: 2px solid #01adb9 !important; border-top: 2px solid #01adb9 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#01adb9; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img  src="../images/loading-cg.gif" alt="" width="70" height="70" />
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="images/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="https://www.tutorialspoint.com/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="../theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="https://www.tutorialspoint.com/tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts {
+   text-align:center !important;
+   vertical-align:middle !important;
+}
+</style>
+<div class="mini-logo">
+<img src="images/unix-mini-logo.jpg" alt="UNIX Tutorial" />
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux for Beginners</li>
+<li><a href="index-2.html">Unix / Linux - Home</a></li>
+<li><a href="unix-getting-started.html">Unix / Linux - Getting Started</a></li>
+<li><a href="unix-file-management.html">Unix / Linux - File Management</a></li>
+<li><a href="unix-directories.html">Unix / Linux - Directories</a></li>
+<li><a href="unix-file-permission.html">Unix / Linux - File Permission</a></li>
+<li><a href="unix-environment.html">Unix / Linux - Environment</a></li>
+<li><a href="unix-basic-utilities.html">Unix / Linux - Basic Utilities</a></li>
+<li><a href="unix-pipes-filters.html">Unix / Linux - Pipes &amp; Filters</a></li>
+<li><a href="unix-processes.html">Unix / Linux - Processes</a></li>
+<li><a href="unix-communication.html">Unix / Linux - Communication</a></li>
+<li><a href="unix-vi-editor.html">Unix / Linux - The vi Editor</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Shell Programming</li>
+<li><a href="shell_scripting.html">Unix / Linux - Shell Scripting</a></li>
+<li><a href="unix-what-is-shell.html">Unix / Linux - What is Shell?</a></li>
+<li><a href="unix-using-variables.html">Unix / Linux - Using Variables</a></li>
+<li><a href="unix-special-variables.html">Unix / Linux - Special Variables</a></li>
+<li><a href="unix-using-arrays.html">Unix / Linux - Using Arrays</a></li>
+<li><a href="unix-basic-operators.html">Unix / Linux - Basic Operators</a></li>
+<li><a href="unix-decision-making.html">Unix / Linux - Decision Making</a></li>
+<li><a href="unix-shell-loops.html">Unix / Linux - Shell Loops</a></li>
+<li><a href="unix-loop-control.html">Unix / Linux - Loop Control</a></li>
+<li><a href="unix-shell-substitutions.html">Unix / Linux - Shell Substitutions</a></li>
+<li><a href="unix-quoting-mechanisms.html">Unix / Linux - Quoting Mechanisms</a></li>
+<li><a href="unix-io-redirections.html">Unix / Linux - IO Redirections</a></li>
+<li><a href="unix-shell-functions.html">Unix / Linux - Shell Functions</a></li>
+<li><a href="unix-manpage-help.html">Unix / Linux - Manpage Help</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Advanced Unix / Linux</li>
+<li><a href="unix-regular-expressions.html">Unix / Linux - Regular Expressions</a></li>
+<li><a href="unix-file-system.html">Unix / Linux - File System Basics</a></li>
+<li><a href="unix-user-administration.html">Unix / Linux - User Administration</a></li>
+<li><a href="unix-system-performance.html">Unix / Linux - System Performance</a></li>
+<li><a href="unix-system-logging.html">Unix / Linux - System Logging</a></li>
+<li><a href="unix-signals-traps.html">Unix / Linux - Signals and Traps</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Useful Resources</li>
+<li><a href="unix_questions_answers.html">Unix / Linux - Questions &amp; Answers</a></li>
+<li><a href="unix-useful-commands.html">Unix / Linux - Useful Commands</a></li>
+<li><a href="unix-quick-guide.html">Unix / Linux - Quick Guide</a></li>
+<li><a href="unix-builtin-functions.html">Unix / Linux - Builtin Functions</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_system_calls/index.htm">Unix / Linux - System Calls</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_commands/index.htm">Unix / Linux - Commands List</a></li>
+<li><a href="unix-useful-resources.html">Unix / Linux - Useful Resources</a></li>
+<li><a href="unix-discussion.html">Unix / Linux - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Unix / Linux Basic Utilities - Printing, Email</h1>
+<hr />
+<div style="padding-bottom:5px;padding-left:10px;text-align: center;">Advertisements</div>
+<div style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/f.txt"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-environment.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-pipes-filters.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>In this chapter, we will discuss in detail about Printing and Email as the basic utilities of Unix. So far, we have tried to understand the Unix OS and the nature of its basic commands. In this chapter, we will learn some important Unix utilities that can be used in our day-to-day life.</p>
+<h2>Printing Files</h2>
+<p>Before you print a file on a Unix system, you may want to reformat it to adjust the margins, highlight some words, and so on. Most files can also be printed without reformatting, but the raw printout may not be that appealing.</p>
+<p>Many versions of Unix include two powerful text formatters, <b>nroff</b> and <b>troff</b>.</p> 
+<h3>The pr Command</h3>
+<p>The <b>pr</b> command does minor formatting of files on the terminal screen or for a printer. For example, if you have a long list of names in a file, you can format it onscreen into two or more columns.</p>
+<p>Following is the syntax for the <b>pr</b> command &minus;</p>
+<pre class="result notranslate">
+pr option(s) filename(s)
+</pre>
+<p>The <b>pr</b> changes the format of the file only on the screen or on the printed copy; it doesn't modify the original file. Following table lists some <b>pr</b> options &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Option &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>-k</b></p>
+<p>Produces <b>k</b> columns of output</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>-d</b></p>
+<p>Double-spaces the output (not on all <b>pr</b> versions)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>-h "header"</b></p>
+<p>Takes the next item as a report header</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>-t</b></p>
+<p>Eliminates the printing of header and the top/bottom margins</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>-l PAGE_LENGTH</b></p>
+<p>Sets the page length to PAGE_LENGTH (66) lines. The default number of lines of text is 56</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>-o MARGIN</b></p>
+<p>Offsets each line with MARGIN (zero) spaces</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>-w PAGE_WIDTH</b></p>
+<p>Sets the page width to PAGE_WIDTH (72) characters for multiple text-column output only</p>
+</td>
+</tr>
+</table>
+<p>Before using <b>pr</b>, here are the contents of a sample file named food.</p>
+<pre class="result notranslate">
+$cat food
+Sweet Tooth
+Bangkok Wok
+Mandalay
+Afghani Cuisine
+Isle of Java
+Big Apple Deli
+Sushi and Sashimi
+Tio Pepe's Peppers
+........
+$
+</pre>
+<p>Let's use the <b>pr</b> command to make a two-column report with the header <i>Restaurants</i> &minus;</p>
+<pre class="result notranslate">
+$pr -2 -h "Restaurants" food
+Nov  7  9:58 1997  Restaurants   Page 1
+
+Sweet Tooth              Isle of Java
+Bangkok Wok              Big Apple Deli
+Mandalay                 Sushi and Sashimi
+Afghani Cuisine          Tio Pepe's Peppers
+........
+$
+</pre>
+<h3>The lp and lpr Commands</h3>
+<p>The command <b>lp</b> or <b>lpr</b> prints a file onto paper as opposed to the screen display. Once you are ready with formatting using the <b>pr</b> command, you can use any of these commands to print your file on the printer connected to your computer.</p>
+<p>Your system administrator has probably set up a default printer at your site. To print a file named <b>food</b> on the default printer, use the <b>lp</b> or <b>lpr</b> command, as in the following example &minus;</p>
+<pre class="result notranslate">
+$lp food
+request id is laserp-525  (1 file)
+$
+</pre>
+<p>The <b>lp</b> command shows an ID that you can use to cancel the print job or check its status.</p>
+<ul class="list">
+<li><p>If you are using the <b>lp</b> command, you can use the -n<b>Num</b> option to print Num number of copies. Along with the command <b>lpr</b>, you can use -<b>Num</b> for the same.</p></li>
+<li><p>If there are multiple printers connected with the shared network, then you can choose a printer using -d<b>printer</b> option along with lp command and for the same purpose you can use -P<b>printer</b> option along with lpr command. Here printer is the printer name.</p></li>
+</ul>
+<h3>The lpstat and lpq Commands</h3>
+<p>The <b>lpstat</b> command shows what's in the printer queue: request IDs, owners, file sizes, when the jobs were sent for printing, and the status of the requests.</p>
+<p>Use <b>lpstat -o</b> if you want to see all output requests other than just your own. Requests are shown in the order they'll be printed &minus;</p>
+<pre class="result notranslate">
+$lpstat -o
+laserp-573  john  128865  Nov 7  11:27  on laserp
+laserp-574  grace  82744  Nov 7  11:28
+laserp-575  john   23347  Nov 7  11:35
+$
+</pre>
+<p>The <b>lpq</b> gives slightly different information than <b>lpstat -o</b> &minus;</p>
+<pre class="result notranslate">
+$lpq
+laserp is ready and printing
+Rank   Owner      Job  Files                  Total Size
+active john       573  report.ps              128865 bytes
+1st    grace      574  ch03.ps ch04.ps        82744 bytes
+2nd    john       575  standard input         23347 bytes
+$
+</pre>
+<p>Here the first line displays the printer status. If the printer is disabled or running out of paper, you may see different messages on this first line.</p>
+<h3>The cancel and lprm Commands</h3>
+<p>The <b>cancel</b> command terminates a printing request from the <b>lp command</b>. The <b>lprm</b> command terminates all <b>lpr requests</b>. You can specify either the ID of the request (displayed by lp or lpq) or the name of the printer.</p>
+<pre class="result notranslate">
+$cancel laserp-575
+request "laserp-575" cancelled
+$
+</pre>
+<p>To cancel whatever request is currently printing, regardless of its ID, simply enter cancel and the printer name &minus;</p>
+<pre class="result notranslate">
+$cancel laserp
+request "laserp-573" cancelled
+$
+</pre>
+<p>The <b>lprm</b> command will cancel the active job if it belongs to you. Otherwise, you can give job numbers as arguments, or use a <b>dash (-)</b> to remove all of your jobs &minus;</p>
+<pre class="result notranslate">
+$lprm 575
+dfA575diamond dequeued
+cfA575diamond dequeued
+$
+</pre>
+<p>The <b>lprm</b> command tells you the actual filenames removed from the printer queue.</p>
+<h2>Sending Email</h2>
+<p>You use the Unix mail command to send and receive mail. Here is the syntax to send an email &minus;</p>
+<pre class="result notranslate">
+$mail [-s subject] [-c cc-addr] [-b bcc-addr] to-addr
+</pre>
+<p>Here are important options related to mail command &minus;s</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Option &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>-s</b></p>
+<p>Specifies subject on the command line.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>-c</b></p>
+<p>Sends carbon copies to the list of users. List should be a commaseparated list of names.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>-b</b></p>
+<p>Sends blind carbon copies to list. List should be a commaseparated list of names.</p>
+</td>
+</tr>
+</table>
+<p>Following is an example to send a test message to admin@yahoo.com.</p>
+<pre class="result notranslate">
+$mail -s "Test Message" admin@yahoo.com 
+</pre>
+<p>You are then expected to type in your message, followed by <b>"control-D"</b> at the beginning of a line. To stop, simply type dot <b>(.)</b> as follows &minus;</p>
+<pre class="result notranslate">
+Hi,
+
+This is a test
+.
+Cc: 
+</pre>
+<p>You can send a complete file using a <b>redirect &lt; operator</b> as follows &minus;</p>
+<pre class="result notranslate">
+$mail -s "Report 05/06/07" admin@yahoo.com &lt; demo.txt 
+</pre>
+<p>To check incoming email at your Unix system, you simply type email as follows &minus;</p>
+<pre class="result notranslate">
+$mail
+no email
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="unix-environment.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-basic-utilities.pdf" title="Unix / Linux Basic Utilities Printing, Email" target="_blank"><i class="icon icon-file-pdf-o big-font"></i> PDF</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-pipes-filters.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.facebook.com/sharer.php?u=' + 'https://www.tutorialspoint.com/unix/unix-basic-utilities.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/facebookIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://twitter.com/share?url=' + 'https://www.tutorialspoint.com/unix/unix-basic-utilities.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/twitterIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.linkedin.com/cws/share?url=' + 'https://www.tutorialspoint.com/unix/unix-basic-utilities.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/linkedinIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://plus.google.com/share?url=https://www.tutorialspoint.com/unix/unix-basic-utilities.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/googlePlusIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.stumbleupon.com/submit?url=https://www.tutorialspoint.com/unix/unix-basic-utilities.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/StumbleUponIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://reddit.com/submit?url=https://www.tutorialspoint.com/unix/unix-basic-utilities.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=656,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/reddit.jpg" alt="img" />
+</a>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="../scripts/img/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_privacy.htm#cookies">Cookies Policy</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>&copy; Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == 'Enter email for newsletter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email for newsletter...';}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script src="../theme/js/custom-minbea6.js?v=7"></script>
+<script src="../../www.google-analytics.com/urchin.js">
+</script>
+<script>
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-basic-utilities.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:15:27 GMT -->
+</html>

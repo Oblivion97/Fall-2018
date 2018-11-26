@@ -1,0 +1,9 @@
+#!/bin/bash
+. ./size.tmpl.txt
+
+echo "Size,CPU,RAM"
+
+for SIZE in ${!CPU[*]}
+do
+  printf "%s,%d,%d\n" ${SIZE} ${CPU[$SIZE]} ${RAM[$SIZE]}
+done  | sort -t, -n -k 3 -k 2

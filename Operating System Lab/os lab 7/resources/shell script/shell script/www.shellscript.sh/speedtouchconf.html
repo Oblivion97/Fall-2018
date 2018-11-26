@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/speedtouchconf.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:33:57 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="theme-color" content="#dab084"/>
+        <meta property="og:description" content="
+        Speedtouchconf - Documented Example Script - From the Shell Scripting Tutorial at https://www.shellscript.sh/        "/>
+        <meta property="og:title" content="Shell Scripting Tutorial" />
+<meta property='og:image' content='img/wordcloud.png' />
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="speedtouchconf.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Speedtouchconf - Documented Example Script - Shell Scripting Tutorial        </title>
+        <meta name="description" content="
+	"Speedtouchconf - Documented Example Script" - A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell.	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="speedtouchconf.html" />
+        <link rel="stylesheet" href="css/shellscript.css">
+        <script src="js/vendor/jquery-1.10.2.min.js"></script>
+        <link rel="alternate" type="application/rss+xml" href="rss.xml" title="Shell Scripting RSS Feed">
+<!-- auto ads -->
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">The Linux Shell Scripting Tutorial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+                    <li><a href="tips/index.html"><i class="fa fa-star-o"></i>NEW: Shell Scripting Tips</a><br/></li> 
+                    <li><a href="index-2.html"><i class="fa fa-arrow-right"></i>1. Introduction</a></li>
+                    <li><a href="philosophy.html"><i class="fa fa-arrow-right"></i>2. Philosophy</a></li>
+                    <li><a href="first.html"><i class="fa fa-arrow-right"></i>3. A First Script</a></li>
+                    <li><a href="variables1.html"><i class="fa fa-arrow-right"></i>4. Variables (Part 1)</a></li>
+                    <li><a href="wildcards.html"><i class="fa fa-arrow-right"></i>5. Wildcards</a></li>
+                    <li><a href="escape.html"><i class="fa fa-arrow-right"></i>6. Escape Characters</a></li>
+                    <li><a href="loops.html"><i class="fa fa-arrow-right"></i>7. Loops</a></li>
+                    <li><a href="test.html"><i class="fa fa-arrow-right"></i>8. Test</a></li>
+                    <li><a href="case.html"><i class="fa fa-arrow-right"></i>9. Case</a></li>
+                    <li><a href="variables2.html"><i class="fa fa-arrow-right"></i>10. Variables (Part 2)</a></li>
+                    <li><a href="variables3.html"><i class="fa fa-arrow-right"></i>11. Variables (Part 3)</a></li>
+                    <li><a href="external.html"><i class="fa fa-arrow-right"></i>12. External Programs</a></li>
+                    <li><a href="functions.html"><i class="fa fa-arrow-right"></i>13. Functions</a></li>
+                    <li><a href="hints.html"><i class="fa fa-arrow-right"></i>14. Hints and Tips</a></li>
+                    <li><a href="quickref.html"><i class="fa fa-arrow-right"></i>15. Quick Reference</a></li>
+                    <li><a href="interactive.html"><i class="fa fa-arrow-right"></i>16. Interactive Shell</a></li>
+                    <li><a href="exercises.html"><i class="fa fa-arrow-right"></i>17. Exercises</a></li>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                    <img src="img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell. Learn Linux / Unix shell scripting by example along with the theory. I'll have you mastering Unix shell scripting in no time.<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+<center>
+<script src="../gumroad.com/js/gumroad.html"></script>
+<a class="gumroad-button" href="https://gum.co/shellscript" target="_blank">Buy this tutorial as a PDF ($5)</a>
+</center>
+                <ul>
+                    <li><a href="tips/index.html"><i class="fa fa-star-o"></i>NEW: Shell Scripting Tips</a><br/></li>
+                    <li><a href="index-2.html"><i class="fa fa-arrow-right"></i>1. Introduction</a></li>
+                    <li><a href="philosophy.html"><i class="fa fa-arrow-right"></i>2. Philosophy</a></li>
+                    <li><a href="first.html"><i class="fa fa-arrow-right"></i>3. A First Script</a></li>
+                    <li><a href="variables1.html"><i class="fa fa-arrow-right"></i>4. Variables (Part 1)</a></li>
+                    <li><a href="wildcards.html"><i class="fa fa-arrow-right"></i>5. Wildcards</a></li>
+                    <li><a href="escape.html"><i class="fa fa-arrow-right"></i>6. Escape Characters</a></li>
+                    <li><a href="loops.html"><i class="fa fa-arrow-right"></i>7. Loops</a></li>
+                    <li><a href="test.html"><i class="fa fa-arrow-right"></i>8. Test</a></li>
+                    <li><a href="case.html"><i class="fa fa-arrow-right"></i>9. Case</a></li>
+                    <li><a href="variables2.html"><i class="fa fa-arrow-right"></i>10. Variables (Part 2)</a></li>
+                    <li><a href="variables3.html"><i class="fa fa-arrow-right"></i>11. Variables (Part 3)</a></li>
+                    <li><a href="external.html"><i class="fa fa-arrow-right"></i>12. External Programs</a></li>
+                    <li><a href="functions.html"><i class="fa fa-arrow-right"></i>13. Functions</a></li>
+                    <li><a href="hints.html"><i class="fa fa-arrow-right"></i>14. Hints and Tips</a></li>
+                    <li><a href="quickref.html"><i class="fa fa-arrow-right"></i>15. Quick Reference</a></li>
+                    <li><a href="interactive.html"><i class="fa fa-arrow-right"></i>16. Interactive Shell</a></li>
+                    <li><a href="exercises.html"><i class="fa fa-arrow-right"></i>17. Exercises</a></li>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#publications"><i class="fa fa-book"></i>Publications</a></li>
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial</h2>
+                <h3>Speedtouchconf - Documented Example Script</h3>                <!-- <h5>A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell. Learn Linux / Unix shell scripting by example along with the theory. </h5> -->
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="rss.xml"><img src="img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Speedtouchconf+-+Documented+Example+Script%20-%20https://www.shellscript.sh/speedtouchconf.html" target="_blank"><img src="img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Fspeedtouchconf.html&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/speedtouchconf.html&title=Speedtouchconf+-+Documented+Example+Script&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/speedtouchconf.html" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/speedtouchconf.html&title=Speedtouchconf - Documented Example Script" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<p>
+<script src="../gumroad.com/js/gumroad.html"></script>
+<a class="gumroad-button" href="https://gum.co/shellscript" target="_blank">You can now buy this tutorial as a PDF for $5!</a>
+
+<h1>Documented Example - Speedtouchconf</h1>
+This is a script I maintain which is used to configure an Alcatel SpeedTouch Modem.
+If you actually want to use the script, go to <a href="http://speedtouchconf.sourceforge.net/">http://speedtouchconf.sourceforge.net/</a>. This
+page is just about documenting it, and showing good and bad styles in coding.<P>
+Note that the code is &lt;PRE&gt; formatted, so you may need to scroll left and right in your browser to see the comments,
+depending on your screen resolution and font sizes. Changing this to work on smaller screens would mean changing the code itself,
+which is not the point of this exercise. If you can't increase your screen resolution, you could try reducing the font size
+of monospaced / preformatted text.<br/>
+It wouldn't be appropriate to shove all these notes into the script itself
+as a shell script like this should only be edited by someone who already
+understands what is going on; these comments are for tutorial purposes
+and not intended to assist in editing this particular script.
+<P>
+<table border=1 width="100%"><tr><th>Code</th><th width=200>Comments</th></tr>
+<tr>
+<td>
+<PRE>
+#!/bin/bash
+# (c) Steve Parker, 17 Oct 2002
+# steve at steve dash parker dot org
+# Released under GPL version 2 (http://www.gnu.org/copyleft/gpl.html)
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of Version 2 of the the GNU General Public License 
+#    as published by the Free Software Foundation. Any later versions of
+#    the GPL will be evaluated as they are released, and this software may
+#    or may not be re-released under those terms also.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# See the included file COPYING for more details.
+# SpeedTouch Configuration for Alcatel USB Modem
+</PRE>
+</td><td>The GPL license requires this boilerplate.</td></tr>
+<tr><td><PRE>
+# Tested on RedHat 8.0 with BT OpenWorld by Steve
+# Tested on Mandrake 9.0 with BT OpenWorld by Steve
+# Updated 29 Oct 2002 to create a log file for diagnosis.
+# Updated 21 Nov 2002 to list Singapore Pacificnet VPI/VCI pair.
+# Updated 25 Nov 2002 to use "tar -xzf" not "tar xzf" as one user reported problems.
+# Also added a web page (http://www.japarker.btinternet.co.uk/speedtouch/)
+# Updated 03 Dec 2002 - moved to http://speedtouchconf.sourceforge.net/
+# btinternet.co.uk site deprecated.
+# Updated 05 Dec 2002 - creates symlink to /etc/ppp/resolv.conf to fix DNS problems.
+# Also includes speedtouch-1.1.tar.bz2, accepts microcode in current directory as
+# speedmgmt.tar.gz, mgmt.o, or alcaudsl.sys. Therefore no need to edit the script.
+# Updated 07 Dec 2002 - fixed a bug that it couldn't find the tarball.
+# Updated 17 Dec 2002 - added uname -a to logfile, added tests for gcc, make
+# Updated 23 Dec 2002 - specified GPLv2 after reading http://www.infoworld.com/articles/hn/xml/02/11/06/021106hngnudelay.xml?s=IDGNS
+# Version 08 Jan 2003 missing a "fi" - fixed 15/1/2003
+# 16 Jan 2003 - fixed another stupid bug.
+# 19 Jan 2003 - Actually did some decent testing, and got it working again. Also added a comment about the timeout messages.
+# 20 Jan 2003 - Just some extra checks.
+# 23 Feb 2003 - Allows for init.d being /etc/init.d/ or /etc/rc.d/init.d
+# Also some basic checks for the kernel-level driver. First tidy-up of the kernel testing code, too.
+# 07 Mar 2003 - Some SuSE (LSB) tidyups; skip debian-specific notes for non-debian users
+# 11th August 2003 - Changed to stop if gcc/make/etc are not installed. Also bundled the 1.2beta2 driver.
+# 18th August 2003 - Tidied up the output a little bit to make it clearer.
+# 9th September 2003 - Fixed speedtouch-init for RedHat 9
+# 11th September 2003 - Added 2.6 support; tidied up the kernel checks a bit.
+
+</pre></td><td>Always include a changelog - it helps you as well as everyone else. If someone contacts you with a problem, you can easily
+check what happened when, and see if a newer version fixes their problem.
+<br/>
+I should have also noted here what distros have been reported to have worked -
+most distros's seem to work - Lindows, Debian, RedHat, Mandrake, SuSE, etc.
+</td></tr>
+<tr><td><pre>
+VERSION=11.09.2003
+# Location of Log File (send me this file if you need help diagnosing problems)
+LOGFILE=/tmp/speedtouch.txt
+# Quiet compilation (recommended)
+QUIET=YES
+# Speedtouch (speedtouch.sf.net) version
+SPEEDTOUCH=speedtouch-1.1
+
+MODEM_RUN=/usr/local/sbin/modem_run
+PATH=/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$PATH
+PPPD=pppd
+UNAME=uname
+LSPCI=lspci
+# Only tested with PREFIX=/
+PREFIX="/"
+</pre></td><td>It's uesful to set some apparently "useless" variables at the start; this means that you can easily change a thing once and only once.
+It also makes it easier to deal with typing errors - being an uncompiled language, such errors can be tricky to track down.<br/>
+Also comment each one with its purpose.<br/>
+Setting the PATH to something you find reasonable can also be useful - this script expects to be able to find code in /usr/local/sbin, which is often
+not in many people's default PATHs. By setting it here, we can avoid many little nasties.<br/>
+</td></tr><tr><td colspan=2>
+It's also a good idea to set a variable for the version - that way you can easily get a script to report its version in various places, but when
+you update the script, you only have to change it once. In this case, I use dates as versions, as I've got no business reason to call it "8.0" or "2003 Professional"
+and I'm not sure what "1.0" really means. The downside of using dates is that here in the UK, "11.09.2003" means 11th September 2003; in America it means 9th November
+2003. I publish the code as "11th Sep 2003" and hope that everyone knows that "Sep" means "the 9th month", be it "September", "Septiembre", "Settembre", or "Septembre".
+</td></tr>
+<tr><td colspan=2>
+Now we start the function definitions. It is well worth putting as much as possible into functions, even when (like most of these) they are  only used once.
+There are a few reasons for this, but it makes the code tidier, easier to read, and easier to modify.<br/>
+For example, there's some code in this script to deal with the fact that an updated (1.2b) driver deals with a new (model 330) modem, but the 1.1 driver
+is better tested. If the 1.2 driver improves from its beta status, it'd make sense to only use that. This method makes it easy to know which sections need
+changing (a 681-line script can get hard to manage), and means that other functions should not really care.
+</td></tr>
+<tr><td><PRE>
+check_err()
+{
+  if [ "$1" -ne "0" ]; then
+    echo "$2 - FAILED" | tee -a $LOGFILE
+    exit 1
+  else
+    echo "$2 - SUCCESS" | tee -a $LOGFILE
+  fi
+}
+</pre></td><td>This is a usefull error-check function - it's called as <code>check_err $?</code> - why bother checking every fatal error when you can
+just call a function which will log it and exit if appropriate? The "tee" function echo's to the terminal and also to the logfile.
+</td></tr>
+<tr><td><pre>
+check_330()
+{
+  echo
+  echo
+  echo "Do you have a SpeedTouch 330 modem? "
+  echo " (If you say Yes, the 1.2beta2 driver will be used;"
+  echo "  if you say No, the 1.1 driver will be used)."
+  echo "Please answer Yes or No"
+  read ans
+  a=`echo $ans | awk '{ print $1 }' | cut -c1 | tr '[A-Z]' '[a-z]'`
+  if [ "$a" == "y" ]; then
+     SPEEDTOUCH=speedtouch-1.2-beta2
+  fi
+  echo "Using $SPEEDTOUCH"
+  echo
+  echo
+}
+</pre></td>
+<td>
+This just asks a simple question, and updates the SPEEDTOUCH variable depending on the answer. The awk/cut/tr line just gets the first character input, converts
+it to lower-case (this method is safe as we know it's GNU/Linux and the GNU tr tool can do this) and checks if the user said "y".
+</td></tr>
+<tr><td><PRE>
+check_config()
+{
+
+  # Check we're on Linux
+  $UNAME -a >> $LOGFILE
+  $UNAME -a|grep -qi Linux 
+  if [ "$?" -ne "0" ]; then 
+    echo "Sorry, this script only supports the GNU/Linux operating system."
+    echo "FreeBSD support is planned for the distant future." 
+    echo "If you want to help support of another OS, please contact me at"
+    echo "steve at steve-parker dot org"
+    exit 1
+  fi
+
+</pre></td><td>
+This function checks if the machine seems to be ready to configure the modem - it's worth *checking* before you start doing stuff.<br/>
+</td></tr>
+<tr><td><PRE>
+  required_files_installed=1
+  type $LSPCI > /dev/null 2>&1
+  if [ "$?" -ne "0" ]; then
+    # Try Mandrake's name for it... why do they have to rename core utilities?
+    LSPCI=lspcidrake
+  fi
+  # Check we can find our required binaries 
+  for required_binary in $PPPD $LSPCI $UNAME tar cp rm gcc make mkdir ls cat chown chmod read ping ifconfig
+  do
+    type ${required_binary} > /dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+      echo "Error: Cannot find ${required_binary}. Please check"
+      echo "the PATH environment variable, and that you are running"
+      echo "as root. Your PATH variable is currently:"
+      echo $PATH
+      echo "Error: Cannot find ${required_binary} in $PATH" >> $LOGFILE
+      required_files_installed=0
+    fi
+  done
+
+</pre></td><td>
+This script requires various files; we need to check that they are there (not all installs of all Linux distro's include this lot) so it's worth saving
+peoples' time by checking that everything should work before we get halfway through doing it.
+</td></tr>
+<tr><td><PRE>
+  # Flag for speedmgmt or speedtch in use...
+  alcatel_inside=0
+  for unrequired_files in /usr/sbin/speedmgmt
+  do
+    if [ -f ${unrequired_files} ]; then
+      echo "You have the Thomson drivers installed."
+      echo "These are not required by this speedtouch usermode driver."
+      ps -eaf|grep -w speed[m]gmt > /dev/null 2>&1
+      if [ "$?" -eq "0" ]; then
+        echo "The Thomson speedmgmt driver seems to be running."
+        echo "Please "pkill speedmgmt" driver before proceeding."
+	alcatel_inside=1
+      else
+	echo "Fortunately, the Thomson speedmgmt daemons"
+        echo "does not appear to be running."
+      fi
+    fi
+  done
+
+  lsmod | grep -w "^speedtch" > /dev/null 2>&1
+  if [ "$?" -eq "0" ]; then 
+    echo "The kernel speedtch module is loaded. This is not"
+    echo "compatible with the speedtouch usermode driver."
+    echo "Please "rmmod speedtch" before running speedtouchconf.sh."
+    alcatel_inside=1
+  fi
+
+  if [ "$alcatel_inside" -ne "0" ]; then
+    exit 1
+  fi
+</pre></td><td>
+There are two conflicting drivers for this device (one from Thomson, one in the 2.5 development kernel) - most scripts have prerequisites. Identify them.
+Check them before assuming that they have been met. You only
+write the code once; if 100 people use the code, then invest one hour of your time to save 100 hours of other people's time.<br/>
+In the long run, it saves your time, too, in bug reports. These two checks were added after people contacted me with problems. Since adding these
+checks, I've not heard from anyone encountering these problems - presumably nobody's had the problem since, or they've been able to fix it for themselves.
+</td></tr>
+<tr><td><pre>
+
+  # Assume /etc/ppp exists
+  mkdir -p /etc/ppp > /dev/null 2>&1
+</pre></td><td>Needs the /etc/ppp directory to exist - don't just check for a problem if you can fix it as easily.</td></tr>
+<tr><td><PRE>
+
+  if [ "$PREFIX" != "/" ]; then
+    echo "Using prefix of $PREFIX - note that this is untested!"
+    mkdir -p $PREFIX 2>/dev/null
+  fi
+</PRE></td><td>I threw this variable in when I started writing this script - think JumpStart, or KickStart, if you're familiar with Solaris of RedHat, respectively.
+I've done no testing, however, so throw out this warning. It's a "future-feature" in case there's a need for it. It's easier to put such things in at the
+start than to shoehorn them in later.</td></tr>
+<tr><td><PRE>
+
+  # Check for microcode in speedmgmt.tar.gz, mgmt.o, alcaudsl.sys
+  if [ -f speedmgmt.tar.gz ]; then
+    echo "Using speedmgmt.tar.gz for microcode"
+    tar xzf speedmgmt.tar.gz
+    MICROCODE=/etc/ppp/mgmt.o
+    cp mgmt/mgmt.o $MICROCODE
+    rm -rf mgmt
+  else
+    if [ -f mgmt.o ]; then
+      echo "Using mgmt.o for microcode"
+      MICROCODE=/etc/ppp/mgmt.o
+      cp mgmt.o $MICROCODE
+    else
+      if [ -f ALCAUDSL.SYS ]; then 
+        cp ALCAUDSL.SYS alcaudsl.sys
+      fi
+      if [ -f alcaudsl.sys ]; then
+        echo "Using alcaudsl.sys for microcode"
+        MICROCODE=/etc/ppp/alcaudsl.sys
+        cp alcaudsl.sys $MICROCODE
+      else
+        echo "ERROR: Cannot find microcode" | tee -a $LOGFILE
+        echo "Please place a copy of the Microcode in this directory."
+        echo "This could be :"
+        echo "  - the speedmgmt.tar.gz file from http://www.speedtouchdsl.com/dvrreg_lx.htm"
+        echo "  - mgmt.o from speedmgmt.tar.gz"
+        echo "  - alcaudsl.sys from the Windows software (Eg C:\WINDOWS\SYSTEM\ALCAUDSL.SYS)"
+        echo "Due to the license, you must obtain this file for yourself."
+        exit 3
+      fi 
+    fi
+  fi
+</pre></td><td>
+This modem needs a file from the manufacturer to load into the modem before it can be used; their license forbids me from distributing it with the script - each
+user must obtain it for themselves. Therefore the script's instructions say to place it in one form or another in the same directory as the script itself.
+We now check that one of these files is present. We use the generic variable <code>$MICROCODE</code> because we don't really care which file it is, we just
+need to present it to the speedtouch.sf.net program.<br/>
+The first instance (speedmgmt.tar.gz) contains mgmt/mgmt.o in the tarball; the second is if the user provided mgmt.o, and the third case is if the user provided
+either ALCAUDSL.SYS or alcaudsl.sys (the Windows file) - the driver can use any of these, we just need to identify it and pass it on.
+</td></tr>
+<tr><td><pre>
+
+  # Check for speedtouch.sf.net tarball
+  if [ -f ${SPEEDTOUCH}.tar.bz2 ]; then
+    TARBALL=${SPEEDTOUCH}.tar.bz2
+    type bzcat > /dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+      echo "You have supplied the .tar.bz2 version, but do not have bzcat installed."
+      echo "Please download the .tar.gz version from http://speedtouch.sf.net/"
+      echo "or install bzcat on your system."
+      # Do not exit; fall through to .tar.gz
+    fi
+  else if [ -f ${SPEEDTOUCH}.tar.gz ]; then
+      TARBALL=${SPEEDTOUCH}.tar.gz
+  else
+      echo "Cannot find ${SPEEDTOUCH} tarball (tried .tar.gz and .tar.bz2)" | tee -a $LOGFILE
+      exit 1
+    fi
+  fi
+  echo "Using Tarball $TARBALL" >> $LOGFILE
+</pre></td><td>
+This script uses one of two drivers - the stable v1.1 driver, or the 1.2beta driver for the newer model 330 modem. This part of the function checks that the
+appropriate file is available.<br/>
+From the original variable (eg, <code>speedtouch-1.1</code>), it updates the variable to point to the actual file (eg, <code>speedtouch-1.1.tar.gz</code> or 
+<code>speedtouch-1.1.tar.bz2</code>) and that the appropriate decompression tools are available.
+</td></tr>
+<tr><td colspan=2>FIXME: Having determined this, it'd be worth moving the top of <code>get_tarball()</code> to here - just decompress it and point to the
+directory... This is the kind of thing that reviewing your own code in detail can provide. A newer version of the script will hopefully include this
+feature - this page will probably remain static with this version of the code, however. There's a limit to my pendantry :-)</td></tr>
+<tr><td><pre>
+
+  error=0
+  PPP_VERSION=`$PPPD --version 2>&1 | awk '{ print $3 }'`
+  KERNEL=`$UNAME -r`
+
+  KERNEL_MAJOR=`echo $KERNEL | cut -d"." -f1,2`
+  KERNEL_MINOR=`echo $KERNEL |sed s/"[a-z]"/"."/g|sed s/"[A-Z]"/"."/g|tr '-' '.' | cut -d"." -f3`
+  TWO_FOUR_OR_NEWER=`echo "$KERNEL_MAJOR >= 2.4" | bc`
+
+  USB_TYPE=`$LSPCI -v |grep -i usb|grep HCI`
+
+  if [ "${PPP_VERSION}" == "2.4.0" ] || [ "${PPP_VERSION}" == "2.4.1" ]; then
+    echo "  PPP version $PPP_VERSION okay."
+  else
+    echo "PPP Version ${PPP_VERSION} should be 2.4.0 or 2.4.1" | tee -a $LOGFILE
+    error=`expr $error + 1`
+  fi
+  if [ "$TWO_FOUR_OR_NEWER" == "0" ]; then
+    if [ "$KERNEL_MAJOR" == "2.2" ] && [ "$KERNEL_MINOR" -ge "18" ]; then
+      echo "With the 2.2.18 kernel you should get away with $PPP_VERSION" | tee -a $LOGFILE
+      echo "... maybe." | tee -a $LOGFILE
+    else
+      echo "You probably need the HDLC kernel patch n_hdlc.c.diff" | tee -a $LOGFILE
+      error=`expr $error + 4`
+    fi
+  else
+    echo "  Linux kernel version ${KERNEL_MAJOR}.${KERNEL_MINOR} okay."
+  fi
+</pre></td><td>
+The <code>error</code> variable here is used as a bitmap of errors - read up on base 2 (aka binary) to understand bitmaps. It means we can check for a few errors,
+and report all potential problems at once, instead of making people fix one problem, just to find another, spend an hour fixing that, and then find another
+problem which they can't fix. Tell them up front what things will need fixing.<br/>
+So we start by checking the version of the Linux Kernel they are running. We also check the version of PPP (pppd) they are running, as this is also significant
+here. Given the version, we report potential issues.<br/>
+This whole script is based upon the documentation at <A href="http://cvs.sourceforge.net/viewcvs.py/*checkout*/speedtouch/speedtouch/doc-linux/howto/SpeedTouch-HOWTO-en.html?rev=1.3">SourceForge</a> but is written to save people the time and hassle of understanding it all. So we check their system and say what, if anything,
+needs updating before they can use this quirky modem.
+</td></tr>
+<tr><td><PRE>
+
+  if [ -z "${USB_TYPE}" ]; then
+    echo "No USB Bus found!" | tee -a $LOGFILE
+    error=`expr $error + 2`
+  fi
+  echo ${USB_TYPE} | grep -q UHCI 
+  if [ "$?" -eq "0" ]; then 
+    USB_TYPE=UHCI
+  else 
+    USB_TYPE=OHCI
+  fi 
+</pre></td><td>
+We also need to know, later on, what version of USB bus they have. It's not strictly necessary, but we can try to load the right module.
+</td></tr>
+<tr><td colspan=2>FIXME: Maybe we could just load both UHCI and OHCI modules, without checking for errors (we don't check anyway) and assume it'll work. Simplifies
+EHCI issues which I just heard about tonight and may become more common</td></tr>
+<tr><td><pre>
+
+  ls -l /dev/ppp|grep -wq 108 
+  if [ "$?" -ne "0" ]; then
+    cd /dev
+    ./MAKEDEV ppp
+    if [ "$?" -ne "0" ]; then
+      echo "MAKEDEV failed" | tee -a $LOGFILE
+      error=`expr $error + 16`
+    fi
+  fi
+  ls -l /dev/ppp|grep -wq 108 
+  if [ "$?" -ne "0" ]; then
+    echo "/dev/ppp cannot be created, or is not device 108"
+    error=`expr $error + 32`
+  fi
+</pre></td><td>
+We need the /dev/ppp device, and it should have the major character 108. If it doesn't exist, we try to create it. Then we check it, and it should
+be character 108. If not, log the error so it can be reported back to the user.
+</td></tr>
+<tr><td><pre>
+
+  if [ "`id -u`" != "0" ]; then
+    echo "You must be logged in as root to use this script"
+    exit 1
+  fi
+ 
+  if [ "$required_files_installed" -eq "0" ]; then
+    echo "Some required files are not installed. Please install these"
+    echo "(from your Linux install media, or the internet) before"
+    echo "you can configure and install the speedtouch software."
+    exit 1
+  fi
+
+  echo "--- Environment ---" >> $LOGFILE
+  set >> $LOGFILE
+  echo "--- End of Environment ---" >> $LOGFILE
+}
+</PRE></td><td>
+Now we check the things we've found: Are you root? I like to check this last, because when I test the script, I'd rather not run it as
+root and risk breaking my current configuration. <br/>
+Also, check if the required files are there - we need to give a useful message in this
+case, as someone without development tools installed probably needs a little extra help.
+</td></tr>
+<tr><td><PRE>
+get_tarball()
+{
+  echo "$TARBALL" |grep -q "gz$"
+  if [ "$?" -eq "0" ]; then
+    tar -xzf $TARBALL
+    cd `basename $TARBALL .tar.gz`
+  else
+    bzcat $TARBALL | tar -xf -
+    cd `basename $TARBALL .tar.bz2`
+  fi
+  if [ "$PREFIX" != "/" ]; then
+    config="./configure --prefix $PREFIX/usr"
+  else
+    config="./configure"
+  fi
+  echo "Configururing SpeedTouch Driver..." | tee -a $LOGFILE
+  if [ "$QUIET" == "YES" ]; then
+    $config > /dev/null 2>&1
+    res=$?
+  else 
+    $config
+    res=$?
+  fi
+  check_err $res "Software Configuration"
+  echo "Building SpeedTouch Driver..." | tee -a $LOGFILE
+  if [ "$QUIET" == "YES" ]; then
+    make > /dev/null 2>&1
+    res=$?
+  else
+    make
+    res=$?
+  fi
+  check_err $res "Software Build"
+  echo "Installing SpeedTouch Driver..." | tee -a $LOGFILE
+  if [ "$QUIET" == "YES" ]; then 
+    make install > /dev/null
+    res=$?
+  else
+    make install 
+    res=$?
+  fi
+  check_err $res "Software Installation"
+  rm -rf /tmp/speedtouch.$$
+}
+</pre></td>
+<td>
+This version of the script required the user to download their own
+tarball of a 3rd-party utility. (As the utility is also GPL'd, my GPL script
+now includes various versions of this utility). <br/>
+This function tries to work
+out what tarball they have put in this directory - it will either be
+a tar.gz or a tar.bz2 file - the TARBALL variable was set earlier on.<br/>
+The function then extracts the tarball with the appropriate commands, and
+goes about compiling the code. <br/>
+To avoid scaring users, it sends the output
+to /dev/null and only reports "success" or "failure". This has bitten me,
+as the author, a few times - a future version of the script will save the
+output to /tmp, so that on failure, the script can direct people to send
+me the output of the failed command - that way I can diagnose it better
+for them, rather than making them do it all again by hand, and send me the
+output.
+</td></tr>
+<tr><td><pre>
+
+create_ppp_files()
+{
+echo "Creating ppp files in $PREFIX/etc/ppp" >> $LOGFILE
+  cd $PREFIX/etc/ppp
+  mv options options.bak 2>/dev/null 
+  cat - > options << EOF
+#------------------ /etc/ppp/options Beginning -------------
+noauth
+usepeerdns
+lock
+noipdefault
+#------------------ /etc/ppp/options End ------------------
+EOF
+  mkdir peers 2>/dev/null
+  cat - > peers/adsl <<EOF
+#-------------------/etc/ppp/peers/adsl Beginning------------
+debug
+kdebug 1
+noipdefault
+defaultroute
+EOF
+echo "pty \"/usr/local/sbin/pppoa3 -m -1 -c -vpi $VPI -vci $VCI\"" >> peers/adsl
+echo "sync" >> peers/adsl
+echo "user \"$ISP_LOGIN\"" >> peers/adsl
+cat - >> peers/adsl << EOF
+noauth
+noaccomp
+nopcomp
+noccp
+novj
+holdoff 4
+persist
+maxfail 25
+usepeerdns
+#------------------/etc/ppp/peers/adsl EOF------------------
+EOF
+
+# Running this script multiple times could add multiple entries
+# in these files ... check for "Added by speedtouchconf" to avoid this.
+grep -v "Added by speedtouchconf" chap-secrets > chap-secrets.new
+grep -v "Added by speedtouchconf" pap-secrets > pap-secrets.new
+echo "\"$ISP_LOGIN\" "*" "$ISP_PASSWORD" "*" # Added by speedtouchconf" >> chap-secrets.new
+echo ""$ISP_LOGIN" "*" "$ISP_PASSWORD" "*" # Added by speedtouchconf" >> pap-secrets.new
+mv chap-secrets.new chap-secrets
+mv pap-secrets.new pap-secrets
+
+# Ensure security - only "root" should be able to read these files
+chown root pap-secrets chap-secrets
+chmod 600 pap-secrets chap-secrets
+
+# Just do an ls -l of these files; don't want passwords in logfiles.
+# This should be enough for basic sanity-checks.
+ls -l /etc/ppp/peers/adsl /etc/ppp/*-secrets /etc/ppp/options >> $LOGFILE
+}
+</td>
+<td>
+The create_ppp_files function creates various required files in /etc/ppp/ - 
+When editing someone else's sytem files, always create a backup first!<br/>
+It then uses the simple "cat - &gt; file &lt;&lt; EOF" trick to spew
+text into a file.<br/>
+The script also adds a user's ISP login and password details into the
+files which require them.<br/>
+A user might run the script, enter the wrong information, then want to
+run the script again - unfortunately, pppd will read the first value,
+believe it, and continue to fail because it's used the wrong password
+even though the right info is further down the file.<br/>
+To avoid this problem, but get away without having to deal with regexp's
+and special characters in passwords (\, *, etc), we add the text:<br/>
+# Added by speedtouchconf<br/>
+after every line the script adds to the file. There should only ever be
+one such line in the file, so we start by removing any existing speedtouch
+lines from the file, then add the new (hopefully correct) line.
+
+</td>
+</tr><tr><td><pre>
+add_line()
+{
+  grep -q "$1" $3 || echo "$2" >> $3
+}
+</pre></td><td>
+This is just a simple utility to add the line "$2" to the file "$3" if the
+file doesn't already include "$1". It is used later on to edit system files.
+</td></tr>
+<tr><td><pre>
+modify_modules_conf()
+{
+  if [ -f /etc/modules.conf ]; then
+    MODCONF=$PREFIX/etc/modules.conf
+  else
+    MODCONF=$PREFIX/etc/conf.modules
+  fi
+echo "Original modules.conf: " >> $LOGFILE
+cat $MODCONF >> $LOGFILE
+add_line "ppp_generic" "alias char-major-108  ppp_generic" $MODCONF
+add_line "dev/ppp" "alias /dev/ppp ppp_generic" $MODCONF
+add_line "ppp_async" "alias tty-ldisc-3 ppp_async" $MODCONF
+add_line "n_hdlc" "alias tty-ldisc-13 n_hdlc" $MODCONF
+add_line "ppp_synctty" "alias tty-ldisc-14 ppp_synctty" $MODCONF
+add_line "bsd_comp" "alias ppp-compress-21 bsd_comp" $MODCONF
+add_line "ppp-compress-24" "alias ppp-compress-24 ppp_deflate" $MODCONF
+add_line "ppp-compress-26" "alias ppp-compress-26 ppp_deflate" $MODCONF
+echo "--- New modules.conf: " >> $LOGFILE
+cat $MODCONF >> $LOGFILE
+echo "--- end of new modules.conf" >> $LOGFILE
+}
+</pre></td><td>
+This function adds alises to the modules.conf if they don't already exist;
+the previous add_line function makes this much simpler than using explicit
+checks for each line.<br/>
+Note that the script cat's the old and new modules.conf files to the logfile - a future version of the script will just do a "diff" of the files; SuSE in
+particular has huge modules.conf files, which just makes the logfile harder to read.
+</td></tr>
+<tr><td><pre>
+do_modprobe()
+{
+echo "Doing modprobes ... ">> $LOGFILE
+modprobe ppp_generic | tee -a $LOGFILE
+modprobe ppp_synctty | tee -a $LOGFILE
+modprobe n_hdlc | tee -a $LOGFILE
+modprobe usbcore | tee -a $LOGFILE
+mount none /proc/bus/usb -t usbdevfs > /dev/null 2>&1
+if [ "$USB_TYPE" == "UHCI" ]; then
+  USB_INTERFACE=usb-uhci
+  modprobe usb-uhci | tee -a $LOGFILE
+  if [ "$?" -ne "0" ]; then
+    USB_INTERFACE=uhci
+    modprobe uhci  | tee -a $LOGFILE
+  fi
+else
+  modprobe usb-ohci | tee -a $LOGFILE
+  USB_INTERFACE=usb-ohci
+fi
+echo "lsmod output:" >> $LOGFILE
+lsmod >> $LOGFILE
+echo "df -k : " >> $LOGFILE
+df -k >> $LOGFILE
+}
+</pre></td><td>
+The do_modprobe function probes for any modules which may be required - it
+doesn't worry if the modules fail to install; the kernel may be home-built
+monolithic, the modules may already be installed, etc.<br/>
+Also, as a maintainer of this script, I'm not too bothered about people
+who build their own kernels - they can configure this modem for themselves.<br/>
+The people who use this script generally use off-the-shelf Linux distro's
+which use modules for everything, and those distro's are well-tested for
+this kind of thing.<br/>
+Only test for those things which you can do something about: if a module
+is required, not built-in to the kernel, not already loaded, and fails to
+load, then that's a pretty complex issue, which a generic script such as this
+is not likely to be able to deal with anyway, and the owner of such a
+system is likely to be able to figure it out for themself.<br/>
+The function only tries to load the appropriate xHCI module; again,
+maybe this is overkill.<br/>
+Finally, it lists "lsmod" output to the logfile, and "df -k" to show if any
+usb filesystems are mounted.
+</td></tr>
+<tr><td><pre>
+
+select_options()
+{
+ans="N"
+while [ "$ans" != "Y" ]; do
+echo "***************************************"
+echo "*                                     *"
+echo "*   Please select your ISP Settings   *" 
+echo "*                                     *"
+echo "***************************************"
+echo
+cat - << EOF
+  Country/ISP	        VPI    VCI
+  Belgium, ?	          8     35
+  Denmark, Orang          8     35
+  France, wanado          8     35
+  France, ?	          8     67
+  Italy, ?	          8     35
+  Netherlands, ?          8     48
+  UK, BTopenworld         0     38
+  UK, Any ISP             0     38
+  US, BellSouth	          8     35
+  Singapore Pacificnet    0    100
+EOF
+  echo "Please type your VPI VCI numbers (eg, 0 38) for UK"
+  read VPI VCI
+  echo "Please enter your ISP Login ID (eg another@hg1.btinternet.com)"
+  read ISP_LOGIN
+  echo "Please enter your ISP Password"
+  read ISP_PASSWORD
+
+  echo "Settings: "
+  echo "  VPI / VCI : $VPI / $VCI"
+  echo "  Login     : $ISP_LOGIN"
+  echo "  Password  : $ISP_PASSWORD"
+  echo "Are these correct? (Y/N)"
+  read ans
+  ans=`echo ${ans}N|tr '[a-z]' '[A-Z]'|cut -c1`
+done
+echo "VPI: $VPI VCI: $VCI" >> $LOGFILE
+}
+</pre></td>
+<td>
+This  is the main function which the user interacts with; it asks them the
+three key things which are unique to them: Their ISP, their login ID, and
+their password.<br/>
+Whenever getting info like this from a user, always give them the chance
+to review and confirm it - the while loop in this function does that
+by checking for the variable "ans" - set it to something sensible to
+start with, and read input from the user at the end.<br/>
+That way, the user can loop through this section as often as they like,
+and we are sure that the information is correct before we proceed and
+do any configuration based on the input.
+</td>
+</tr>
+<tr><td><pre>
+setup_etc_conf()
+{
+CONF=$PREFIX/etc/speedtouch.conf
+echo "# SpeedTouch Config File" > $CONF
+echo "# Created by speedtouchconf.sf.net version $VERSION" >> $CONF
+echo "# The speedtouch rc script assumes /usr/local/sbin is in the path..." >> $CONF
+echo "# It does a ". /etc/speedtouch.conf", so we can just add it to the PATH here." >> $CONF
+echo "PATH=\$PATH:/usr/local/sbin" >> $CONF
+echo "# LOAD_ directives should be 1 for modules, 0 if built into the kernel" >> $CONF
+echo "LOAD_USBCORE=1" >> $CONF
+echo "LOAD_USBINTERFACE=1" >> $CONF
+echo "LOAD_NHDLC=1" >> $CONF
+echo "# USB Interface - UHCI or OHCI" >> $CONF
+USB=`echo $USB_TYPE | tr '[:upper:]' '[:lower:]'`
+echo "DEFAULT_USBINTERFACE=\"${USB_INTERFACE}\"" >> $CONF
+echo "# Path to microcode (mgmt.o or alcudsl.sys from the official Alcatel drivers" >> $CONF
+echo "MICROCODE=\"$MICROCODE\"" >> $CONF
+echo "# modem_run verbosity" >> $CONF
+echo "VERBOSE=0" >> $CONF
+echo "# Set this to 1 if you have configured the script" >> $CONF
+echo "CONFIGURED=1" >> $CONF
+for rc_dir in /etc/rc.d/init.d /etc/init.d
+do
+  [ -d "${rc_dir}" ] && break
+done
+#cp /usr/local/etc/init.d/speedtouch ${rc_dir}
+cp ${INITSCRIPT} ${rc_dir}/speedtouch
+}
+</pre></td><td>
+The speedtouch utility uses an /etc/speedtouch.conf file - here we set it up
+according to the user's sytem. The only differences are the xHCI USB type,
+and the name of the microcode they use (it is distributed under various
+names).
+</td></tr>
+<tr><td><pre>
+check_resolv_conf()
+{
+  if [ -f /etc/resolv.conf ]; then
+    mv /etc/resolv.conf /etc/resolv.conf.orig
+  fi
+  cd /etc
+  ln -sf ppp/resolv.conf resolv.conf
+
+  ping -c1 www.google.com > /dev/null
+  if [ "$?" -eq "0" ]; then
+    echo "Fixed DNS ... it's working!" | tee -a $LOGFILE
+  else
+    echo "Looks like /etc/ppp/resolv.conf is wrong." | tee -a $LOGFILE
+    echo "You need to check the DNS configuration." | tee - a $LOGFILE
+    echo "Look in /var/log/messages to see if DNS was configured." | tee -a $LOGFILE
+    DNS=NOTOK
+  fi
+}
+</pre></td>
+<td>
+This function is called if DNS fails; <br/>
+The /etc/resolv.conf file is used for DNS lookups; with a PPP setup, it
+should point to the dynamic /etc/ppp/resolv.conf. If /etc/resolv.conf
+already exists, pppd will not replace it, so we 
+check for one, move it away if it exists, and set up the link.<br/>
+Then we check DNS again, and report accordingly (either it's fixed,
+or the "fixed" resolv.conf still doesn't work.
+</td></tr>
+<tr><td><pre>
+check_router()
+{
+  route=`netstat -rn|grep "^0\.0\.0\.0"|awk '{ print $2 }'`
+  if [ ! -z "${route}" ]; then
+       echo "You have a default router : $route (removing it for you!)" | tee -a $LOGFILE
+       route delete default gw $route
+  fi
+}
+</pre></td>
+<td>
+If the system already has a default router, pppd won't replace it - this
+will mean that the user can connect, but won't be able to send or receive
+packets to/from the internet.<br/>
+This function removes the router from the running system, but as the
+configuration is very distro-dependent, it does not fix the problem long-term:
+when the user reboots, the original default route will be in place again.<br/>
+The script just tells the user to fix it themselves.<br/>
+A later version of this script may deal with a number of distributions and
+fix the problem long-term, but that is quite complex.
+</td></tr>
+
+<tr><td><PRE>
+# main script starts here
+
+clear
+echo
+echo "************************************************"
+echo "*                                              *"
+echo "*       speedtouchconf.sh by Steve Parker      *"
+echo "*                                              *"
+echo "*    http://speedtouchconf.sourceforge.net/    *"
+echo "* based on speedtouch.sourceforge.net project  *"
+echo "*                                              *"
+echo "************************************************"
+echo 
+echo "If you have any problems with this script, mail me"
+echo "(steve at steve-parker dot org) with the files"
+echo "$LOGFILE and /var/log/messages for diagnosis."
+
+if [ -f $LOGFILE ]; then
+  mv $LOGFILE ${LOGFILE}.old
+fi
+
+echo "Starting speedtouch.sh script" > $LOGFILE
+echo "Version ${VERSION}" >> $LOGFILE
+date >> $LOGFILE
+echo "Called as $0 from `pwd`" >> $LOGFILE
+INITSCRIPT=`pwd`/speedtouch-init
+check_330
+check_config
+if [ "$error" -ne "0" ]; then
+  echo "Not ready to install the software at this time. - code $error" | tee -a $LOGFILE
+  exit 1
+fi
+select_options
+echo "No further user interaction is required." | tee -a $LOGFILE
+get_tarball
+create_ppp_files
+modify_modules_conf
+do_modprobe
+check_router
+setup_etc_conf
+echo
+echo "   *** Configuration finished. Starting the connection ***"
+echo
+echo "The modem lights should start flashing for 20 seconds..." | tee -a $LOGFILE
+echo "You may get one or two timeout or USBDEVFS_BULK failed messages" 
+echo "now - ignore them unless there are lots." 
+echo "You will get these messages whenever you connect - it is safe to ignore them."
+$MODEM_RUN -m -f $MICROCODE
+res=$?
+if [ "$res" -eq "0" ]; then
+  echo "Phew! That was the hard part! Should be plain sailing now..." | tee -a $LOGFILE
+else
+  echo "The modem_run command failed (code $res)- check your kernel config" | tee -a $LOGFILE
+  if [ "$res" -eq "255" ]; then
+    echo "  This *may* not be a problem if you've already loaded the microcode" | tee -a $LOGFILE
+    echo "  (for example, if you ran this script earlier without powering off" | tee -a $LOGFILE
+    echo "  the modem)." | tee -a $LOGFILE
+  fi
+  #exit 1
+fi
+sleep 10
+echo "Running : $PPPD call adsl" | tee -a $LOGFILE
+$PPPD call adsl
+echo "pppd return code $?" >> $LOGFILE
+sleep 10
+echo "--- ifconfig -a output ---" >> $LOGFILE
+ifconfig -a >> $LOGFILE
+echo "--- netstat -rn output ---" >> $LOGFILE
+netstat -rn >> $LOGFILE
+
+DNS=OK
+PPP0=NOT_OK
+ifconfig ppp0 | grep "inet addr:"
+if [ "$?" -eq "0" ]; then
+  PPP0=OK
+  echo "Looks like we're online... " | tee -a $LOGFILE
+  ping -c1 www.google.com > /dev/null
+  if [ "$?" -eq "0" ]; then
+    echo "Hey look, I can see the Net from here!" | tee -a $LOGFILE
+  else
+    echo "Cannot ping www.google.com - trying steve-parker.org by numeric IP" | tee -a $LOGFILE
+    ping -c1 195.224.68.226 > /dev/null 
+    if [ "$?" -eq "0" ]; then
+      echo "Looks like DNS might be iffy ... sorting it out" | tee -a $LOGFILE
+      check_resolv_conf
+    else
+      echo "I can't ping even without DNS" | tee -a $LOGFILE
+    fi
+  fi
+else
+  echo "****************************************"
+  echo "* Oops - don't seem to have connected. *" | tee -a $LOGFILE
+  echo "****************************************"
+fi
+
+echo "--- dns ---" >> $LOGFILE
+ls -l /etc/resolv.conf /etc/ppp/resolv.conf >> $LOGFILE 2>&1
+echo "--- /etc/resolv.conf ---" >> $LOGFILE
+cat /etc/resolv.conf >> $LOGFILE
+echo "--- /etc/ppp/resolv.conf ---" >> $LOGFILE
+cat /etc/ppp/resolv.conf >> $LOGFILE
+echo "--- end of diags ---" >> $LOGFILE
+
+
+echo "Configuration finished." | tee -a $LOGFILE
+echo "Any potential problems are listed below:"
+if [ "$DNS" != "OK" ]; then
+  echo "The connection is established, but there seems to be some"
+  echo "problem with DNS (looking up the names of internet hosts)"
+fi
+if [ ! -z "${route}" ]; then
+  echo
+  echo "You have a default route configured."
+  echo "You need to disable this, as there can only be one default route."
+  grep -q "GATEWAY=" /etc/sysconfig/network 2>/dev/null
+  if [ "$?" -eq "0" ]; then
+    echo "You need to remove the GATEWAY= line from /etc/sysconfig/network."
+  else
+    if [ -f /etc/sysconfig/network/routes ]; then
+      echo "You need to remove the \"default\" line from /etc/sysconfig/network/routes"
+    fi
+  fi
+  echo
+fi
+
+echo "To automatically dial-in when the PC boots up : " | tee -a $LOGFILE
+if [ -f /etc/debian_version ]; then
+  echo "  update-rc.d speedtouch start 90 2 3 4 5 . stop 10 0 1 6 ." | tee -a $LOGFILE
+else
+  echo "  cd ${rc_dir}; chkconfig speedtouch on" | tee -a $LOGFILE
+fi
+echo
+echo "You can connect and disconnect with the ${rc_dir}/speedtouch script,"
+echo "passing either stop or start as the only parameter."
+
+if [ "$PPP0" == "OK" ]; then
+  echo "You are now connected. There is no need to run this"
+  echo "speedtouchconf.sh script again."
+  echo "You can stop and start the interface with "
+  echo "  ${rc_dir}/speedtouch stop"
+  echo "  ${rc_dir}/speedtouch start"
+fi
+
+exit 0
+</PRE>
+</td>
+<td>
+This is the main script.<br/>
+Arguably, this section is too long, and should be split into various
+functions, but it is just about manageable.<br/>
+It starts by checking the config (check_config) and if that fails, refuses
+to continue.<br/>
+Then it gets the user info (select_options).<br/>
+With a succesful check_config and valid user info, the script should
+now succeed.<br/>
+It calls the functions defined above in the appropriate order, then starts
+to connect to the internet.<br/>
+<hr>
+At the "Configuration finished. Starting the connection" line, it begins
+its connection, and tries to diagnose any problems at every point.<br/>
+It is from this section that I get the most feedback from users.<br/>
+It tries to be as verbose as possible without confusing users - telling
+them what is happening, and what they can expect to see next.<br/>
+It starts my loading the microcode ($MODEM_RUN) - a later version of
+this script includes a patched modem_run utility; the speedtouch.sf.net
+version only ever returns "-1" (ie, 255) for any error; the newer
+script has better diagnostics.<br/>
+Assuming the modem_run command succeeds, the script goes on to call pppd - 
+this connects to the user's ISP, authenticates, and hopefully gets
+connected to the internet.<br/>
+It logs the ifconfig and netstat configs to the logfile for diagnostic
+purposes, then starts troubleshooting.<br/>
+At the "DNS=OK" line, it starts its troubleshooting routine.<br/>
+It checks for an internet address on the ppp0 device - if there is
+none, it reports the error (actually, this error most likely indicates
+an incorrect login/password).<br/>
+If it has an address, then it has connected to the ISP succesfully.
+<br/>
+It then tries to ping www.google.com (which is surely up!) - if that
+fails, then it tries to ping steve-parker.org by its IP address - again,
+that really should be up, and I can be sure that the IP address will be
+static.<br/>
+Based on these results, it may call check_resolv_conf to fix any
+DNS problems.<br/>
+The script then finished by logging a few more details to the logfile,
+and telling the user what they need to finalise for their configuration -
+if they have to remove a default route from their system, and suggests
+ways of getting the connection to automatically start on system boot.<br/>
+That's it - hopefully they're connected, and they know what to do next
+depending on their requirements.
+
+
+
+</td>
+</tr>
+</table>
+
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/speedtouchconf.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:33:57 GMT -->
+</html>

@@ -1,0 +1,187 @@
+#!/bin/bash
+# Do a wordsearch
+# Approx 42 seconds for 22 words on a 20x20 grid, 12 seconds for 5 words.
+
+x_offset=15
+y_offset=5
+declare -a letters
+colour=1
+
+debug()
+{
+  if [ "$DEBUG" = "1" ]; then
+    echo $@ >&2
+  fi
+}
+
+read_file()
+{
+  local INPUT_FILE=$1
+  local idx=0
+  while read -n1 letter
+  do
+    [ ! -z "$letter" ] && letters[idx++]=$letter
+  done < $INPUT_FILE
+
+  max_y=`wc -l $INPUT_FILE | cut -d" " -f1`
+  let max_y-=1
+  width=`wc -L $INPUT_FILE | cut -d" " -f1`
+  let max_x=width-1
+  debug "Words is ${letters[*]}"
+  let answer_row=$max_y+$y_offset+2
+}
+
+grid()
+{
+  # Return the character at the grid position; first, squash a 2d array to 1d
+  local x=$1
+  local y=$2
+  local n
+  # Note: width is the count of characters; $max_x is one less than $width
+  let n=$((y * width))
+  let n+=x
+  echo ${letters[$n]}
+}
+
+show_grid()
+{
+  local x y
+  clear
+  echo;echo;tput bold
+  echo "                W O R D S E A R C H"
+  tput sgr0
+  tput cup $y_offset 0
+  for y in `seq 0 $max_y`
+  do
+    printf "%${x_offset}s" " "
+    for x in `seq 0 $max_x`
+    do
+      echo -n " `grid $x $y` "
+    done
+    echo
+  done
+}
+
+move()
+{
+  local dir=$1
+  local x=$2
+  local y=$3
+  case "$dir" in
+    "N")  let y=y-1;;
+    "NE") let y=y-1 ; let x=x+1;;
+    "E")  let x=x+1;;
+    "SE") let y=y+1 ; let x=x+1;;
+    "S")  let y=y+1;;
+    "SW") let y=y+1 ; let x=x-1;;
+    "W")  let x=x-1;;
+    "NW") let y=y-1 ; let x=x-1;;
+  esac
+  if [ $x -lt 0 ] || [ $y -lt 0 ] || [ $x -gt $max_x ] || [  $y -gt $max_y ]; then
+    echo "ERROR" # fell out of the grid
+    return
+  fi
+  echo $x $y
+}
+
+check_word()
+{
+  local x=$1
+  local y=$2
+  local $direction=$3
+  local search_word=$4
+  [ -z "$search_word" ] && return 0
+  currentchar=`grid $x $y`
+  searchchar=${search_word:0:1}
+  debug "Comparing ($x,$y) = $currentchar with $searchchar (Direction = $direction) (looking for $search_word))"
+  if [ "$searchchar" == "$currentchar" ]; then
+    debug "Match!"
+    if [ ${#search_word} -eq 1 ]; then
+      debug "Found the whole word."
+      return 0
+    fi
+    # Move along in the direction we've been told, and look for the rest of the word
+    read x y <<< "`move $direction $x $y`"
+    if [[ "$x" == "ERROR" ]]; then
+      debug "$direction doesn't work"
+      return 1
+    else
+      # Keep looking
+      debug "Moved to ($x,$y)"
+      check_word $x $y $direction ${search_word:1}
+      return $?
+    fi
+  else
+    debug "Not a match."
+    return 1
+  fi
+}
+
+show_word()
+{
+  local x=$1
+  local y=$2
+  local direction=$3
+  local word=$4
+  local idx=0
+  local xpos ypos
+
+  let colour=colour%6
+  let colour=colour+1
+  tput setaf $colour
+  tput bold
+  tput smso
+  let final_char=${#word}-1
+  for idx in `seq 0 ${final_char}`
+  do
+    let xpos=$((x * 3))+x_offset
+    let ypos=y+y_offset
+    tput cup $ypos $xpos
+    echo " ${word:${idx}:1} "
+    read x y <<< `move $direction $x $y`
+  done
+  tput sgr0
+  tput cup $answer_row 0
+  let answer_row++
+}
+
+# SCRIPT STARTS HERE
+
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 filename word"
+    exit 2
+fi
+INPUT_FILE=${1:-q.txt}
+if [ ! -f "$INPUT_FILE" ]; then
+  echo "Cannot read \"$INPUT_FILE\""
+  exit 1
+fi
+read_file $INPUT_FILE
+shift
+FOUND=""
+show_grid
+for y in `seq 0 $max_y`
+do
+  for x in `seq 0 $max_x`
+  do
+    for direction in N NE E SE S SW W NW
+    do
+      debug -e "Checking ($x,$y): Direction = $direction"
+      for WORD in $@
+      do
+        check_word $x $y $direction $WORD
+        if [ "$?" -eq "0" ]; then
+          show_word $x $y $direction $WORD
+          echo "Found `tput setaf $colour``tput bold`$WORD`tput sgr0` at ($x,$y) (direction: $direction)"
+          FOUND="$FOUND $WORD"
+        fi
+      done
+    done
+  done
+done
+
+echo "FOUND WORDS:$FOUND"
+for WORD in $@
+do
+  echo $FOUND | grep -w $WORD >/dev/null || echo "$WORD was not found"
+done

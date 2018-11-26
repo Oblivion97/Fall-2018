@@ -1,0 +1,28 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 26 Nov 2018 21:27:12 at https://www.shellscript.sh/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.shellscript.sh/ -O1 "D:\Website Copier\shell script\shell script" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+21:31:02	Warning: 	Retry after error 504 (Gateway Time-out) at link https://gumroad.com/js/gumroad.js (from https://www.shellscript.sh/)
+21:31:02	Warning: 	Retry after error 502 (Bad Gateway) at link https://gumroad.com/js/gumroad-embed.js (from https://www.shellscript.sh/)
+21:31:02	Error: 	"Not Found" (404) at link https://www.shellscript.sh/fonts/glyphicons-halflings-regular.eot (from https://www.shellscript.sh/css/shellscript.css)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/fonts/glyphicons-halflings-regular.eot? (from https://www.shellscript.sh/css/shellscript.css)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/fonts/glyphicons-halflings-regular.woff (from https://www.shellscript.sh/css/shellscript.css)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/fonts/glyphicons-halflings-regular.ttf (from https://www.shellscript.sh/css/shellscript.css)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/fonts/glyphicons-halflings-regular.svg (from https://www.shellscript.sh/css/shellscript.css)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ (from connect.facebook.net/en_GB/sdk.js)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/^([^:/? (from connect.facebook.net/en_GB/sdk.js)
+21:31:03	Error: 	"Not Found" (404) at link https://www.shellscript.sh/restserver.php (from connect.facebook.net/en_GB/sdk.js)
+21:34:17	Warning: 	Retry after error 504 () at link https://gumroad.com/js/gumroad.js (from https://www.shellscript.sh/)
+21:34:17	Warning: 	Retry after error 502 () at link https://gumroad.com/js/gumroad-embed.js (from https://www.shellscript.sh/)
+21:34:17	Error: 	"Not Found" (404) at link https://www.shellscript.sh/tips/change-running-script/a.sh.txt (from https://www.shellscript.sh/tips/change-running-script/)
+21:34:17	Error: 	"Not Found" (404) at link https://www.shellscript.sh/tips/change-running-script/b.sh.txt (from https://www.shellscript.sh/tips/change-running-script/)
+21:34:17	Error: 	"Not Found" (404) at link https://www.shellscript.sh/tips/cp-t/index.php (from https://www.shellscript.sh/tips/cp-t/)
+21:34:19	Error: 	"" (504) after 2 retries at link https://gumroad.com/js/gumroad.js (from https://www.shellscript.sh/)
+21:34:19	Error: 	"" (502) after 2 retries at link https://gumroad.com/js/gumroad-embed.js (from https://www.shellscript.sh/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 7 minutes 13 seconds : 363 links scanned, 345 files written (49538072 bytes overall) [46828105 bytes received at 108148 bytes/sec], 4097764 bytes transferred using HTTP compression in 119 files, ratio 24%, 9.8 requests per connection
+(13 errors, 4 warnings, 0 messages)

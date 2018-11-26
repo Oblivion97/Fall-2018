@@ -1,0 +1,18 @@
+#!/bin/bash
+WEB_SERVER=steve-parker.org
+curl -# -f -u ${USERNAME}:${PASSWORD} http://${WEB_SERVER}/ | grep "SomeMessage"
+RC=( "${PIPESTATUS[@]}" )
+if [ "${RC[0]}" -eq "22" ]; then
+  # curl returned 22, indicating some error above 400, 
+  # such as: 404 Not Found, 401 Unauthorized, etc.
+  echo "Invalid credentials"
+  exit 1
+fi
+
+# PIPESTATUS has gone, but we can still inspect RC
+if [ "${RC[1]}" -eq "0" ]; then
+  echo "Grep succeeded"
+  echo "Web server reported SomeMessage"
+else
+  echo "Web server didn't report SomeMessage"
+fi

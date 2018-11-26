@@ -1,0 +1,24 @@
+#!/bin/bash
+COUNT=0
+echo "Please type 'finish' to quit this demo."
+# Prompt the user with "Say something> " and
+# read the value into variable "x"
+while read -p "Say something> " x
+do
+  if [ "${x}" == "finish" ]; then
+    break
+  fi
+  if [ "${x}" == "abort" ]; then
+    exit
+  fi
+  # Increment the counter
+  let COUNT++
+  # if we say "silent", then we count the word,
+  # but do not display it:
+  if [ "${x}" == "silent" ]; then
+    continue
+  fi
+  echo "You said: '${x}'."
+  echo "You have said ${COUNT} things."
+done
+echo "All done. You have said ${COUNT} things to me."

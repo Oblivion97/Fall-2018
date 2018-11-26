@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# From /sbin/start_udev by Greg KH (GPL v2 only)
+# Does $1 contain $2 ?
+strstr() {
+  [ "${1#*$2*}" = "$1" ] && return 1
+  return 0
+}
+
+NEEDLE=hello
+HAYSTACK=helloworld
+
+strstr $HAYSTACK $NEEDLE && echo "$HAYSTACK contains $NEEDLE" || \
+     echo "$HAYSTACK does not contain $NEEDLE"
+# "helloworld" does contain "hello"
+
+NEEDLE=goodbye
+strstr $HAYSTACK $NEEDLE && echo "$HAYSTACK contains $NEEDLE" || \
+     echo "$HAYSTACK does not contain $NEEDLE"
+# "helloworld" doesn't contain "goodbye"

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/tips/getopts/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:14 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta property="og:description" content="
+        Parsing command-line arguments"/>
+<meta property="og:title" content="Getopts - From the Shell Scripting Tutorial Tips" />
+<meta property='og:image' content='parse.png' />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="675" />
+
+
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="index.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Getopts - Shell Scripting Tips        </title>
+        <meta name="description" content="
+	Parsing command-line arguments	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="index.html" />
+        <link rel="stylesheet" href="../../css/shellscript-tips.css">
+        <script src="../../js/vendor/jquery-1.10.2.min.js"></script>
+	<script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../../../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">... The Shell Scripting Tips section</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+... The Shell Scripting Tips section
+<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+                <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial - Tips</h2>
+                <h3>Getopts</h3>                </h2>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="../../rss.xml"><img src="../../img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Getopts%20-%20https://www.shellscript.sh/tips/getopts/" target="_blank"><img src="../../img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftips%2Fgetopts%2F&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/tips/getopts/&title=Getopts&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/tips/getopts/" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/tips/getopts/&title=Getopts" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "steveparkeror-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "shell scripting B005DI1LNE steve parker";
+amzn_assoc_default_category = "Books";
+amzn_assoc_linkid = "84e4b8af2eebc762bb46e2ee402321ef";
+amzn_assoc_design = "in_content";
+amzn_assoc_default_browse_node = "283155";
+//amzn_assoc_title = "Recommended Reading: <br/>The Tutorial is the content of this website, available in Paperback or eBook format (88 pages).<br/> The 'Shell Scripting' book is a thick 564 pages. This is the definitive guide to all Bash Shell features in depth. <br/> Both are available in Paperback or eBook formats.";
+amzn_assoc_title = "I have written two books on Shell Scripting; both are available in Paperback and eBook.";
+</script>
+<script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+<p><a href='../index.html'><i class='fa fa-arrow-left'></i> All Shell Scripting Tips</a>
+<p>27 May 2018</p>
+<h1>Parsing command-line arguments</h1>
+<p>Most Unix and Linux commands take options preceded by the "minus" symbol, so to list files in long format, ordered (in reverse) by
+their timestamp, you use: <code>ls -l -r -t</code>, which can also be expressed as <code>ls -lrt</code>.</p>
+<p>Some commands also take arguments, so you can create a <code>tar</code> archive of the "<code>myfiles</code>" directory with a
+name "<code>mytarfile.tar</code>" taken from the <code>-f</code> option with the command: <code>tar -c -f mytarfile.tar myfiles</code>.
+In the case of <code>tar -c</code>, any words after the options are taken to be the list of file(s) to put in the archive.</p>
+<h2>The tl;dr lowdown</h2>
+<p>Okay, here's the "too long - didn't read" quick synopsis. Here's how you use <code>getopts</code>:
+<pre class="prettyprint lang-sh">
+while getopts 'srd:f:' c
+do
+  case $c in
+    s) ACTION=SAVE ;;
+    r) ACTION=RESTORE ;;
+    d) DB_DUMP=$OPTARG ;;
+    f) TARBALL=$OPTARG ;;
+  esac
+done
+</pre>
+<p>Right, now that's got the busy people satisfied, we can start to explore what <code>getopts</code> is, how it works, and how
+it can be useful to your scripts.</p>
+<h2>Introducing getopts</h2>
+<p>There is a convenient utility which parses these options for you; it is called <code>getopts</code>, and whilst its usage can feel a
+little strange, using this technique will allow your scripts to process options in a standardised and familiar-feeling way.</p>
+<p>The first argument you pass to <code>getopts</code> is a list of which letters (or numbers, or any other single character)
+it will accept. Each character, if followed by a colon, is expected to be followed an argument, like the <code>tar -f mytarfile.tar</code> example
+above. <code>tar -f</code> always has to be followed by the name of a tar file.  This option argument is passed to your script in the <code>$OPTARG</code> variable.</p>
+<p><code>getopts</code> will also set the <code>$OPTIND</code> variable for you; we will deal with that <a href="#optind">later</a>.</p>
+<p>The second argument that you pass to <code>getopts</code> is the name of a variable which will be populated with the character of the current
+switch. Often, this is called <code>opt</code> or just <code>c</code>, although it can have any name you choose.</p>
+<p>This example script can save/restore files (as a tarball) and a database. You must pass it either <code>-s</code> (Save) or <code>-r</code>
+(Restore). If you pass <code>-d databasefile</code> then it will use that name to dump (or restore) the database; if you pass <code>-f tarball</code>,
+it will use that name for the tarball to create (or extract) the files.</p>
+<p>There are a few things this first draft of the script doesn't deal with; passing both <code>-s</code> and <code>-r</code> is invalid. If you do,
+this script will take the last thing you said, so <code>dbdump.sh -s -r -d dbdump.bin -s -r -s</code> will Save (not Restore) since the last thing
+it processed was the Save command.</p>
+<p>Similarly, if you don't pass at least one of <code>-d</code> and <code>-f</code>, then nothing will happen at all.</p>
+<p>The reason for the <code>unset DB_DUMP TARBALL ACTION</code> is that the script does not want to be influenced by any environment
+variables which may be already set. Note that this will only affect the scope of the running script; the calling shell won't have its
+variables changed.</p>
+<p>For brevity, I have not defined the <code>save_database()</code>, <code>save_files()</code>, <code>restore_database()</code> and
+<code>restore_files()</code> functions here; the downloadable scripts do have dummy functions so that the scripts will actually run for you. They just
+display what would be done, but don't actually do anything to your files.</p>
+<a target="_blank" href="getopts1.sh.txt">download this script (getopts1.sh)</a>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+
+unset DB_DUMP TARBALL ACTION
+
+while getopts 'srd:f:' c
+do
+  case $c in
+    s) ACTION=SAVE ;;
+    r) ACTION=RESTORE ;;
+    d) DB_DUMP=$OPTARG ;;
+    f) TARBALL=$OPTARG ;;
+  esac
+done
+
+if [ -n "$DB_DUMP" ]; then
+  case $ACTION in
+    SAVE)    save_database $DB_DUMP    ;;
+    RESTORE) restore_database $DB_DUMP ;;
+  esac
+fi
+
+if [ -n "$TARBALL" ]; then
+  case $ACTION in
+    SAVE)    save_files $TARBALL    ;;
+    RESTORE) restore_files $TARBALL ;;
+  esac
+fi
+</pre>
+<p>The <code>getopts</code> command is an argument to a <code>while</code> loop - each time through the loop, it processes the switch, and sets the
+<code>$c</code> variable to the character of the switch. You can read more about <a href="../../loops.html">loops</a> and <a href="../../case.html">case</a>
+in the main tutorial.</p>
+<p>If we call this script as: <code>dbdump.sh -s -r -d /tmp/dbdump.bin -f /tmp/files.tar -s</code>, it will process the <code>-s</code>, set
+<code>$c=s</code>, and we run into the <code>case</code> statement for the first time. This sees that <code>$c=s</code>, sets <code>$ACTION=SAVE</code>,
+and the <code>;;</code> at the end of that line tells it to stop processing, and it goes back to <code>getopts</code> for the next run around
+the <code>while</code> loop. This reads <code>-r</code>, which logically doesn't make sense (we can't have it both save the backup and restore
+the backup at the same time), but the script doesn't know that, so it sets <code>$c=r</code>, the <code>case</code> statement sets <code>$ACTION=RESTORE</code>, and we go back to <code>getopts</code> to process the next argument.</p>
+<p>Now, <code>getopts</code> sets <code>$c=d</code> and also sets <code>$OPTARG=/tmp/dbdump.bin</code>, because the 'd:' in the <code>getopts</code>
+invocation tells it that <code>-d</code> is followed by an argument (the name of the database dump file). Execution goes on to the <code>case</code>
+statement, which sets <code>$DBDUMP=/tmp/dbdump.bin</code>. When we get in to the main body of the script, if the <code>$DBDUMP</code> variable
+has a value, then it will either save the database to that file, or restore it from that file.</p>
+<p>The next option is <code>-f /tmp/files.tar</code>, and the same process is followed; <code>getopts</code> sets <code>$c=f</code> and also sets
+<code>$OPTARG=/tmp/files.tar</code>. The <code>case</code> statement reads these, and sets <code>$TARBALL=/tmp/files.tar</code>.</p>
+<p>Finally, we passed it yet another <code>-s</code> switch, so it will change the <code>$ACTION</code> variable back to <code>SAVE</code>.</p>
+<p>When the main script starts, it checks if <code>$DB_DUMP</code> is set, then checks the value of <code>$ACTION</code>, and either saves or
+restores the database, using <code>$DB_DUMP</code>, according to the value of <code>$ACTION</code>.</p>
+<p>Similarly, it checks if <code>$TARBALL</code> has been set, and either saves or restores the files with <code>$TARBALL</code> as the argument.</p>
+<h2>Round Two: Error Checking</h2>
+<p>This second version of the script uses a couple of useful functions. It is often convenient to have a <code>usage()</code> function, which
+tells the user the correct way to call the script, and exits with a non-zero error code, to express that it has failed.</p>
+<p>It also has a <code>set_variable()</code> function, which can be useful. This script doesn't really need it - the example above just set
+the variables as it needed to. But since this function does various bits of error checking, it's worth putting all of that into a function
+and calling it multiple times, rather than repeating the "is this variable already set?" code for every command-line option.</p>
+<p>It uses <code>eval</code> and variable indirection. When called as
+<code>set_variable ACTION SAVE</code>, it sets <code>$varname=ACTION</code>, then checks '<code>if [ -z "${!varname}" ]</code>'. The exclamation
+mark before <code>varname</code> tells the shell to replace that with the <i>value of</i> <code>$varname</code>, so the <code>-z</code> test
+ will check whether the <code>$ACTION</code> variable is of zero length. If so, it evaluates <code>$varname=\"$@\"</code>, which works out as
+<code>ACTION=SAVE</code> in this case. It could just use: <code>eval "$varname=$1"</code>, but that wouldn't allow for spaces in the filenames,
+when we come to use this function to set those, too.</p>
+<p>The real reason that <code>set_variable()</code> is useful is that if <code>${!varname}</code> is not zero length, the function will spit
+out an error message, that <code>$varname</code> is already set, and call the <code>usage()</code> function, which reminds the user of the correct
+syntax, and exits the whole script.</p>
+<p>The next change to this script from the first example, is that it adds <code>-?</code> and <code>-h</code> switches. These are common ways to
+query a program to find out what the correct usage is. So if the user runs it as: <code>dbdump.sh -?</code> or <code>dbdump.sh -h</code>, it will
+show them the <code>usage()</code> message, and exit.</p>
+<p>Two final checks before the main script gets underway;, the first checks to ensure that <code>$ACTION</code> has been set (if it was called without either
+<code>-s</code> or <code>-r</code>). If <code>$ACTION</code> is zero length, it calls the usage function.</p>
+<p>Then, it checks that at least one of <code>$DB_DUMP</code> and <code>$TARBALL</code> have been set. The logic of this is a little unintuitive: If
+the <code>-z "$DB_DUMP"</code> test passes, then the <code>&&</code> passes execution to the next test, <code>-z "$TARBALL"</code>. If that also
+passes the test, it continues execution via the second <code>&&</code> to the <code>usage()</code> function, which will display the message and
+terminate the script.</p>
+<p>If either of those tests failed, then at least one of them is set, the script does have something to do, and the <code>usage()</code> function
+does not get called, which means that the script is allowed to continue.</p
+<p>Once all that has been done, it calls the save/restore functions as before.</p>
+<a target="_blank" href="getopts2.sh.txt">download this script (getopts2.sh)</a>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+
+usage()
+{
+  echo "Usage: $0 [-s|-r] [ -d DB_DUMP ] [ -f TARBALL ]"
+  exit 2
+}
+
+set_variable()
+{
+  local varname=$1
+  shift
+  if [ -z "${!varname}" ]; then
+    eval "$varname=\"$@\""
+  else
+    echo "Error: $varname already set"
+    usage
+  fi
+}
+
+#########################
+# Main script starts here
+
+unset DB_DUMP TARBALL ACTION
+
+while getopts 'srd:f:?h' c
+do
+  case $c in
+    s) set_variable ACTION SAVE ;;
+    r) set_variable ACTION RESTORE ;;
+    d) set_variable DB_DUMP $OPTARG ;;
+    f) set_variable TARBALL $OPTARG ;;
+    h|?) usage ;; esac
+done
+
+[ -z "$ACTION" ] && usage
+[ -z "$DB_DUMP" ] && [ -z "$TARBALL" ] && usage
+
+if [ -n "$DB_DUMP" ]; then
+  case $ACTION in
+    SAVE) save_database $DB_DUMP ;;
+    RESTORE) restore_database $DB_DUMP ;;
+  esac
+fi
+
+if [ -n "$TARBALL" ]; then
+  case $ACTION in
+    SAVE) save_files $TARBALL ;;
+    RESTORE) restore_files $TARBALL ;;
+  esac
+fi
+</pre>
+<a name="optind"></a>
+<h2>Option Index: $OPTIND</h2>
+<p>We mentioned above that the other variable that <code>getopts</code> will set for you is the index of where you are up to in 
+processing the options; this is the <code>$OPTIND</code> variable. This is a bit of an odd one; it's the index of the next 
+variable to be processed, so if your script
+takes arguments: "<code>dbdump.sh -s -d foo -f bar</code>", then as it's processing <code>-s</code>, <code>$OPTIND</code> is <code>2</code>.
+When it's processing <code>-d foo</code>, <code>$OPTIND</code> is <code>4</code>, because the <i>next</i> thing it will process will be the 4th
+argument ("<code>-f</code>").</p>
+<p>The <code>$OPTIND</code> variable is useful when your script processes some switches, followed by further arguments. For example, <code>ls -ltr /tmp/*.txt /tmp/*.png</code> stops
+processing switches when it finds the first non-option argument (/tmp/*.txt).</p>
+<p>This third example processes its command line arguments, and then operates on any files it has been given.</p>
+<a target="_blank" href="getopts3.sh.txt">download this script (getopts3.sh)</a>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+unset VERBOSE
+while getopts 'smv' c
+do
+  echo "Processing $c : OPTIND is $OPTIND"
+  case $c in
+    s) ACTION=sha1sum ;;
+    m) ACTION=md5sum ;;
+    v) VERBOSE=true ;;
+  esac
+done
+
+echo "Out of the getopts loop. OPTIND is now $OPTIND"
+shift $((OPTIND-1))
+if [ $VERBOSE ]; then
+  set -x
+fi
+$ACTION $@
+</pre>
+<p>If you pass it <code>-s</code>, it will check the <code>sha1sum</code> checksum of the files; <code>-m</code> tells it to do a <code>md5sum</code>
+checksum instead. To help us see how <code>$OPTIND</code> changes, a <code>-v</code> switch enables verbose execution.</p>
+<p>After <code>getopts</code> has finished parsing the switches, it exits the loop, with <code>$OPTIND</code> set to 2 (if only one switch was used)
+or 3 (if two switches were used). Therefore, we need to call <code>shift</code> with <code>$OPTIND-1</code> to get rid of the first 1 (or 2) arguments
+from the command line. This leaves <code>$@</code> with the rest of the command line, which should be a list of files.</p>
+<p>Here, I ran the script from this directory, which contains <code>getopts1.sh</code>, <code>getopts2.sh</code> and <code>getopts3.sh</code>, so
+the <code>*.sh</code> represents these files.</p>
+<pre>
+$ <b>./getopts3.sh -v -m *sh</b>
+Processing v : OPTIND is 2
+Processing m : OPTIND is 3
+Out of the getopts loop. OPTIND is now 3
++ md5sum getopts1.sh getopts2.sh getopts3.sh
+e0f015e6f47709c9639589c98886c429  getopts1.sh
+ac16051be13728378f8827c0db84c6ae  getopts2.sh
+41521e2253685ab252f87ee820b466b7  getopts3.sh
+$ 
+</pre>
+<p>So when the script processes the <code>-v</code> switch, <code>$OPTIND=2</code>. It then moves on to <code>-m</code> and <code>$OPTIND=3</code>.
+So the script calls <code>shift 2</code> by working out the value of <code>$OPTIND-1</code>. It can now call <code>$ACTION *.sh</code>, which will
+evaluate as <code>md5sum getopts1.sh getopts2.sh getopts3.sh</code> (or <code>sha1sum getopts1.sh getopts2.sh getopts3.sh</code>, if you ran it with the <code>-s</code> switch.</p>
+
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../../../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="../../js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/tips/getopts/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:18 GMT -->
+</html>

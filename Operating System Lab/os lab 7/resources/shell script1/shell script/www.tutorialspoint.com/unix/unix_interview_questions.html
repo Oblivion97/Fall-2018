@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix_interview_questions.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:17:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Unix / Linux Interview Questions - tutorialspoint</title>
+<meta name="description" content="Unix / Linux Interview Questions - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<meta name="keywords" content="Unix, Linux, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes" />
+<base  />
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="fb:app_id" content="471319149685276" />
+<meta property="og:site_name" content="www.tutorialspoint.com" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="../theme/js/script-min-v45e1f.js?v=2"></script>
+<link rel="stylesheet" href="../theme/css/style-min30f4.css?v=3">
+<script>
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #01adb9 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #01adb9 url(../images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #01adb9 !important;}
+.submenu-item{ border-bottom: 2px solid #01adb9 !important; border-top: 2px solid #01adb9 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#01adb9; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img  src="../images/loading-cg.gif" alt="" width="70" height="70" />
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="images/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="https://www.tutorialspoint.com/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="../theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="https://www.tutorialspoint.com/tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts {
+   text-align:center !important;
+   vertical-align:middle !important;
+}
+</style>
+<div class="mini-logo">
+<img src="images/unix-mini-logo.jpg" alt="UNIX Tutorial" />
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux for Beginners</li>
+<li><a href="index-2.html">Unix / Linux - Home</a></li>
+<li><a href="unix-getting-started.html">Unix / Linux - Getting Started</a></li>
+<li><a href="unix-file-management.html">Unix / Linux - File Management</a></li>
+<li><a href="unix-directories.html">Unix / Linux - Directories</a></li>
+<li><a href="unix-file-permission.html">Unix / Linux - File Permission</a></li>
+<li><a href="unix-environment.html">Unix / Linux - Environment</a></li>
+<li><a href="unix-basic-utilities.html">Unix / Linux - Basic Utilities</a></li>
+<li><a href="unix-pipes-filters.html">Unix / Linux - Pipes &amp; Filters</a></li>
+<li><a href="unix-processes.html">Unix / Linux - Processes</a></li>
+<li><a href="unix-communication.html">Unix / Linux - Communication</a></li>
+<li><a href="unix-vi-editor.html">Unix / Linux - The vi Editor</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Shell Programming</li>
+<li><a href="shell_scripting.html">Unix / Linux - Shell Scripting</a></li>
+<li><a href="unix-what-is-shell.html">Unix / Linux - What is Shell?</a></li>
+<li><a href="unix-using-variables.html">Unix / Linux - Using Variables</a></li>
+<li><a href="unix-special-variables.html">Unix / Linux - Special Variables</a></li>
+<li><a href="unix-using-arrays.html">Unix / Linux - Using Arrays</a></li>
+<li><a href="unix-basic-operators.html">Unix / Linux - Basic Operators</a></li>
+<li><a href="unix-decision-making.html">Unix / Linux - Decision Making</a></li>
+<li><a href="unix-shell-loops.html">Unix / Linux - Shell Loops</a></li>
+<li><a href="unix-loop-control.html">Unix / Linux - Loop Control</a></li>
+<li><a href="unix-shell-substitutions.html">Unix / Linux - Shell Substitutions</a></li>
+<li><a href="unix-quoting-mechanisms.html">Unix / Linux - Quoting Mechanisms</a></li>
+<li><a href="unix-io-redirections.html">Unix / Linux - IO Redirections</a></li>
+<li><a href="unix-shell-functions.html">Unix / Linux - Shell Functions</a></li>
+<li><a href="unix-manpage-help.html">Unix / Linux - Manpage Help</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Advanced Unix / Linux</li>
+<li><a href="unix-regular-expressions.html">Unix / Linux - Regular Expressions</a></li>
+<li><a href="unix-file-system.html">Unix / Linux - File System Basics</a></li>
+<li><a href="unix-user-administration.html">Unix / Linux - User Administration</a></li>
+<li><a href="unix-system-performance.html">Unix / Linux - System Performance</a></li>
+<li><a href="unix-system-logging.html">Unix / Linux - System Logging</a></li>
+<li><a href="unix-signals-traps.html">Unix / Linux - Signals and Traps</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Useful Resources</li>
+<li><a href="unix_questions_answers.html">Unix / Linux - Questions &amp; Answers</a></li>
+<li><a href="unix-useful-commands.html">Unix / Linux - Useful Commands</a></li>
+<li><a href="unix-quick-guide.html">Unix / Linux - Quick Guide</a></li>
+<li><a href="unix-builtin-functions.html">Unix / Linux - Builtin Functions</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_system_calls/index.htm">Unix / Linux - System Calls</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_commands/index.htm">Unix / Linux - Commands List</a></li>
+<li><a href="unix-useful-resources.html">Unix / Linux - Useful Resources</a></li>
+<li><a href="unix-discussion.html">Unix / Linux - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Unix / Linux Interview Questions</h1>
+<hr />
+<div style="padding-bottom:5px;padding-left:10px;text-align: center;">Advertisements</div>
+<div style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/f.txt"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix_questions_answers.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix_questions_answers.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Dear readers, these <b>Unix Interview Questions</b> have been designed specially to get you acquainted with the nature of questions you may encounter during your interview for the subject of <b>Unix</b>. As per my experience good interviewers hardly plan to ask any particular question during your interview, normally questions start with some basic concept of the subject and later they continue based on further discussion and what you answer &minus;</p>
+<section class="toggle">
+<label> What is shell?</label>
+<div class="toggle-content">
+<p>Shell is an interpreter. It interprets the commands and submits for execution.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Name the commonly used shells on different UNIX/Linux variants.</label>
+<div class="toggle-content">
+<p>Bsh, csh, ksh and bash.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is soft link/symbolic link and which command can be used to create one?</label>
+<div class="toggle-content">
+<p>It is a short cut to the file or directory. ln is the command used for the same.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is Sun micro systems UNIX called as?</label>
+<div class="toggle-content">
+<p>Solaris.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the role of kernel?</label>
+<div class="toggle-content">
+<p>It interacts with hardware and most of the tasks like memory management, tash scheduling and file management.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which program is responsible to bring the login prompt?</label>
+<div class="toggle-content">
+<p>Login program.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the name of the command to change the password?</label>
+<div class="toggle-content">
+<p>passwd.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the second column designates in the long listing of ls command’s output?</label>
+<div class="toggle-content">
+<p>Link count.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What are the various ways that you can disconnect/logout with the UNIX server from your console terminal?</label>
+<div class="toggle-content">
+<p>Command &minus; logout / ctrl+d / command &minus; exit</p>
+</div>
+</section>
+<section class="toggle">
+<label> Name a command which can be used to shut down the system?</label>
+<div class="toggle-content">
+<p>shutdown.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Is UNIX/Linux case sensitive from the console terminal end.</label>
+<div class="toggle-content">
+<p>Yes.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Name a command which can be used to restart the machine?</label>
+<div class="toggle-content">
+<p>reboot.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Is UNIX open source?</label>
+<div class="toggle-content">
+<p>No, Linux is open source.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Name 5 variants of linux?</label>
+<div class="toggle-content">
+<p>Redhat, Cent OS, Debian, Ubuntu and Fedora.</p>
+</div>
+</section>
+<section class="toggle">
+<label> With the ls &minus;l listing from first column output which n<sup>th</sup> character (out of 10) represents file type?</label>
+<div class="toggle-content">
+<p>First.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a hidden file?</label>
+<div class="toggle-content">
+<p>A file/directory name beginning with. (dot) is considered as hidden one.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Who designed the UNIX operating system?</label>
+<div class="toggle-content">
+<p>Ken Thompson</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which programming language is used in the design of UNIX OS.</label>
+<div class="toggle-content">
+<p>C</p>
+</div>
+</section>
+<section class="toggle">
+<label> At which company UNIX is designed first.</label>
+<div class="toggle-content">
+<p>AT &amp; T Bell labs.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What does the second column signifies in the output generated by 'who' command?</label>
+<div class="toggle-content">
+<p>The terminal associated with the respective login.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can give the manual of a command?</label>
+<div class="toggle-content">
+<p>man</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to know about the directory path of a command?</label>
+<div class="toggle-content">
+<p>which</p>
+</div>
+</section>
+<section class="toggle">
+<label> What are the meta-characters which represent to match all and single chracters respectively?</label>
+<div class="toggle-content">
+<p>* And ?</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the file descriptor which represents the STDIN.</label>
+<div class="toggle-content">
+<p>0</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is difference between absolute and relative path?</label>
+<div class="toggle-content">
+<p>A pathname is absolute if it is described in relation to root, so absolute pathnames always begin with a /. A pathname if it is relative to your current working directory is called as relative path. Relative pathnames never begin with /</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the meaning of execute permission on a directory?</label>
+<div class="toggle-content">
+<p>Having an execute permission on a directory means to have traverse permission.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Name the environment variable which can be used to change the primary shell prompt.</label>
+<div class="toggle-content">
+<p>PS1</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to print a document on the line printer typically?</label>
+<div class="toggle-content">
+<p>lp/lpr</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a process?</label>
+<div class="toggle-content">
+<p>A running instance of a program is called as a process.</p>
+</div>
+</section>
+<section class="toggle">
+<label> How to open a file in read only mode using vi editor?</label>
+<div class="toggle-content">
+<p>vi &minus; R <file></p>
+</div>
+</section>
+<section class="toggle">
+<label> Which alphabet keys can move the cursor equivalent to arrow keys?</label>
+<div class="toggle-content">
+<p>k, j, h and l</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is yanking w.r.t vi editor?</label>
+<div class="toggle-content">
+<p>Yanking is the process of holding the cut or copied text into the buffer which can pasted.</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can you display line numbers in vi editor?</label>
+<div class="toggle-content">
+<p>:set nu</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a shebang line?</label>
+<div class="toggle-content">
+<p>A first line in the shell script which tells which shell need to be used to execute the following commands in the shell script.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to alter the file access permissions?</label>
+<div class="toggle-content">
+<p>chmod</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can we retrieve the value of the shell variable?</label>
+<div class="toggle-content">
+<p>By prefixing the dollar ($) symbol for the shell variable.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to delete a shell variable?</label>
+<div class="toggle-content">
+<p>unset.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which shell variable holds the shell script file name?</label>
+<div class="toggle-content">
+<p>$0</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the value returned by a command after its successful execution?</label>
+<div class="toggle-content">
+<p>0</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can we get the execution status of the last executed command?</label>
+<div class="toggle-content">
+<p>$?</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to perform arithmetical computations?</label>
+<div class="toggle-content">
+<p>expr</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which switch can be used in test expression to determine a file as a regular file?</label>
+<div class="toggle-content">
+<p>&minus;f</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can we capture commands displayable output in a shell variable?</label>
+<div class="toggle-content">
+<p>Enclose the command in back quotes and assign it to a variable.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a here document?</label>
+<div class="toggle-content">
+<p>A here document is used to redirect input into an interactive shell script or program.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to throw/return a value from the function?</label>
+<div class="toggle-content">
+<p>return</p>
+</div>
+</section>
+<section class="toggle">
+<label> Is it compulsory to have the extension ‘sh’ for a shell script?</label>
+<div class="toggle-content">
+<p>No, it is a convention.</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can we execute a shell script if execute bit is off for a shell script?</label>
+<div class="toggle-content">
+<p>sh &lt;file&gt;</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the full form of grep?</label>
+<div class="toggle-content">
+<p>Globally search for regular expression.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which filter can be used to extract a/specific/range of character from the lines of text?</label>
+<div class="toggle-content">
+<p>cut</p>
+</div>
+</section>
+<section class="toggle">
+<label> Command ‘cat’ basically does ___</label>
+<div class="toggle-content">
+<p>Concatenation of files text.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a process id?</label>
+<div class="toggle-content">
+<p>OS assigns an unique process identification number for the currently executing processes is called as process-id (PID).</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which is the command used to create a new user on the system?</label>
+<div class="toggle-content">
+<p>useradd</p>
+</div>
+</section>
+<section class="toggle">
+<label> Command ‘telnet’ is used for ___</label>
+<div class="toggle-content">
+<p>To connect to remote UNIX/Linux machine.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to stop the current executing process in the background?</label>
+<div class="toggle-content">
+<p>kill</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the basic purpose of ‘find’ command?</label>
+<div class="toggle-content">
+<p>To search for a file/files.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which filter can be used to display first 10 lines of a file?</label>
+<div class="toggle-content">
+<p>head.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the first operating system designed using a high level programming language?</label>
+<div class="toggle-content">
+<p>UNIX</p>
+</div>
+</section>
+<section class="toggle">
+<label> Explain the use of SUID permission bit on a file.</label>
+<div class="toggle-content">
+<p>It give the process to have the privileges of the owner of the file during the instance of the program.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a zombie process?</label>
+<div class="toggle-content">
+<p>The process is dead but have not been removed from the process table.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Are arrays supported in shell scripts?</label>
+<div class="toggle-content">
+<p>Yes</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the role of book block?</label>
+<div class="toggle-content">
+<p>It contains a program called MBR (Master boot record) which load the kernel as the part of the system booting.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to create alternate name for an existing command?</label>
+<div class="toggle-content">
+<p>alias</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can you suppress trailing new line for echo command?</label>
+<div class="toggle-content">
+<p>echo &minus;e “text”. Option –e places the cursor on the same line</p>
+</div>
+</section>
+<section class="toggle">
+<label> Distinguish between cmp and diff commands?</label>
+<div class="toggle-content">
+<p>‘diff’ shows all the differences from two file whereas ‘cmp’ shows the only the first occurring difference. The said is applicable only if differences between the files do exist.</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can we redirect the output of one command to the another command?</label>
+<div class="toggle-content">
+<p>Place the commands connected with pipes (|).</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the effect of ‘cd ..’ if your current working directory is root (/) ?</label>
+<div class="toggle-content">
+<p>Still the current working directory would be /</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is a mount point?</label>
+<div class="toggle-content">
+<p>It the directory through which date I/O happen on to/from a device.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which is the environment variable which holds your home directory information?</label>
+<div class="toggle-content">
+<p>HOME.</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can you list hidden files too with ls command?</label>
+<div class="toggle-content">
+<p>ls &minus;a</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command you can use to find the remaining disk free space?</label>
+<div class="toggle-content">
+<p>df</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the purpose of ‘at’ command?</label>
+<div class="toggle-content">
+<p>To execute a command/commands at a specific time.</p>
+</div>
+</section>
+<section class="toggle">
+<label> If you are not logged in and the scheduled command produces a displayable output, how would you see it?</label>
+<div class="toggle-content">
+<p>Will receive the mail of the same.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is LILO w.r.t linux?</label>
+<div class="toggle-content">
+<p>LILO means linux loader, which loads the kernel into memory and starts the OS.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the recommended size of swap space for a typical OS installation?</label>
+<div class="toggle-content">
+<p>Double the RAM size.</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can you list all the directories using ls command?</label>
+<div class="toggle-content">
+<p>ls &minus;l|grep “^d”</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to display basic information about your server?</label>
+<div class="toggle-content">
+<p>uname</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can you count for a particular pattern occurrences in a file?</label>
+<div class="toggle-content">
+<p>grep &minus;c “pattern” &lt;file&gt;</p>
+</div>
+</section>
+<section class="toggle">
+<label> Explain the purpose of nohup command.</label>
+<div class="toggle-content">
+<p>To keep the command running even after the user who issues the command has logged out.</p>
+</div>
+</section>
+<section class="toggle">
+<label>How are devices represented in UNIX/Linux?</label>
+<div class="toggle-content">
+<p>For UNIX/Linux every device is a file and are typically located in the directory /dev.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is inode?</label>
+<div class="toggle-content">
+<p>A file is given a unique number by OS and is called as inode.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to execute a command/s repeatedly for the given schedule?</label>
+<div class="toggle-content">
+<p>Crontab</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to change file access permission bits?</label>
+<div class="toggle-content">
+<p>chmod</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to rename a file/directory?</label>
+<div class="toggle-content">
+<p>mv</p>
+</div>
+</section>
+<section class="toggle">
+<label> What are the respective octal value for the permission bits r, w &amp; x?</label>
+<div class="toggle-content">
+<p>4, 2 &amp; 1 respectively for r, w &amp; x.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which operator can be used to throw a process into background?</label>
+<div class="toggle-content">
+<p>Ampersand (&amp;)</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can we list out all currently executing background processes?</label>
+<div class="toggle-content">
+<p>ps &minus;e</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to know the terminal type?</label>
+<div class="toggle-content">
+<p>tty</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is an internal command?</label>
+<div class="toggle-content">
+<p>Shell built in commands are called as internal commands.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used by the administrator to bring the system into single user mode?</label>
+<div class="toggle-content">
+<p>init s</p>
+</div>
+</section>
+<section class="toggle">
+<label> Which command can be used to write onto other currently logged in user’s console output terminal.</label>
+<div class="toggle-content">
+<p>write</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is UMASK?</label>
+<div class="toggle-content">
+<p>UMASK is a Unix environment variable, which automatically sets file permissions created files.</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the default value of UMASK?</label>
+<div class="toggle-content">
+<p>022</p>
+</div>
+</section>
+<section class="toggle">
+<label> Expand UFS in context of file system?</label>
+<div class="toggle-content">
+<p>UNIX File system.</p>
+</div>
+</section>
+<section class="toggle">
+<label> Expand JFS in context of file system?</label>
+<div class="toggle-content">
+<p>Journal File System</p>
+</div>
+</section>
+<section class="toggle">
+<label> Who designed linux OS?</label>
+<div class="toggle-content">
+<p>Linus Torvalds</p>
+</div>
+</section>
+<section class="toggle">
+<label> How can you display n<sup>th</sup> line of a file?</label>
+<div class="toggle-content">
+<p>head &minus;&lt;n&gt; file.txt | tail &minus;1</p>
+</div>
+</section>
+<section class="toggle">
+<label> Name three looping constructs provided by shell.</label>
+<div class="toggle-content">
+<p>while, until &amp; for.</p>
+</div>
+</section>
+<section class="toggle">
+<label> In which directory by default user home directories are created?</label>
+<div class="toggle-content">
+<p>/home</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the default working directory of administrator?</label>
+<div class="toggle-content">
+<p>/root</p>
+</div>
+</section>
+<section class="toggle">
+<label> What is the login name of the administrator?</label>
+<div class="toggle-content">
+<p>root</p>
+</div>
+</section>
+<h2>What is Next ?</h2>
+<p>Further you can go through your past assignments you have done with the subject and make sure you are able to speak confidently on them. If you are fresher then interviewer does not expect you will answer very complex questions, rather you have to make your basics concepts very strong.</p>
+<p>Second it really doesn't matter much if you could not answer few questions but it matters that whatever you answered, you must have answered with confidence. So just feel confident during your interview. We at tutorialspoint wish you best luck to have a good interviewer and all the very best for your future endeavor. Cheers :-)</p>
+<hr />
+<div class="pre-btn">
+<a href="unix_questions_answers.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix_interview_questions.pdf" title="Unix / Linux Interview Questions - tutorialspoint" target="_blank"><i class="icon icon-file-pdf-o big-font"></i> PDF</a>
+</div>
+<div class="nxt-btn">
+<a href="unix_questions_answers.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="parent-file">unix_questions_answers.htm</div>
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.facebook.com/sharer.php?u=' + 'https://www.tutorialspoint.com/unix/unix_interview_questions.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/facebookIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://twitter.com/share?url=' + 'https://www.tutorialspoint.com/unix/unix_interview_questions.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/twitterIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.linkedin.com/cws/share?url=' + 'https://www.tutorialspoint.com/unix/unix_interview_questions.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/linkedinIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://plus.google.com/share?url=https://www.tutorialspoint.com/unix/unix_interview_questions.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/googlePlusIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.stumbleupon.com/submit?url=https://www.tutorialspoint.com/unix/unix_interview_questions.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/StumbleUponIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://reddit.com/submit?url=https://www.tutorialspoint.com/unix/unix_interview_questions.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=656,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/reddit.jpg" alt="img" />
+</a>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="../scripts/img/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_privacy.htm#cookies">Cookies Policy</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>&copy; Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == 'Enter email for newsletter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email for newsletter...';}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script src="../theme/js/custom-minbea6.js?v=7"></script>
+<script src="../../www.google-analytics.com/urchin.js">
+</script>
+<script>
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix_interview_questions.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:17:12 GMT -->
+</html>

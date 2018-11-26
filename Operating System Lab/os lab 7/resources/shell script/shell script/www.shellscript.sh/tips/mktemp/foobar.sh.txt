@@ -1,0 +1,26 @@
+#!/bin/bash
+TMPFILE=/tmp/foobar.$$
+
+read -p "What is your favourite colour? " ANSWER
+echo "That's nice. I like $ANSWER too."
+echo $ANSWER > $TMPFILE
+
+read -p "What is your favourite number? " ANSWER
+echo "Oh, I don't really like $ANSWER very much."
+echo "Each to their own."
+echo $ANSWER >> $TMPFILE
+
+read -p "What is your favourite movie? " ANSWER
+echo "That's a good one, isn't it? I do like $ANSWER so much."
+echo $ANSWER >> $TMPFILE
+
+counter=0
+while read inputword
+do
+  let counter++
+  echo "Your answer number $counter was: $inputword"
+done < $TMPFILE
+
+# Email the answers to our support mailbox
+cat $TMPFILE | mailx -s "Answers for process $$" support@example.com
+rm -f $TMPFILE

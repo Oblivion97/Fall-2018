@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:17:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Unix / Linux Mock Test - TutorialsPoint</title>
+<meta name="description" content="Unix / Linux Mock Test - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Unix Korn and Bourne Shell and Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes." />
+<meta name="keywords" content="Unix, Linux, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Utilities, File System, Directories, Memory Management, Special Variables, vi editor, Processes." />
+<base  />
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="fb:app_id" content="471319149685276" />
+<meta property="og:site_name" content="www.tutorialspoint.com" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="../theme/js/script-min-v45e1f.js?v=2"></script>
+<link rel="stylesheet" href="../theme/css/style-minc9e4.css?v=3.1">
+<script>
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #01adb9 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #01adb9 url(../images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #01adb9 !important;}
+.submenu-item{ border-bottom: 2px solid #01adb9 !important; border-top: 2px solid #01adb9 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#01adb9; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img  src="../images/loading-cg.gif" alt="" width="70" height="70" />
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="images/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="https://www.tutorialspoint.com/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="../theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="https://www.tutorialspoint.com/tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts {
+   text-align:center !important;
+   vertical-align:middle !important;
+}
+</style>
+<div class="mini-logo">
+<img src="images/unix-mini-logo.jpg" alt="UNIX Tutorial" />
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux for Beginners</li>
+<li><a href="index-2.html">Unix / Linux - Home</a></li>
+<li><a href="unix-getting-started.html">Unix / Linux - Getting Started</a></li>
+<li><a href="unix-file-management.html">Unix / Linux - File Management</a></li>
+<li><a href="unix-directories.html">Unix / Linux - Directories</a></li>
+<li><a href="unix-file-permission.html">Unix / Linux - File Permission</a></li>
+<li><a href="unix-environment.html">Unix / Linux - Environment</a></li>
+<li><a href="unix-basic-utilities.html">Unix / Linux - Basic Utilities</a></li>
+<li><a href="unix-pipes-filters.html">Unix / Linux - Pipes &amp; Filters</a></li>
+<li><a href="unix-processes.html">Unix / Linux - Processes</a></li>
+<li><a href="unix-communication.html">Unix / Linux - Communication</a></li>
+<li><a href="unix-vi-editor.html">Unix / Linux - The vi Editor</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Shell Programming</li>
+<li><a href="shell_scripting.html">Unix / Linux - Shell Scripting</a></li>
+<li><a href="unix-what-is-shell.html">Unix / Linux - What is Shell?</a></li>
+<li><a href="unix-using-variables.html">Unix / Linux - Using Variables</a></li>
+<li><a href="unix-special-variables.html">Unix / Linux - Special Variables</a></li>
+<li><a href="unix-using-arrays.html">Unix / Linux - Using Arrays</a></li>
+<li><a href="unix-basic-operators.html">Unix / Linux - Basic Operators</a></li>
+<li><a href="unix-decision-making.html">Unix / Linux - Decision Making</a></li>
+<li><a href="unix-shell-loops.html">Unix / Linux - Shell Loops</a></li>
+<li><a href="unix-loop-control.html">Unix / Linux - Loop Control</a></li>
+<li><a href="unix-shell-substitutions.html">Unix / Linux - Shell Substitutions</a></li>
+<li><a href="unix-quoting-mechanisms.html">Unix / Linux - Quoting Mechanisms</a></li>
+<li><a href="unix-io-redirections.html">Unix / Linux - IO Redirections</a></li>
+<li><a href="unix-shell-functions.html">Unix / Linux - Shell Functions</a></li>
+<li><a href="unix-manpage-help.html">Unix / Linux - Manpage Help</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Advanced Unix / Linux</li>
+<li><a href="unix-regular-expressions.html">Unix / Linux - Regular Expressions</a></li>
+<li><a href="unix-file-system.html">Unix / Linux - File System Basics</a></li>
+<li><a href="unix-user-administration.html">Unix / Linux - User Administration</a></li>
+<li><a href="unix-system-performance.html">Unix / Linux - System Performance</a></li>
+<li><a href="unix-system-logging.html">Unix / Linux - System Logging</a></li>
+<li><a href="unix-signals-traps.html">Unix / Linux - Signals and Traps</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Useful Resources</li>
+<li><a href="unix_questions_answers.html">Unix / Linux - Questions &amp; Answers</a></li>
+<li><a href="unix-useful-commands.html">Unix / Linux - Useful Commands</a></li>
+<li><a href="unix-quick-guide.html">Unix / Linux - Quick Guide</a></li>
+<li><a href="unix-builtin-functions.html">Unix / Linux - Builtin Functions</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_system_calls/index.htm">Unix / Linux - System Calls</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_commands/index.htm">Unix / Linux - Commands List</a></li>
+<li><a href="unix-useful-resources.html">Unix / Linux - Useful Resources</a></li>
+<li><a href="unix-discussion.html">Unix / Linux - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Unix / Linux Mock Test</h1>
+<hr />
+<div style="padding-bottom:5px;padding-left:10px;text-align: center;">Advertisements</div>
+<div style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/f.txt"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix_questions_answers.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix_questions_answers.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>This section presents you various set of Mock Tests related to <b>Unix Framework</b>.  You can download these sample mock tests at your local machine and solve offline at your convenience. Every mock test is supplied with a mock test key to let you verify the final score and grade yourself.</p>
+<img src="../images/online_mock_tests.png" alt="Questions and Answers" />
+<a href="unix_mock_test56cb.html?min=1&amp;max=25"><button type="button" class="btn btn-default btn-mt"><i class="icon  icon-file-pdf-o"></i> Mock Test I</button></a>
+<a href="unix_mock_testc907.html?min=26&amp;max=50"><button type="button" class="btn btn-default btn-mt"><i class="icon  icon-file-pdf-o"></i> Mock Test II</button></a>
+<a href="unix_mock_testc34b.html?min=51&amp;max=75"><button type="button" class="btn btn-default btn-mt"><i class="icon  icon-file-pdf-o"></i> Mock Test III</button></a>
+<a href="unix_mock_testabbb.html?min=76&amp;max=100"><button type="button" class="btn btn-default btn-mt"><i class="icon  icon-file-pdf-o"></i> Mock Test IV</button></a>
+<style>
+.B{
+   display:none !important;
+}
+.Q a{
+   pointer-events: none;
+   cursor: default;
+}
+</style>
+<h1>Unix Mock Test I </h1>
+<div class="QA">
+<div class="Q" id="Q1">
+<p><span>Q 1</span> - Choose the odd one out.</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - csh</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - bsh</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - ksh</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - Kernel</a></p>
+</div>
+<div class="A" id='A1'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p>Kernel is the core part of the OS and is odd one the rest are popular shells.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('1')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q2">
+<p><span>Q 2</span> - What is the option to create symbolic link for a file?</p>
+<p><a class="true" href="javascript:void(0);"><span>A</span> - –s</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - –l</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - –f</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A2'>
+<h3>Answer : A</h3>
+<h3>Explanation</h3>
+<p>-s is the option to create a symbolic/soft link and applicable for only files.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('2')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q3">
+<p><span>Q 3</span> - What is the option to create hard link for a directory?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - –s</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - –l</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - –f</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A3'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p>It is error to create a hard link for a directory.</p>
+</div>
+ <div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('3')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q4">
+<p><span>Q 4</span> - The following command can list out all the current active logins.</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - whoami</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - who am i</a></p>
+<p><a class="true" href="javascript:void(0);"><span>C</span> - who</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A4'>
+<h3>Answer : C</h3>
+<h3>Explanation</h3>
+<p>who lists out all the current active logins with the associated terminal types, time and host machine name.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('4')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q5">
+<p><span>Q 5</span> - Choose the command to print the current working directory</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - cwd</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - pwd</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - wd</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - nwd</a></p>
+</div>
+<div class="A" id='A5'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>pwd (present working directory).</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('5')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q6">
+<p><span>Q 6</span> - What is the file descriptor number which represents the STDOUT?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - 0</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - 1</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - 2</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A6'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>0-STDIN, 1-STDOUT &amp; 2-STDERR</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('6')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q7">
+<p><span>Q 7</span> - What does the following command would do</p>
+<pre class="prettyprint">
+   $ cp ../file.
+</pre>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - Copies the file from current directory to parent directory</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - Copies the file from parent directory to its parent directory</a></p>
+<p><a class="true" href="javascript:void(0);"><span>C</span> - Copies the file from parent directory to current directory</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - Error in the command</a></p>
+</div>
+<div class="A" id='A7'>
+<h3>Answer : C</h3>
+<h3>Explanation</h3>
+<p>Dot dot (..) represents parent directory and Dot (.) represents current working directory.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('7')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q8">
+<p><span>Q 8</span> - Identify the environment variable which designates secondary prompt.</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - PP1</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - SP2</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - PS1</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - PS2</a></p>
+</div>
+<div class="A" id='A8'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p>PS2 stands for primary string two.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('8')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q9">
+<p><span>Q 9</span> - A process is ___</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - Collection of threads</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - A thread</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - Software</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - A running program</a></p>
+</div>
+<div class="A" id='A9'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p>A program in the execution state is called as process.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('9')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q10">
+<p><span>Q 10</span> - What is PPID?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - Previous process identification</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - Priority process identification</a></p>
+<p><a class="true" href="javascript:void(0);"><span>C</span> - Parent process identification</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - Pre Parent identification</a></p>
+</div>
+<div class="A" id='A10'>
+<h3>Answer : C</h3>
+<h3>Explanation</h3>
+<p>The parent process id of a child process.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('10')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q11">
+<p><span>Q 11</span> - Which key combination can yank a line in vi?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - yw</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - yc</a></p>
+<p><a class="true" href="javascript:void(0);"><span>C</span> - yy</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - yl</a></p>
+</div>
+<div class="A" id='A11'>
+<h3>Answer : C</h3>
+<h3>Explanation</h3>
+<p>Yanking is the process of holding a text in the buffer.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('11')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q12">
+<p><span>Q 12</span> - She-bang line in a shell script begins with__</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - #</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - #!</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - !#</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A12'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>It tell the system to use which shell for executing the script file.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('12')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q13">
+<p><span>Q 13</span> - How does a comment can begin in a shell script file.</p>
+<p><a class="true" href="javascript:void(0);"><span>A</span> - Beginning with #</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - Beginning with $</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - Beginning with !</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A13'>
+<h3>Answer : A</h3>
+<h3>Explanation</h3>
+<p>A comment line begin with # (pound symbol) and is ignored by the shell.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('13')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q14">
+<p><span>Q 14</span> - What does the following command will do?</p>
+<pre class="prettyprint">
+   $ chmod 888 file
+</pre>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - It enables r,w,x premissions for all users</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - It disable r,w,x permissions for all users</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - It enables r,w,x permissions only for owner of the file</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A14'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p>We can provide the permission values in octal number system and 888 is not a valid octal number.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('14')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div>
+<div class="QA">
+<div class="Q" id="Q15">
+<p><span>Q 15</span> - Which shell variable holds the first command line argument for a shell script?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - $0</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - $1</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - #0</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above</a></p>
+</div>
+<div class="A" id='A15'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>$0 represent the shell script file name itself. Starting with $1, are actual command line arguments sent to the shell script.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('15')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q16">
+<p><span>Q 16</span> - Let a = 5, b = 6. Choose the proper command to perform multiplication?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - expr $a * $b</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - expr $a \* $b</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - $(a*b)</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A16'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>As * hold special meaning suppress it by escaping with \.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('16')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q17">
+<p><span>Q 17</span> - Which filter can be applied on lines of text for arranging in ascending or descending order?</p>
+<p><a class="true" href="javascript:void(0);"><span>A</span> - sort</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - arrange</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - collate</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A17'>
+<h3>Answer : A</h3>
+<h3>Explanation</h3>
+<p>Sort command, a filter used to sort the text in Lexi logical or numerical order.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('17')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q18">
+<p><span>Q 18</span> - Which shell operator can be used to place a command to execute in background?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - |</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - &amp;</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - &amp;&amp;</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - ></a></p>
+</div>
+<div class="A" id='A18'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>Syntax is command &amp;.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('18')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q19">
+<p><span>Q 19</span> - We can kill any background executing process.</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - True</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - False</a></p>
+</div>
+<div class="A" id='A19'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p>False. We can kill only the processes for which we are owner.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('19')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q20">
+<p><span>Q 20</span> - Which of the following is correct to create an alias name for 'ls' as 'list'?</p>
+<p><a class="true" href="javascript:void(0);"><span>A</span> - alias list=”ls”</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - alias list “ls”</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - alias “list” as “ls”</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - alias “ls” as “list”</a></p>
+</div>
+<div class="A" id='A20'>
+<h3>Answer : A</h3>
+<h3>Explanation</h3>
+<p>Syntax is alias alias-name=”command”.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('20')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q21">
+<p><span>Q 21</span> - Choose the correct from below to search for lines beginning with the pattern using grep.</p>
+<p><a class="true" href="javascript:void(0);"><span>A</span> - ^pattern</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - pattern^</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - $pattern</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - pattern$</a></p>
+</div>
+<div class="A" id='A21'>
+<h3>Answer : A</h3>
+<h3>Explanation</h3>
+<p>The pattern can be enclosed in single quotes to suppress meaning of all the meta-characters special meanings.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('21')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q22">
+<p><span>Q 22</span> - Copy all the .doc extension files with file name having only 3 characters into the directory called “confi”, which is in parent directory.</p>
+<p><a class="true" href="javascript:void(0);"><span>A</span> - cp ???.doc ../confi</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - cp [1-3].doc ../confi</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - cp ???.doc /confi</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+</div>
+<div class="A" id='A22'>
+<h3>Answer : A</h3>
+<h3>Explanation</h3>
+<p>??? -> to match for any 3 characters. Dot dot (..) represents parent directory.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('22')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q23">
+<p><span>Q 23</span> - Which command can be used to remove a non-empty directory?</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - rmdir</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - rd</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - ddir</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - rm</a></p>
+</div>
+<div class="A" id='A23'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p>rmdir can be used only if the directory is empty. We can remove the directory if non-empty using recursive option with ‘rm’, as a directory is even a file for UNIX/Linux.</p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('23')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q24">
+<p><span>Q 24</span> - Choose the option to remove write permission for group &amp; others for a file “a.txt”.</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - Select disable write for group and others where file=”a.txt”</a></p>
+<p><a class="true" href="javascript:void(0);"><span>B</span> - chmod go-w a.txt</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - chmod w-go a.txt</a></p>
+<p><a class="false" href="javascript:void(0);"><span>D</span> - chmod go=”r-x” a.txt</a></p>
+</div>
+<div class="A" id='A24'>
+<h3>Answer : B</h3>
+<h3>Explanation</h3>
+<p> </p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('24')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><div class="QA">
+<div class="Q" id="Q25">
+<p><span>Q 25</span> - Choose the command to list only the file “error.txt”</p>
+<p><a class="false" href="javascript:void(0);"><span>A</span> - ls *err*.txt</a></p>
+<p><a class="false" href="javascript:void(0);"><span>B</span> - ls e*.txt</a></p>
+<p><a class="false" href="javascript:void(0);"><span>C</span> - ls error.???</a></p>
+<p><a class="true" href="javascript:void(0);"><span>D</span> - ls error.txt</a></p>
+</div>
+<div class="A" id='A25'>
+<h3>Answer : D</h3>
+<h3>Explanation</h3>
+<p> </p>
+</div>
+<div class="B">
+<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('25')"><i class="icon  icon-sort"></i> <span>Show Answer</span></button>
+</div>
+</div><hr />
+<div class="pre-btn">
+<a href="unix_questions_answers.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="middle-btn">
+<a target="_blank" href="pdf/unix_mock_test_i.pdf"><i class="fa fa-download"></i> Download</a>
+</div>
+<div class="nxt-btn">
+<a href="unix_questions_answers.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<script type="text/javascript" src="../theme/js/exams.js"></script>
+<div class="parent-file">unix_questions_answers.htm</div>
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.facebook.com/sharer.php?u=' + 'https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/facebookIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://twitter.com/share?url=' + 'https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/twitterIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.linkedin.com/cws/share?url=' + 'https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/linkedinIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://plus.google.com/share?url=https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&amp;max=25','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/googlePlusIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.stumbleupon.com/submit?url=https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/StumbleUponIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://reddit.com/submit?url=https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=656,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/reddit.jpg" alt="img" />
+</a>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="../scripts/img/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_privacy.htm#cookies">Cookies Policy</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>&copy; Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == 'Enter email for newsletter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email for newsletter...';}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script src="../theme/js/custom-minbea6.js?v=7"></script>
+<script src="../../www.google-analytics.com/urchin.js">
+</script>
+<script>
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix_mock_test.htm?min=1&max=25 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:17:23 GMT -->
+</html>

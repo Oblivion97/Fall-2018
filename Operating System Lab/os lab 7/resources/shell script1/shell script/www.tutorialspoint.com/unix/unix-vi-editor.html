@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-vi-editor.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:15:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Unix / Linux The vi Editor Tutorial</title>
+<meta name="description" content="Unix / Linux The vi Editor Tutorial - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Getting Started, Unix Korn and Bourne Shell and Programming, File Permission / Access Modes, Environment, Utilities, Pipes and Filters, Network Communication Utilities, File System, Directories, Memory Management, Special Variables, vi editor, What is Shell?, Using Shell Variables, Arrays, Basic Operators, Decision Making, Loop Types, Control, Substitution, Quoting Mechanisms, Input / Output Redirections, Functions, Man Page Help, Regular Expressions with SED, User Administration, System Performance, Logging, Signals and Traps, Processes." />
+<meta name="keywords" content="Unix, Linux, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Getting Started, File Permission / Access Modes, Environment, Utilities, Pipes and Filters, Network Communication Utilities, File System, Directories, Memory Management, Special Variables, vi editor, What is Shell?, Using Shell Variables, Arrays, Basic Operators, Decision Making, Loop Types, Control, Substitution, Quoting Mechanisms, Input / Output Redirections, Functions, Man Page Help, Regular Expressions with SED, User Administration, System Performance, Logging, Signals and Traps, Processes." />
+<base  />
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="fb:app_id" content="471319149685276" />
+<meta property="og:site_name" content="www.tutorialspoint.com" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="../theme/js/script-min-v45e1f.js?v=2"></script>
+<link rel="stylesheet" href="../theme/css/style-minc9e4.css?v=3.1">
+<script>
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #01adb9 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #01adb9 url(../images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #01adb9 !important;}
+.submenu-item{ border-bottom: 2px solid #01adb9 !important; border-top: 2px solid #01adb9 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#01adb9; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img  src="../images/loading-cg.gif" alt="" width="70" height="70" />
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="images/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="https://www.tutorialspoint.com/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="../theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="https://www.tutorialspoint.com/tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts {
+   text-align:center !important;
+   vertical-align:middle !important;
+}
+</style>
+<div class="mini-logo">
+<img src="images/unix-mini-logo.jpg" alt="UNIX Tutorial" />
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux for Beginners</li>
+<li><a href="index-2.html">Unix / Linux - Home</a></li>
+<li><a href="unix-getting-started.html">Unix / Linux - Getting Started</a></li>
+<li><a href="unix-file-management.html">Unix / Linux - File Management</a></li>
+<li><a href="unix-directories.html">Unix / Linux - Directories</a></li>
+<li><a href="unix-file-permission.html">Unix / Linux - File Permission</a></li>
+<li><a href="unix-environment.html">Unix / Linux - Environment</a></li>
+<li><a href="unix-basic-utilities.html">Unix / Linux - Basic Utilities</a></li>
+<li><a href="unix-pipes-filters.html">Unix / Linux - Pipes &amp; Filters</a></li>
+<li><a href="unix-processes.html">Unix / Linux - Processes</a></li>
+<li><a href="unix-communication.html">Unix / Linux - Communication</a></li>
+<li><a href="unix-vi-editor.html">Unix / Linux - The vi Editor</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Shell Programming</li>
+<li><a href="shell_scripting.html">Unix / Linux - Shell Scripting</a></li>
+<li><a href="unix-what-is-shell.html">Unix / Linux - What is Shell?</a></li>
+<li><a href="unix-using-variables.html">Unix / Linux - Using Variables</a></li>
+<li><a href="unix-special-variables.html">Unix / Linux - Special Variables</a></li>
+<li><a href="unix-using-arrays.html">Unix / Linux - Using Arrays</a></li>
+<li><a href="unix-basic-operators.html">Unix / Linux - Basic Operators</a></li>
+<li><a href="unix-decision-making.html">Unix / Linux - Decision Making</a></li>
+<li><a href="unix-shell-loops.html">Unix / Linux - Shell Loops</a></li>
+<li><a href="unix-loop-control.html">Unix / Linux - Loop Control</a></li>
+<li><a href="unix-shell-substitutions.html">Unix / Linux - Shell Substitutions</a></li>
+<li><a href="unix-quoting-mechanisms.html">Unix / Linux - Quoting Mechanisms</a></li>
+<li><a href="unix-io-redirections.html">Unix / Linux - IO Redirections</a></li>
+<li><a href="unix-shell-functions.html">Unix / Linux - Shell Functions</a></li>
+<li><a href="unix-manpage-help.html">Unix / Linux - Manpage Help</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Advanced Unix / Linux</li>
+<li><a href="unix-regular-expressions.html">Unix / Linux - Regular Expressions</a></li>
+<li><a href="unix-file-system.html">Unix / Linux - File System Basics</a></li>
+<li><a href="unix-user-administration.html">Unix / Linux - User Administration</a></li>
+<li><a href="unix-system-performance.html">Unix / Linux - System Performance</a></li>
+<li><a href="unix-system-logging.html">Unix / Linux - System Logging</a></li>
+<li><a href="unix-signals-traps.html">Unix / Linux - Signals and Traps</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Useful Resources</li>
+<li><a href="unix_questions_answers.html">Unix / Linux - Questions &amp; Answers</a></li>
+<li><a href="unix-useful-commands.html">Unix / Linux - Useful Commands</a></li>
+<li><a href="unix-quick-guide.html">Unix / Linux - Quick Guide</a></li>
+<li><a href="unix-builtin-functions.html">Unix / Linux - Builtin Functions</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_system_calls/index.htm">Unix / Linux - System Calls</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_commands/index.htm">Unix / Linux - Commands List</a></li>
+<li><a href="unix-useful-resources.html">Unix / Linux - Useful Resources</a></li>
+<li><a href="unix-discussion.html">Unix / Linux - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Unix/Linux - The vi Editor Tutorial</h1>
+<hr />
+<div style="padding-bottom:5px;padding-left:10px;text-align: center;">Advertisements</div>
+<div style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/f.txt"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-communication.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="shell_scripting.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>In this chapter, we will understand how the vi Editor works in Unix. There are many ways to edit files in Unix. Editing files using the screen-oriented text editor <b>vi</b> is one of the best ways. This editor enables you to edit lines in context with other lines in the file.</p>
+<p>An improved version of the vi editor which is called the <b>VIM</b> has also been made available now. Here, VIM stands for <b>Vi IM</b>proved.</p>
+<p>vi is generally considered the de facto standard in Unix editors because &minus;</p>
+<ul class="list">
+<li><p>It's usually available on all the flavors of Unix system.</p></li>
+<li><p>Its implementations are very similar across the board.</p></li>
+<li><p>It requires very few resources.</p></li>
+<li><p>It is more user-friendly than other editors such as the <b>ed</b> or the <b>ex</b>.</p></li>
+</ul>
+<p>You can use the <b>vi</b> editor to edit an existing file or to create a new file from scratch. You can also use this editor to just read a text file.</p>
+<h2>Starting the vi Editor</h2>
+<p>The following table lists out the basic commands to use the vi editor &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>vi filename</b></p>
+<p>Creates a new file if it already does not exist, otherwise opens an existing file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>vi -R filename</b></p>
+<p>Opens an existing file in the read-only mode.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>view filename</b></p>
+<p>Opens an existing file in the read-only mode.</p>
+</td>
+</tr>
+</table>
+<p>Following is an example to create a new file <b>testfile</b> if it already does not exist in the current working directory &minus;</p>
+<pre class="result notranslate">
+$vi testfile
+</pre>
+<p>The above command will generate the following output &minus;</p>
+<pre class="result notranslate">
+|
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"testfile" [New File]    
+</pre>
+<p>You will notice a <b>tilde</b> (~) on each line following the cursor. A tilde represents an unused line. If a line does not begin with a tilde and appears to be blank, there is a space, tab, newline, or some other non-viewable character present.</p>
+<p>You now have one open file to start working on. Before proceeding further, let us understand a few important concepts.</p>
+<h2>Operation Modes</h2>
+<p>While working with the vi editor, we usually come across the following two modes &minus;</p>
+<ul class="list">
+<li><p><b>Command mode</b> &minus; This mode enables you to perform administrative tasks such as saving the files, executing the commands, moving the cursor, cutting (yanking) and pasting the lines or words, as well as finding and replacing. In this mode, whatever you type is interpreted as a command.</p></li>
+<li><p><b>Insert mode</b> &minus; This mode enables you to insert text into the file. Everything that's typed in this mode is interpreted as input and placed in the file.</p></li>
+</ul>
+<p>vi always starts in the <b>command mode</b>. To enter text, you must be in the insert mode for which simply type <b>i</b>. To come out of the insert mode, press the <b>Esc</b> key, which will take you back to the command mode.</p>
+<p><b>Hint</b> &minus; If you are not sure which mode you are in, press the Esc key twice; this will take you to the command mode. You open a file using the vi editor. Start by typing some characters and then come to the command mode to understand the difference.</p>
+<h2>Getting Out of vi</h2>
+<p>The command to quit out of vi is <b>:q</b>. Once in the command mode, type colon, and 'q', followed by return. If your file has been modified in any way, the editor will warn you of this, and not let you quit. To ignore this message, the command to quit out of vi without saving is <b>:q!</b>. This lets you exit vi without saving any of the changes.</p>
+<p>The command to save the contents of the editor is <b>:w</b>. You can combine the above command with the quit command, or use <b>:wq</b> and return.</p>
+<p>The easiest way to <b>save your changes and exit vi</b> is with the </b>ZZ</b> command. When you are in the command mode, type <b>ZZ</b>. The <b>ZZ</b> command works the same way as the <b>:wq</b> command.</p>
+<p>If you want to specify/state any particular name for the file, you can do so by specifying it after the <b>:w</b>. For example, if you wanted to save the file you were working on as another filename called <b>filename2</b>, you would type <b>:w filename2</b> and return.</p>
+<h2>Moving within a File</h2>
+<p>To move around within a file without affecting your text, you must be in the command mode (press Esc twice). The following table lists out a few commands you can use to move around one character at a time &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Sr.No.</th>
+<th style="text-align:center">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>k</b></p>
+<p>Moves the cursor up one line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>j</b></p>
+<p>Moves the cursor down one line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>h</b></p>
+<p>Moves the cursor to the left one character position</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>l</b></p>
+<p>Moves the cursor to the right one character position</p>
+</td>
+</tr>
+</table>
+<p>The following points need to be considered to move within a file &minus;</p>
+<ul class="list">
+<li><p>vi is case-sensitive. You need to pay attention to capitalization when using the commands.</p></li>
+<li><p>Most commands in vi can be prefaced by the number of times you want the action to occur. For example, <b>2j</b> moves the cursor two lines down the cursor location.</p></li>
+</ul>
+<p>There are many other ways to move within a file in vi. Remember that you must be in the command mode (<b>press Esc twice</b>). The following table lists out a few commands to move around the file &minus;</p>
+<section class="toggle">
+<label>Given below is the list of commands to move around the file.</label>
+<div class="toggle-content">
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>0 or &verbar;</b></p>
+<p>Positions the cursor at the beginning of a line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>$</b></p>
+<p>Positions the cursor at the end of a line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>w</b></p>
+<p>Positions the cursor to the next word</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>b</b></p>
+<p>Positions the cursor to the previous word</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>(</b></p>
+<p>Positions the cursor to the beginning of the current sentence</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>)</b></p>
+<p>Positions the cursor to the  beginning of the next sentence</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>E</b></p>
+<p>Moves to the end of the blank delimited word</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>{</b></p>
+<p>Moves a paragraph back</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>}</b></p>
+<p>Moves a paragraph forward</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><b>[[</b></p>
+<p>Moves a section back</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td>
+<p><b>]]</b></p>
+<p>Moves a section forward</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td>
+<p><b>n|</b></p>
+<p>Moves to the column <b>n</b> in the current line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td>
+<p><b>1G</b></p>
+<p>Moves to the first line of the file</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td>
+<p><b>G</b></p>
+<p>Moves to the last line of the file</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td>
+<p><b>nG</b></p>
+<p>Moves to the <b>n<sup>th</sup></b> line of the file</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td>
+<p><b>:n</b></p>
+<p>Moves to the <b>n<sup>th</sup></b> line of the file</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td>
+<p><b>fc</b></p>
+<p>Moves forward to <b>c</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td>
+<p><b>Fc</b></p>
+<p>Moves back to <b>c</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td>
+<p><b>H</b></p>
+<p>Moves to the top of the screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td>
+<p><b>nH</b></p>
+<p>Moves to the <b>n<sup>th</sup></b> line from the top of the screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td>
+<p><b>M</b></p>
+<p>Moves to the middle of the screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">22</td>
+<td>
+<p><b>L</b></p>
+<p>Move to the bottom of the screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">23</td>
+<td>
+<p><b>nL</b></p>
+<p>Moves to the <b>n<sup>th</sup></b> line from the bottom of the screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">24</td>
+<td>
+<p><b>:x</b></p>
+<p>Colon followed by a number would position the cursor on the line number represented by <b>x</b></p>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<h2>Control Commands</h2>
+<p>The following commands can be used with the Control Key to performs functions as given in the table below &minus;</p>
+<section class="toggle">
+<label>Given below is the list of control commands.</label>
+<div class="toggle-content">
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:5%">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>CTRL&plus;d</b></p>
+<p>Moves forward 1/2 screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>CTRL&plus;f</b></p>
+<p>Moves forward one full screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>CTRL&plus;u</b></p>
+<p>Moves backward 1/2 screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>CTRL&plus;b</b></p>
+<p>Moves backward one full screen</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>CTRL&plus;e</b></p>
+<p>Moves the screen up one line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>CTRL&plus;y</b></p>
+<p>Moves the screen down one line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>CTRL&plus;u</b></p>
+<p>Moves the screen up 1/2 page</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>CTRL&plus;d</b></p>
+<p>Moves the screen down 1/2 page</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>CTRL&plus;b</b></p>
+<p>Moves the screen up one page</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><b>CTRL&plus;f</b></p>
+<p>Moves the screen down one page</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td>
+<p><b>CTRL&plus;I</b></p>
+<p>Redraws the screen</p>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<h2>Editing Files</h2>
+<p>To edit the file, you need to be in the insert mode. There are many ways to enter the insert mode from the command mode &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>i</b></p>
+<p>Inserts text before the current cursor location</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>I</b></p>
+<p>Inserts text at the beginning of the current line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>a</b></p>
+<p>Inserts text after the current cursor location</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>A</b></p>
+<p>Inserts text at the end of the current line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>o</b></p>
+<p>Creates a new line for text entry below the cursor location</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>O</b></p>
+<p>Creates a new line for text entry above the cursor location</p>
+</td>
+</tr>
+</table>
+<h2>Deleting Characters</h2>
+<p>Here is a list of important commands, which can be used to delete characters and lines in an open file &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>x</b></p>
+<p>Deletes the character under the cursor location</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>X</b></p>
+<p>Deletes the character before the cursor location</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>dw</b></p>
+<p>Deletes from the current cursor location to the next word</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>d^</b></p>
+<p>Deletes from the current cursor position to the beginning of the line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>d$</b></p>
+<p>Deletes from the current cursor position to the end of the line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>D</b></p>
+<p>Deletes from the cursor position to the end of the current line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>dd</b></p>
+<p>Deletes the line the cursor is on</p>
+</td>
+</tr>
+</table>
+<p>As mentioned above, most commands in vi can be prefaced by the number of times you want the action to occur. For example, <b>2x</b> deletes two characters under the cursor location and <b>2dd</b> deletes two lines the cursor is on.</p>
+<p>It is recommended that the commands are practiced before we proceed further.</p>
+<h2>Change Commands</h2>
+<p>You also have the capability to change characters, words, or lines in vi without deleting them. Here are the relevant commands &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>cc</b></p>
+<p>Removes the contents of the line, leaving you in insert mode.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>cw</b></p>
+<p>Changes the word the cursor is on from the cursor to the lowercase <b>w</b> end of the word.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>r</b></p>
+<p>Replaces the character under the cursor. vi returns to the command mode after the replacement is entered.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>R</b></p>
+<p>Overwrites multiple characters beginning with the character currently under the cursor. You must use <b>Esc</b> to stop the overwriting.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>s</b></p>
+<p>Replaces the current character with the character you type. Afterward, you are left in the insert mode.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>S</b></p>
+<p>Deletes the line the cursor is on and replaces it with the new text. After the new text is entered, vi remains in the insert mode.</p>
+</td>
+</tr>
+</table>
+<h2>Copy and Paste Commands</h2>
+<p>You can copy lines or words from one place and then you can paste them at another place using the following commands &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>yy</b></p>
+<p>Copies the current line.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>yw</b></p>
+<p>Copies the current word from the character the lowercase w cursor is on, until the end of the word.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>p</b></p>
+<p>Puts the copied text after the cursor.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>P</b></p>
+<p>Puts the yanked text before the cursor.</p>
+</td>
+</tr>
+</table>
+<h2>Advanced Commands</h2>
+<p>There are some advanced commands that simplify day-to-day editing and allow for more efficient use of vi &minus;</p>
+<section class="toggle">
+<label>Given below is the list advanced commands.</label>
+<div class="toggle-content">
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>J</b></p>
+<p>Joins the current line with the next one. A count of j commands join many lines.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>&lt;&lt;</b></p>
+<p>Shifts the current line to the left by one shift width.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>&gt;&gt;</b></p>
+<p>Shifts the current line to the right by one shift width.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>~</b></p>
+<p>Switches the case of the character under the cursor.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>^G</b></p>
+<p>Press Ctrl and G keys at the same time to show the current filename and the status.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>U</b></p>
+<p>Restores the current line to the state it was in before the cursor entered the line.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>u</b></p>
+<p>This helps undo the last change that was done in the file. Typing 'u' again will re-do the change.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>J</b></p>
+<p>Joins the current line with the next one. A count joins that many lines.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>:f</b></p>
+<p>Displays the current position in the file in % and the file name, the total number of file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><b>:f filename</b></p>
+<p>Renames the current file to filename.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td>
+<p><b>:w filename</b></p>
+<p>Writes to file filename.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td>
+<p><b>:e filename</b></p>
+<p>Opens another file with filename.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td>
+<p><b>:cd dirname</b></p>
+<p>Changes the current working directory to dirname.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td>
+<p><b>:e #</b></p>
+<p>Toggles between two open files.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td>
+<p><b>:n</b></p>
+<p>In case you open multiple files using vi, use <b>:n</b> to go to the next file in the series.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td>
+<p><b>:p</b></p>
+<p>In case you open multiple files using vi, use <b>:p</b> to go to the previous file in the series.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td>
+<p><b>:N</b></p>
+<p>In case you open multiple files using vi, use <b>:N</b> to go to the previous file in the series.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td>
+<p><b>:r file</b></p>
+<p>Reads file and inserts it after the current line.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td>
+<p><b>:nr file</b></p>
+<p>Reads file and inserts it after the line <b>n</b>.</p>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<h2>Word and Character Searching</h2>
+<p>The vi editor has two kinds of searches: <b>string</b> and <b>character</b>. For a string search, the <b>/</b> and <b>?</b> commands are used. When you start these commands, the command just typed will be shown on the last line of the screen, where you type the particular string to look for.</p>
+<p>These two commands differ only in the direction where the search takes place &minus;</p>
+<ul class="list">
+<li><p>The <b>/</b> command searches forwards (downwards) in the file.</p></li>
+<li><p>The <b>?</b> command searches backwards (upwards) in the file.</p></li>
+</ul>
+<p>The <b>n</b> and <b>N</b> commands repeat the previous search command in the same or the opposite direction, respectively. Some characters have special meanings. These characters must be preceded by a backslash (<b>\</b>) to be included as part of the search expression.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Character &amp;Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>^</b></p>
+<p>Searches at the beginning of the line (Use at the beginning of a search expression).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>.</b></p>
+<p>Matches a single character.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>*</b></p>
+<p>Matches zero or more of the previous character.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>$</b></p>
+<p>End of the line (Use at the end of the search expression).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>[</b></p>
+<p>Starts a set of matching or non-matching expressions.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>&lt;</b></p>
+<p>This is put in an expression escaped with the backslash to find the ending or the beginning of a word.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>&gt;</b></p>
+<p>This helps see the '<b>&lt;</b>' character description above.</p>
+</td>
+</tr>
+</table>
+<p>The character search searches within one line to find a character entered after the command. The <b>f</b> and <b>F</b> commands search for a character on the current line only. <b>f</b> searches forwards and <b>F</b> searches backwards and the cursor moves to the position of the found character.</p>
+<p>The <b>t</b> and <b>T</b> commands search for a character on the current line only, but for <b>t</b>, the cursor moves to the position before the character, and <b>T</b> searches the line backwards to the position after the character.</p>
+<h2>Set Commands</h2>
+<p>You can change the look and feel of your vi screen using the following <b>:set</b> commands. Once you are in the command mode, type <b>:set</b> followed by any of the following commands.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Command &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>:set ic</b></p>
+<p>Ignores the case when searching</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>:set ai</b></p>
+<p>Sets autoindent</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>:set noai</b></p>
+<p>Unsets autoindent</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>:set nu</b></p>
+<p>Displays lines with line numbers on the left side</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>:set sw</b></p>
+<p>Sets the width of a software tabstop. For example, you would set a shift width of 4 with this command — <b>:set sw = 4</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>:set ws</b></p>
+<p>If <i>wrapscan</i> is set, and the word is not found at the bottom of the file, it will try searching for it at the beginning</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>:set wm</b></p>
+<p>If this option has a value greater than zero, the editor will automatically "word wrap". For example, to set the wrap margin to two characters, you would type this: <b>:set wm = 2</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>:set ro</b></p>
+<p>Changes file type to "read only"</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>:set term</b></p>
+<p>Prints terminal type</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><b>:set bf</b></p>
+<p>Discards control characters from input</p>
+</td>
+</tr>
+</table>
+<h2>Running Commands</h2>
+<p>The vi has the capability to run commands from within the editor. To run a command, you only need to go to the command mode and type <b>:!</b> command.</p>
+<p>For example, if you want to check whether a file exists before you try to save your file with that filename, you can type <b>:! ls</b> and you will see the output of <b>ls</b> on the screen.</p>
+<p>You can press any key (or the command's escape sequence) to return to your vi session.</p>
+<h2>Replacing Text</h2>
+<p>The substitution command (<b>:s/</b>) enables you to quickly replace words or groups of words within your files. Following is the syntax to replace text &minus;</p>
+<pre class="result notranslate">
+:s/search/replace/g
+</pre>
+<p>The <b>g</b> stands for globally. The result of this command is that all occurrences on the cursor's line are changed.</p>
+<h2>Important Points to Note</h2>
+<p>The following points will add to your success with vi &minus;</p>
+<ul class="list">
+<li><p>You must be in command mode to use the commands. (Press Esc twice at any time to ensure that you are in command mode.)</p></li>
+<li><p>You must be careful with the commands. These are case-sensitive.</p></li>
+<li><p>You must be in insert mode to enter text.</p></li>
+</ul>
+<hr />
+<div class="pre-btn">
+<a href="unix-communication.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-vi-editor.pdf" title="Unix / Linux The vi Editor Tutorial" target="_blank"><i class="icon icon-file-pdf-o big-font"></i> PDF</a>
+</div>
+<div class="nxt-btn">
+<a href="shell_scripting.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.facebook.com/sharer.php?u=' + 'https://www.tutorialspoint.com/unix/unix-vi-editor.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/facebookIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://twitter.com/share?url=' + 'https://www.tutorialspoint.com/unix/unix-vi-editor.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/twitterIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.linkedin.com/cws/share?url=' + 'https://www.tutorialspoint.com/unix/unix-vi-editor.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/linkedinIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://plus.google.com/share?url=https://www.tutorialspoint.com/unix/unix-vi-editor.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/googlePlusIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.stumbleupon.com/submit?url=https://www.tutorialspoint.com/unix/unix-vi-editor.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/StumbleUponIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://reddit.com/submit?url=https://www.tutorialspoint.com/unix/unix-vi-editor.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=656,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/reddit.jpg" alt="img" />
+</a>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="../scripts/img/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_privacy.htm#cookies">Cookies Policy</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>&copy; Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == 'Enter email for newsletter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email for newsletter...';}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script src="../theme/js/custom-minbea6.js?v=7"></script>
+<script src="../../www.google-analytics.com/urchin.js">
+</script>
+<script>
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-vi-editor.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:15:33 GMT -->
+</html>

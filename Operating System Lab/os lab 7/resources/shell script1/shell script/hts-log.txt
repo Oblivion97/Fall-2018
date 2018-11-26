@@ -1,0 +1,27 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 26 Nov 2018 22:14:08 at https://www.tutorialspoint.com/unix/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.tutorialspoint.com/unix/ -O1 "D:\Website Copier\shell script1\shell script" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-arithmetic-operators.pdf (from https://www.tutorialspoint.com/unix/unix-arithmetic-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-relational-operators.pdf (from https://www.tutorialspoint.com/unix/unix-relational-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-boolean-operators.pdf (from https://www.tutorialspoint.com/unix/unix-boolean-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-string-operators.pdf (from https://www.tutorialspoint.com/unix/unix-string-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-file-operators.pdf (from https://www.tutorialspoint.com/unix/unix-file-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-c-shell-operators.pdf (from https://www.tutorialspoint.com/unix/unix-c-shell-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/unix-korn-shell-operators.pdf (from https://www.tutorialspoint.com/unix/unix-korn-shell-operators.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/if-else-statement.pdf (from https://www.tutorialspoint.com/unix/if-else-statement.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/case-esac-statement.pdf (from https://www.tutorialspoint.com/unix/case-esac-statement.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/while-loop.pdf (from https://www.tutorialspoint.com/unix/while-loop.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/for-loop.pdf (from https://www.tutorialspoint.com/unix/for-loop.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/until-loop.pdf (from https://www.tutorialspoint.com/unix/until-loop.htm)
+22:17:23	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/pdf/select-loop.pdf (from https://www.tutorialspoint.com/unix/select-loop.htm)
+22:17:24	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/unix_mock_test.htm?min=51&max=75 (from https://www.tutorialspoint.com/unix/unix_mock_test.htm)
+22:17:26	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ (from connect.facebook.net/en_US/sdk.js)
+22:17:26	Error: 	"Forbidden" (403) at link https://www.tutorialspoint.com/unix/^([^:/? (from connect.facebook.net/en_US/sdk.js)
+
+HTTrack Website Copier/3.49-2 mirror complete in 3 minutes 20 seconds : 155 links scanned, 138 files written (6209833 bytes overall) [4536729 bytes received at 22683 bytes/sec], 2330441 bytes transferred using HTTP compression in 68 files, ratio 25%, 1.0 requests per connection
+(16 errors, 0 warnings, 0 messages)

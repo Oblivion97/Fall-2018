@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.freeos.com	TRUE	/	FALSE	1999999999	SESS21d7bd81e2c1278411f7f05150bced4a	ec0utgk0p3me3d0nbmuqih9nm7
+

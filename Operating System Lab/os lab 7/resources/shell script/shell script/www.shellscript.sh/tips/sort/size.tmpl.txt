@@ -1,0 +1,19 @@
+declare -A CPU RAM
+
+# CPU Count
+CPU['Tiny']=1
+CPU['Small']=1
+CPU['Medium']=2
+CPU['Big']=2
+CPU['Large']=4
+CPU['XL']=4
+CPU['XXL']=8
+
+# RAM in Mb
+RAM['Tiny']=2048     # 2Gb
+RAM['Small']=4096    # 4Gb
+RAM['Medium']=4096   # 4Gb
+RAM['Big']=8192      # 8Gb
+RAM['Large']=8192    # 8Gb
+RAM['XL']=16384      # 16Gb
+RAM['XXL']=32768     # 32Gb

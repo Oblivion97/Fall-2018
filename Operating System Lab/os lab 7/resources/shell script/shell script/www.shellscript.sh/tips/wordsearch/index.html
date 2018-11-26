@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/tips/wordsearch/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:27 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta property="og:description" content="
+        In which we use a completely unsuitable programming language for fun and learning purposes"/>
+<meta property="og:title" content="Wordsearch - From the Shell Scripting Tutorial Tips" />
+<meta property='og:image' content='wordsearch.jpg' />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="800" />
+
+
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="index.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Wordsearch - Shell Scripting Tips        </title>
+        <meta name="description" content="
+	In which we use a completely unsuitable programming language for fun and learning purposes	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="index.html" />
+        <link rel="stylesheet" href="../../css/shellscript-tips.css">
+        <script src="../../js/vendor/jquery-1.10.2.min.js"></script>
+	<script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../../../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">... The Shell Scripting Tips section</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+... The Shell Scripting Tips section
+<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+                <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial - Tips</h2>
+                <h3>Wordsearch</h3>                </h2>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="../../rss.xml"><img src="../../img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Wordsearch%20-%20https://www.shellscript.sh/tips/wordsearch/" target="_blank"><img src="../../img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftips%2Fwordsearch%2F&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/tips/wordsearch/&title=Wordsearch&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/tips/wordsearch/" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/tips/wordsearch/&title=Wordsearch" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "steveparkeror-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "shell scripting B005DI1LNE steve parker";
+amzn_assoc_default_category = "Books";
+amzn_assoc_linkid = "84e4b8af2eebc762bb46e2ee402321ef";
+amzn_assoc_design = "in_content";
+amzn_assoc_default_browse_node = "283155";
+//amzn_assoc_title = "Recommended Reading: <br/>The Tutorial is the content of this website, available in Paperback or eBook format (88 pages).<br/> The 'Shell Scripting' book is a thick 564 pages. This is the definitive guide to all Bash Shell features in depth. <br/> Both are available in Paperback or eBook formats.";
+amzn_assoc_title = "I have written two books on Shell Scripting; both are available in Paperback and eBook.";
+</script>
+<script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+<p><a href='../index.html'><i class='fa fa-arrow-left'></i> All Shell Scripting Tips</a>
+<p>20 Feb 2018</p>
+<a name="wordsearch"></a>
+<h1>Wordsearch</h1>
+<b>Topics: 2-D Arrays in Bash, Shell Substrings, Local Variables, tput (for colour and positioning the cursor), Out-by-One Errors</b>
+<p>The script here is just short of 200 lines long, which is my rule-of-thumb for the longest that a single shell script should be. After that point, it makes
+a lot more sense to break it down into more manageable chunks, but this (just) fits in to the 200-line guideline.</p>
+<p>It's not here because it's beautiful code, but the opposite: It takes on a few things that the shell is not particularly well suited to, in particular:</p>
+<ul class="circle">
+<li>Two-Dimensional Arrays in Shell Scripts (they don't exist)
+<li>Indexing from zero, out-by-one errors, and the resuling observation, that:
+<li>Even simple mathematical transformations can be awkward and cumbersome.
+<li>Substrings are not as elegant to deal with as in many languages, too.
+<li>Functions can only return one value, and that can only be an integer 0-255.
+</ul>
+<p>Hopefully this script brings some of these awkward things under the spotlight, and helps to show how they can be dealt with in your shell scripts.</p>
+<p>Also, it solves your Word Search puzzles for you :-)</p>
+
+<h1>Contents</h1>
+<ol class="circle">
+  <li><a href="#wordsearch">Wordsearch</a>
+    <ol class="circle"> 
+    <li><a href="#overview">The Overview</a>
+    <li><a href="#sample">Sample Run</a>
+    </ol>
+  <li><a href="#impl">The Implementation Details</a>
+    <ol class="circle">
+      <li><a href="#2d">Two Dimensional Arrays</a>
+      <li><a href="#local">Local Variables</a>
+      <li><a href="#substr">Substrings</a>
+      <li><a href="#obiwan">Indexing from Zero and Out-By-One errors</a>
+      <li><a href="#tput">tput - controlling a terminal screen</a>
+    </ol>
+  <li><a href="#script">The Script</a>
+</ol>
+    
+
+<a name="overview"></a>
+<h2>The Overview</h2>
+<p>The script reads in a wordsearch puzzle in the form of a text file, and you pass words for the script to search for. It works its way around the grid
+from top left to bottom right and on each square it goes through all 8 possible directions (Up, Down, Left, Right, and the diagonals - it refers to these 8 directions as North,
+South, East, West, and so on), looking for matches to the words. So for a given square, if the letter there is "A", It starts by looking upwards. So the script goes through the list of words it's looking for, and when it finds one which starts with "A" - maybe it's got the word "Apple" on its list of words to search for, so that function calls itself again, telling itself to look for "PPLE" heading upwards from the starting square. If that
+function finds the second letter ("P"), it will call itself again, looking for "PLE" heading upwards. If that finds "P", it will call itself to look for "LE", which will in turn call
+itself looking for "E". If it finds that, then the final function call returns "0" (zero) indicating "Success", which ripples down through the others, and the original function
+returns "0" (zero), telling the main script that it has found the word "Apple" in the upwards direction from the current starting point.</p>
+<p>If that happens, the main script calls another function to highlight the newly-found word on the display of the wordsearch grid, and it also displays a message under the wordsearch grid saying what word it found, where it starts, and in what direction the word is going.</p>
+<p>Next it looks for any other words beginning with "A", and does the same with them.</p>
+<p>Then, from the same starting point, it goes through all of the other directions it could take, and looks for all the words in those directions.</p>
+<p>Once it has done that, it moves on to the next location in the wordsearch grid, and does it all over again.</p>
+<p>None of this is rocket science, in fact it's probably the dumbest, most simple implementation possible of a wordsearch algorithm. I haven't even looked into other algorithms for this part of the
+problem; the reason for this article is to investigate the various problems encountered when processing strings and presenting data in a shell script. Because none of these are things that are easy to do in shell scripts. And that is why I want to tackle them here.</p>
+
+<a name="sample"></a>
+<h2>Sample Run</h2>
+<p>This sample uses a wordsearch used by the forgeofempires.com online game for their Valentine's Day competition in February 2018.</p>
+<p>It is called as <code>$ ./wordsearch.sh foe_wordsearch.txt LOVE PARIS VENUS FOOBAR LIEBE OPHELIA</code>, telling the script to use the <a target="_blank" href="foe_wordsearch.txt">foe_wordsearch.txt</a> file, and look for the words LOVE, PARIS, VENUS, FOOBAR, LIEBE and OPHELIA. It will find the ones it can, and highlight them in a unique* colour.</p>
+<p>First the script displays the grid, and starts looking for words. This screenshot shows it after it has found the words <code>LIEBE</code>, <code>LOVE</code>, <code>VENUS</code> and another <code>LOVE</code>. Each new word is highlighted in a different colour.</p>
+<p>You will notice that they do overlap, but that is the nature of wordsearches. Highlighting double-used letters would be an interesting upgrade for this script.</p>
+<img style="border:1px solid black" src="2.png" width="686" height="587" alt="Starting">
+<p>As it finds each word, it lists it (with its location and direction) at the bottom of the screen. It uses the same colour as it used to highlight the word in the main grid. Once the script has finished, it lists all of the words it found, as well as the words it was asked to find but did not find:</p>
+<img style="border: 1px solid black" src="3.png" width="686" height="665" alt="Finished">
+<p>This took about 12 seconds to run on my PC; the shell really is not a fast language for doing such tasks. Python, C, or just about anything else could do it faster. But this article is about how to make the Shell do things that it isn't particularly well suited to. This script could be more optimised; running searches in parallel would be one obvious speedup, but the shell will always be slow at certain tasks.</p>
+<p>Notice that when words overlap, the colour-coding is somewhat hijacked; answers on a postcard please, for suggestions to solve that particular problem!</p>
+<p>*The colours aren't unique; it uses six colours, then starts again. However, this is better than showing them all in monochrome, or highlighting them all in the same colour, if only for pedagogical reasons.</p>
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<a name="impl"></a>
+<h1>The Implementation Details</h1>
+<p>The functionality itself isn't very useful - let's face it, if you're reading this website, you've probably grown out of doing word searches. But it is useful, partly for the reasons
+listed above, in that it shows some of the less easy things to do in a shell script, and as such it's a useful tool for investigating them, and how to write some hopefully readable
+and maintainable code even when the problem set doesn't particularly suit the language in question.</p>
+
+
+<a name="2d"></a>
+<h2>Two Dimensional Arrays</h2>
+<p>The Bash shell does not have multi-dimensional arrays. So we are stuck with one-dimensional arrays. For this solution, where we need to model a 2-D grid of letters
+in a Word Search puzzle, this script flattens out the array, so that the following 3x4 grid is represented as a 12-element array, with indices from 0 to 11:</p>
+<table class="tips">
+<tr><td>(0,0) = 0</td><td>(1,0) = 1</td><td>(2,0) = 2</td></tr>
+<tr><td>(0,1) = 3</td><td>(1,1) = 4</td><td>(2,1) = 5</td></tr>
+<tr><td>(0,2) = 6</td><td>(1,2) = 7</td><td>(2,2) = 8</td></tr>
+<tr><td>(0,3) = 9</td><td>(1,3) = 10</td><td>(3,2) = 11</td></tr>
+</table>
+<p>In the script below, the <code>grid()</code> function uses this (hopefully reasonably obvious) algorithm, to work out the index from the <code>(x,y)</code> coordinate pair:</p>
+<pre class="prettyprint lang-sh">
+  let n=$((y * width))
+  let n=n+x
+</pre>
+<p>This takes the variable <code>$width</code>, which we set to be the width of the array. In the example above, <code>width</code> would be 3, because there are 3 columns in the table. It multiplies this by the value of <code>y</code>, to get the value of the left-hand cell on row <code>y</code>. Then it adds <code>x</code> to this value, to get the final answer.</p>
+<p>For example, to work out that the index of <code>(1,2) = 7</code> for the table above, take <code>(y * width) + x</code> = <code>(2 * 3) + 1 = 7</code>. The index in the 1-D-array for the 2-D location <code>(1,2)</code> is represented as <code>7</code>. If the table was 5 columns wide, then <code>(1,2)</code> would be <code>(2 * 5) + 1 = 11</code>.</p>
+<p>To be honest, this code could be implemented without arrays at all - the array of single characters is basically a string, so instead of <code>${letters[idx]}</code> we could just have defined <code>$letters</code> as a string and used <code>${letters:{$idx}:1}</code> to get a single-character substring. But the point of this is to show how 2-D arrays can be faked with a 1-D array. You may find yourself needing a 2-D array of words, integers, or whatever, in which case you would need an array. So here is that sample implementation.</p>
+
+
+<a name="local"></a>
+<h2>Local Variables</h2>
+<p>A lot of the functions in this script use <code>x</code> and <code>y</code> variables. These can be declared local to a function via the <code>local</code> keyword. This ensures that whatever happens to that variable within the function, any other variables with the same name in other functions are not affected.</p>
+
+<a name="substr"></a>
+<h2>Substrings</h2>
+<p>Substrings are accessed via the syntax: <code>${word:3:2}</code>, which will show 2 characters, starting with the 3rd, so if <code>word=Linux</code> then <code>${word:3:2}</code> is <code>ux</code>, and <code>${word:1:3}</code> is <code>inu</code>. This particular script only looks for single letters in a word, so it always ends in <code>:1}</code>. 
+<p>If you don't provide a length, the variable will continue to the end of the word, so <code>${word:1:}</code> is used on line 111 of the script below to trim off the first character of the word, turning "Linux" into "inux".</p>
+When when we need the index to be a variable rather than a hard-coded number it starts to look a little messy.</p>
+<p>The way to express this makes sense once you realise that you are just replacing the index with the variable <code>${idx}</code>, but it isn't particularly nice to look at: <code>${word:${idx}:1}</code>:</p>
+<pre class="prettyprint lang-sh">
+word=Linux
+for idx in 0 1 2 3 4
+do
+  echo "Letter $idx of \"$word\" is: ${word:${idx}:1}"
+done
+</pre>
+<p>Which displays this output:</p>
+<pre>
+Letter 0 of "Linux" is: L
+Letter 1 of "Linux" is: i
+Letter 2 of "Linux" is: n
+Letter 3 of "Linux" is: u
+Letter 4 of "Linux" is: x
+</pre>
+<p>Of course, we can't hard-code <code>for idx in 0 1 2 3 4</code> because we'll be dealing with words of varying lengths. The <code>seq</code> tool generates a sequence of numbers, so for the above we can use: <code>for idx in `seq 0 4`</code>, which expands to the same thing. We will be using this method below.</p>
+
+
+<a name="obiwan"></a>
+<h2>Indexing from Zero and Out-By-One errors</h2>
+The script deals with substrings in words, so if <code>word="Linux"</code>, then <code>word[0]=L</code>, <code>word[1]=i</code>, <code>word[2]=n</code>, <code>word[3]=u</code> and <code>word[4]=x</code>. </p>
+<p>The length of <code>$word</code> (which we get from the <code>${#word}</code> syntax, eg: <code>word_length=${#word}</code>), is 5. But we need to check indices 0 through 4. So to iterate through the letters in the word, we need to subtract 1 from <code>${#word}</code>, to get <code>4</code>. In most languages you would just use:</p>
+<pre class="prettyprint lang-sh">
+for idx in `seq 0 ${#word}-1`
+</pre>
+<p>But the shell can't do any mathematics at all, it needs to be told that it is dealing with an expression which it needs to evaluate. Two ways to do this are via the <code>let</code> keyword, or the <code>$(( expression ))</code> syntax:</p>
+<pre class="prettyprint lang-sh">
+word=Linux
+for idx in `seq 0 $((${#word}-1))`
+do
+  echo "word[$idx] = ${word:${idx}:1}"
+done
+</pre>
+<p>Personally, I find it more legible to assign another variable than to have all those brackets:</p>
+<pre class="prettyprint lang-sh">
+word=Linux
+let final_char=${#word}-1
+for idx in `seq 0 $final_char`
+do
+  echo "word[$idx] = ${word:${idx}:1}"
+done
+</pre>
+
+<a name="tput"></a>
+<h2>tput - controlling a terminal screen</h2>
+<p>The <code>tput</code> command is relatively obscure, but still very useful. It can set the text colour, background colour, turn bold text on or off, and move the cursor to any location on the screen.</p>
+<p>This script makes use of nearly all of these facilities. You can read about <code>tput</code> in more detail <a rel="nofollow" target="_blank" href="https://www.ibm.com/developerworks/aix/library/au-learningtput/?S_TACT=105AGY06">here</a>.</p>
+<table class="tips">
+<tr><td>tput bold</td><td>Enable <b>bold</b> text</td></tr>
+<tr><td>tput smso</td><td>Enable "stand-out mode" text (i.e., reverse colours)</td></tr>
+<tr><td>tput sgr0</td><td>Set the text mode back to the default</td></tr>
+<tr><td>tput setaf <i>number</i></td><td>Set the text foreground colour to that associated with <i>number</i></td></tr>
+<tr><td>tput cup <i>y x</i></td><td>Move the cursor to <i>(x,y)</i> (where (0,0) is the top-left of the display)</td></tr>
+</table>
+<p>The numbers for <code>tput setaf</code> are: 0 = Black, 1 = Red, 2 = Green, 3 = Yellow, 4 = Blue, 5 = Magenta, 6 = Cyan, 7 = White.</p>
+<p><code>tput</code> sends special "control character" messages to the terminal, so as well as using it as it is in the <code>show_word()</code> function (lines 131-144 below), you can also use it in an <code>echo</code> statement, by passing its output to <code>echo</code>. The script below does this at line 175:</p>
+<pre class="prettyprint lang-sh">
+  echo "Found `tput setaf $colour``tput bold`$WORD`tput sgr0` at ($x,$y) (direction: $direction)"
+</pre>
+<p>One 'gotcha' with <code>tput cup</code> is that it takes the vertical (y) value first, followed by the horizontal (x) value. With cartesian coordinates, we are used to putting <code>x</code> before <code>y</code>, but <code>tput cup</code> does it the other way around.</p>
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<a name="script"></a>
+<h1>The Script</h1>
+<p>Walking through the script section by section, we see how it comes together.</p>
+<p>The first section just defines a couple of global variables, and a debug function (if you <code>export DEBUG=1</code>, it will send its working to <code>stdout</code> as it goes). This is achieved by adding <code>>&2</code> on line 13.</p>
+<a href="wordsearch.sh.txt">Download the wordsearch.sh script</a>
+<pre class="prettyprint lang-sh">
+     1	#!/bin/bash
+     2	# Do a wordsearch
+     3  # Approx 42 seconds for 22 words on a 20x20 grid, 12 seconds for 5 words.
+     4	
+     5	x_offset=15
+     6	y_offset=5
+     7	declare -a letters
+     8	colour=1
+     9	
+    10	debug()
+    11	{
+    12	  if [ "$DEBUG" = "1" ]; then
+    13	    echo $@ >&2
+    14	  fi
+    15	}
+</pre>
+<p>The <code>read_file()</code> function reads the letters in from the text file. <code>read -n1 letter</code> reads one character at a time into the <code>$letter</code> variable. The main action in this function is the line <code>[ ! -z "$letter" ] && letters[idx++]=$letter</code>. This checks that <code>$letter</code> is not zero length (<code>! -z</code>), because the <code>read</code> will read in newlines from the file as a character, but we don't want to include those in our array.</p>
+<p>If the <code>$letter</code> is a real letter (and not a linebreak), then it sets <code>letters[idx]=$letter</code>. It uses a C-style postfix operator to also increment <code>$idx</code> as it does it. So when line 23 of the script is first executed, <code>$idx</code> is zero, but by the time line 23 has been executed, <code>$idx</code> is 1.</p>
+<p>Finally, the <code>read_file()</code> function sets some global variables which will be useful later in the script. It uses <code>wc</code> to find the length and max width of the file. Because the grid is zero-indexed, if we have a 3x4 grid, <code>$max_y</code> will be 4; we want to count it from 0 to 3, so <code>let max_y-=1</code> takes 1 away from max_y.</p>
+<p>We do want to know the width in terms of numbers of columns, so we save that into a variable, <code>$width</code>. With a grid 3 columns wide, <code>$width</code> will be 3. Like <code>max_y</code>, <code>max_x</code> needs to be one less than this, so <code>max_x</code> is defined as <code>width-1</code>.</p>
+<p>Note that when we use <code>let</code> or keyword, or the <code>$(( expression ))</code> syntax, there is no need to use the dollar ($) symbol to reference the value of a variable. It would be nice if the rules were consistent, but at least it looks a bit more C-like this way.</p>
+<pre class="prettyprint lang-sh">
+    16	
+    17	read_file()
+    18	{
+    19	  local INPUT_FILE=$1
+    20	  local idx=0
+    21	  while read -n1 letter
+    22	  do
+    23	    [ ! -z "$letter" ] && letters[idx++]=$letter
+    24	  done < $INPUT_FILE
+    25	
+    26	  max_y=`wc -l $INPUT_FILE | cut -d" " -f1`
+    27	  let max_y-=1
+    28	  width=`wc -L $INPUT_FILE | cut -d" " -f1`
+    29	  let max_x=width-1
+    30	  debug "Words is ${letters[*]}"
+    31	  let answer_row=$max_y+$y_offset+2
+    32	}
+</pre>
+<p>The <code>grid()</code> function takes an <code>(x,y)</code> coordinate and displays the letter found at that place in the wordsearch grid. Shell functions can only return a single byte, and while it would be possible to return the byte corresponding to the ASCII code of the letter, it is much more straightforward to <code>echo</code> the result. The caller can then just grab the output from the function, using: <code>letter=`grid $x $y`</code>.</p>
+<pre class="prettyprint lang-sh">
+    33	
+    34	grid()
+    35	{
+    36	  # Return the character at the grid position; first, squash a 2-D array to 1-D
+    37	  local x=$1
+    38	  local y=$2
+    39	  local n
+    40	  # Note: width is the count of characters; $max_x is one less than $width
+    41	  let n=$((y * width))
+    42	  let n+=x
+    43	  echo ${letters[$n]}
+    44	}
+</pre>
+<p>The <code>show_grid()</code> function displays the initial grid. It uses <code>$y_offset</code> and <code>$x_offset</code> so that the grid is not shoved into the very top-left corner of the screen. This allows some room at the top for the "W O R D S E A R C H" header, and a bit of padding on the left hand side, too.</p>
+<p>The details of the <code>tput</code> calls are explained above; the loops just work through the grid, and call the <code>grid()</code> function to display the letter at each location.</p>
+<p>As it happens, because this function is going through the (one-dimensional) array from (0,0) to (max_x,max_y), it could just count through from <code>${letters[0]}</code> to <code>${letters[400]}</code>, but that technique is no good for the <code>show_word()</code> function, so we may as well use this method in both functions.</p>
+<pre class="prettyprint lang-sh">
+    45	
+    46	show_grid()
+    47	{
+    48	  local x y
+    49	  clear
+    50	  echo;echo;tput bold
+    51	  echo "                W O R D S E A R C H"
+    52	  tput sgr0
+    53	  tput cup $y_offset 0
+    54	  for y in `seq 0 $max_y`
+    55	  do
+    56	    printf "%${x_offset}s" " "
+    57	    for x in `seq 0 $max_x`
+    58	    do
+    59	      echo -n " `grid $x $y` "
+    60	    done
+    61	    echo
+    62	  done
+    63	}
+</pre>
+<p>The <code>move()</code> function is used for two purposes. First when walking around the grid to see if a given word
+starts at the current location. Second, when a word has been identified, <code>show_word()</code> does it again, and adds highlighting.</p>
+<p>The function returns two values; this is achieved via <code>echo</code>ing the two values. We then read them in from a "Here String":
+<code>read x y <<< "`move $direction $x $y`"</code>.  If the caller calls <code>move NE 3 6</code>, then <code>move()</code> will return "4 5" because to move the <code>x</code> cursor East means increasing it from 3 to 4, and moving the <code>y</code> cursor North means reducing it from 6 to 5.</p>
+<p>The caller then reads these two values, and sets <code>x=3</code> and <code>y=4</code>.</p>
+<p>The end of the function checks if either <code>x</code> or <code>y</code> are less than zero, or greater than their <code>max_*</code> values. If they are, then we have moved outside of the grid, which is against the rules of the game. It returns the word "ERROR", so the caller must check if <code>$x == "ERROR"</code> before continuing.</p>
+<pre class="prettyprint lang-sh">
+    64	
+    65	move()
+    66	{
+    67	  local dir=$1
+    68	  local x=$2
+    69	  local y=$3
+    70	  case "$dir" in
+    71	    "N")  let y=y-1;;
+    72	    "NE") let y=y-1 ; let x=x+1;;
+    73	    "E")  let x=x+1;;
+    74	    "SE") let y=y+1 ; let x=x+1;;
+    75	    "S")  let y=y+1;;
+    76	    "SW") let y=y+1 ; let x=x-1;;
+    77	    "W")  let x=x-1;;
+    78	    "NW") let y=y-1 ; let x=x-1;;
+    79	  esac
+    80	  if [ $x -lt 0 ] || [ $y -lt 0 ] || [ $x -gt $max_x ] || [  $y -gt $max_y ]; then
+    81	    echo "ERROR" # fell out of the grid
+    82	    return
+    83	  fi
+    84	  echo $x $y
+    85	}
+</pre>
+<p><code>check_word()</code> is the longest function in the script. It looks for valid words. The first two arguments are the <code>(x,y)</code> location to search from. The third is the direction (N, NE, E, SE, etc), and the fourth is the word to look for.</p>
+<p>The function identifies the character at the current position (<code>$currentchar</code>) and the first letter of the word to search for (<code>searchchar=${search_word:0:1}</code>). If they are not the same, then it drops down to line 115 and returns 1 (to indicate failure) because it can't find the requested word from that position.</p>
+<p>If the current character matches what is being looked for, it first checks if the <code>$search_word</code> is only one character long - if it is, then we have found the whole word. Return zero to indicate success (line 101).</p>
+<p>If the current letter matches, and we have not yet found the complete word, we find ourselves at line 103. Move the cursor in the direction we've been told to search in. If we fall off the edge of the grid, then return 1 (failure). Otherwise, pass the rest of the word to a new instance of the <code>check_word()</code> function. This is a recursive call; by the time we find the five-letter word "Paris", we have made 5 recursive calls to <code>check_word()</code>:</p>
+<pre>
+  check_word          7 10 SE PARIS
+    check_word        8 11 SE  ARIS
+      check_word      9 12 SE   RIS
+        check_word   10 13 SE    IS
+          check_word 11 14 SE     S
+</pre>
+<p>In the "Paris" example above, the final call confirms that it found "S" at grid location <code>(11,14)</code>, and returns 0 to its parent. That returns zero to its parent, all the way up, until the function which was called as <code>check_word 7 10 SE PARIS</code> returns zero to its caller. In this case, the caller is the main loop of the script. In this way, the main script gets notified that the word was found.</p>
+<pre class="prettyprint lang-sh">
+    86
+    87	check_word()
+    88	{
+    89	  local x=$1
+    90	  local y=$2
+    91	  local $direction=$3
+    92	  local search_word=$4
+    93	  [ -z "$search_word" ] && return 0
+    94	  currentchar=`grid $x $y`
+    95	  searchchar=${search_word:0:1}
+    96	  debug "Comparing ($x,$y) = $currentchar with $searchchar (Direction = $direction) (looking for $search_word))"
+    97	  if [ "$searchchar" == "$currentchar" ]; then
+    98	    debug "Match!"
+    99	    if [ ${#search_word} -eq 1 ]; then
+   100	      debug "Found the whole word."
+   101	      return 0
+   102	    fi
+   103	    # Move along in the direction we've been told, and look for the rest of the word
+   104	    read x y <<< "`move $direction $x $y`"
+   105	    if [[ "$x" == "ERROR" ]]; then
+   106	      debug "$direction doesn't work"
+   107	      return 1
+   108	    else
+   109	      # Keep looking
+   110	      debug "Moved to ($x,$y)"
+   111	      check_word $x $y $direction ${search_word:1}
+   112	      return $?
+   113	    fi
+   114	  else
+   115	    debug "Not a match."
+   116	    return 1
+   117	  fi
+   118	}
+</pre>
+<p><code>show_word()</code> is a lot like <code>check_word()</code>, except it knows that the word exists. Its job is to highlight the word.</p>
+<p>The colour needs to be a value between 1 and 6. The modulo (%6) function will return a number between 0 and 5, so we do the modulo first, then we increment it. Doing it the other way around would require a further increment to bring the number back into the desired range.</p>
+<p>Note that line 140 <code>echo</code>es the letter with a space before and after it. This ensures that the coloured background is more noticeable than if it was a single character with the coloured background.</p>
+<pre class="prettyprint lang-sh">
+   119	
+   120	show_word()
+   121	{
+   122	  local x=$1
+   123	  local y=$2
+   124	  local direction=$3
+   125	  local word=$4
+   126	  local idx=0
+   127	  local xpos ypos
+   128	
+   129	  let colour=colour%6
+   130	  let colour=colour+1
+   131	  tput setaf $colour
+   132	  tput bold
+   133	  tput smso
+   134	  let final_char=${#word}-1
+   135	  for idx in `seq 0 ${final_char}`
+   136	  do
+   137	    let xpos=$((x * 3))+x_offset
+   138	    let ypos=y+y_offset
+   139	    tput cup $ypos $xpos
+   140	    echo " ${word:${idx}:1} "
+   141	    read x y <<< `move $direction $x $y`
+   142	  done
+   143	  tput sgr0
+   144	  tput cup $answer_row 0
+   145	  let answer_row++
+   146	}
+</pre>
+<p>The main script reads in the file, using <code>read_file</code>. Then it uses <code>shift</code> to remove the first argument (the name of the input file) from the argument list. The remaining arguments (which we can read from the special <code>$@</code> variable) are now the list of words to search for.</p>
+<p>It loops through the grid, and at each location, loops through all possible directions - first looking North, then North East, and so on. The innermost loop goes through all the words we have been asked to look for. These are in the <code>$@</code> variable.</p>
+<p>For each word / direction / location, it calls <code>check_word $x $y $direction $WORD</code>. If that function returns success (0), it has found the requested word at the current location, in the direction we are currently testing. It calls <code>show_word</code> to show the newly-found word on the grid. <code>show_word</code> ended by putting the cursor one line further down than it had been before, so we now (line 175) <code>echo</code> a message describing where the word was found (using the same colour codes that were set in <code>show_word()</code>).</p>
+<p>Finally, it adds the word to the <code>$FOUND</code> variable, so that it can check which words were found, and which were not.</p>
+</p>
+<pre class="prettyprint lang-sh">
+   147	
+   148	# SCRIPT STARTS HERE
+   149	
+   150	if [ $# -lt 2 ]; then
+   151	    echo "Usage: $0 filename word"
+   152	    exit 2
+   153	fi
+   154	INPUT_FILE=${1:-q.txt}
+   155	if [ ! -f "$INPUT_FILE" ]; then
+   156	  echo "Cannot read \"$INPUT_FILE\""
+   157	  exit 1
+   158	fi
+   159	read_file $INPUT_FILE
+   160	shift
+   161	FOUND=""
+   162	show_grid
+   163	for y in `seq 0 $max_y`
+   164	do
+   165	  for x in `seq 0 $max_x`
+   166	  do
+   167	    for direction in N NE E SE S SW W NW
+   168	    do
+   169	      debug -e "Checking ($x,$y): Direction = $direction"
+   170	      for WORD in $@
+   171	      do
+   172	        check_word $x $y $direction $WORD
+   173	        if [ "$?" -eq "0" ]; then
+   174	          show_word $x $y $direction $WORD
+   175	          echo "Found `tput setaf $colour``tput bold`$WORD`tput sgr0` at ($x,$y) (direction: $direction)"
+   176	          FOUND="$FOUND $WORD"
+   177	        fi
+   178	      done
+   179	    done
+   180	  done
+   181	done
+</pre>
+<p>The final act of the script is to check how well it did. It displays the list of words it found (from the <code>$FOUND</code> variable), then it loops through the list of words it was asked to find. If the <code>grep -w</code> fails, then the requested word was not in the <code>FOUND</code> list, and it displays the message "<code>$WORD was not found</code>".
+<pre class="prettyprint lang-sh">
+   182	
+   183	echo "FOUND WORDS:$FOUND"
+   184	for WORD in $@
+   185	do
+   186	  echo $FOUND | grep -w $WORD >/dev/null || echo "$WORD was not found"
+   187	done
+</pre>
+
+ 
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../../../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="../../js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/tips/wordsearch/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:30 GMT -->
+</html>

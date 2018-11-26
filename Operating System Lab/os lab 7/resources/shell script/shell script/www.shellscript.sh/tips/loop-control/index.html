@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/tips/loop-control/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:33 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta property="og:description" content="
+        Controlling and Quitting Loops in Shell Scripts"/>
+<meta property="og:title" content="Controlling Loops - From the Shell Scripting Tutorial Tips" />
+<meta property='og:image' content='loop.png' />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="675" />
+
+
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="index.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Controlling Loops - Shell Scripting Tips        </title>
+        <meta name="description" content="
+	Controlling and Quitting Loops in Shell Scripts	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="index.html" />
+        <link rel="stylesheet" href="../../css/shellscript-tips.css">
+        <script src="../../js/vendor/jquery-1.10.2.min.js"></script>
+	<script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../../../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">... The Shell Scripting Tips section</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+... The Shell Scripting Tips section
+<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+                <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial - Tips</h2>
+                <h3>Controlling Loops</h3>                </h2>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="../../rss.xml"><img src="../../img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Controlling+Loops%20-%20https://www.shellscript.sh/tips/loop-control/" target="_blank"><img src="../../img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftips%2Floop-control%2F&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/tips/loop-control/&title=Controlling+Loops&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/tips/loop-control/" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/tips/loop-control/&title=Controlling Loops" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "steveparkeror-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "shell scripting B005DI1LNE steve parker";
+amzn_assoc_default_category = "Books";
+amzn_assoc_linkid = "84e4b8af2eebc762bb46e2ee402321ef";
+amzn_assoc_design = "in_content";
+amzn_assoc_default_browse_node = "283155";
+//amzn_assoc_title = "Recommended Reading: <br/>The Tutorial is the content of this website, available in Paperback or eBook format (88 pages).<br/> The 'Shell Scripting' book is a thick 564 pages. This is the definitive guide to all Bash Shell features in depth. <br/> Both are available in Paperback or eBook formats.";
+amzn_assoc_title = "I have written two books on Shell Scripting; both are available in Paperback and eBook.";
+</script>
+<script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+<p><a href='../index.html'><i class='fa fa-arrow-left'></i> All Shell Scripting Tips</a>
+<p>28 Nov 2017</p>
+<img src="loop-small.png" width="550" height="289" alt="rollercoaster loop (Creative Commons Attribution-ShareAlike 3.0 License)">
+<h1>Controlling Loops</h1>
+<h2>Controlling and Quitting Loops in Shell Scripts</h2>
+<p>Controlling <code>for</code> loops in shell scripts is pretty much all about the <code>break</code> and <code>continue</code> commands. These are fairly straightforward, once you've got the hang of them. There is a little gotcha with <code>while</code> loops, however.</p>
+
+
+
+<h1>1. For Loops</h1>
+<p>First of all, let's look at <code>for</code> loops. Here is a deliberately simplistic loop, counting 1-9:</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+for x in 1 2 3 4 5 6 7 8 9
+do
+  # "echo -n" means to stay on this line after
+  # displaying "x is (whatever)"
+  echo -n "x is ${x}. "
+  if [ "$x" -eq "4" ]; then
+    # Don't process this loop for "4" any further
+    # ... instead, move on to "5".
+    # The "echo" below moves down to a new line:
+    echo
+    continue
+  fi
+  echo "Most numbers get here, but 4 doesn't."
+  if [ "$x" -eq "7" ]; then
+    # Once we get to 7, exit the loop completely.
+    # This overrides the fact that the loop was 
+    # going to continue up to "9".
+    break
+  fi
+done
+echo "We have finished the loop now."
+echo "As an aside, x is now ${x}."
+</pre>
+<a href="loop1.sh.txt">Download loop1.sh</a>
+<p>The output of the above script is like this:</p>
+<pre class="code">
+x is 1. Most numbers get here, but 4 doesn't.
+x is 2. Most numbers get here, but 4 doesn't.
+x is 3. Most numbers get here, but 4 doesn't.
+x is 4. 
+x is 5. Most numbers get here, but 4 doesn't.
+x is 6. Most numbers get here, but 4 doesn't.
+x is 7. Most numbers get here, but 4 doesn't.
+We have finished the loop now.
+As an aside, x is now 7.
+</pre>
+<p>When the loop gets to "4", the "<code>continue</code>" statement tells it to continue with the next item in the loop; it runs a blank "<code>echo</code>" to put the cursor down to the next line (for tidiness of the output), and continues with "5".</p>
+<p>When it gets to 7, the "<code>break</code>" statement tells it to break out of the loop completely. This means that "8" and "9" will never be processed. Because a "<code>for</code>" loop gets its list of items at the start, this can be a useful method to get out of a loop that was going to have been running for longer.</p>
+<p>A further, and more extreme option, is to <code>exit</code>. This will terminate the entire script.</p>
+<p>The next variant on the script checks for "6" and calls "<code>exit</code>" when it finds that "<code>x</code>" is "6". Notice that even the "<code>We have finished the loop now</code>" message doesn't get executed:</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+for x in 1 2 3 4 5 6 7 8 9
+do
+  # "echo -n" means to stay on this line after
+  # displaying "x is <whatever>"
+  echo -n "x is ${x}. "
+  if [ "$x" -eq "4" ]; then
+    # Don't process this loop for "4" any further
+    # ... instead, move on to "5".
+    # The "echo" below moves down to a new line:
+    echo
+    continue
+  fi
+  echo "Most numbers get here, but 4 doesn't."
+  if [ "$x" -eq "6" ]; then
+    # Quit the entire script:
+    exit
+  fi
+  if [ "$x" -eq "7" ]; then
+    # Once we get to 7, exit the loop completely.
+    # This overrides the fact that the loop was 
+    # going to continue up to "9".
+    break
+  fi
+done
+echo "We have finished the loop now."
+echo "As an aside, x is now ${x}."
+</pre>
+<a href="loop2.sh.txt">Download loop2.sh</a>
+<p>Notice that the whole script aborts when its gets to "6":</p>
+<pre class="code">
+x is 1. Most numbers get here, but 4 doesn't.
+x is 2. Most numbers get here, but 4 doesn't.
+x is 3. Most numbers get here, but 4 doesn't.
+x is 4. 
+x is 5. Most numbers get here, but 4 doesn't.
+x is 6. Most numbers get here, but 4 doesn't.
+</pre>
+<p>To restate: As soon as we said "<code>exit</code>", the entire script bombed out. Nothing further was processed, not even the code after the loop.</p>
+<h1>2. While Loops</h1>
+<p><code>while</code> loops act in a similar way to <code>for</code> loops. For example, this loop will continue until you say "finish". It has another special word, too: If you say "silent", then it will increment the counter, but use <code>continue</code> to stop this iteration around the loop (so it skips the display part), and will start a new iteration of the loop. Finally, so that we can demo all of the "<code>break</code>, <code>continue</code> and <code>exit</code>" features, it has a third special word: "abort". If you say "abort" then it will <code>exit</code> the script, and - just like the <code>for</code> loop above, it won't even display the summary information at the end. Execution terminates immediately.</p>
+<p>Note that the "<code>read -p MESSAGE x</code>" syntax means "Display <code>MESSAGE</code> and save the user's response in the variable <code>x</code>".</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+COUNT=0
+echo "Please type 'finish' to quit this demo."
+# Prompt the user with "Say something> " and
+# read the value into variable "x"
+while read -p "Say something> " x
+do
+  if [ "${x}" == "finish" ]; then
+    break
+  fi
+  if [ "${x}" == "abort" ]; then
+    exit
+  fi
+  # Increment the counter
+  let COUNT++
+  # if we say "silent", then we count the word,
+  # but do not display it:
+  if [ "${x}" == "silent" ]; then
+    continue
+  fi
+  echo "You said: '${x}'."
+  echo "You have said ${COUNT} things."
+done
+echo "All done. You have said ${COUNT} things to me."
+</pre>
+<a href="loop3.sh.txt">Download loop3.sh</a>
+<p>When it is run, it looks something like this, if I give it input of "<b>Happy Christmas</b>" then "<b>silent</b>" then "<b>night</b>", followed by "<b>finish</b>":
+<pre class="code">
+Please type 'finish' to quit this demo.
+Say something> <b>Happy Christmas</b>
+You said: 'Happy Christmas'.
+You have said 1 things.
+Say something> <b>silent</b>
+Say something> <b>night</b>
+You said: 'night'.
+You have said 3 things.
+Say something> <b>finish</b>
+All done. You have said 3 things to me.
+</pre>
+<p>Note that it counted 3 things, "<b>Happy Christmas</b>", "<b>silent</b>" and "<b>night</b>", but not "<b>finish</b>", because "<b>finish</b>" wasn't an interaction which got counted.</p>
+<p>Another example, if we give it input of "<b>the aliens are coming!</b>" and "<b>I don't have time for this demo!</b>" followed by "<b>abort</b>", then it will terminate the script immediately, and does not continue with the rest of the script, which would otherwise have shown the final message of "<code>All done. You have said 2 things to me</code>":</p>
+<pre class="code">
+Please type 'finish' to quit this demo.
+Say something> <b>the aliens are coming!</b>
+You said: 'the aliens are coming!'.
+You have said 1 things.
+Say something> <b>I don't have time for this demo!</b>
+You said: 'I don't have time for this demo!'.
+You have said 2 things.
+Say something> <b>abort</b>
+</pre>
+<a name="2.1"></a>
+<h2>2.1) While Loops in a pipe</h2>
+<p>There is another way to execute a <code>while</code> loop, and while it looks fairly similar, it has subtly different behaviour. If you run the script above from an input file, you might implement it the same way, but call the <code>while</code> loop like this (we don't need the "<code>-p Say something></code>" prompt, because we're not going interactive any more):</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+COUNT=0
+echo "Please type 'finish' to quit this demo."
+# Prompt the user with "Say something> " and
+# read the value into variable "x"
+cat input.txt | while read -p "Say something> " x
+do
+  if [ "${x}" == "finish" ]; then
+    break
+  fi
+  if [ "${x}" == "abort" ]; then
+    exit
+  fi
+  # Increment the counter
+  let COUNT++
+  # if we say "silent", then we count the word,
+  # but do not display it:
+  if [ "${x}" == "silent" ]; then
+    continue
+  fi
+  echo "You said: '${x}'."
+  echo "You have said ${COUNT} things."
+done
+echo "All done. You have said ${COUNT} things to me."
+</pre>
+<a href="loop4.sh.txt">Download loop4.sh</a>
+<p>We have removed this line:</p>
+<pre>
+while read -p "Say something> " x
+</pre>
+<p>And replaced it with:</p>
+<pre>
+cat input.txt | while read -p "Say something> " x
+</pre>
+<p>That's a very small change to the script, and it means that "Happy Christmas" will still be treated as a single input ("<code>for x in $(cat input.txt)</code>" would not, but that's a subject for another post!). In fact it all looks pretty similar:
+<pre class="code">
+$ <b>cat input.txt</b>
+Happy Christmas
+silent
+night
+finish
+$ <b>./loop4.sh</b>
+Please type 'exit' to quit this demo.
+You said: 'Happy Christmas'.
+You have said 1 things.
+You said: 'night'.
+You have said 3 things.
+All done. You have said 0 things to me.
+$ 
+</pre>
+<p>But wait - the final line says "You have said 0 things to me." - what is going on?!</p>
+<center><img src="alert.png" alt="alert!" width=500 height=172></center>
+<p>Because we piped the "<code>cat input.txt</code>" into the <code>while</code> loop, and a pipe involves two separate processes talking to each other, a new instance of the shell was spawned to run the <code>while</code> loop. This is referred to as a <i>subshell</i>. This doesn't normally affect anything, much of the time, but as an implementation detail, there are two key things where this matters: The <b>scope of variables</b>, and the <b>behaviour of <code>exit</code></b>.</p>
+<p>We will deal with these two issues in the rest of this post.</p>
+<a name="2.1.1"></a>
+<h2>2.1.1) Scope of Variables</h2>
+<p>Because the <code>while</code> loop is running in a separate process, any changes it makes to variables will be lost when the loop exits. That process is destroyed, along with the state of all its variables. So <code>$COUNT</code> has been incremented properly within the <code>while</code> loop. But as soon as we end the <code>while</code> loop, it dies, along with all of its state.</p>
+<p>The original process, which had set <code>COUNT=0</code>, and has never done anything with <code>COUNT</code> since then, still has <code>COUNT=0</code> in its state.</p>
+<p>This is a pain in the backside, quite frankly! Workarounds include things like writing to files, and then reading the results back from those files after the loop has finished, but it's all a bit messy. One tip is to do something like this (where you're setting the variables <i>before</i> calling the loop, so both processes share the same value):</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+SHARED_FILE=$(mktemp)
+COUNT=0
+cat input.txt | while read x
+do
+  let COUNT++
+  echo ${COUNT} > ${SHARED_FILE}
+  # presumably do something useful too, or
+  # you are just reimplementing "wc -l"
+done
+COUNT=$(cat ${SHARED_FILE})
+rm -f ${SHARED_FILE}
+</pre>
+<h2>2.1.2) Behaviour of <code>exit</code></h2>
+<p>Another, and less commonly-encountered side-effect, is that the <code>exit</code> statement doesn't have the same impact. When we say "abort" to the script, we expect it to terminate completely. But when the <code>while</code> loop is in a subshell, it simply exits the loop (just like the <code>break</code> statement does), and returns control to the calling process. This is pretty major, because we normally expect <code>exit</code> to cause the entire thing to terminate immediately. This totally threw me for a while today, and I'm supposed to know all about this stuff!...</p>
+<pre class="code">
+$ <b>cat input.txt</b>
+Happy Christmas
+abort
+silent
+night
+finish
+$ <b>./loop4.sh</b>
+Please type 'finish' to quit this demo.
+You said: 'Happy Christmas'.
+You have said 1 things.
+All done. You have said 0 things to me.
+</pre>
+<p>Here, even though we said "abort", which in the earlier example aborted the whole thing, now we just quit the subshell, and return control to the calling process.</p>
+<p>Despite getting an "abort" input, it still continued processing the original script, and ran the "All done. You have said 0 things to me." message.</p>
+<p>In this one change, we have changed the behaviour of the whole script, just by the way we called the <code>while</code> loop!</p>
+<p>One way around this is to send a return code back to the calling process. We have added the <code>ABORT_CODE</code> variable, which we check for after the loop has returned:</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+COUNT=0
+ABORT_CODE=123
+echo "Please type 'finish' to quit this demo."
+# Prompt the user with "Say something> " and
+# read the value into variable "x"
+cat input.txt | while read -p "Say something> " x
+do
+  if [ "${x}" == "finish" ]; then
+    break
+  fi
+  if [ "${x}" == "abort" ]; then
+    exit $ABORT_CODE
+  fi
+  # Increment the counter
+  let COUNT++
+  # if we say "silent", then we count the word,
+  # but do not display it:
+  if [ "${x}" == "silent" ]; then
+    continue
+  fi
+  echo "You said: '${x}'."
+  echo "You have said ${COUNT} things."
+done
+LOOP_RETURN_CODE=$?
+if  [ "$LOOP_RETURN_CODE" -eq "$ABORT_CODE" ]; then
+  # exit the calling script, too!
+  exit
+fi
+echo "All done. You have said ${COUNT} things to me."
+</pre>
+<a href="loop5.sh.txt">Download loop5.sh</a>
+<p>When we run this script, it acts like the earlier, interactive one:</p>
+<pre class="code">
+$ <b>cat input.txt</b>
+Happy Christmas
+abort
+silent
+night
+finish
+$ <b>./loop5.sh</b>
+Please type 'finish' to quit this demo.
+You said: 'Happy Christmas'.
+You have said 1 things.
+$ 
+</pre>
+<h1>3. Conclusion</h1>
+<p>The <code>exit</code> call is very well known, and is generally well-understood. The <code>break</code> and <code>continue</code> directives are less well-known, and can give you fine-grained control over the execution of your loops.</p>
+<p>The thing about <code>while</code> loops in subshells is also relatively well known, at least in how it affects the scope of variables. The implications of <code>exit</code> in a <code>while</code> loop subshell is, I think less obvious, and something to be aware of as you write scripts which make use of such facilities.</p>
+
+
+
+
+
+
+
+<p>Hopefully you found this useful and interesting, and hopefully there was something
+new in there which you did not know before. 
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../../../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="../../js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/tips/loop-control/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:38 GMT -->
+</html>

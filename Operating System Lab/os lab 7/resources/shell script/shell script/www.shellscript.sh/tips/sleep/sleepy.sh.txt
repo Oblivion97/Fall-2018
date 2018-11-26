@@ -1,0 +1,35 @@
+#!/bin/bash
+if [ "$#" -eq "0" ] || [ "$1" == "-?" ]; then
+  echo "Usage: `basename $0` sleeptime frequency [message]"
+  echo "Sleep for <sleeptime>, notify every <frequency>"
+fi
+SLEEPTIME=$1
+FREQUENCY=$2
+shift 2
+MESSAGE=$@
+
+echo "`date` $MESSAGE"
+
+# Start the main sleep process
+sleep "$SLEEPTIME" &
+# Note its PID
+SLEEP_PID=$!
+
+while :
+do
+  sleep $FREQUENCY
+  echo "`date` $MESSAGE"
+done &
+# The while loop runs in its own subshell, and
+# has its own PID. Make a note:
+LOOP_PID=$!
+
+# Kill the loop if we exit for any reason
+trap 'kill -9 $LOOP_PID' 0
+
+# Wait for the main sleep to finish
+wait $SLEEP_PID
+
+# Finished.
+echo "`date` $MESSAGE : Done."
+#kill -9 $LOOP_PID

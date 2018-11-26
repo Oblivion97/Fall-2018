@@ -1,0 +1,15 @@
+#!/bin/bash
+
+square() {
+  echo $(($1 * $1))
+}
+
+for n in 4 8 15 16 17
+do
+  echo -n "The square of $n is: "
+  result=$(square $n)
+  echo $result  # The return code is passed back as $?
+done
+
+
+exit 12345

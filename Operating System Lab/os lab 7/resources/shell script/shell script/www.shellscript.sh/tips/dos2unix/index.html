@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/tips/dos2unix/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:03 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta property="og:description" content="
+        Converting between CRLF (DOS) and LF (*nix) text file formats. With a footnote about '/bin/bash^M: bad interpreter' for good measure."/>
+<meta property="og:title" content="dos2unix / unix2dos - From the Shell Scripting Tutorial Tips" />
+<meta property='og:image' content='different.png' />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="675" />
+
+
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="index.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        dos2unix / unix2dos - Shell Scripting Tips        </title>
+        <meta name="description" content="
+	Converting between CRLF (DOS) and LF (*nix) text file formats. With a footnote about '/bin/bash^M: bad interpreter' for good measure.	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="index.html" />
+        <link rel="stylesheet" href="../../css/shellscript-tips.css">
+        <script src="../../js/vendor/jquery-1.10.2.min.js"></script>
+	<script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../../../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">... The Shell Scripting Tips section</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+... The Shell Scripting Tips section
+<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+                <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="../mktemp/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial - Tips</h2>
+                <h3>dos2unix / unix2dos</h3>                </h2>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="../../rss.xml"><img src="../../img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=dos2unix+%2F+unix2dos%20-%20https://www.shellscript.sh/tips/dos2unix/" target="_blank"><img src="../../img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftips%2Fdos2unix%2F&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/tips/dos2unix/&title=dos2unix+%2F+unix2dos&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/tips/dos2unix/" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/tips/dos2unix/&title=dos2unix / unix2dos" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "steveparkeror-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "shell scripting B005DI1LNE steve parker";
+amzn_assoc_default_category = "Books";
+amzn_assoc_linkid = "84e4b8af2eebc762bb46e2ee402321ef";
+amzn_assoc_design = "in_content";
+amzn_assoc_default_browse_node = "283155";
+//amzn_assoc_title = "Recommended Reading: <br/>The Tutorial is the content of this website, available in Paperback or eBook format (88 pages).<br/> The 'Shell Scripting' book is a thick 564 pages. This is the definitive guide to all Bash Shell features in depth. <br/> Both are available in Paperback or eBook formats.";
+amzn_assoc_title = "I have written two books on Shell Scripting; both are available in Paperback and eBook.";
+</script>
+<script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+<p><a href='../index.html'><i class='fa fa-arrow-left'></i> All Shell Scripting Tips</a>
+<p>5 Nov 2018</p>
+<h1>dos2unix / unix2dos</h1><h2>Converting between CRLF (DOS) and LF (*nix) text file formats. With a footnote about '/bin/bash^M: bad interpreter' for good measure.</h2>
+<p>Text files are supposed to be pretty simple things. They are very often just streams of plain 8-bit ASCII bytes. (Unicode does things differently, but that's beyond the scope of this short article). For example, consider a text file which looks like this:</p>
+<pre>
+linux$ <b>cat a.txt</b>
+Hello World.
+This is a file.
+linux$
+</pre>
+<p>What you can't immediately see is that there is a special byte, a 'control character', which says "now there is a linebreak." This is represented, in Unix and Linux, with the ASCII "10" (<code>00001010</code>) character, often displayed as "<code>\n</code>" or "<code>LF</code>" for "Line Feed," or "<code>^L</code>" (because <b>L</b> is the 10th letter of the alphabet)</p>
+<p>You can see this with the (slightly obscure) <code>od</code> command, which shows all the contents of a file, whether regular printable characters or non-printable control characters.</p>
+<pre>
+linux$ <b>od -c a.txt</b>
+0000000   H   e   l   l   o       W   o   r   l   d   .  \n   T   h   i
+0000020   s       i   s       a       f   i   l   e   .  \n
+0000035
+linux$</pre>
+<p>Think back to mechanical typewriters; when you hit the big bar on the side, it goes down to start the next line of text. That is what <code>LF</code> does. One single item which moves one line down and back to the start of the line.</p>
+<p><iframe src="https://giphy.com/embed/3orieTyRbhbUE5VDqg" width="480" height="366" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<iframe src="https://giphy.com/embed/3orif3e85seg0FghvG" width="480" height="366" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</p>
+<p>However, some systems interpret the "<code>LF</code>" character as literally being a vertical move down; it does not reset the cursor to the left-hand side of the page (or screen). They need a "<code>CR</code>" or "Carriage Return" character, as well as the "<code>LF</code>". <code>CR</code> is ASCII 13 (<code>00001101</code>), also known as "<code>\r</code>," or "<code>^M</code>" (because <b>M</b> is the 13th letter of the alphabet). </p>
+<img style="margin-left: 80px;" src="different_small.png" width="600" height="300" alt="dos2unix">
+<p>With a file formatted in this style, the <code>od</code> utility shows <code>\r\n</code> for each linebreak: </p>
+<pre>
+linux$ <b>od -c a.txt</b>
+0000000   H   e   l   l   o       W   o   r   l   d   .  \r  \n   T   h
+0000020   i   s       i   s       a       f   i   l   e   .  \r  \n
+0000037
+linux$ 
+</pre>
+The Microsoft family of operating systems are the best-known which use this convention. And whilst Windows is very popular on the Desktop, Linux is very popular in the Cloud.</p>
+<img style="margin-left: 80px;" src="cloud.jpg" width="400" height="274" alt="Clouds">
+<h2>dos2unix / unix2dos</h2>
+<p>So a common problem is finding a file in one format, when you need it to be in the other format. Many utilities can cope with both formats (Notepad++, VIM, <code>cat</code> spring to mind) but many others cannot. Also, when a file has changed its line endings, Git will see it as a change to every single line in the file, even if none of the content has changed.</p>
+<p>If you have the <code>dos2unix</code> utility installed, you can easily convert between the two formats. Simply use "<code>dos2unix a.txt</code>" or "<code>unix2dos a.txt</code>" to convert a file. Notice that the 'file' utility says "CRLF" to indicate the "CR" and "LF" ending of a DOS-format text file. Otherwise, it calls it "ASCII text"</p>
+<pre>
+<b># Start with a plain ASCII file:</b>
+linux$ <b>file a.txt </b>
+a.txt: ASCII text
+<b># Convert it to DOS format:</b>
+linux$ <b>unix2dos a.txt </b>
+unix2dos: converting file a.txt to DOS format...
+<b># Check its new format:</b>
+linux$ <b>file a.txt </b>
+a.txt: ASCII text, with CRLF line terminators
+<b># Convert it back to Unix/Linux format:</b>
+linux$ <b>dos2unix a.txt </b>
+dos2unix: converting file a.txt to Unix format...
+<b># Check it again:</b>
+linux$ <b>file a.txt </b>
+a.txt: ASCII text
+linux$ 
+</pre>
+<h2>Other Ways To Convert Files</h2>
+<p>You may not always have "<code>dos2unix a.txt</code>" or "<code>unix2dos a.txt</code>" available; it may be possible to "<code>sudo apt-get install dos2unix</code>" or "<code>sudo yum install dos2unix</code>", but if you don't have repositories configured, or you have no internet access, that may not work. Don't fear! There are alternatives. Some of them may be better than others - particularly with Unicode files, you may find that an ASCII 10 or ASCII 13 character may appear within a filestream as something other than "<code>CR</code>" or "<code>LF</code>", but these alternative solutions should get you out of trouble:</p>
+<h2>1) perl</h2>
+<p>The <code>Perl</code> utility has a few ways to convert files. Firstly, using regular expressions.</p>
+<p>You can convert a Unix-style file to DOS format as follows (if your file is named <code>a.txt</code>):
+<pre>
+<b># Convert *nix to DOS:</b>
+linux$ <b>perl -pi -e 's/$/\r/' a.txt</b>
+</pre>
+<p>You can convert it back again like this:</p>
+<pre>
+<b># Convert DOS to *nix:</b>
+linux$ <b>perl -pi -e 's/\r\n$/\n/g' a.txt</b>
+</pre>
+<p>You can also use the MExtUtils module, if you have it installed:</p>
+<pre>
+<b># Convert *nix to DOS:</b>
+linux$ <b>perl -MExtUtils::Command -e unix2dos a.txt</b>
+<b># Convert DOS to *nix:</b>
+linux$ <b>perl -MExtUtils::Command -e dos2unix a.txt</b>
+</pre>
+<h2>2) sed</h2>
+<p>The Stream Editor, <code>sed</code>, can also be used, in a very similar way. Note that the <code>-i</code> syntax works with GNU <code>sed</code>, as is available on most Linux systems. Some Unix systems may not support this, in which case you will need to write the result to a temporary file.</p>
+<pre>
+<b># Convert *nix to DOS:</b>
+linux$ <b>sed -i 's/$/\r/' a.txt</b>
+<b># Convert DOS to *nix:</b>
+linux$ <b>sed -i 's/\r$//' a.txt</b>
+</pre>
+<h2>3) tr</h2>
+<p>At a push, you could also use the <code>tr</code> utility. It can't edit files in-place, and it can only convert in one direction, from DOS to Unix. This will read the DOS-formatted <code>a.txt</code> and create a Unix-formatted <code>b.txt</code>:</p>
+<pre>
+<b># Convert DOS to *nix:</b>
+linux$ <b>tr -d '\r' &lt; a.txt &gt; b.txt</b>
+</pre>
+<h2>Summary</h2>
+<p>It is a bit of a pain that there are two formats for a plain text file. In reality however, we now need to deal with more complex files, like Unicode multi-byte characters, so the "old days" of plain 8-bit (or even 7-bit) ASCII text is not something we can design for. However, there will be plain ASCII files (of both formats) for many decades more, so we need to understand what they are, and how to convert from one to the other.</p>
+<p>If you have <code>dos2unix</code>, that is by far the easiest way to convert them. But the <code>Perl</code> and <code>Sed</code> examples above show a few other ways that are available.</p>
+<p>It is always good to keep text files consistent, whether in DOS or Unix format. Having a mix of both can cause all manner of problems.</p>
+<h2>Footnote: /bin/bash^M: bad interpreter: No such file or directory</h2>
+<p>If you have a shell script like this, it can be difficult to work out why it isn't working:</p>
+<pre>
+linux$ <b>cat a.sh</b>
+#!/bin/bash
+echo "Hello, World!"
+linux$ <b>./a.sh</b>
+bash: ./a.sh: /bin/bash^M: bad interpreter: No such file or directory
+linux$ </pre>
+<p>If your script is in DOS format, <code>od</code> will show it like this:</p>
+<pre>
+linux$ <b>od -c a.sh</b>
+0000000   #   !   /   b   i   n   /   b   a   s   h  \r  \n   e   c   h
+0000020   o       "   H   e   l   l   o   ,       W   o   r   l   d   !
+0000040   "  \r  \n
+0000043
+linux$ </pre>
+<p>Notice that the first line is "<code>#!/bin/bash\r\n</code>". The final <code>\n</code> will be treated as a linebreak, but the kernel will try to execute your chosen interpreter, which you have said is named "<code>/bin/bash\r</code>" - as mentioned above, some tools display "<code>\r</code>" as "<code>^M</code>" - there are multiple ways of displaying these non-printable characters.</p>
+<p>So the kernel is complaining that it cannot find an interpreter called "<code>/bin/bash^M</code>". There is no file with that name. There is probably a <code>/bin/bash</code>, but that's not what it's been asked to find. It's been asked to find "<code>/bin/bash^M</code>". And yes, computers really are that dumb. It's a good thing that they're so precise, but a pain that they're so pedantic. You can't have one without the other.</p>
+<p>This has confused many people many times over many years, but the fix is simple: Convert the file from DOS format to Unix format:</p>
+<pre>
+linux$ <b>./a.sh</b>
+bash: ./a.sh: /bin/bash^M: bad interpreter: No such file or directory
+linux$ <b>dos2unix a.sh</b>
+dos2unix: converting file a.sh to Unix format...
+linux$ <b>./a.sh</b>
+Hello, World!
+linux$ 
+</pre>
+<p>You're welcome! Feel free to buy me a cup of coffee, if this saved your skin!</p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="PAL23JTDQH68E">
+<input type="image" src="../../img/donate/5.png" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+<img alt="" border="0" src="../../../www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+
+
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../../../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="../../js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/tips/dos2unix/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:09 GMT -->
+</html>

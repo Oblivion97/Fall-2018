@@ -1,0 +1,43 @@
+#!/bin/bash
+TIMESTAMP=$(date +%d%M%Y.%H%M%S)
+PASS_LOG=pass.log.${TIMESTAMP}
+FAIL_LOG=fail.log.${TIMESTAMP}
+UNKNOWN_LOG=unknown.log.${TIMESTAMP}
+
+info()
+{
+  # Call this function with the status, followed by any comments
+  local STATUS=$1 # First argument is the status
+  shift           # Anything else is commentary
+  case "$STATUS" in
+    0|PASS|pass|ok) 
+      echo "OK:${STATUS}:$@" | tee -a $PASS_LOG   ;;
+    [0-9]*|FAIL|fail) 
+      echo "FAIL:${STATUS}:$@" | tee -a $FAIL_LOG ;;
+    *) 
+      echo "Unknown status:${STATUS}:$@" | tee -a $UNKNOWN_LOG ;;
+  esac
+}
+
+# Two simple tests: "true" and "false":
+/bin/true  # always returns zero (i.e., success)
+info $? test1 passed
+/bin/false # always returns non-zero
+info 1 test2 failed
+
+# Your /etc/hosts is likely to contain "127":
+grep 127 /etc/hosts > /dev/null 2>&1
+info $? Searching for 127 in /etc/hosts file
+
+# You can call info() with all sorts of results:
+info pass test4 passed
+info ok test5 passed
+info fail test6 failed
+info 0123 test 7 failed because it began with zero but is not zero
+info FAIL test8 failed
+info hello test9 gave a wrong status
+
+echo
+echo "RESULTS: "
+[ -f $FAIL ] && echo "Some tests failed: See \"$FAIL_LOG\""
+[ -f $UNKNOWN_LOG ] && echo "Some tests produced unexpected results: See \"$UNKNOWN_LOG\""

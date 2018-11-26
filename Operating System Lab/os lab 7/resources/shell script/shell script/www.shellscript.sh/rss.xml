@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+
+<channel>
+  <title>Shell Scripting</title>
+  <link>https://www.shellscript.sh/</link>
+  <description>Shell Scripting</description>
+  <image>
+    <url>https://www.shellscript.sh/img/wordcloud_profile.png</url>
+    <title>Shell Scripting</title>
+    <link>https://www.shellscript.sh/</link>
+  </image>
+  <copyright>Steve Parker / SGP IT Consultancy Ltd. All Rights Reserved.</copyright>
+
+  <item>
+    <title>Return codes, Functions, and the number 255 - Return codes, Functions, and the number 255</title>
+    <link>https://www.shellscript.sh/tips/255/</link>
+    <guid>https://www.shellscript.sh/tips/255/</guid>
+    <pubDate>Wed, 18 Oct 2017 00:00:00 GMT</pubDate>
+    <description>   18 Oct 2017
+
+                  Return codes, Functions, and the number 255
+
+The problem with using shell functions to return integers
+
+   In most languages, you would write a function to return the square of
+   an integer like this:
+private int square(int n) {
+  return n*n;
+}
+
+   This Java code would work fine; The Shell script would look like this;
+   I've added a couple of test cases, too:
+#!</description>
+    <enclosure url="https://www.shellscript.sh/tips/255/256.png" length="45777" type="image/png" />
+  </item>
+  <item>
+    <title>Again, Again! - Doing a different thing to the same thing (or, Teletubbies mode, if you prefer!)</title>
+    <link>https://www.shellscript.sh/tips/again/</link>
+    <guid>https://www.shellscript.sh/tips/again/</guid>
+    <pubDate>Fri, 09 Mar 2018 00:00:00 GMT</pubDate>
+    <description>   9 Mar 2018
+   Again, Again!
+
+                                "Again, Again!"
+
+Doing a different thing to the same thing (or, Teletubbies mode, if you prefer!)
+
+   Computers are supposed to be good at repetitive tasks, but sometimes we
+   end up repeating things to the computer. For example:
+steve@linux:/tmp$ mkdir -p yet/another/directory
+steve@linux:/tmp$ cd yet/another/directory
+steve@linux:/</description>
+    <enclosure url="https://www.shellscript.sh/tips/again/again.png" length="1339740" type="image/png" />
+  </item>
+  <item>
+    <title>Failing on Errors, whilst also Checking for Errors - Dealing with 'bash -e' - an apparently contradictory position</title>
+    <link>https://www.shellscript.sh/tips/bash-e/</link>
+    <guid>https://www.shellscript.sh/tips/bash-e/</guid>
+    <pubDate>Mon, 18 Sep 2017 00:00:00 GMT</pubDate>
+    <description>   18 September 2017
+
+               Failing on Errors, whilst also Checking for Errors
+
+An Apparently Contradictory Position
+
+   The "-e" option to a shell script causes it to abort on failure. That
+   can be a very useful fail-safe. Today, I was using it in conjunction
+   with [1]Jenkins CI. If any step in the script fails, the entire job
+   fails, and the dashboard turns RED - that is a conveni</description>
+    <enclosure url="https://www.shellscript.sh/tips/bash-e/bash-e.png" length="307117" type="image/png" />
+  </item>
+  <item>
+    <title>Changing to Uppercase or Lowercase - Changing the case of text in variables</title>
+    <link>https://www.shellscript.sh/tips/case/</link>
+    <guid>https://www.shellscript.sh/tips/case/</guid>
+    <pubDate>Mon, 21 May 2018 00:00:00 GMT</pubDate>
+    <description>   21 May 2018
+
+                       Changing to Uppercase or Lowercase
+
+Changing the case of text in variables
+
+   It is often useful to change the case of a variable. A hostname may
+   need converting, or maybe you want to be sure to get somebody's name
+   properly capitalised: Steve, as opposed to steve, STEVE or even sTeVe.
+
+   The old way to do this was with the tr command, either in the GN</description>
+    <enclosure url="https://www.shellscript.sh/tips/case/case.png" length="933083" type="image/png" />
+  </item>
+  <item>
+    <title>chmod 777 - Nobody should be forced to say this twice</title>
+    <link>https://www.shellscript.sh/tips/chmod777/</link>
+    <guid>https://www.shellscript.sh/tips/chmod777/</guid>
+    <pubDate>Tue, 04 Aug 2015 00:00:00 GMT</pubDate>
+    <description>   4 Aug 2015
+
+                                   chmod 777
+
+   [chmod777.jpg]
+
+                               Why Not chmod 777?
+
+   Because.
+
+   But seriously, what are you trying to achieve? It is probably due to a
+   misunderstanding of the Unix/Linux filesystem permissions model. The
+   question is common (hence this page), but the answer is always the
+   same: If you assess what your require</description>
+    <enclosure url="https://www.shellscript.sh/tips/chmod777/chmod777.jpg" length="59729" type="image/jpg" />
+  </item>
+  <item>
+    <title>Days to Christmas! - Using GNU Date to work out how many days until a given event (such as Christmas - 25th December)</title>
+    <link>https://www.shellscript.sh/tips/christmas/</link>
+    <guid>https://www.shellscript.sh/tips/christmas/</guid>
+    <pubDate>Tue, 08 Dec 2015 00:00:00 GMT</pubDate>
+    <description>   8 Dec 2015
+
+                                   Christmas!
+
+Using GNU Date to work out how many days until a given event (such as Christmas
+- 25th December)
+
+   GNU's date tool offers a few additional features over the standard
+   abilities of the traditional UNIX date facility. One of these is the
+   "+%j" switch, which tells you the day's number as a day-of-the-year. So
+   the first of January</description>
+    <enclosure url="https://www.shellscript.sh/tips/christmas/christmas-1200.png" length="95176" type="image/png" />
+  </item>
+  <item>
+    <title>The (evil) 'cp -t' command - The 'cp -t' command</title>
+    <link>https://www.shellscript.sh/tips/cp-t/</link>
+    <guid>https://www.shellscript.sh/tips/cp-t/</guid>
+    <pubDate>Sat, 25 Feb 2017 00:00:00 GMT</pubDate>
+    <description>   25 Feb 2017
+
+                              The 'cp -t' command
+
+A rant
+
+   The "cp" command is familiar to most UNIX and Linux users, it is one of
+   the first that you learn. It copies the file (or files) given to it, to
+   the target location, which is the last file name in the list.
+
+   So, the command:
+$ cp file.txt file.bak
+
+   will copy the file.txt file to a backup named file.bak, while </description>
+    <enclosure url="https://www.shellscript.sh/tips/cp-t/cp-t.png" length="98777" type="image/png" />
+  </item>
+  <item>
+    <title>Giving Developers Root Access - What Could Possibly Go Wrong?</title>
+    <link>https://www.shellscript.sh/tips/devroot/</link>
+    <guid>https://www.shellscript.sh/tips/devroot/</guid>
+    <pubDate>Thu, 15 Sep 2016 00:00:00 GMT</pubDate>
+    <description>   15 Sep 2016
+
+                         Giving Developers Root Access
+
+   [devroot.png]</description>
+    <enclosure url="https://www.shellscript.sh/tips/devroot/devroot_og.png" length="232078" type="image/png" />
+  </item>
+  <item>
+    <title>Newline in Echo: When to use -n, when to use \c - echo: -n or \c</title>
+    <link>https://www.shellscript.sh/tips/echo/</link>
+    <guid>https://www.shellscript.sh/tips/echo/</guid>
+    <pubDate>Sun, 22 Apr 2018 00:00:00 GMT</pubDate>
+    <description>   22 Apr 2018
+
+                Newline in Echo: When to use -n, when to use \c
+
+echo: -n or \c
+
+   Fortunately, this is becoming less of a problem, but it is worth being
+   aware of, particularly if you are writing scripts for older Unix
+   systems.
+
+   When you use the echo statement, a newline is added at the end of the
+   command. That is to say, if your script looks like this:
+#!/bin/sh
+echo </description>
+    <enclosure url="https://www.shellscript.sh/tips/echo/echo.png" length="1118744" type="image/png" />
+  </item>
+  <item>
+    <title>Editing a line in a text editor - Copy a command into a text editor for further editing</title>
+    <link>https://www.shellscript.sh/tips/editline/</link>
+    <guid>https://www.shellscript.sh/tips/editline/</guid>
+    <pubDate>Sat, 25 Mar 2017 00:00:00 GMT</pubDate>
+    <description>   25 March 2017
+
+   Sometimes, when you are working in an interactive shell, you find that
+   you actually want to edit the current command line in a text editor.
+   Typically, when you have finally crafted the exact command that you
+   would like to use in a shell script. Before I learned this technique, I
+   would typically use a mouse to select the text, copy it into the
+   Copy/Paste buffer, </description>
+    <enclosure url="https://www.shellscript.sh/tips/editline/editline.png" length="446613" type="image/png" />
+  </item>
+  <item>
+    <title>Expanding Lists in Bash - A useful way of expanding lists automatically</title>
+    <link>https://www.shellscript.sh/tips/expanding-lists/</link>
+    <guid>https://www.shellscript.sh/tips/expanding-lists/</guid>
+    <pubDate>Wed, 20 May 2015 00:00:00 GMT</pubDate>
+    <description>   20 May 2015
+
+                            Expanding Lists in Bash
+
+   
+
+   A useful but underused feature of the Bash shell is called Brace
+   Expansion.
+
+   It takes a few different forms, but basically, anything within the
+   { braces } is expanded, either as a list:
+   {apples,oranges,bananas},
+   a numerical sequence:
+   {1..10},
+   or as characters:
+   {a..z}.
+   TL;DR. You can stop reading</description>
+    <enclosure url="https://www.shellscript.sh/tips/expanding-lists/bart.png" length="874010" type="image/png" />
+  </item>
+  <item>
+    <title>Generating Sequences in Bash - A useful way of automatically expanding lists of numbers and characters</title>
+    <link>https://www.shellscript.sh/tips/expanding-sequences/</link>
+    <guid>https://www.shellscript.sh/tips/expanding-sequences/</guid>
+    <pubDate>Wed, 20 May 2015 00:00:00 GMT</pubDate>
+    <description>   20 May 2015
+
+                          Generating Sequences in Bash
+
+   
+
+   A useful but underused feature of the Bash shell is called Brace
+   Expansion.
+
+   It takes a few different forms, but basically, anything within the {
+   braces } is expanded, either as a list ({apples,oranges,bananas}), a
+   numerical sequence ({1..10}), or characters ({a..z}). TL;DR. You can
+   stop reading here and</description>
+    <enclosure url="https://www.shellscript.sh/tips/expanding-sequences/sequence.png" length="889944" type="image/png" />
+  </item>
+  <item>
+    <title>Fork Bomb! - Using shell builtin commands to deal with a fork-bombed machine</title>
+    <link>https://www.shellscript.sh/tips/fork-bomb/</link>
+    <guid>https://www.shellscript.sh/tips/fork-bomb/</guid>
+    <pubDate>Thu, 02 Jul 2015 00:00:00 GMT</pubDate>
+    <description>   2 Jul 2015
+
+                                   Fork Bomb!
+
+Using shell builtin commands to deal with a fork-bombed machine
+
+   A few days ago I had to deal with my first ever real-life fork-bombed
+   server.
+
+   By logging in to the console, I was somehow able to get a shell (one
+   process). Having got that shell, even though I was root, it was
+   difficult to be able to spawn other processes.</description>
+    <enclosure url="https://www.shellscript.sh/tips/fork-bomb/forkbomb.png" length="723870" type="image/png" />
+  </item>
+  <item>
+    <title>Getopts - Parsing command-line arguments</title>
+    <link>https://www.shellscript.sh/tips/getopts/</link>
+    <guid>https://www.shellscript.sh/tips/getopts/</guid>
+    <pubDate>Sun, 27 May 2018 00:00:00 GMT</pubDate>
+    <description>   27 May 2018
+
+   Most Unix and Linux commands take options preceded by the "minus"
+   symbol, so to list files in long format, ordered (in reverse) by their
+   timestamp, you use: ls -l -r -t, which can also be expressed as ls
+   -lrt.
+
+   Some commands also take arguments, so you can create a tar archive of
+   the "myfiles" directory with a name "mytarfile.tar" taken from the -f
+   option with </description>
+    <enclosure url="https://www.shellscript.sh/tips/getopts/parse.png" length="342386" type="image/png" />
+  </item>
+  <item>
+    <title>Nifty use of grep in a loop - A handy tip using the --color feature of GNU's grep tool</title>
+    <link>https://www.shellscript.sh/tips/grep-loops/</link>
+    <guid>https://www.shellscript.sh/tips/grep-loops/</guid>
+    <pubDate>Fri, 15 May 2015 00:00:00 GMT</pubDate>
+    <description>   15 May 2015
+
+                          Nifty use of grep in a loop
+
+   Grep is a widely known and used tool, but here is a use that you may
+   not have considered before.
+
+   GNU's grep, as used in Linux systems, and also available on some Unix
+   systems (it may be installed as ggrep), has some additional features,
+   one of which is --color, which can be used to highlight the matching
+   sect</description>
+    <enclosure url="https://www.shellscript.sh/tips/grep-loops/grep2.png" length="17051" type="image/png" />
+  </item>
+  <item>
+    <title>Hours, Minutes, Seconds - Formatting and Displaying Time in Hours, Minutes and Seconds</title>
+    <link>https://www.shellscript.sh/tips/hms/</link>
+    <guid>https://www.shellscript.sh/tips/hms/</guid>
+    <pubDate>Mon, 09 May 2016 00:00:00 GMT</pubDate>
+    <description>   9 May 2016
+
+          Formatting and Displaying Time in Hours, Minutes and Seconds
+
+   Sometimes a script will take a varying amount of time to run, and you
+   want it to report how long it took. Sure, you can say when it started
+   and finished, but that's not particularly helpful. The GNU Date command
+   has the "date +%s" option, which gives you the number of seconds since
+   1st January, 19</description>
+    <enclosure url="https://www.shellscript.sh/tips/hms/wallclock.png" length="731776" type="image/png" />
+  </item>
+  <item>
+    <title>Simple Shell Functions - A vital step on the journey towards shell scripting proficiency</title>
+    <link>https://www.shellscript.sh/tips/info-function/</link>
+    <guid>https://www.shellscript.sh/tips/info-function/</guid>
+    <pubDate>Fri, 29 May 2015 00:00:00 GMT</pubDate>
+    <description>   29 May 2015
+
+                             Simple Shell Functions
+
+   One of the steps along the journey from writing the occasional shell
+   script to being a proficient shell scripter, is the creation of custom
+   functions to create your own toolset. Here is a small but useful
+   example of such a thing. If you want to run a set of tests (on how a
+   system has been configured, or how well a </description>
+    <enclosure url="https://www.shellscript.sh/tips/info-function/calm.png" length="143972" type="image/png" />
+  </item>
+  <item>
+    <title>Controlling Loops - Controlling and Quitting Loops in Shell Scripts</title>
+    <link>https://www.shellscript.sh/tips/loop-control/</link>
+    <guid>https://www.shellscript.sh/tips/loop-control/</guid>
+    <pubDate>Tue, 28 Nov 2017 00:00:00 GMT</pubDate>
+    <description>   28 Nov 2017
+   rollercoaster loop (Creative Commons Attribution-ShareAlike 3.0
+   License)
+
+   Controlling for loops in shell scripts is pretty much all about the
+   break and continue commands. These are fairly straightforward, once
+   you've got the hang of them. There is a little gotcha with while loops,
+   however.
+
+                                  1. For Loops
+
+   First of all, let's look</description>
+    <enclosure url="https://www.shellscript.sh/tips/loop-control/loop.png" length="1668258" type="image/png" />
+  </item>
+  <item>
+    <title>Witty 'man' page entries - Wit and humour in *nix documentation</title>
+    <link>https://www.shellscript.sh/tips/man/</link>
+    <guid>https://www.shellscript.sh/tips/man/</guid>
+    <pubDate>Mon, 05 Feb 2018 00:00:00 GMT</pubDate>
+    <description>   5 Feb 2018
+
+                            Witty 'man' page entries
+
+Wit and humour in *nix documentation
+
+   The online manual pages (or 'man' pages for short) on Unix and Linux
+   systems are a useful reference for checking the syntax of a given
+   command. They sometimes also reflect the traditional humour associated
+   with Unix systems administration.
+
+   A quick aside about the structure of </description>
+    <enclosure url="https://www.shellscript.sh/tips/man/man.png" length="13341" type="image/png" />
+  </item>
+  <item>
+    <title>An Inspiring Story of a Real Programmer - The Story of Mel</title>
+    <link>https://www.shellscript.sh/tips/mel/</link>
+    <guid>https://www.shellscript.sh/tips/mel/</guid>
+    <pubDate>Tue, 13 Oct 2015 00:00:00 GMT</pubDate>
+    <description>   13 Oct 2015
+
+                                The Story of Mel
+
+   This was posted to USENET by its author, Ed Nather
+   (nather@astro.as.utexas.edu), on May 21, 1983. This transcript, and
+   notes, are taken from
+   [1]http://www.catb.org/jargon/html/story-of-mel.html.
+   A recent article devoted to the macho side of programming
+   made the bald and unvarnished statement:
+     Real Programmers </description>
+    <enclosure url="https://www.shellscript.sh/tips/mel/core.jpg" length="343124" type="image/jpg" />
+  </item>
+  <item>
+    <title>Temporary File Names - Generating temporary (and possibly unique, and/or identifiable) filenames</title>
+    <link>https://www.shellscript.sh/tips/mktemp/</link>
+    <guid>https://www.shellscript.sh/tips/mktemp/</guid>
+    <pubDate>Wed, 21 Mar 2018 00:00:00 GMT</pubDate>
+    <description>   21 Mar 2018
+   temp files $title"; echo "
+
+$descr
+
+   "; ?>
+
+   Some file names are easy to come up with. The foobar application needs
+   a configuration file? Then /etc/foobar.conf is probably the best place.
+   It needs a log file? Then /var/log/foobar/foobar.log would make sense
+   (in its own subdirectory as /var/log is only writeable by the root
+   user, but I digress...)
+
+   Other files a</description>
+    <enclosure url="https://www.shellscript.sh/tips/mktemp/mktemp2.png" length="370340" type="image/png" />
+  </item>
+  <item>
+    <title>The O'Reilly Animals: An Adult Coloring Book - The O'Reilly Animals: An Adult Coloring Book</title>
+    <link>https://www.shellscript.sh/tips/oreilly/</link>
+    <guid>https://www.shellscript.sh/tips/oreilly/</guid>
+    <pubDate>Sat, 23 Apr 2016 00:00:00 GMT</pubDate>
+    <description>   23 April 2016
+
+                  The O'Reilly Animals: An Adult Coloring Book
+
+   There are lots of amusing fake O'Reilly book covers going around the
+   internet; however, this is a genuine 26-page O'Reilly book, in the vein
+   of the "Adult Coloring Books" which are popular at the moment. So now
+   you can colour in your Toucans, Fanfoot Geckos, Birdwings, Ring-Tailed
+   Lemurs, and more, whe</description>
+    <enclosure url="https://www.shellscript.sh/tips/oreilly/coloring.jpg" length="36890" type="image/jpg" />
+  </item>
+  <item>
+    <title>Substituting strings within variable values - How to edit a string within a variable
+echo $descr;</title>
+    <link>https://www.shellscript.sh/tips/pattern-substitution/</link>
+    <guid>https://www.shellscript.sh/tips/pattern-substitution/</guid>
+    <pubDate>Tue, 20 Jun 2017 00:00:00 GMT</pubDate>
+    <description>   20 June 2017
+
+   The shell is a rather good tool for manipulating strings. The Bash
+   shell, in particular (which is the default on almost every Linux
+   distribution, and available on almost every Unix, too), has some strong
+   string manipulation utilities built-in.
+
+   One thing that it includes looks rather similar to a familiar tools
+   such as sed. You can process the value of a variable</description>
+    <enclosure url="https://www.shellscript.sh/tips/pattern-substitution/pattern-substitution.jpg" length="46327" type="image/jpg" />
+  </item>
+  <item>
+    <title>Ping - Efficiently Pinging a Subnet</title>
+    <link>https://www.shellscript.sh/tips/ping/</link>
+    <guid>https://www.shellscript.sh/tips/ping/</guid>
+    <pubDate>Fri, 03 Feb 2017 00:00:00 GMT</pubDate>
+    <description>   3 Feb 2017
+
+                          Efficiently Pinging a Subnet
+
+Two methods to use the ping command to quickly scan a network
+
+   I often find that I want to list which IPs in a subnet are active,
+   whether to find a free address to allocate to a machine, to verify that
+   the correct number of machines are online, or for various other
+   reasons.
+
+The Bad Way
+
+   The most obvious choice i</description>
+    <enclosure url="https://www.shellscript.sh/tips/ping/story-about-ping.jpg" length="459357" type="image/jpg" />
+  </item>
+  <item>
+    <title>Unix Pipelines - Brian Kernighan, one of the co-creators of Unix, on the Unix Pipeline</title>
+    <link>https://www.shellscript.sh/tips/pipelines/</link>
+    <guid>https://www.shellscript.sh/tips/pipelines/</guid>
+    <pubDate>Sat, 07 May 2016 00:00:00 GMT</pubDate>
+    <description>   7 May 2016
+
+     Brian Kernighan, one of the co-creators of Unix, on the Unix Pipeline
+
+   The Pipeline is one of the defining features of the Unix shell, and
+   obviously, the same goes for Linux, MacOSX, and any other Unix-based or
+   inspired systems.
+
+   In a nutshell, it allows you to tie the output of one program to the
+   input of another. That may not seem such a radical idea, but the
+ </description>
+    <enclosure url="https://www.shellscript.sh/tips/pipelines/pipelines.png" length="807536" type="image/png" />
+  </item>
+  <item>
+    <title>Checking the exit status of ANY command in a pipeline - Normally you only get the exit status of the last command in a pipeline - this way, you can get the status of any command in a pipline of any length...</title>
+    <link>https://www.shellscript.sh/tips/pipestatus/</link>
+    <guid>https://www.shellscript.sh/tips/pipestatus/</guid>
+    <pubDate>Fri, 30 Oct 2015 00:00:00 GMT</pubDate>
+    <description>   30 Oct 2015
+
+             Checking the exit status of ANY command in a pipeline
+
+   It's a pretty common thing in a shell script to want to check the exit
+   status of the previous command. You can do this with the $? variable,
+   as is widely known:
+#!/bin/bash
+grep some.machine.example.com /etc/hosts
+if [ "$?" -ne "0" ]; then
+  # The grep command failed to find "some.machine.example.com" in /</description>
+    <enclosure url="https://www.shellscript.sh/tips/pipestatus/pipestatus.png" length="1147257" type="image/png" />
+  </item>
+  <item>
+    <title>Progress Bar - Creating a simple Progress Bar for a shell script</title>
+    <link>https://www.shellscript.sh/tips/progressbar/</link>
+    <guid>https://www.shellscript.sh/tips/progressbar/</guid>
+    <pubDate>Fri, 30 Oct 2015 00:00:00 GMT</pubDate>
+    <description>   30 Oct 2015
+
+                                  Progress Bar
+
+Creating a simple Progress Bar for a shell script
+
+   Sometimes all we need is a little patience. Or, at least, something to
+   watch while we're waiting. The infamous Progress Bar is an example of
+   such a thing. If your script needs to wait a while, particularly if it
+   needs to wait for a fixed amount of time, this little progres</description>
+    <enclosure url="https://www.shellscript.sh/tips/progressbar/progressbar.png" length="9208" type="image/png" />
+  </item>
+  <item>
+    <title>rm -rf / - rm -rf / ... A Confession</title>
+    <link>https://www.shellscript.sh/tips/rm-rf/</link>
+    <guid>https://www.shellscript.sh/tips/rm-rf/</guid>
+    <pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+    <description>   16 April 2016
+
+                                    rm -rf /
+
+   Okay, this story has been doing the rounds over the past few days, and
+   I think it's time to talk about it:
+
+   sudo rm -rf /* - source unknown
+
+   [1]Man accidentally 'deletes his entire company' with one line of bad
+   code.
+
+   The gist of the story is that he had a script which did something along
+   the lines of:
+#!/bin/sh
+f</description>
+    <enclosure url="https://www.shellscript.sh/tips/rm-rf/drucker.png" length="358723" type="image/png" />
+  </item>
+  <item>
+    <title>RPM Package Versions - A nice way to accurately determine and parse an RPM package version</title>
+    <link>https://www.shellscript.sh/tips/rpm-versions/</link>
+    <guid>https://www.shellscript.sh/tips/rpm-versions/</guid>
+    <pubDate>Thu, 14 May 2015 00:00:00 GMT</pubDate>
+    <description>   14 May 2015
+
+                              RPM Package Versions
+
+   A nice technique to split out an RPM package version, such as "1.12.14"
+   into an array. Adapted from a Red Hat Satellite katello-ca-consumer
+   package. This makes it easier to query the version, since "1.12.14" is
+   not a real number and doesn't lend itself to comparison tests.
+$ PACKAGE=subscription-manager
+$ rpm -q --quer</description>
+    <enclosure url="https://www.shellscript.sh/tips/rpm-versions/rpm-versions.png" length="809376" type="image/png" />
+  </item>
+  <item>
+    <title>When non-technical people see me runing nmap - </title>
+    <link>https://www.shellscript.sh/tips/scaryhacker/</link>
+    <guid>https://www.shellscript.sh/tips/scaryhacker/</guid>
+    <pubDate>Thu, 24 May 2018 00:00:00 GMT</pubDate>
+    <description>   24 May 2018
+   
+
+   [nmap.png]
+
+   Do check out the [1]hackertyper.com website, if you want to scare
+   people on your laptop in public... hit any key to cause code to
+   "magically" appear on the scren.
+
+   Hit the CAPS LOCK key three times to get "ACCESS DENIED" shown over the
+   top, or hit ALT three times for "ACCESS GRANTED" to be displayed.
+
+   Back to the [2]Shell Scripting Tutorial
+
+   </description>
+    <enclosure url="https://www.shellscript.sh/tips/scaryhacker/nmap-og.png" length="321853" type="image/png" />
+  </item>
+  <item>
+    <title>Shift - Shifting through Parameters</title>
+    <link>https://www.shellscript.sh/tips/shift/</link>
+    <guid>https://www.shellscript.sh/tips/shift/</guid>
+    <pubDate>Fri, 13 Nov 2015 00:00:00 GMT</pubDate>
+    <description>   13 Nov 2015
+
+                          Shifting through Parameters
+
+Using the shift command to work through command-line arguments
+
+   Is it 'parameters' or 'arguments'? Those words that you add to a
+   command: "ls -l foo bar". For the purposes of this article, I'll use
+   them both equally. Technically, "-l" is a switch, and foo and bar are
+   arguments. Or possibly parameters. Anyway, this p</description>
+    <enclosure url="https://www.shellscript.sh/tips/shift/shift.png" length="453472" type="image/png" />
+  </item>
+  <item>
+    <title>Sleepy - A 'sleep' substitute which gives regular updates</title>
+    <link>https://www.shellscript.sh/tips/sleep/</link>
+    <guid>https://www.shellscript.sh/tips/sleep/</guid>
+    <pubDate>Fri, 19 Jan 2018 00:00:00 GMT</pubDate>
+    <description>   19 Jan 2018
+
+                A 'sleep' substitute which gives regular updates
+
+   The sleep command can be quite useful in an interactive shell. If you
+   want to check something in 5 minutes time, or even just want a timer
+   for a while, a simple "sleep 5m ; curl http://localhost/test.php" or
+   just "sleep 5m ; echo Ready" can be handy terminal tricks.
+
+   However, once you've set it off, it</description>
+    <enclosure url="https://www.shellscript.sh/tips/sleep/sleepy.jpg" length="240062" type="image/jpg" />
+  </item>
+  <item>
+    <title>Software Devlopment - the Nutshell View into Software Agency Models - Explained with Cars - Software Devlopment - the Nutshell View into Software Agency Models - Explained with Cars</title>
+    <link>https://www.shellscript.sh/tips/software-development/</link>
+    <guid>https://www.shellscript.sh/tips/software-development/</guid>
+    <pubDate>Sat, 30 Apr 2016 00:00:00 GMT</pubDate>
+    <description>   30 April 2016
+
+                          Software Development Models
+
+   Via
+   https://toggl.com/images/landing-pages/software-development-methods-exp
+   lained-with-cars-toggl-infographic-02.jpg
+
+   [software-development-methods-explained-with-cars-toggl-infographic-02.
+   jpg]</description>
+    <enclosure url="https://www.shellscript.sh/tips/software-development/swdev.png" length="204403" type="image/png" />
+  </item>
+  <item>
+    <title>Sorting on Fields - Understanding the 'sort' utility</title>
+    <link>https://www.shellscript.sh/tips/sort/</link>
+    <guid>https://www.shellscript.sh/tips/sort/</guid>
+    <pubDate>Wed, 03 Jun 2015 00:00:00 GMT</pubDate>
+    <description>   3 Jun 2015
+
+                               Sorting on Fields
+
+   The "sort" utility seems a pretty obvious thing. But it can catch you
+   out in odd little ways. Here's a simple example. Given some machine
+   sizings as follows, how does a script display and sort them
+   appropriately?:
+
+    Size  CPU Memory
+   Tiny   1   2048
+   Small  1   4096
+   Medium 2   4096
+   Big    2   8192
+   Large  4</description>
+    <enclosure url="https://www.shellscript.sh/tips/sort/top.png" length="1031203" type="image/png" />
+  </item>
+  <item>
+    <title>Sorting Files by Name - Including advanced sorts, and coping with spaces
+</title>
+    <link>https://www.shellscript.sh/tips/sorting-filenames/</link>
+    <guid>https://www.shellscript.sh/tips/sorting-filenames/</guid>
+    <pubDate>Mon, 08 May 2017 00:00:00 GMT</pubDate>
+    <description>   8 May 2017
+   " . $title . ""; echo "
+
+" . $descr . "
+
+   "; ?>
+
+   Sorting files is normally a fairly straight-forward task; "ls -lSr"
+   will sort them by size, (smallest to largest). "ls -ltr" sorts them by
+   last-modified time (oldest to newest), and so on. For more advanced
+   sorts, say to sort them in numerical order, you may want to pipe the
+   files through the dedicated "sort" utilit</description>
+    <enclosure url="https://www.shellscript.sh/tips/sorting-filenames/space.png" length="349369" type="image/png" />
+  </item>
+  <item>
+    <title>Spinner - Creating a simple Spinner to show a script is still running</title>
+    <link>https://www.shellscript.sh/tips/spinner/</link>
+    <guid>https://www.shellscript.sh/tips/spinner/</guid>
+    <pubDate>Wed, 28 Mar 2018 00:00:00 GMT</pubDate>
+    <description>   28 Mar 2018
+
+                                    Spinner
+
+Creating a simple Spinner to show a script is still running
+
+   In this [1]tips section we already have a [2]Progress Bar article,
+   which will show updates to the user whilst some long-running process is
+   happening in the background.
+
+   This is similar, but in some ways the opposite: This spinner runs in
+   the background, whilst we</description>
+    <enclosure url="https://www.shellscript.sh/tips/tips.png" length="149200" type="image/png" />
+  </item>
+  <item>
+    <title>The strstr() function in Bash - This function uses Bash's pattern matching to implement the well-known strstr() function</title>
+    <link>https://www.shellscript.sh/tips/strstr/</link>
+    <guid>https://www.shellscript.sh/tips/strstr/</guid>
+    <pubDate>Mon, 19 Sep 2016 00:00:00 GMT</pubDate>
+    <description>   19 Sep 2016
+
+                             The strstr() function
+
+   A while ago, I noticed a nifty trick in the
+   /sbin/start_udev script written by Linux kernel developer [1]Greg
+   Kroah-Hartman. His code is licensed as GPLv2, so this is, also.
+
+   This uses Bash's pattern matching tools to provide a "strstr" function.
+   From the C language man page of strstr: "The strstr() function finds
+ </description>
+    <enclosure url="https://www.shellscript.sh/tips/strstr/strstr.png" length="707666" type="image/png" />
+  </item>
+  <item>
+    <title>Where There Is A Shell, There Is A Way - Where there is a Shell, There is  Way</title>
+    <link>https://www.shellscript.sh/tips/thereisaway/</link>
+    <guid>https://www.shellscript.sh/tips/thereisaway/</guid>
+    <pubDate>Mon, 04 Apr 2016 00:00:00 GMT</pubDate>
+    <description>   4 April 2016
+
+                     Where There Is A Shell, There Is A Way
+
+   
+
+   Where There Is A Shell, There Is A Way.
+   [shell.jpg]
+   </description>
+    <enclosure url="https://www.shellscript.sh/tips/thereisaway/shell.jpg" length="369362" type="image/jpg" />
+  </item>
+  <item>
+    <title>What I Do / What I Think I Do - Linux Administrator</title>
+    <link>https://www.shellscript.sh/tips/think-i-do/</link>
+    <guid>https://www.shellscript.sh/tips/think-i-do/</guid>
+    <pubDate>Sun, 19 Jul 2015 00:00:00 GMT</pubDate>
+    <description>   19 Jul 2015
+
+                         What I Do / What I Think I Do
+
+   [LinuxAdmin-steve-parker.org.jpg]</description>
+    <enclosure url="https://www.shellscript.sh/tips/think-i-do/LinuxAdmin-steve-parker.org.jpg" length="160114" type="image/jpg" />
+  </item>
+  <item>
+    <title>Trap die tip (!) - A smart way to trap error conditions</title>
+    <link>https://www.shellscript.sh/tips/trap-die/</link>
+    <guid>https://www.shellscript.sh/tips/trap-die/</guid>
+    <pubDate>Thu, 14 May 2015 00:00:00 GMT</pubDate>
+    <description>   14 May 2015
+
+                                  Trap die tip
+
+   A useful technique in shell scripting is the set -e (or sh -e) option.
+   This causes the script to exit on any error. However, the downside to
+   this is that you don't get the chance to display any kind of error
+   message, particularly if the failing command doesn't cause any output
+   of its own in an error situation.
+
+   Using</description>
+    <enclosure url="https://www.shellscript.sh/tips/trap-die/trap-die.png" length="827506" type="image/png" />
+  </item>
+  <item>
+    <title>Editing Contents of Variables - Search and Replace within a Variable</title>
+    <link>https://www.shellscript.sh/tips/var-replace/</link>
+    <guid>https://www.shellscript.sh/tips/var-replace/</guid>
+    <pubDate>Thu, 08 Sep 2016 00:00:00 GMT</pubDate>
+    <description>   8 Sep 2016
+
+                      Search and Replace within a Variable
+
+   find and replace within variable name
+
+   Isn't it a pain to have to get the contents of a variable, edit it, and
+   put it into another variable?
+
+   For example, to update a file's name and contents to a new format, such
+   that given three input files, apache.old, mysql.old and postgres.old,
+   the script should trans</description>
+    <enclosure url="https://www.shellscript.sh/tips/var-replace/find-replace.png" length="848316" type="image/png" />
+  </item>
+  <item>
+    <title>Poetry in Code - The Waka Waka Bang Splat Poem - Poetry in Code - The Waka Waka Bang Splat Poem</title>
+    <link>https://www.shellscript.sh/tips/waka/</link>
+    <guid>https://www.shellscript.sh/tips/waka/</guid>
+    <pubDate>Mon, 25 Sep 2017 00:00:00 GMT</pubDate>
+    <description>   25 September 2017
+
+                              Waka Waka Bang Splat
+
+   
+
+   So there's a poem in code, apparently going back to 1990, made almost
+   entirely without words.</description>
+    <enclosure url="https://www.shellscript.sh/tips/waka/p2-og.png" length="42793" type="image/png" />
+  </item>
+  <item>
+    <title>Wordsearch - In which we use a completely unsuitable programming language for fun and learning purposes</title>
+    <link>https://www.shellscript.sh/tips/wordsearch/</link>
+    <guid>https://www.shellscript.sh/tips/wordsearch/</guid>
+    <pubDate>Tue, 20 Feb 2018 00:00:00 GMT</pubDate>
+    <description>   20 Feb 2018
+
+                                   Wordsearch
+
+   Topics: 2-D Arrays in Bash, Shell Substrings, Local Variables, tput
+   (for colour and positioning the cursor), Out-by-One Errors
+
+   The script here is just short of 200 lines long, which is my
+   rule-of-thumb for the longest that a single shell script should be.
+   After that point, it makes a lot more sense to break it down into</description>
+    <enclosure url="https://www.shellscript.sh/tips/wordsearch/wordsearch.jpg" length="255245" type="image/jpg" />
+  </item>
+</channel>
+</rss>

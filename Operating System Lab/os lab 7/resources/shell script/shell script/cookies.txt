@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.gumroad.com	TRUE	/	FALSE	1999999999	__cfduid	dd02f6e5dc44d46700d98fc6c483c3b011543246116
+gumroad.com	TRUE	/	FALSE	1999999999	cf_use_ob	0
+.google.com	TRUE	/	FALSE	1999999999	NID	148=YVCx7Pv9UJ_jkbcZ3XB3VbTN_8vPjRHh2ak7VCyaOkRWEKergy0WdGnQ6lroGTsgUMdegS1dFJiJnifSoA05SjAvgM_5ahZsrfLDzX9gWyWU1cx_bCWDqtf7XoDY0E3cP65XQwhKwL8MUpkS282PUNYBflJhH0wwXDsv-0ZvczM
+.paypalobjects.com	TRUE	/	FALSE	1999999999	PYPF	CT
+

@@ -1,0 +1,27 @@
+#!/bin/bash
+for x in 1 2 3 4 5 6 7 8 9
+do
+  # "echo -n" means to stay on this line after
+  # displaying "x is <whatever>"
+  echo -n "x is ${x}. "
+  if [ "$x" -eq "4" ]; then
+    # Don't process this loop for "4" any further
+    # ... instead, move on to "5".
+    # The "echo" below moves down to a new line:
+    echo
+    continue
+  fi
+  echo "Most numbers get here, but 4 doesn't."
+  if [ "$x" -eq "6" ]; then
+    # Quit the entire script:
+    exit
+  fi
+  if [ "$x" -eq "7" ]; then
+    # Once we get to 7, exit the loop completely.
+    # This overrides the fact that the loop was 
+    # going to continue up to "9".
+    break
+  fi
+done
+echo "We have finished the loop now."
+echo "As an aside, x is now ${x}."

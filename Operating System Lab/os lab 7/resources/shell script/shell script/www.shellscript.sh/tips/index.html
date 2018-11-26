@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/tips/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:28:55 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta property="og:description" content="
+        Tips from the Shell Scripting Tutorial"/>
+<meta property="og:title" content="Tips - From the Shell Scripting Tutorial Tips" />
+<meta property='og:image' content='tips.png' />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="675" />
+
+
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="index.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Tips - Shell Scripting Tips        </title>
+        <meta name="description" content="
+	Tips from the Shell Scripting Tutorial	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="index.html" />
+        <link rel="stylesheet" href="../css/shellscript-tips.css">
+        <script src="../js/vendor/jquery-1.10.2.min.js"></script>
+	<script src="../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">... The Shell Scripting Tips section</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+<li><a href="../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="cd/index.html"><img width=46 height=40 src="../img/pepper-medium.png">cd error</a>
+<li><a href="dos2unix/index.html"><img width=46 height=40 src="../img/pepper-medium.png">dos2unix</a>
+<li><a href="halloween/index.html"><img width=46 height=40 src="../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="ls-l/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="change-running-script/index.html"><img width=46 height=40 src="../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="sex-drugs-unix/index.html"><img width=46 height=40 src="../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="banner/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Banner</a>
+<li><a href="grep/index.html"><img width=46 height=40 src="../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="shebang/index.html"><img width=46 height=40 src="../img/pepper-easy.png">Shebang</a>
+<li><a href="boat/index.html"><img width=46 height=40 src="../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="kill9/index.html"><img width=46 height=40 src="../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="getopts/index.html"><img width=46 height=40 src="../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="scaryhacker/index.html"><img width=46 height=40 src="../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="case/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="echo/index.html"><img width=46 height=40 src="../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="spinner/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Spinner</a>
+<li><a href="mktemp/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="again/index.html"><img width=46 height=40 src="../img/pepper-easy.png">Again, Again!</a>
+<li><a href="wordsearch/index.html"><img width=46 height=40 src="../img/pepper-hard.png">Wordsearch</a>
+<li><a href="man/index.html"><img width=46 height=40 src="../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="sleep/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Sleepy</a>
+<li><a href="loop-control/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="255/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="waka/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="bash-e/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="pattern-substitution/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="sorting-filenames/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="editline/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="cp-t/index.html"><img width="46" height="40" src="../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="ping/index.html"><img width="46" height="40" src="../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="strstr/index.html"><img width="46" height="40" src="../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="devroot/index.html"><img width="46" height="40" src="../img/lol.png">Giving Developers Root Access</a>
+<li><a href="var-replace/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="hms/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="pipelines/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Pipelines</a>
+<li><a href="software-development/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Software Development models</a>
+<li><a href="oreilly/index.html"><img width="46" height="40" src="../img/lol.png">The O'Reilly Animals</a>
+<li><a href="rm-rf/index.html"><img width="46" height="40" src="../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="thereisaway/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="christmas/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Christmas</a>
+<li><a href="shift/index.html"><img width=46 height="40" src="../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="mel/index.html"><img width="46" height="40" src="../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="chmod777/index.html"><img width="46" height="40" src="../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="think-i-do/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="progressbar/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Progress Bar</a>
+<li><a href="fork-bomb/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="sort/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="info-function/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="expanding-lists/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="expanding-sequences/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="pipestatus/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="grep-loops/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="rpm-versions/index.html"><img width=46 height="40" src="../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="trap-die/index.html"><img width=46 height="40" src="../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                                <img src="../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+... The Shell Scripting Tips section
+<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+                <ul>
+<li><a href="../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="cd/index.html"><img width=46 height=40 src="../img/pepper-medium.png">cd error</a>
+<li><a href="dos2unix/index.html"><img width=46 height=40 src="../img/pepper-medium.png">dos2unix</a>
+<li><a href="halloween/index.html"><img width=46 height=40 src="../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="ls-l/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="change-running-script/index.html"><img width=46 height=40 src="../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="sex-drugs-unix/index.html"><img width=46 height=40 src="../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="banner/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Banner</a>
+<li><a href="grep/index.html"><img width=46 height=40 src="../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="shebang/index.html"><img width=46 height=40 src="../img/pepper-easy.png">Shebang</a>
+<li><a href="boat/index.html"><img width=46 height=40 src="../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="kill9/index.html"><img width=46 height=40 src="../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="getopts/index.html"><img width=46 height=40 src="../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="scaryhacker/index.html"><img width=46 height=40 src="../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="case/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="echo/index.html"><img width=46 height=40 src="../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="spinner/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Spinner</a>
+<li><a href="mktemp/index.html"><img width=46 height=40 src="../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="again/index.html"><img width=46 height=40 src="../img/pepper-easy.png">Again, Again!</a>
+<li><a href="wordsearch/index.html"><img width=46 height=40 src="../img/pepper-hard.png">Wordsearch</a>
+<li><a href="man/index.html"><img width=46 height=40 src="../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="sleep/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Sleepy</a>
+<li><a href="loop-control/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="255/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="waka/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="bash-e/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="pattern-substitution/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="sorting-filenames/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="editline/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="cp-t/index.html"><img width="46" height="40" src="../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="ping/index.html"><img width="46" height="40" src="../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="strstr/index.html"><img width="46" height="40" src="../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="devroot/index.html"><img width="46" height="40" src="../img/lol.png">Giving Developers Root Access</a>
+<li><a href="var-replace/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="hms/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="pipelines/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Pipelines</a>
+<li><a href="software-development/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Software Development models</a>
+<li><a href="oreilly/index.html"><img width="46" height="40" src="../img/lol.png">The O'Reilly Animals</a>
+<li><a href="rm-rf/index.html"><img width="46" height="40" src="../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="thereisaway/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="christmas/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Christmas</a>
+<li><a href="shift/index.html"><img width=46 height="40" src="../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="mel/index.html"><img width="46" height="40" src="../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="chmod777/index.html"><img width="46" height="40" src="../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="think-i-do/index.html"><img width="46" height="40" src="../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="progressbar/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Progress Bar</a>
+<li><a href="fork-bomb/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="sort/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="info-function/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="expanding-lists/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="expanding-sequences/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="pipestatus/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="grep-loops/index.html"><img width=46 height="40" src="../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="rpm-versions/index.html"><img width=46 height="40" src="../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="trap-die/index.html"><img width=46 height="40" src="../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial - Tips</h2>
+                <h3>Tips</h3>                </h2>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="../rss.xml"><img src="../img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Tips%20-%20https://www.shellscript.sh/tips/index.html" target="_blank"><img src="../img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftips%2Findex.html&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/tips/index.html&title=Tips&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/tips/index.html" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/tips/index.html&title=Tips" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "steveparkeror-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "shell scripting B005DI1LNE steve parker";
+amzn_assoc_default_category = "Books";
+amzn_assoc_linkid = "84e4b8af2eebc762bb46e2ee402321ef";
+amzn_assoc_design = "in_content";
+amzn_assoc_default_browse_node = "283155";
+//amzn_assoc_title = "Recommended Reading: <br/>The Tutorial is the content of this website, available in Paperback or eBook format (88 pages).<br/> The 'Shell Scripting' book is a thick 564 pages. This is the definitive guide to all Bash Shell features in depth. <br/> Both are available in Paperback or eBook formats.";
+amzn_assoc_title = "I have written two books on Shell Scripting; both are available in Paperback and eBook.";
+</script>
+<script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+<p><a href='index.html'><i class='fa fa-arrow-left'></i> All Shell Scripting Tips</a>
+       <h2>Tips</h2>
+<p>
+<img style='float:right' src='tips.png' alt='Shell Scripting Tips' width=300px height='auto'>
+This is a collection of hints and tips for solving real-world problems with shell scripts, mixed with examples of how to use various features of the shell, particularly the more complex Bash syntax - along with a few funny items too. You can <a href="../index.html">return to the main tutorial</a> for the main "how to" of shell scripting, or browse the articles below for individual tasks, problem areas, gotchas, and tips.</p>
+<p>This section provides some worked examples of shell scripting code, inspired by real-world scenarios.</p>
+<p>Each entry is marked with a rating:</p>
+<table class="tips">
+<tr><td id="narrow"><img src="../img/lol.png"></td><td>Funny</td><td id="fill">Just a joke / meme /etc </td></tr>
+<tr><td id="narrow"><img src="../img/pepper-easy.png"></td><td>Easy</td><td id="fill">A beginner should be able to understand most or all of this</td></tr>
+<tr><td id="narrow"td><img src="../img/pepper-medium.png"></td><td>Medium</td><td id="fill">Developing, moving your skills up a level</td></tr>
+<tr><td id="narrow"><img src="../img/pepper-hard.png"></td><td>Hard</td><td id="fill">Pushing the boundaries</td></tr>
+</table>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="medium"></div><a href="cd/index.html">
+<b>cd error</b><br/>
+<img src="cd/cd-error.jpg"><br/>
+CD Error<br/>
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="medium"></div><a href="dos2unix/index.html">
+<b>dos2unix</b><br/>
+<img src="dos2unix/different_small.png"><br/>
+CRLF (DOS) and LF (*nix) text file formats.<br/>With a footnote about '/bin/bash^M: bad interpreter'<br/>
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="lol"></div><a href="halloween/index.html">
+<b>Oct 31 == Dec 25</b><br/>
+<img src="halloween/halloween.jpg"><br/>
+Why is Oct 31 == Dec 25?<br/>
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="medium"></div><a href="ls-l/index.html">
+<b>Formatting files with <code>ls</code> and <code>stat</code></b><br/>
+<img src="ls-l/stat2.png"><br/>
+Psst! This article isn't really about <code>ls</code><br/>
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="hard"></div><a href="change-running-script/index.html">
+<b>Edit a Running Script</b><br/>
+<img src="change-running-script/changescript.png"><br/>
+What happens when you change a running shell script?
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="lol"></div><a href="sex-drugs-unix/index.html">
+<b>Sex &amp; Drugs &amp; Unix&trade;</b><br/>
+<img src="sex-drugs-unix/sex-drugs-unix.png"><br/>
+From the 1983 Usenix conference
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="medium"></div><a href="banner/index.html">
+<b>banner</b><br/>
+<img src="banner/banner.jpg"><br/>
+A standardised banner function for better presentation
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox">
+<div id="easy"></div><a href="grep/index.html">
+<b>Pipelines</b><br/>
+<img src="grep/grep.jpg"><br/>
+Brian Kernighan, one of the co-creators of Unix, on GREP
+</a>
+</div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="lol"></div><a href="shebang/index.html"><b>#! - The Shebang</b>
+<img src="shebang/shebang.png"><br/>
+or HashPling, or whatever you want to call it.
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="lol"></div><a href="boat/index.html"><b>Tux checks Linux licenses</b>
+<img src="boat/boat.png"><br/>
+Excuse me Sir, just checking your Linux licenses...
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="lol"></div><a href="kill9/index.html"><b>Thou Shalt Not Kill -9</b>
+<img src="kill9/kill9-og.jpg"><br/>
+Thou Shalt Not Kill -9
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="lol"></div><a href="getopts/index.html"><b>Parsing command-line arguments</b>
+<img src="getopts/getopts.png"><br/>
+Parsing command-line arguments
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="lol"></div><a href="scaryhacker/index.html"><b>Why are people scared of screens of text?</b>
+<img src="scaryhacker/nmap.png"><br/>
+When non-technical people see me running nmap (or strace, or lsof, or anything else...)
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="medium"></div><a href="case/index.html"><b>Changing to Uppercase or Lowercase</b>
+<img src="case/case.png"><br/>
+Changing the case of text in variables
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="medium"></div><a href="echo/index.html"><b>echo -n or \c</b>
+<img src="echo/echo.png"><br/>
+Newline in Echo: When to use -n, when to use \c
+</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="medium"></div><a href="spinner/index.html"><b>Spinner</b>
+<img src="spinner/spinner.gif"><br/>
+Creating a simple Spinner to show a script is still running</a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="medium"></div><a href="mktemp/index.html"><b>Temporary File Names</b>
+<img src="mktemp/mktemp.png"><br/>
+Generating temporary (and possibly unique, and/or identifiable) filenames </a></div>
+
+<p>&nbsp;</p>
+<div class="tipsbox"><div id="easy"></div><a href="again/index.html"><b>Again, Again!</b>
+<img src="again/again.png"><br/>
+Doing a different thing to the same thing (or, Teletubbies mode, if you prefer!)</a></div>
+
+<div class="tipsbox"><div id="hard"></div><a href="wordsearch/index.html"><b>Wordsearch</b>
+<img src="wordsearch/wordsearch.jpg"><br/>
+In which we use a completely unsuitable programming language for fun and learning purposes</a></div>
+
+
+<div class="tipsbox"><div id="easy"></div><a href="man/index.html"><b>Witty 'man' page entries</b><br/>
+<img src="man/man.png"><br/>
+Wit and Humour in *nix Documentation</a></div>
+
+<div class="tipsbox"><div id="medium"></div><a href="sleep/index.html"><b>Sleepy</b><br/>
+<img src="sleep/600_sleepy.jpg"><br/>
+A 'sleep' substitute which gives regular updates</a></div>
+
+<div class="tipsbox">
+<div id="medium"></div><a href="loop-control/index.html">
+<b>Controlling Loops</b><br/>
+<img src="loop-control/600_loop.png"><br/>
+Controlling and Quitting Loops in Shell Scripts
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="255/index.html">
+<b>Return codes, Functions, and the number 255</b><br/>
+<img src="255/600_255%2b1.png"><br/>
+The problem with using shell functions to return integers
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="waka/index.html">
+<b>Poetry in Code</b><br/>
+<img src="waka/600_p2-og.png"><br/>
+The Waka Waka Poem - onomatopoeic poetry!
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="bash-e/index.html">
+<b>Failing on Errors, whilst also Checking for Errors</b><br/>
+<img src="bash-e/600_bash-e.png"><br/>
+An apparently contradictory position - how do you make a shell script abort on errors, but be able to check for errors like "grep foo /etc/hosts" and act accordingly?
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="pattern-substitution/index.html">
+<b>Pattern Substitution</b><br/>
+<img src="pattern-substitution/600_pattern-substitution.jpg"><br/>
+Editing variable values in-place
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="sorting-filenames/index.html">
+<b>Sorting Files by Name</b><br/>
+<img src="sorting-filenames/600_space.jpg"><br/>
+Including advanced sorts, and coping with spaces
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="editline/index.html">
+<b>Editing a line in a text editor</b><br/>
+<img src="editline/600_editline.png"><br/>
+Copy a command into a text editor for further editing
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="cp-t/index.html">
+<b>The 'cp -t' command</b><br/>
+<img src="cp-t/600_cp-t.png"><br/>
+A rant
+</a>
+</div>
+<div class="tipsbox">
+<div id="hard"></div><a href="ping/index.html">
+<b>Efficiently Pinging a Subnet</b><br/>
+<img src="ping/600_story-about-ping.jpg"><br/>
+Two methods to use the ping command to quickly scan a network
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="strstr/index.html">
+<b>The strstr() function in bash</b><br/>
+<img src="strstr/600_strstr.png"><br/>
+Using Bash's pattern matchin to implement the well-known strstr() function.
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="devroot/index.html">
+<b>Giving Developers Root Access</b><br/>
+<img src="devroot/600_devroot_og.png"><br/>
+What Could Possibly Go Wrong?!
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="var-replace/index.html">
+<b>Search and Replace within a Variable</b><br/>
+<img src="var-replace/600_find-replace.png"><br/>
+Editing Contents of Variables
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="hms/index.html">
+<b>Calculating Hours, Minutes and Seconds</b><br/>
+<img src="hms/600_wallclock.png"><br/>
+This function uses Bash's simple built-in integer mathematical capabilities to display a duration (in seconds) in a more human-readable form
+</a>
+</div>
+
+
+<div class="tipsbox">
+<div id="medium"></div><a href="pipelines/index.html">
+<b>Pipelines</b><br/>
+<img src="pipelines/600_pipelines.png"><br/>
+Brian Kernighan, one of the co-creators of Unix, on the Unix Pipeline
+</a>
+</div>
+
+
+
+<div class="tipsbox">
+<div id="easy"></div><a href="software-development/index.html">
+<b>Software Development models</b><br/>
+<img src="software-development/600_swdev.png"><br/>
+Explained with Cars
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="oreilly/index.html">
+<b>The O'Reilly Animals</b><br/>
+<img src="oreilly/600_coloring.jpg"><br/>
+An Adult Coloring Book.
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="rm-rf/index.html">
+<b>rm -rf /</b><br/>
+<img src="rm-rf/600_rm.gif"><br/>
+A Confession.
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="thereisaway/index.html">
+<b>Where There Is A Shell, There Is A Way</b><br/>
+<img src="thereisaway/600_shell.jpg"><br/>
+There Just Is.
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="christmas/index.html">
+<b>Christmas</b><br/>
+<img src="christmas/600_christmas-1200.png"><br/>
+Using GNU Date to work out how many days until a given event (such as Christmas, 25th December)
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="shift/index.html">
+<b>Shift</b><br/>
+<img src="shift/600_shift.png"><br/>
+A quirk of the &quot;shift&quot; command explained. You probably did not know this.
+</a>
+</div>
+<div class="tipsbox">
+<div id="hard"></div><a href="mel/index.html">
+<b>The Story Of Mel</b><br/>
+<img src="mel/600_core.jpg"><br/>
+A Real Programmer.
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="chmod777/index.html">
+<b>chmod 777</b><br/>
+<img src="chmod777/600_chmod777.jpg"><br/>
+Not needed.
+</a>
+</div>
+<div class="tipsbox">
+<div id="easy"></div><a href="think-i-do/index.html">
+<b>Linux Administrator</b><br/>
+<img src="think-i-do/600_LinuxAdmin-steve-parker.org.jpg"><br/>
+The old &quot;What I Do / What I Think I Do&quot; meme.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="progressbar/index.html">
+<b>Progress Bar</b><br/>
+<img src="progressbar/600_progressbar.png"><br/>
+Creating a simple Progress Bar for a shell script.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="fork-bomb/index.html">
+<b>Fork Bomb!</b><br/>
+<img src="fork-bomb/600_forkbomb.png"><br/>
+Using shell builtin commands to deal with a fork-bombed machine.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="sort/index.html">
+<b>Sorting on Fields</b><br/>
+<img src="sort/600_top.png"><br/>
+Understanding the 'sort' utility.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="info-function/index.html">
+<b>Simple Shell Functions</b><br/>
+<img src="info-function/600_calm.png"><br/>
+A vital step on the journey towards shell scripting proficiency.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="expanding-lists/index.html">
+<b>Expanding Lists</b><br/>
+<img src="expanding-lists/600_bart.png"><br/>
+A useful way of expanding lists automatically. Useful for Bart Simpson, useful for you.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="expanding-sequences/index.html">
+<b>Expanding Sequences</b><br/>
+<img src="expanding-sequences/600_sequence.png"><br/>
+A useful way of automatically expanding lists of numbers and characters. With Bash, you don't need to type "for x in 1 2 3 4 5", or do lots of other laborious typing. It can expand all sorts of numbers, and letters, for you, in ways that you probably never knew.
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="pipestatus/index.html">
+<b>Checking the exit status of ANY command in a pipeline</b><br/>
+<img src="pipestatus/600_pipestatus.png"><br/>
+Normally you only get the exit status of the last command in a pipeline - this way, you can get the status of any command in a pipline of any length
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="grep-loops/index.html">
+<b>Nifty use of Grep in a Loop</b><br/>
+<img src="grep-loops/600_grep2.png"><br/>
+That you wouldn't ordinarily think of
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="rpm-versions/index.html">
+<b>RPM Package Versions</b><br/>
+<img src="rpm-versions/600_rpm-versions.png"><br/>
+And how to deal with awkward version numbers
+</a>
+</div>
+<div class="tipsbox">
+<div id="medium"></div><a href="trap-die/index.html">
+<b>Trap Die Tip</b><br/>
+<img src="trap-die/600_trap-die.png"><br/>
+The smart way to deal with errors
+</a>
+</div>
+
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="../js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/tips/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:30:45 GMT -->
+</html>

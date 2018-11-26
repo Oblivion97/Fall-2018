@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/test.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:30:51 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="theme-color" content="#dab084"/>
+        <meta property="og:description" content="
+        Test - From the Shell Scripting Tutorial at https://www.shellscript.sh/        "/>
+        <meta property="og:title" content="Shell Scripting Tutorial" />
+<meta property='og:image' content='img/wordcloud.png' />
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="test.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Test - Shell Scripting Tutorial        </title>
+        <meta name="description" content="
+	"Test" - A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell.	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="test.html" />
+        <link rel="stylesheet" href="css/shellscript.css">
+        <script src="js/vendor/jquery-1.10.2.min.js"></script>
+        <link rel="alternate" type="application/rss+xml" href="rss.xml" title="Shell Scripting RSS Feed">
+<!-- auto ads -->
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">The Linux Shell Scripting Tutorial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+                    <li><a href="tips/index.html"><i class="fa fa-star-o"></i>NEW: Shell Scripting Tips</a><br/></li> 
+                    <li><a href="index-2.html"><i class="fa fa-arrow-right"></i>1. Introduction</a></li>
+                    <li><a href="philosophy.html"><i class="fa fa-arrow-right"></i>2. Philosophy</a></li>
+                    <li><a href="first.html"><i class="fa fa-arrow-right"></i>3. A First Script</a></li>
+                    <li><a href="variables1.html"><i class="fa fa-arrow-right"></i>4. Variables (Part 1)</a></li>
+                    <li><a href="wildcards.html"><i class="fa fa-arrow-right"></i>5. Wildcards</a></li>
+                    <li><a href="escape.html"><i class="fa fa-arrow-right"></i>6. Escape Characters</a></li>
+                    <li><a href="loops.html"><i class="fa fa-arrow-right"></i>7. Loops</a></li>
+                    <li><a href="test.html"><i class="fa fa-arrow-right"></i>8. Test</a></li>
+                    <li><a href="case.html"><i class="fa fa-arrow-right"></i>9. Case</a></li>
+                    <li><a href="variables2.html"><i class="fa fa-arrow-right"></i>10. Variables (Part 2)</a></li>
+                    <li><a href="variables3.html"><i class="fa fa-arrow-right"></i>11. Variables (Part 3)</a></li>
+                    <li><a href="external.html"><i class="fa fa-arrow-right"></i>12. External Programs</a></li>
+                    <li><a href="functions.html"><i class="fa fa-arrow-right"></i>13. Functions</a></li>
+                    <li><a href="hints.html"><i class="fa fa-arrow-right"></i>14. Hints and Tips</a></li>
+                    <li><a href="quickref.html"><i class="fa fa-arrow-right"></i>15. Quick Reference</a></li>
+                    <li><a href="interactive.html"><i class="fa fa-arrow-right"></i>16. Interactive Shell</a></li>
+                    <li><a href="exercises.html"><i class="fa fa-arrow-right"></i>17. Exercises</a></li>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                    <img src="img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell. Learn Linux / Unix shell scripting by example along with the theory. I'll have you mastering Unix shell scripting in no time.<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+<center>
+<script src="../gumroad.com/js/gumroad.html"></script>
+<a class="gumroad-button" href="https://gum.co/shellscript" target="_blank">Buy this tutorial as a PDF ($5)</a>
+</center>
+                <ul>
+                    <li><a href="tips/index.html"><i class="fa fa-star-o"></i>NEW: Shell Scripting Tips</a><br/></li>
+                    <li><a href="index-2.html"><i class="fa fa-arrow-right"></i>1. Introduction</a></li>
+                    <li><a href="philosophy.html"><i class="fa fa-arrow-right"></i>2. Philosophy</a></li>
+                    <li><a href="first.html"><i class="fa fa-arrow-right"></i>3. A First Script</a></li>
+                    <li><a href="variables1.html"><i class="fa fa-arrow-right"></i>4. Variables (Part 1)</a></li>
+                    <li><a href="wildcards.html"><i class="fa fa-arrow-right"></i>5. Wildcards</a></li>
+                    <li><a href="escape.html"><i class="fa fa-arrow-right"></i>6. Escape Characters</a></li>
+                    <li><a href="loops.html"><i class="fa fa-arrow-right"></i>7. Loops</a></li>
+                    <li><a href="test.html"><i class="fa fa-arrow-right"></i>8. Test</a></li>
+                    <li><a href="case.html"><i class="fa fa-arrow-right"></i>9. Case</a></li>
+                    <li><a href="variables2.html"><i class="fa fa-arrow-right"></i>10. Variables (Part 2)</a></li>
+                    <li><a href="variables3.html"><i class="fa fa-arrow-right"></i>11. Variables (Part 3)</a></li>
+                    <li><a href="external.html"><i class="fa fa-arrow-right"></i>12. External Programs</a></li>
+                    <li><a href="functions.html"><i class="fa fa-arrow-right"></i>13. Functions</a></li>
+                    <li><a href="hints.html"><i class="fa fa-arrow-right"></i>14. Hints and Tips</a></li>
+                    <li><a href="quickref.html"><i class="fa fa-arrow-right"></i>15. Quick Reference</a></li>
+                    <li><a href="interactive.html"><i class="fa fa-arrow-right"></i>16. Interactive Shell</a></li>
+                    <li><a href="exercises.html"><i class="fa fa-arrow-right"></i>17. Exercises</a></li>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#publications"><i class="fa fa-book"></i>Publications</a></li>
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial</h2>
+                <h3>Test</h3>                <!-- <h5>A Bourne Shell Programming / Scripting Tutorial for learning about using the Unix shell. Learn Linux / Unix shell scripting by example along with the theory. </h5> -->
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="rss.xml"><img src="img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Test%20-%20https://www.shellscript.sh/test.html" target="_blank"><img src="img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftest.html&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/test.html&title=Test&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/test.html" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/test.html&title=Test" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<p>
+<script src="../gumroad.com/js/gumroad.html"></script>
+<a class="gumroad-button" href="https://gum.co/shellscript" target="_blank">You can now buy this tutorial as a PDF for $5!</a>
+
+ 
+<h1>
+8. Test
+</h1>
+<p>Test is used by virtually every shell script written. It may not seem that way, because
+<code>test</code> is not often called directly. <code>test</code> is more frequently
+called as <code>[</code>. <code>[</code> is a symbolic link to <code>test</code>, just to make shell programs more
+readable. It is also normally a shell builtin (which means that the shell itself will interpret
+<code>[</code> as meaning <code>test</code>, even if your Unix environment is set up differently):</p>
+
+<pre class="prettyprint lang-sh">
+$ type [
+[ is a shell builtin
+$ which [
+/usr/bin/[
+$ ls -l /usr/bin/[
+lrwxrwxrwx 1 root root 4 Mar 27 2000 /usr/bin/[ -&gt; test
+$ ls -l /usr/bin/test
+-rwxr-xr-x 1 root root 35368 Mar 27  2000 /usr/bin/test
+</pre>
+<p>This means that '<code>[</code>' is actually a program, just like <code>ls</code> and other programs, so it must be
+surrounded by spaces:</p>
+<pre class="prettyprint lang-sh">
+if [$foo = "bar" ]
+</pre>
+<p>will not work; it is interpreted as <code>if test$foo = "bar" ]</code>, which is a '<code>]</code>' without a beginning '<code>[</code>'.
+Put spaces around all your operators. I've highlighted the mandatory spaces with the word 'SPACE' - replace 'SPACE'
+with an actual space; if there isn't a space there, it won't work:</p>
+
+<pre class="prettyprint lang-sh">
+if SPACE [ SPACE "$foo" SPACE = SPACE "bar" SPACE ]
+</pre>
+<p>Note: Some shells also accept &quot;<code>==</code>&quot; for string comparison; this is not portable, a single &quot;<code>=</code>&quot; should be used for strings, or &quot;<code>-eq</code>&quot; for integers.</p>
+<p>Test is a simple but powerful comparison utility. For full details, run <code>man test</code>
+on your system, but here are some usages and typical examples.
+</p>
+<p>
+Test is most often invoked indirectly via the <code>if</code> and
+<code>while</code> statements. It is also the reason you will come
+into difficulties if you create a program called <code>test</code> and
+try to run it, as this shell builtin will be called instead of your
+program!
+
+<br/>
+The syntax for <code>if...then...else...</code> is:</p>
+<pre class="prettyprint lang-sh">
+if [ ... ]
+then
+  # if-code
+else
+  # else-code
+fi
+</pre>
+<p>Note that <code>fi</code> is <code>if</code> backwards! This is used again
+later with <a href="case.html">case</a> and <code>esac</code>.<br/>
+
+Also, be aware of the syntax - the "<code>if [ ... ]</code>" and the "<code>then</code>" commands must be
+on different lines. Alternatively, the semicolon "<code>;</code>" can separate them:</p>
+<pre class="prettyprint lang-sh">
+if [ ... ]; then
+  # do something
+fi
+</pre>
+<p>
+You can also use the <code>elif</code>, like this:</p>
+<pre class="prettyprint lang-sh">
+if  [ something ]; then
+ echo "Something"
+ elif [ something_else ]; then
+   echo "Something else"
+ else
+   echo "None of the above"
+fi
+</pre>
+<p>This will <code>echo "Something"</code> if the <code>[ something ]</code> test succeeds, otherwise it will test <code>[ something_else ]</code>, and <code>echo "Something else"</code> if that succeeds. If all else fails, it will <code>echo "None of the above"</code>.
+
+</p>
+<p>Try the following code snippet, before running it set the variable X to 
+various values (try -1, 0, 1, hello, bye, etc). You can do this as follows (thanks to Dave for pointing out the need to export the variable, as noted in
+<a href="variables1.html">Variables - Part I</a>.):</p>
+<pre class="prettyprint lang-sh">
+$ X=5
+$ export X
+$ ./test.sh
+  ... output of test.sh ...
+$ X=hello
+$ ./test.sh
+  ... output of test.sh ...
+$ X=test.sh
+$ ./test.sh
+  ... output of test.sh ...
+</pre>
+<p>Then try it again, with <code>$X</code> as the name of an existing file, such
+as <code>/etc/hosts</code>.</p>
+<hr noshade="noshade" align="left" width="40%"/>
+<a href="eg/test.sh.txt">test.sh</a>
+
+<pre class="prettyprint lang-sh">
+#!/bin/sh
+if [ "$X" -lt "0" ]
+then
+  echo "X is less than zero"
+fi
+if [ "$X" -gt "0" ]; then
+  echo "X is more than zero"
+fi
+[ "$X" -le "0" ] &amp;&amp; \
+      echo "X is less than or equal to  zero"
+[ "$X" -ge "0" ] &amp;&amp; \
+      echo "X is more than or equal to zero"
+[ "$X" = "0" ] &amp;&amp; \
+      echo "X is the string or number \"0\""
+[ "$X" = "hello" ] &amp;&amp; \
+      echo "X matches the string \"hello\""
+[ "$X" != "hello" ] &amp;&amp; \
+      echo "X is not the string \"hello\""
+[ -n "$X" ] &amp;&amp; \
+      echo "X is of nonzero length"
+[ -f "$X" ] &amp;&amp; \
+      echo "X is the path of a real file" || \
+      echo "No such file: $X"
+[ -x "$X" ] &amp;&amp; \
+      echo "X is the path of an executable file"
+[ "$X" -nt "/etc/passwd" ] &amp;&amp; \
+      echo "X is a file which is newer than /etc/passwd"
+
+</pre>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>
+Note that we can use the semicolon (<code>;</code>) to join two lines together. This
+is often done to save a bit of space in simple <code>if</code> statements.
+<br/>
+The backslash (<code>\</code>) serves a similar, but opposite purpose: it tells the shell 
+that this is not the end of the line, but that the following line should be treated as part 
+of the current line. This is useful for readability. It is customary to indent the following 
+line after a backslash (<code>\</code>) or semicolon (<code>;</code>).
+</p>
+<p>For example, the semicolon (<code>;</code>) is often used like this to join the <code>if</code> and <code>then</code> keywords:</p>
+<pre class="prettyprint lang-sh">
+if [ "$X" -nt "/etc/passwd" ]; then
+      echo "X is a file which is newer than /etc/passwd"
+fi
+</pre>
+<p>whilst the backslash (<code>\</code>) is used to split the single-line command across two lines in the shell script file, for readability purposes:</p>
+<pre class="prettyprint lang-sh">
+[ "$X" -nt "/etc/passwd" ] && \
+      echo "X is a file which is newer than /etc/passwd"
+</pre>
+<p>
+As we see from these examples, <code>test</code> can perform many tests on 
+numbers, strings, and filenames. </p><p>
+Thanks to Aaron for pointing out that 
+<code>-a</code>, <code>-e</code> (both meaning "file exists"), 
+
+<code>-S</code> (file is a Socket), 
+<code>-nt</code> (file is newer than), 
+<code>-ot</code> (file is older than),
+<code>-ef</code> (paths refer to the same file) and
+<code>-O</code> (file is owned my user), are not available in the traditional Bourne shell (eg, /bin/sh on Solaris, AIX, HPUX, etc).
+</p><p>
+There is a simpler way of writing <code>if</code> statements: The <code>&amp;&amp;</code> and <code>||</code> commands give code to run if the result is true, or false, respectively.</p>
+<pre class="prettyprint lang-sh">
+#!/bin/sh
+[ $X -ne 0 ] &amp;&amp; echo "X isn't zero" || echo "X is zero"
+[ -f $X ] &amp;&amp; echo "X is a file" || echo "X is not a file"
+[ -n $X ] &amp;&amp; echo "X is of non-zero length" || \
+      echo "X is of zero length"
+</pre>
+<p>This syntax is possible because there is a file (or shell-builtin) called 
+<code>[</code> which is linked to <code>test</code>. Be careful using this
+construct, though, as overuse can lead to very hard-to-read code. The
+
+<code>if...then...else...</code> structure is much more readable. Use of the
+<code>[...]</code> construct is recommended for while loops and trivial sanity
+checks with which you do not want to overly distract the reader. </p> <p>
+Note that when you set X to a non-numeric value, the first few comparisons
+result in the message:</p>
+<pre class="prettyprint lang-sh">
+test.sh: [: integer expression expected before -lt
+test.sh: [: integer expression expected before -gt
+test.sh: [: integer expression expected before -le
+test.sh: [: integer expression expected before -ge
+</pre>
+This is because the -lt, -gt, -le and -ge comparisons are only designed for integers, and
+do not work on strings. The string comparisons, such as <code>!=</code> will happily treat
+
+&quot;5&quot; as a string, but there is no sensible way of treating &quot;Hello&quot; as an
+integer, so the integer comparisons complain. <br/>
+If you want your shell script to behave more gracefully, you will have to check the contents
+of the variable before you test it - maybe something like this:
+<pre class="prettyprint lang-sh">echo -en "Please guess the magic number: "
+read X
+echo $X | grep "[^0-9]" &gt; /dev/null 2&gt;&amp;1
+if [ "$?" -eq "0" ]; then
+  # If the grep found something other than 0-9
+  # then it's not an integer.
+  echo "Sorry, wanted a number"
+else
+  # The grep found only 0-9, so it's an integer. 
+  # We can safely do a test on it.
+  if [ "$X" -eq "7" ]; then
+    echo "You entered the magic number!"
+  fi
+fi
+</pre><p>
+In this way you can <code>echo</code> a more meaningful
+message to the user, and exit gracefully. The <code>$?</code> variable is explained
+in <a href="variables2.html">Variables - Part II</a>, and <code>grep</code> is
+a complicated beast, so here goes: <code>grep [0-9]</code> finds lines of text which contain digits (0-9) and possibly other characters, so the caret (<code>^</code>) in <code>grep [^0-9]</code> finds only those lines which don't consist only of numbers. We can then take the opposite (by acting on failure, not success). Okay? The <code> &gt;/dev/null 2&gt;&amp;1</code> directs any
+output or errors to the special "null" device, instead of going to the user's screen.<br/>
+
+Many thanks to Paul Schermerhorn for correcting me - this page used to claim that <code>grep -v [0-9]</code> would work, but this is clearly far too simplistic.
+</p><p>
+We can use test in while loops as follows:</p>
+<hr noshade="noshade" align="left" width="40%"/>
+<a href="eg/test2.sh.txt">test2.sh</a>
+<pre class="prettyprint lang-sh">
+#!/bin/sh
+X=0
+while [ -n "$X" ]
+do
+  echo "Enter some text (RETURN to quit)"
+  read X
+  echo "You said: $X"
+done
+</pre>
+<hr noshade="noshade" align="left" width="40%"/>
+<p>This code will keep asking for input until you hit RETURN (X is zero length).
+Thanks to Justin Heath for pointing out that the script didn't work - I'd missed out the quotes around $X in the <code>while [ -n "$X" ]</code>. Without those quotes, there is nothing to test when $X is empty. <br/>
+
+Alexander Weber has pointed out that running this script will end untidily:</p>
+<pre class="prettyprint lang-sh">
+$ ./test2.sh
+Enter some text (RETURN to quit)
+fred
+You said: fred
+Enter some text (RETURN to quit)
+wilma
+You said: wilma
+Enter some text (RETURN to quit)
+
+You said:
+$ 
+</pre><p>
+This can be tidied up with another test within the loop:</p>
+<pre class="prettyprint lang-sh">
+#!/bin/sh
+X=0
+while [ -n "$X" ]
+do
+  echo "Enter some text (RETURN to quit)"
+  read X
+  if [ -n "$X" ]; then
+    echo "You said: $X"
+  fi
+done
+</pre><p>
+Note also that I've used two different syntaxes for <code>if</code> statements on this page. These are:</p>
+<pre class="prettyprint lang-sh">
+if [ "$X" -lt "0" ]
+then
+  echo "X is less than zero"
+fi
+
+..........  and  ........
+
+if [ ! -n "$X" ]; then
+  echo "You said: $X"
+fi
+
+</pre><p>
+You must have a break between the <code>if</code> statement and the <code>then</code> construct. This can be a semicolon or
+a newline, it doesn't matter which, but there must be one or the other between the <code>if</code> and the <code>then</code>.
+It would be nice to just say:</p>
+<pre class="prettyprint lang-sh">
+if [ ! -n "$X" ]
+  echo "You said: $X"
+</pre><p>
+
+but the <code>then</code> and <code>fi</code> are absolutely required.</p>
+
+ 
+ 
+            
+    <center>
+      <div class="g-plusone" data-annotation="none"></div>
+<a href="rss.xml"><img src="img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Test%20-%20https://www.shellscript.sh/test.html" target="_blank"><img src="img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftest.html&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/test.html&title=Test&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/test.html" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/test.html&title=Test" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+<br />
+      <a class="btn btn-primary btn-lg" href="loops.html" role="button"><i class="fa fa-chevron-left"></i> Back:  Loops</a>
+      <a class="btn btn-primary btn-lg" href="case.html" role="button">Next: Case <i class="fa fa-chevron-right"></i></a>
+    </center>
+
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/test.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:30:51 GMT -->
+</html>

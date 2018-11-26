@@ -1,0 +1,30 @@
+#!/bin/bash
+COUNT=0
+ABORT_CODE=123
+echo "Please type 'finish' to quit this demo."
+# Prompt the user with "Say something> " and
+# read the value into variable "x"
+cat input.txt | while read -p "Say something> " x
+do
+  if [ "${x}" == "finish" ]; then
+    break
+  fi
+  if [ "${x}" == "abort" ]; then
+    exit $ABORT_CODE
+  fi
+  # Increment the counter
+  let COUNT++
+  # if we say "silent", then we count the word,
+  # but do not display it:
+  if [ "${x}" == "silent" ]; then
+    continue
+  fi
+  echo "You said: '${x}'."
+  echo "You have said ${COUNT} things."
+done
+LOOP_RETURN_CODE=$?
+if  [ "$LOOP_RETURN_CODE" -eq "$ABORT_CODE" ]; then
+  # exit the calling script, too!
+  exit
+fi
+echo "All done. You have said ${COUNT} things to me."

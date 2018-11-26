@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+<!-- Mirrored from www.shellscript.sh/tips/mktemp/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:22 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta property="og:description" content="
+        Generating temporary (and possibly unique, and/or identifiable) filenames"/>
+<meta property="og:title" content="Temporary File Names - From the Shell Scripting Tutorial Tips" />
+<meta property='og:image' content='mktemp2.png' />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="675" />
+
+
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="shellscripting" />
+        <meta property="og:url" content="index.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+        Temporary File Names - Shell Scripting Tips        </title>
+        <meta name="description" content="
+	Generating temporary (and possibly unique, and/or identifiable) filenames	" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="canonical" href="index.html" />
+        <link rel="stylesheet" href="../../css/shellscript-tips.css">
+        <script src="../../js/vendor/jquery-1.10.2.min.js"></script>
+	<script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3578434180456831",
+          enable_page_level_ads: true
+     });
+</script>
+
+    </head>
+    <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../../../connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    
+        <div class="responsive-header visible-xs visible-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="top-section">
+                            <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                            </div>
+                            <div class="profile-content">
+                                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                                <p class="profile-description">... The Shell Scripting Tips section</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
+                <div class="main-navigation responsive-menu">
+                    <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-menu hidden-xs hidden-sm">
+            <div class="top-section">
+                <div class="profile-image">
+                                <img src="../../img/wordcloud_profile.png" alt="Shell Scripting Tutorial">
+                </div>
+                <h3 class="profile-title">Shell Scripting Tutorial</h3>
+                <p class="profile-description">
+... The Shell Scripting Tips section
+<br/>
+</p>
+
+            </div> <!-- top-section -->
+            <div class="main-navigation">
+                <ul>
+<li><a href="../../index.html"><i class="fa fa-home"></i>Main Tutorial</a><br/></li>
+
+
+<li><a href="../index.html"><i class="fa fa-info-circle"></i>All Shell Scripting Tips</a></li>
+
+<li><a href="../cd/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">cd error</a>
+<li><a href="../dos2unix/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">dos2unix</a>
+<li><a href="../halloween/index.html"><img width=46 height=40 src="../../img/lol.png">Why is Oct 31 == Dec 25?</a>
+<li><a href="../ls-l/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Formatting files with <code>ls</code> and <code>stat</code></a>
+<li><a href="../change-running-script/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Edit a Running Script</a>
+<li><a href="../sex-drugs-unix/index.html"><img width=46 height=40 src="../../img/lol.png">Sex &amp; Drugs &amp; Unix</a>
+<li><a href="../banner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Banner</a>
+<li><a href="../grep/index.html"><img width=46 height=40 src="../../img/pepper-easy.png"><code>grep</code></a>
+<li><a href="../shebang/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Shebang</a>
+<li><a href="../boat/index.html"><img width=46 height=40 src="../../img/lol.png">Tux checks Linux licenses</a>
+<li><a href="../kill9/index.html"><img width=46 height=40 src="../../img/lol.png">Thou Shalt Not <code>Kill -9</code></a>
+<li><a href="../getopts/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">getopts: Parse command-line arguments</a>
+<li><a href="../scaryhacker/index.html"><img width=46 height=40 src="../../img/lol.png">Scary Hacker Stuff</a>
+<li><a href="../case/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Changing to Upper or Lower Case</a>
+<li><a href="../echo/index.html"><img width=46 height=40 src="../../img/pepper-medium.png"><code>echo</code>: -n or \c</a>
+<li><a href="../spinner/index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Spinner</a>
+<li><a href="index.html"><img width=46 height=40 src="../../img/pepper-medium.png">Temporary File Names</a>
+<li><a href="../again/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Again, Again!</a>
+<li><a href="../wordsearch/index.html"><img width=46 height=40 src="../../img/pepper-hard.png">Wordsearch</a>
+<li><a href="../man/index.html"><img width=46 height=40 src="../../img/pepper-easy.png">Witty <code>man</code> page entries</a>
+<li><a href="../sleep/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sleepy</a>
+<li><a href="../loop-control/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Controlling Loops</a>
+<li><a href="../255/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Return codes, Functions, and the number 255</a>
+<li><a href="../waka/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Poetry in Code</a>
+<li><a href="../bash-e/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Failing on Errors, whilst also Checking for Errors</a>
+<li><a href="../pattern-substitution/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pattern Substitution</a>
+<li><a href="../sorting-filenames/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting Files by Name</a>
+<li><a href="../editline/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Editing a line in a text editor</a>
+<li><a href="../cp-t/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The <code>cp -t</code> command</a>
+<li><a href="../ping/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">Efficiently Pinging a Subnet</a>
+<li><a href="../strstr/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">The strstr() function in bash</a>
+<li><a href="../devroot/index.html"><img width="46" height="40" src="../../img/lol.png">Giving Developers Root Access</a>
+<li><a href="../var-replace/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Search and Replace within a Variable</a>
+<li><a href="../hms/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Calculating Hours, Minutes and Seconds</a>
+<li><a href="../pipelines/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Pipelines</a>
+<li><a href="../software-development/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Software Development models</a>
+<li><a href="../oreilly/index.html"><img width="46" height="40" src="../../img/lol.png">The O'Reilly Animals</a>
+<li><a href="../rm-rf/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>rm -rf /</code></a>
+<li><a href="../thereisaway/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Where There Is A Shell, There Is A Way</a>
+<li><a href="../christmas/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Christmas</a>
+<li><a href="../shift/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>shift</code></a>
+<li><a href="../mel/index.html"><img width="46" height="40" src="../../img/pepper-hard.png">The Story Of Mel</a>
+<li><a href="../chmod777/index.html"><img width="46" height="40" src="../../img/pepper-easy.png"><code>chmod 777</code></a>
+<li><a href="../think-i-do/index.html"><img width="46" height="40" src="../../img/pepper-easy.png">Linux Administrator</a>
+<li><a href="../progressbar/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Progress Bar</a>
+<li><a href="../fork-bomb/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Fork Bomb!</a>
+<li><a href="../sort/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Sorting on Fields</a>
+<li><a href="../info-function/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Simple Shell Functions</a>
+<li><a href="../expanding-lists/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Lists</a>
+<li><a href="../expanding-sequences/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Expanding Sequences</a>
+<li><a href="../pipestatus/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Checking the exit status of ANY command in a pipeline</a>
+<li><a href="../grep-loops/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">Nifty use of <code>grep</code> in a Loop</a>
+<li><a href="../rpm-versions/index.html"><img width=46 height="40" src="../../img/pepper-medium.png">RPM Package Versions</a>
+<li><a href="../trap-die/index.html"><img width=46 height="40" src="../../img/pepper-medium.png"><code>trap die</code> Tip</a>
+                    </ul>
+                     <ul class="navigation">
+                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                </ul>
+
+            </div> <!-- .main-navigation -->
+            <div class="social-icons">
+<!--
+                <ul>
+                    <li><a href="http://facebook.com/shellscript"><i class="fa fa-facebook"></i></a><br/>
+                </ul>
+-->
+<div class="fb-page" data-href="https://www.facebook.com/shellscript/" data-tabs="timeline" data-width="280" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/shellscript/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/shellscript/">Shell Scripting</a></blockquote></div>
+            </div> <!-- .social-icons -->
+        </div> <!-- .sidebar-menu -->
+        
+
+        <div class="banner-bg" id="top">
+            <div class="banner-overlay"></div>
+            <div class="welcome-text">
+                <h2>Shell Scripting Tutorial - Tips</h2>
+                <h3>Temporary File Names</h3>                </h2>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                <div class="content-wrapper">
+                    <div class="page-section" id="content">
+      <div align="right"> <div class="g-plusone" data-annotation="none"></div>
+<a href="../../rss.xml"><img src="../../img/rss.png" title="RSS Feed" alt="RSS Feed"></a>
+<A href="http://twitter.com/home?status=Temporary+File+Names%20-%20https://www.shellscript.sh/tips/mktemp/" target="_blank"><img src="../../img/twitter.png" width="23" height="23" alt="Share on Twitter" border="0"/></A> 
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.shellscript.sh%2Ftips%2Fmktemp%2F&amp;layout=button&amp;size=small&amp;mobile_iframe=true&amp;width=68&amp;height=20&amp;appId" width="68" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<!-- <A href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.shellscript.sh/tips/mktemp/&title=Temporary+File+Names&summary=A%20Bourne%20Shell%20Programming/Scripting%20Tutorial%20for%20learning%20about%20using%20the%20Unix%20shell.%20Learn%20Linux%20/%20Unix%20shell%20scripting%20by%20example%20along%20with%20the%20theory.%20We%27ll%20have%20you%20mastering%20Unix%20shell%20scripting%20in%20no%20time!" target="_blank"><img src="/img/linkedin.png" width="24" height="23" alt="Share on LinkedIn" border="0"/></A> -->
+<!-- <A href="http://identi.ca/notice/new?status_textarea=https://www.shellscript.sh/tips/mktemp/" target="_blank"><img src="/img/identica.png" width="23" height="24" alt="Share on Identi.ca" border="0"/></A> -->
+<!-- <A href="http://www.stumbleupon.com/submit?url=https://www.shellscript.sh/tips/mktemp/&title=Temporary File Names" target="_blank"><img src="/img/stumble.png" width="23" height="23" alt="Share on StumbleUpon" border="0"/></A> -->
+</div>
+<p>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="4773217603"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_tracking_id = "steveparkeror-20";
+amzn_assoc_ad_mode = "search";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_default_search_phrase = "shell scripting B005DI1LNE steve parker";
+amzn_assoc_default_category = "Books";
+amzn_assoc_linkid = "84e4b8af2eebc762bb46e2ee402321ef";
+amzn_assoc_design = "in_content";
+amzn_assoc_default_browse_node = "283155";
+//amzn_assoc_title = "Recommended Reading: <br/>The Tutorial is the content of this website, available in Paperback or eBook format (88 pages).<br/> The 'Shell Scripting' book is a thick 564 pages. This is the definitive guide to all Bash Shell features in depth. <br/> Both are available in Paperback or eBook formats.";
+amzn_assoc_title = "I have written two books on Shell Scripting; both are available in Paperback and eBook.";
+</script>
+<script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+<p><a href='../index.html'><i class='fa fa-arrow-left'></i> All Shell Scripting Tips</a>
+<p>21 Mar 2018</p>
+<img src="mktemp_small.png" width="100%" height="200" alt="temp files">
+<h1>Temporary File Names</h1><h2>Generating temporary (and possibly unique, and/or identifiable) filenames</h2><p>Some file names are easy to come up with. The <code>foobar</code> application needs a configuration file? Then <code>/etc/foobar.conf</code> is probably the best place. It needs a log file? Then <code>/var/log/foobar/foobar.log</code> would make sense (in its own subdirectory as <code>/var/log</code> is only writeable by the <code>root</code> user, but I digress...)</p>
+<p>Other files are less obvious. If your script needs to write data temporarily to a small file, then <code>/tmp</code> is probably a good location for that file, but what should it be called?</p>
+<p>Sometimes, you will see <code>/tmp/foobar.$$</code> in a script, or maybe <code>/tmp/foobar.$RANDOM</code>, or quite commonly, <code>TMPFILE=`mktemp`</code>.</p>
+<p>What do these all mean, and how do they differ?</p>
+<h1>Option 1) /tmp/foobar.$$</h1>
+<p>The <code>$$</code> variable is a read-only variable, from which a shell script can find its own Process Identifier, or PID. For example, here, my Bash shell's Process ID (PID) is <code>6046</code>. So <code>echo $$</code> gives <code>6046</code>, and <code>ps -fp 6046</code> shows the process via the <code>ps</code> command. Further the <code>ps -fp $$</code> command shows the same result, but without ever having to hard-code the PID itself.</p>
+<pre class="prettyprint lang-sh">
+steve@linux:~$ <b>echo $$</b>
+6046
+steve@linux:~$ <b>ps -fp 6046</b>
+UID        PID  PPID  C STIME TTY          TIME CMD
+steve     6046  2651  0 Mar20 pts/3    00:00:00 bash
+steve@linux:~$ <b>ps -fp $$</b>
+UID        PID  PPID  C STIME TTY          TIME CMD
+steve     6046  2651  0 Mar20 pts/3    00:00:00 bash
+steve@linux:~$ 
+</pre>
+<p>If we create a file using a pattern like <code>/tmp/foobar.$$</code>, then it can easily be associated with this particular process. If you know that the <code>foobar</code> script uses files named <code>/tmp/foobar.$$</code>, then even if there are multiple instances of <code>foobar</code> running on the system, and multiple <code>/tmp/foobar.nnnn</code> files (where <code>nnnn</code> represents an integer PID), then you can correlate each file to the same instance of <code>foobar</code>.</p>
+<p>This could be very good, or it could be very bad.</p>
+<p>For example, consider this <code>foobar</code> script, which asks you some questions, comments on them, and stores your answers:</p>
+<a href="foobar.sh.txt">foobar.sh</a>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+TMPFILE=/tmp/foobar.$$
+
+read -p "What is your favourite colour? " ANSWER
+echo "That's nice. I like $ANSWER too."
+echo $ANSWER > $TMPFILE
+
+read -p "What is your favourite number? " ANSWER
+echo "Oh, I don't really like $ANSWER very much."
+echo "Each to their own."
+echo $ANSWER >> $TMPFILE
+
+read -p "What is your favourite movie? " ANSWER
+echo "That's a good one, isn't it? I do like $ANSWER so much."
+echo $ANSWER >> $TMPFILE
+
+counter=0
+while read inputword
+do
+  let counter++
+  echo "Your answer number $counter was: $inputword"
+done < $TMPFILE
+
+# Email the answers to our support mailbox
+cat $TMPFILE | mailx -s "Answers for process $$" support@example.com
+rm -f $TMPFILE
+</pre>
+<p>A sample run of the script might look like this:</p>
+<pre>
+steve@linux:~$ <b>./foobar.sh</b>
+What is your favourite colour? <b>red</b>
+That's nice. I like red too.
+What is your favourite number? <b>27</b>
+Oh, I don't really like 27 very much.
+Each to their own.
+What is your favourite movie? <b>The Blues Brothers</b>
+That's a good one, isn't it? I do like The Blues Brothers so much.
+Your answer number 1 was: red
+Your answer number 2 was: 27
+Your answer number 3 was: The Blues Brothers
+steve@linux:~$ 
+</pre>
+<p>Although this script is quite small, if it was to start creating large amounts of data, then knowing which process the large file (eg, <code>/tmp/foobar.8404</code>) was associated with would be useful in identifying what was going on. </p>
+<p>However, if someone could write to the file while you were typing in an answer, they could get other data intermingled with the genuine data:</p>
+<pre>
+steve@linux:~$ <b>./foobar.sh</b>
+What is your favourite colour? <b>yellow</b>
+That's nice. I like yellow too.
+What is your favourite number? <b>93</b>
+Oh, I don't really like 93 very much.
+Each to their own.
+What is your favourite movie? <b>Star Wars</b>
+That's a good one, isn't it? I do like Star Wars so much.
+Your answer number 1 was: yellow
+Your answer number 2 was: 93
+<b>Your answer number 3 was: Extra, unexpected answer here!</b>
+Your answer number 4 was: Star Wars
+steve@linux:~$ </pre>
+<p>What happened here was that in another shell the attacker inserted some extra data into the file which was about to be emailed, like this:</p>
+<pre>
+steve@linux:~$ <b>ps -eaf|grep foobar.sh</b>
+steve     8404 19523  0 22:47 pts/1    00:00:00 /bin/bash ./foobar.sh
+steve     8409 17559  0 22:47 pts/7    00:00:00 grep foobar.sh
+steve@linux:~$ <b>cat /tmp/foobar.8404</b>
+yellow
+93
+steve@linux:~$ <b>echo "Extra, unexpected answer here!" >> /tmp/foobar.8404</b>
+</pre>
+<p>This is a bit of an artificial example, but you can see the principle. If a bad player knows your PID, they can create or edit files which you will be reading from, writing to, or both. This is quite commonly used in real-world exploits.</p>
+<p>Of course, the attacker would have to be able to get on to your system, but if they have "read" permissions on the file, they can steal your data; if they have "write" permissions, they can edit the data as shown above.</p>
+<p>See <a rel="nofollow" target="_blank" href="https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=predictable+filename">https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=predictable+filename</a> for just a few examples of vulnerabilities in real-world software related to the ability to predict the name of a temporary file used by a process.</p>
+
+<h1>Option 2) /tmp/foobar.$RANDOM</h1>
+<p>The Bash shell, and others, have a <code>$RANDOM</code> variable, which usually creates an integer between 0 and 32767 (aka 2^^15-1). If the script above used <code>TMPFILE=/tmp/foobar.$RANDOM</code> then nobody would be able to associate the process with the file (it would show up in the <code>/proc/$$/fd/</code> directory whilst reading/writing the file, but that is a much less reliable way of working out the association).
+</p>
+<p>Probably the biggest problem with this approach is that two instances of the script could run at the same time, and come up with exactly the same filename to use for their own "personal" use.</p>
+
+
+<h1>Option 3) mktemp</h1>
+<p>A problem with both <code>/tmp/foobar.$$</code> and <code>/tmp/foobar.$RANDOM</code> is that you can't be certain that the filename is unique. In the first case, it is likely to be unique, but only because nobody is likely to want to create a file of that name. For example, it is entirely possible that a previous instance of <code>foobar</code> had the same PID (they do get recycled, eventually) and crashed before it could clean up its temporary files. Or that somebody is deliberately trying to manipulate your script. If they know that a long-running process will occasionally try to read from <code>/tmp/foobar.$$</code> if it exists, then they can create that file any time, and cause your script to read from it.</p>
+<p>In the second case (<code>/tmp/foobar.$RANDOM</code>), you could try a loop, like this:</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+TMPFILE=/tmp/foobar.$RANDOM
+while [ -f $TMPFILE ]; do
+  TMPFILE=/tmp/foobar.$RANDOM
+done
+</pre>
+<p>This would keep on proposing a random filename, until it found one which did not exist, at which point it would create the actual file.</p>
+<p>There is still the possibility of a <a target="_blank" rel="nofollow" href="https://en.wikipedia.org/wiki/Race_condition">race condition</a>, but it would be better than blindly assuming that the name you've come up with is definitely available for your use.</p>
+<p>A third and - for most situations - the best way is to use the <code>mktemp</code> utility. It deals with the looping condition above, and actually checks properly for race conditions.</p>
+<p><code>mktemp</code> deals with these situations, ensures that it has created a uniquely-named file, and tells you the name of it.</p>
+<p>Running <code>mktemp</code> in an interactive shell shows what it does:</p>
+<pre>
+steve@linux:~$ <b>mktemp</b>
+/tmp/tmp.MgfkDneFhR
+steve@linux:~$ <b>ls -l /tmp/tmp.MgfkDneFhR</b>
+-rw------- 1 steve steve 0 Mar 21 23:06 /tmp/tmp.MgfkDneFhR
+steve@linux:~$ <b>rm -f /tmp/tmp.MgfkDneFhR</b>
+steve@linux:~$ 
+</pre>
+<p><code>mktemp</code> determined that /tmp/tmp.MgfkDneFhR was a valid and non-existant filename, created it, and displayed its name to its standard output. We can then list it via <code>ls</code>,  and see that it is a zero-length file, owned by <code>steve</code> (the user who called <code>mktemp</code>).</p>
+<p><code>mktemp</code>'s default pattern is <code>tmp.XXXXXXXXXX</code>. You can call it with another pattern; here, <code>mktemp /tmp/foobar.XXXXXXXX</code> resulted in <code>/tmp/foobar.7iFw5vi1</code> being created; a second run created <code>/tmp/foobar.l2KCpH2J</code>:</p>
+<pre>
+steve@linux:~$ <b>mktemp /tmp/foobar.XXXXXXXX</b>
+/tmp/foobar.7iFw5vi1
+steve@linux:~$ <b>rm foobar.yCMTC5RS </b>
+steve@linux:~$ <b>mktemp /tmp/foobar.XXXXXXXX</b>
+/tmp/foobar.l2KCpH2J
+steve@linux:~$ <b>rm /tmp/foobar.l2KCpH2J</b>
+</pre>
+<p>Strictly, to provide a directory as well as a pattern, you should use this method, although the end result is the same:</p>
+<pre>
+steve@linux:~$ <b>mktemp -p /tmp foobar.XXXXXXXX</b>
+/tmp/foobar.spa1kuK6
+steve@linux:~$ <b>rm /tmp/foobar.spa1kuK6</b>
+</pre>
+<h2>mktemp in use</h2>
+<p>Notice that I have been careful to delete these temporary files; otherwise, you will end up with a load of randomly-named files, with no idea what they are for!</p>
+<p>Of course, <code>mktemp</code> creates a new file each time you call it. Whilst <code>$$</code> will always return your PID, and therefore will be the same every time you call it, <code>$RANDOM</code> will give a random number each time, and <code>mktemp</code> is <i>guaranteed</i> to give a different file each time. So the way to use <code>mktemp</code> in a shell script is to grab its output as you run <code>mktemp</code>. That way, you always have the file's actual name - there is no other way to get the name once it has been created. So grab the output from <code>mktemp</code> in one move. Here is the <code>foobar</code> script above (shortened), showing how <code>mktemp</code> is used:</p>
+<pre class="prettyprint lang-sh">
+#!/bin/bash
+TMPFILE=`mktemp`
+
+# Now write to the file...
+read -p "What is your favourite colour? " ANSWER
+echo "That's nice. I like $ANSWER too."
+echo $ANSWER > $TMPFILE
+
+# And read from the file...
+cat $TMPFILE | mailx -s "Answers for process $$" support@example.com
+
+# Finally, delete this temporary file:
+rm $TMPFILE
+</pre>
+<h1>Summary</h1>
+<p><code>/tmp/foobar.$$</code> gives a nice, reasonably unique but predictable filename, which can easily be associated with the running process (which could be good, bad, neither or both, depending on the situation).</p>
+<p><code>/tmp/foobar.$RANDOM</code> gives a filename which cannot easily be associated with the running process.</p>
+<p><code>mktemp -p /tmp foobar.XXXXXXXX</code> gives a guaranteed-unique filename, which cannot easily be associated with the running process. It also caters for creation of directories.</p>
+<p>Check the <a rel="nofollow" target="_blank" href="https://www.gnu.org/software/autogen/mktemp.html">documentation for mktemp</a>; it has a few other useful switches, such as creating a directory instead of a file.
+                    </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            <!-- BOOKS START -->
+<br/>
+<h2>You can buy the content of this tutorial as a PDF to download to all of your devices!</h2>
+<script src="../../../gumroad.com/js/gumroad-embed.html"></script>
+<div class="gumroad-product-embed" data-gumroad-product-id="shellscript"><a href="https://gumroad.com/l/shellscript">Loading...</a></div>
+            <!-- BOOKS END -->
+<!-- FOOTER AD -->
+	<a name="publications"></a>
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- sh-auto -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8340980804"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- FOOTER AD END -->
+                    <!-- CONTACT -->
+                    <div class="page-section" id="contact">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="widget-title">Contact</h4>
+                            <p>You can mail me with this form. If you expect a reply, please ensure that the address you specify is valid. Don't forget to include the simple addition question at the end of the form, to prove that you are a real person!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form id="mailForm" action="https://mail.shellscript.sh/mail/index.php" method="post" class="contact-form">
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="text" name="8kfW-Name-pJYZ" id="8kfW-Name-pJYZ" placeholder="Your Name...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-6">
+                                <input type="email" name="EnVF-email-5n79" id="email" placeholder="Your Email...">
+                            </fieldset>
+                            <fieldset class="col-md-4 col-sm-12">
+                                <input type="text" name="QnN6-Subject-0vY5" id="QnN6-Subject-0vY5" placeholder="Subject...">
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-6">
+                                <input type="hidden" id="maths_a" name="maths_a" value="0"><input type="hidden" id="maths_b" name="maths_b" value="0"><input type="hidden" id="mailkey" name="mailkey" value='foo'><input onkeyup=checkMaths(); type="text" name="3A2x-Maths-iI81" id="3A2x-Maths-iI81" placeholder="Answer this question to enable the 'Send Message' button. (if no question appears here, please enable JavaScript)">                            </fieldset>
+                            <fieldset class="col-md-12 col-sm-12">
+                                <input id="mailSubmit" type="submit" class="button big default" value="Send Message">
+                            </fieldset>
+                        </form>
+                    </div> <!-- .contact-form -->
+                    </div>
+
+<!--footer responsive -->
+
+<script async src="../../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3578434180456831"
+     data-ad-slot="8767010726"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    <hr>
+
+                    <div class="row" id="footer">
+                        <div class="col-md-12 text-center">
+                            <p class="copyright-text">Copyright &copy; 2000 - 2018 <a target="_blank" href="http://steve-parker.org/cv/">Steve Parker</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="../../js/shellscript.js"></script>
+        <script src="http://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&amp;adInstanceId=8bd22212-4b84-4446-a338-6552cbed4df2"></script>
+        <script src="../../../apis.google.com/js/platform.js" async defer> {lang: 'en-GB'} </script>
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80984298-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80984298-2');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80984298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80984298-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+    </body>
+
+<!-- Mirrored from www.shellscript.sh/tips/mktemp/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 15:31:26 GMT -->
+</html>

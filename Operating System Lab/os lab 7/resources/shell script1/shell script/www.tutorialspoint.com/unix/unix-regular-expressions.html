@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-regular-expressions.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:16:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Unix / Linux Regular Expressions with SED</title>
+<meta name="description" content="Unix / Linux Regular Expressions with SED - Learning fundamentals of UNIX in simple and easy steps : A beginner's tutorial containing complete knowledge of Getting Started, Unix Korn and Bourne Shell and Programming, File Permission / Access Modes, Environment, Utilities, Pipes and Filters, Network Communication Utilities, File System, Directories, Memory Management, Special Variables, vi editor, What is Shell?, Using Shell Variables, Arrays, Basic Operators, Decision Making, Loop Types, Control, Substitution, Quoting Mechanisms, Input / Output Redirections, Functions, Man Page Help, Regular Expressions with SED, User Administration, System Performance, Logging, Signals and Traps, Processes." />
+<meta name="keywords" content="Unix, Linux, Tutorials, Learning, Operating, System, OS, Beginners, Basics, Korn, Bourne, Shell,Programming, Getting Started, File Permission / Access Modes, Environment, Utilities, Pipes and Filters, Network Communication Utilities, File System, Directories, Memory Management, Special Variables, vi editor, What is Shell?, Using Shell Variables, Arrays, Basic Operators, Decision Making, Loop Types, Control, Substitution, Quoting Mechanisms, Input / Output Redirections, Functions, Man Page Help, Regular Expressions with SED, User Administration, System Performance, Logging, Signals and Traps, Processes." />
+<base  />
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="fb:app_id" content="471319149685276" />
+<meta property="og:site_name" content="www.tutorialspoint.com" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="../theme/js/script-min-v45e1f.js?v=2"></script>
+<link rel="stylesheet" href="../theme/css/style-minc9e4.css?v=3.1">
+<script>
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #01adb9 !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #01adb9 url(../images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #01adb9 !important;}
+.submenu-item{ border-bottom: 2px solid #01adb9 !important; border-top: 2px solid #01adb9 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#01adb9; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img  src="../images/loading-cg.gif" alt="" width="70" height="70" />
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="images/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="https://www.tutorialspoint.com/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="../theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="https://www.tutorialspoint.com/tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts {
+   text-align:center !important;
+   vertical-align:middle !important;
+}
+</style>
+<div class="mini-logo">
+<img src="images/unix-mini-logo.jpg" alt="UNIX Tutorial" />
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux for Beginners</li>
+<li><a href="index-2.html">Unix / Linux - Home</a></li>
+<li><a href="unix-getting-started.html">Unix / Linux - Getting Started</a></li>
+<li><a href="unix-file-management.html">Unix / Linux - File Management</a></li>
+<li><a href="unix-directories.html">Unix / Linux - Directories</a></li>
+<li><a href="unix-file-permission.html">Unix / Linux - File Permission</a></li>
+<li><a href="unix-environment.html">Unix / Linux - Environment</a></li>
+<li><a href="unix-basic-utilities.html">Unix / Linux - Basic Utilities</a></li>
+<li><a href="unix-pipes-filters.html">Unix / Linux - Pipes &amp; Filters</a></li>
+<li><a href="unix-processes.html">Unix / Linux - Processes</a></li>
+<li><a href="unix-communication.html">Unix / Linux - Communication</a></li>
+<li><a href="unix-vi-editor.html">Unix / Linux - The vi Editor</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Shell Programming</li>
+<li><a href="shell_scripting.html">Unix / Linux - Shell Scripting</a></li>
+<li><a href="unix-what-is-shell.html">Unix / Linux - What is Shell?</a></li>
+<li><a href="unix-using-variables.html">Unix / Linux - Using Variables</a></li>
+<li><a href="unix-special-variables.html">Unix / Linux - Special Variables</a></li>
+<li><a href="unix-using-arrays.html">Unix / Linux - Using Arrays</a></li>
+<li><a href="unix-basic-operators.html">Unix / Linux - Basic Operators</a></li>
+<li><a href="unix-decision-making.html">Unix / Linux - Decision Making</a></li>
+<li><a href="unix-shell-loops.html">Unix / Linux - Shell Loops</a></li>
+<li><a href="unix-loop-control.html">Unix / Linux - Loop Control</a></li>
+<li><a href="unix-shell-substitutions.html">Unix / Linux - Shell Substitutions</a></li>
+<li><a href="unix-quoting-mechanisms.html">Unix / Linux - Quoting Mechanisms</a></li>
+<li><a href="unix-io-redirections.html">Unix / Linux - IO Redirections</a></li>
+<li><a href="unix-shell-functions.html">Unix / Linux - Shell Functions</a></li>
+<li><a href="unix-manpage-help.html">Unix / Linux - Manpage Help</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Advanced Unix / Linux</li>
+<li><a href="unix-regular-expressions.html">Unix / Linux - Regular Expressions</a></li>
+<li><a href="unix-file-system.html">Unix / Linux - File System Basics</a></li>
+<li><a href="unix-user-administration.html">Unix / Linux - User Administration</a></li>
+<li><a href="unix-system-performance.html">Unix / Linux - System Performance</a></li>
+<li><a href="unix-system-logging.html">Unix / Linux - System Logging</a></li>
+<li><a href="unix-signals-traps.html">Unix / Linux - Signals and Traps</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Unix / Linux Useful Resources</li>
+<li><a href="unix_questions_answers.html">Unix / Linux - Questions &amp; Answers</a></li>
+<li><a href="unix-useful-commands.html">Unix / Linux - Useful Commands</a></li>
+<li><a href="unix-quick-guide.html">Unix / Linux - Quick Guide</a></li>
+<li><a href="unix-builtin-functions.html">Unix / Linux - Builtin Functions</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_system_calls/index.htm">Unix / Linux - System Calls</a></li>
+<li><a href="https://www.tutorialspoint.com/unix_commands/index.htm">Unix / Linux - Commands List</a></li>
+<li><a href="unix-useful-resources.html">Unix / Linux - Useful Resources</a></li>
+<li><a href="unix-discussion.html">Unix / Linux - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Unix / Linux - Regular Expressions with SED</h1>
+<hr />
+<div style="padding-bottom:5px;padding-left:10px;text-align: center;">Advertisements</div>
+<div style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="../../pagead2.googlesyndication.com/pagead/f.txt"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="unix-manpage-help.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-file-system.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>In this chapter, we will discuss in detail about regular expressions with SED in Unix.</p>
+<p>A regular expression is a string that can be used to describe several sequences of characters. Regular expressions are used by several different Unix commands, including <b>ed</b>, <b>sed</b>, <b>awk</b>, <b>grep</b>, and to a more limited extent, <b>vi</b>.</p>
+<p>Here <b>SED</b> stands for <b>s</b>tream <b>ed</b>itor. This stream-oriented editor was created exclusively for executing scripts. Thus, all the input you feed into it passes through and goes to STDOUT and it does not change the input file.</p>
+<h2>Invoking sed</h2>
+<p>Before we start, let us ensure we have a local copy of <b>/etc/passwd</b> text file to work with <b>sed</b>.</p>
+<p>As mentioned previously, sed can be invoked by sending data through a pipe to it as follows &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed
+Usage: sed [OPTION]... {script-other-script} [input-file]...
+
+  -n, --quiet, --silent
+                 suppress automatic printing of pattern space
+  -e script, --expression = script
+...............................
+</pre>
+<p>The <b>cat</b> command dumps the contents of <b>/etc/passwd</b> to <b>sed</b> through the pipe into sed's pattern space. The pattern space is the internal work buffer that sed uses for its operations.</p>
+<h2>The sed General Syntax</h2>
+<p>Following is the general syntax for sed &minus;</p>
+<pre class="result notranslate">
+/pattern/action
+</pre>
+<p>Here, <b>pattern</b> is a regular expression, and <b>action</b> is one of the commands given in the following table. If <b>pattern</b> is omitted, <b>action</b> is performed for every line as we have seen above.</p>
+<p>The slash character (/) that surrounds the pattern are required because they are used as delimiters.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Range &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>p</b></p>
+<p>Prints the line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>d</b></p>
+<p>Deletes the line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>s/pattern1/pattern2/</b></p>
+<p>Substitutes the first occurrence of pattern1 with pattern2</p>
+</td>
+</tr>
+</table>
+<h2>Deleting All Lines with sed</h2>
+<p>We will now understand how to delete all lines with sed. Invoke sed again; but the sed is now supposed to use the <b>editing command delete line</b>, denoted by the single letter <b>d</b> &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed 'd'
+$
+</pre>
+<p>Instead of invoking sed by sending a file to it through a pipe, the sed can be instructed to read the data from a file, as in the following example.</p>
+<p>The following command does exactly the same as in the previous example, without the cat command &minus;</p>
+<pre class="result notranslate">
+$ sed -e 'd' /etc/passwd
+$
+</pre>
+<h2>The sed Addresses</h2>
+<p>The sed also supports addresses. Addresses are either particular locations in a file or a range where a particular editing command should be applied. When the sed encounters no addresses, it performs its operations on every line in the file.</p>
+<p>The following command adds a basic address to the sed command you've been using &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed '1d' |more
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+$
+</pre>
+<p>Notice that the number 1 is added before the <b>delete edit</b> command. This instructs the sed to perform the editing command on the first line of the file. In this example, the sed will delete the first line of <b>/etc/password</b> and print the rest of the file.</p>
+<h2>The sed Address Ranges</h2>
+<p>We will now understand how to work with <b>the sed address ranges</b>. So what if you want to remove more than one line from a file? You can specify an address range with sed as follows &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed '1, 5d' |more
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+$
+</pre>
+<p>The above command will be applied on all the lines starting from 1 through 5. This deletes the first five lines.</p>
+<p>Try out the following address ranges &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Range &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>'4,10d'</b></p>
+<p>Lines starting from the 4<sup>th</sup> till the 10<sup>th</sup> are deleted</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>'10,4d'</b></p>
+<p>Only 10<sup>th</sup> line is deleted, because the sed does not work in reverse direction</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>'4,&plus;5d'</b></p>
+<p>This matches line 4 in the file, deletes that line, continues to delete the next five lines, and then ceases its deletion and prints the rest</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>'2,5!d'</b></p>
+<p>This deletes everything except starting from 2<sup>nd</sup> till 5<sup>th</sup> line</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>'1~3d'</b></p>
+<p>This deletes the first line, steps over the next three lines, and then deletes the fourth line. Sed continues to apply this pattern until the end of the file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>'2~2d'</b></p>
+<p>This tells sed to delete the second line, step over the next line, delete the next line, and repeat until the end of the file is reached</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>'4,10p'</b></p>
+<p>Lines starting from 4<sup>th</sup> till 10<sup>th</sup> are printed</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>'4,d'</b></p>
+<p>This generates the syntax error</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>',10d'</b></p>
+<p>This would also generate syntax error</p>
+</td>
+</tr>
+</table>
+<p><b>Note</b> &minus; While using the <b>p</b> action, you should use the <b>-n</b> option to avoid repetition of line printing. Check the difference in between the following two commands &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed -n '1,3p'
+Check the above command without -n as follows −
+$ cat /etc/passwd | sed '1,3p'
+</pre>
+<h2>The Substitution Command</h2>
+<p>The substitution command, denoted by <b>s</b>, will substitute any string that you specify with any other string that you specify.</p>
+<p>To substitute one string with another, the sed needs to have the information on where the first string ends and the substitution string begins. For this, we proceed with bookending the two strings with the forward slash (<b>/</b>) character.</p>
+<p>The following command substitutes the first occurrence on a line of the string <b>root</b> with the string <b>amrood</b>.</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed 's/root/amrood/'
+amrood:x:0:0:root user:/root:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+..........................
+</pre>
+<p>It is very important to note that sed substitutes only the first occurrence on a line. If the string root occurs more than once on a line only the first match will be replaced.</p>
+<p>For the sed to perform a global substitution, add the letter <b>g</b> to the end of the command as follows &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed 's/root/amrood/g'
+amrood:x:0:0:amrood user:/amrood:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+...........................
+</pre>
+<h2>Substitution Flags</h2>
+<p>There are a number of other useful flags that can be passed in addition to the <b>g</b> flag, and you can specify more than one at a time.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Flag &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>g</b></p>
+<p>Replaces all matches, not just the first match</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>NUMBER</b></p>
+<p>Replaces only NUMBER<sup>th</sup> match</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>p</b></p>
+<p>If substitution was made, then prints the pattern space</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>w FILENAME</b></p>
+<p>If substitution was made, then writes result to FILENAME</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>I or i</b></p>
+<p>Matches in a case-insensitive manner</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>M or m</b></p>
+<p>In addition to the normal behavior of the special regular expression characters ^ and $, this flag causes ^ to match the empty string after a newline and $ to match the empty string before a newline</p>
+</td>
+</tr>
+</table>
+<h2>Using an Alternative String Separator</h2>
+<p>Suppose you have to do a substitution on a string that includes the forward slash character. In this case, you can specify a different separator by providing the designated character after the <b>s</b>.</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed 's:/root:/amrood:g'
+amrood:x:0:0:amrood user:/amrood:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+</pre>
+<p>In the above example, we have used <b>:</b> as the <b>delimiter</b> instead of slash / because we were trying to search <b>/root</b> instead of the simple root.</p>
+<h2>Replacing with Empty Space</h2>
+<p>Use an empty substitution string to delete the root string from the <b>/etc/passwd</b> file entirely &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed 's/root//g'
+:x:0:0::/:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+</pre>
+<h2>Address Substitution</h2>
+<p>If you want to substitute the string <b>sh</b> with the string <b>quiet</b> only on line 10, you can specify it as follows &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed '10s/sh/quiet/g'
+root:x:0:0:root user:/root:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/quiet
+</pre>
+<p>Similarly, to do an address range substitution, you could do something like the following &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/passwd | sed '1,5s/sh/quiet/g'
+root:x:0:0:root user:/root:/bin/quiet
+daemon:x:1:1:daemon:/usr/sbin:/bin/quiet
+bin:x:2:2:bin:/bin:/bin/quiet
+sys:x:3:3:sys:/dev:/bin/quiet
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+</pre>
+<p>As you can see from the output, the first five lines had the string <b>sh</b> changed to <b>quiet</b>, but the rest of the lines were left untouched.</p>
+<h2>The Matching Command</h2>
+<p>You would use the <b>p</b> option along with the <b>-n</b> option to print all the matching lines as follows &minus;</p>
+<pre class="result notranslate">
+$ cat testing | sed -n '/root/p'
+root:x:0:0:root user:/root:/bin/sh
+[root@ip-72-167-112-17 amrood]# vi testing
+root:x:0:0:root user:/root:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+</pre>
+<h2>Using Regular Expression</h2>
+<p>While matching patterns, you can use the regular expression which provides more flexibility.</p>
+<p>Check the following example which matches all the lines starting with <i>daemon</i> and then deletes them &minus;</p>
+<pre class="result notranslate">
+$ cat testing | sed '/^daemon/d'
+root:x:0:0:root user:/root:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+</pre>
+<p>Following is the example which deletes all the lines ending with <b>sh</b> &minus;</p>
+<pre class="result notranslate">
+$ cat testing | sed '/sh$/d'
+sync:x:4:65534:sync:/bin:/bin/sync
+</pre>
+<p>The following table lists four special characters that are very useful in regular expressions.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Character &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>^</b></p>
+<p>Matches the beginning of lines</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>$</b></p>
+<p>Matches the end of lines</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>.</b></p>
+<p>Matches any single character</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>*</b></p>
+<p>Matches zero or more occurrences of the previous character</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>[chars]</b></p>
+<p>Matches any one of the characters given in chars, where chars is a sequence of characters. You can use the - character to indicate a range of characters.</p>
+</td>
+</tr>
+</table>
+<h2>Matching Characters</h2>
+<p>Look at a few more expressions to demonstrate the use of <b>metacharacters</b>. For example, the following pattern &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Expression &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>/a.c/</b></p>
+<p>Matches lines that contain strings such as <b>a&plus;c</b>, <b>a-c</b>, <b>abc</b>, <b>match</b>, and <b>a3c</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>/a*c/</b></p>
+<p>Matches the same strings along with strings such as <b>ace</b>, <b>yacc</b>, and <b>arctic</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>/[tT]he/</b></p>
+<p>Matches the string <b>The</b> and <b>the</b></p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>/^$/</b></p>
+<p>Matches blank lines</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>/^.*$/</b></p>
+<p>Matches an entire line whatever it is</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>/ */</b></p>
+<p>Matches one or more spaces</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>/^$/</b></p>
+<p>Matches <b>blank</b> lines</p>
+</td>
+</tr>
+</table>
+<p>Following table shows some frequently used sets of characters &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:8%">Sr.No.</th>
+<th style="text-align:center;">Set &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>[a-z]</b></p>
+<p>Matches a single lowercase letter</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>[A-Z]</b></p>
+<p>Matches a single uppercase letter</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>[a-zA-Z]</b></p>
+<p>Matches a single letter</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>[0-9]</b></p>
+<p>Matches a single number</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>[a-zA-Z0-9]</b></p>
+<p>Matches a single letter or number</p>
+</td>
+</tr>
+</table>
+<h2>Character Class Keywords</h2>
+<p>Some special keywords are commonly available to <b>regexps</b>, especially GNU utilities that employ <b>regexps</b>. These are very useful for sed regular expressions as they simplify things and enhance readability.</p>
+<p>For example, the characters <b>a through z</b> and the characters <b>A through Z</b>, constitute one such class of characters that has the keyword <b>[[:alpha:]]</b></p>
+<p>Using the alphabet character class keyword, this command prints only those lines in the <b>/etc/syslog.conf</b> file that start with a letter of the alphabet &minus;</p>
+<pre class="result notranslate">
+$ cat /etc/syslog.conf | sed -n '/^[[:alpha:]]/p'
+authpriv.*                         /var/log/secure
+mail.*                             -/var/log/maillog
+cron.*                             /var/log/cron
+uucp,news.crit                     /var/log/spooler
+local7.*                           /var/log/boot.log
+</pre>
+<p>The following table is a complete list of the available character class keywords in GNU sed.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:8%">Sr.No.</th>
+<th style="text-align:center;">Character Class &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>[[:alnum:]]</b></p>
+<p>Alphanumeric [a-z A-Z 0-9]</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>[[:alpha:]]</b></p>
+<p>Alphabetic [a-z A-Z]</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>[[:blank:]]</b></p>
+<p>Blank characters (spaces or tabs)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>[[:cntrl:]]</b></p>
+<p>Control characters</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>[[:digit:]]</b></p>
+<p>Numbers [0-9]</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>[[:graph:]]</b></p>
+<p>Any visible characters (excludes whitespace)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>[[:lower:]]</b></p>
+<p>Lowercase letters [a-z]</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>[[:print:]]</b></p>
+<p>Printable characters (non-control characters)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>[[:punct:]]</b></p>
+<p>Punctuation characters</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><b>[[:space:]]</b></p>
+<p>Whitespace</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td>
+<p><b>[[:upper:]]</b></p>
+<p>Uppercase letters [A-Z]</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td>
+<p><b>[[:xdigit:]]</b></p>
+<p>Hex digits [0-9 a-f A-F]</p>
+</td>
+</tr>
+</table>
+<h2>Aampersand Referencing</h2>
+<p>The <b>sed metacharacter &amp;</b> represents the contents of the pattern that was matched. For instance, say you have a file called <b>phone.txt</b> full of phone numbers, such as the following &minus;</p>
+<pre class="result notranslate">
+5555551212
+5555551213
+5555551214
+6665551215
+6665551216
+7775551217
+</pre>
+<p>You want to make the <b>area code</b> (the first three digits) surrounded by parentheses for easier reading. To do this, you can use the ampersand replacement character &minus;</p>
+<pre class="result notranslate">
+$ sed -e 's/^[[:digit:]][[:digit:]][[:digit:]]/(&amp;)/g' phone.txt
+(555)5551212
+(555)5551213
+(555)5551214
+(666)5551215
+
+(666)5551216
+(777)5551217
+</pre>
+<p>Here in the pattern part you are matching the first 3 digits and then using <b>&amp;</b> you are replacing those 3 digits with the surrounding <b>parentheses</b>.</p>
+<h2>Using Multiple sed Commands</h2>
+<p>You can use multiple sed commands in a single sed command as follows &minus;</p>
+<pre class="result notranslate">
+$ sed -e 'command1' -e 'command2' ... -e 'commandN' files
+</pre>
+<p>Here <b>command1</b> through <b>commandN</b> are sed commands of the type discussed previously. These commands are applied to each of the lines in the list of files given by files.</p>
+<p>Using the same mechanism, we can write the above phone number example as follows &minus;</p>
+<pre class="result notranslate">
+$ sed -e 's/^[[:digit:]]\{3\}/(&amp;)/g'  \ 
+   -e 's/)[[:digit:]]\{3\}/&amp;-/g' phone.txt 
+(555)555-1212 
+(555)555-1213 
+(555)555-1214 
+(666)555-1215 
+(666)555-1216 
+(777)555-1217
+</pre>
+<p><b>Note</b> &minus; In the above example, instead of repeating the character class keyword <b>[[:digit:]]</b> three times, we replaced it with <b>\{3\}</b>, which means the preceding regular expression is matched three times. We have also used <b>\</b> to give line break and this has to be removed before the command is run.</p>
+<h2>Back References</h2>
+<p>The <b>ampersand metacharacter</b> is useful, but even more useful is the ability to define specific regions in regular expressions. These special regions can be used as reference in your replacement strings. By defining specific parts of a regular expression, you can then refer back to those parts with a special reference character.</p>
+<p>To do <b>back references</b>, you have to first define a region and then refer back to that region. To define a region, you insert <b>backslashed parentheses</b> around each region of interest. The first region that you surround with backslashes is then referenced by <b>\1</b>, the second region by <b>\2</b>, and so on.</p>
+<p>Assuming <b>phone.txt</b> has the following text &minus;</p>
+<pre class="result notranslate">
+(555)555-1212
+(555)555-1213
+(555)555-1214
+(666)555-1215
+(666)555-1216
+(777)555-1217
+</pre>
+<p>Try the following command &minus;</p>
+<pre class="result notranslate">
+$ cat phone.txt | sed 's/\(.*)\)\(.*-\)\(.*$\)/Area \ 
+   code: \1 Second: \2 Third: \3/' 
+Area code: (555) Second: 555- Third: 1212 
+Area code: (555) Second: 555- Third: 1213 
+Area code: (555) Second: 555- Third: 1214 
+Area code: (666) Second: 555- Third: 1215 
+Area code: (666) Second: 555- Third: 1216 
+Area code: (777) Second: 555- Third: 1217
+</pre>
+<p><b>Note</b> &minus; In the above example, each regular expression inside the parenthesis would be back referenced by <b>\1</b>, <b>\2</b> and so on. We have used <b>\</b> to give line break here. This should be removed before running the command.</p>
+<hr />
+<div class="pre-btn">
+<a href="unix-manpage-help.html"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="pdf-btn">
+<a href="pdf/unix-regular-expressions.pdf" title="Unix / Linux Regular Expressions with SED" target="_blank"><i class="icon icon-file-pdf-o big-font"></i> PDF</a>
+</div>
+<div class="nxt-btn">
+<a href="unix-file-system.html">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.facebook.com/sharer.php?u=' + 'https://www.tutorialspoint.com/unix/unix-regular-expressions.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/facebookIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://twitter.com/share?url=' + 'https://www.tutorialspoint.com/unix/unix-regular-expressions.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/twitterIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.linkedin.com/cws/share?url=' + 'https://www.tutorialspoint.com/unix/unix-regular-expressions.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/linkedinIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://plus.google.com/share?url=https://www.tutorialspoint.com/unix/unix-regular-expressions.htm','sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/googlePlusIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://www.stumbleupon.com/submit?url=https://www.tutorialspoint.com/unix/unix-regular-expressions.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=456,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/StumbleUponIcon.jpg" alt="img" />
+</a>
+<a  href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open('https://reddit.com/submit?url=https://www.tutorialspoint.com/unix/unix-regular-expressions.htm&amp;title='+ document.title,'sharer','toolbar=0,status=0,width=626,height=656,top='+sTop+',left='+sLeft);return false;">
+<img src="../images/reddit.jpg" alt="img" />
+</a>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+<div class="rightgooglead">
+<script><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script src="../../pagead2.googlesyndication.com/pagead/f.txt">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="../scripts/img/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_privacy.htm#cookies">Cookies Policy</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>&copy; Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == 'Enter email for newsletter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email for newsletter...';}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script src="../theme/js/custom-minbea6.js?v=7"></script>
+<script src="../../www.google-analytics.com/urchin.js">
+</script>
+<script>
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+</div>
+</body>
+
+<!-- Mirrored from www.tutorialspoint.com/unix/unix-regular-expressions.htm by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 16:16:06 GMT -->
+</html>

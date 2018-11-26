@@ -1,0 +1,24 @@
+#!/bin/bash
+# This script is expecting to be run as:
+#   bash -e run-me-with-e.sh
+# Therefore, the first failure will cause
+# the entire script to abort.
+
+trap die ERR
+
+die()
+{
+  echo "Failed at line $BASH_LINENO"
+  exit 1
+}
+
+echo "Checking hostname..."
+hostname -f
+echo "Checking for null values:"
+grep -w null *.txt
+if [ "$?" -eq "0" ]; then
+  echo "The file(s) listed above contain 'null'"
+else
+  echo "No null values found."
+fi
+echo "Finished."

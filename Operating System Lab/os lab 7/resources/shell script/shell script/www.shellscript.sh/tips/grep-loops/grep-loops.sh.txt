@@ -1,0 +1,13 @@
+#!/bin/bash
+
+STEPS="configure make package distribute install"
+for ACTION in $STEPS
+do
+  echo "*****************************************"
+  printf "*** Running action: %-15s (" *${ACTION}*
+  echo "${STEPS})" | grep --color ${ACTION}
+  echo "Running ${ACTION} ... Running ${ACTION} ... "
+  echo "Running ${ACTION} ... Running ${ACTION}"
+  sleep 1
+  echo
+done
