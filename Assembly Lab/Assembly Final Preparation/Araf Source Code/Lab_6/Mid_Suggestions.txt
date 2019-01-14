@@ -1,0 +1,7 @@
+1) Basics of 8086-------------At least 1Q
+2) Branching------------------At least 1Q
+3) Loops----------------------At least 1Q
+4) Nested loops---------------2Q
+5) Mul/Div/ROT(ROR)/ SHIFTS--- At least 1Q
+6) Stack/ Procedures----------2Q
+

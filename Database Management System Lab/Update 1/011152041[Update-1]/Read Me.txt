@@ -1,0 +1,40 @@
+/*
+Author:HM Mahmudul Hasan
+Created On:User/HM Mahmudul Hasan [December 16,2018|12:50 AM]
+*/
+---------------------------------
+	User Information
+---------------------------------
+
+Admin:
+mail:		admin@gmail.com
+password:	admin
+
+user:[you can create one]
+or
+mail:		green@gmail.com
+password:	green011152041
+or
+mail:		hemel@gmail.com
+password:	hemel011152036
+or
+mail:		ross@gmail.com
+password:	ross011152041
+
+---------------------------------
+	Features Worked On
+---------------------------------
+
+Basic User:
+-Sign UP 
+-Log In
+-in profile->add course to your profile & delete course from your profile
+-log out
+
+Admin User:
+-log in
+-course add
+-course delete
+-course edit
+-course search
+

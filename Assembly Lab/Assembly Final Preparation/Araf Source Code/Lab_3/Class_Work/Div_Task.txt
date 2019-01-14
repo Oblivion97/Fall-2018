@@ -1,0 +1,15 @@
+kj 
+number dw 4567
+
+ 
+ ;16 bit operatoin
+ mov ax, 245
+ mov bx, 10
+ mov dx, 0
+ div bx ; ax=456, dx=7
+ 
+ ;8 bit operation
+ mov al, 245
+ mov bl, 10 ; jekono registor use korte parbo
+ div bl           ; ah = 5, al= 24
+                                                  

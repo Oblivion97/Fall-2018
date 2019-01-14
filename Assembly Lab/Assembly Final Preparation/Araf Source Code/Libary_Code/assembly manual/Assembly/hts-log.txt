@@ -1,0 +1,11 @@
+HTTrack3.49-2+htsswf+htsjava launched on Sat, 20 Oct 2018 21:59:32 at http://stanislavs.org/helppc/int_21.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://stanislavs.org/helppc/int_21.html -O1 "D:\Website Copier\assembly\Assembly" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 minutes 4 seconds : 428 links scanned, 427 files written (520745 bytes overall) [361772 bytes received at 2917 bytes/sec], 520836 bytes transferred using HTTP compression in 428 files, ratio 49%, 71.3 requests per connection
+(No errors, 0 warnings, 0 messages)

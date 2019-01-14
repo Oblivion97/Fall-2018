@@ -1,0 +1,32 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:03 GMT -->
+<HEAD>
+<TITLE>int 21,1</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 21,1 - Keyboard Input with Echo</H2>
+
+<PRE>
+
+
+	AH = 01
+
+
+	on return:
+	AL = character from standard input device
+
+
+	- waits for keyboard input from STDIN and echoes to STDOUT
+	- returns 0 for extended keystroke, then function must be
+	  called again to return scan code
+	- if <A HREF="int_1b.html">Ctrl-Break</A> is detected, <A HREF="int_23.html">INT 23</A> is executed
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:04 GMT -->
+</HTML>

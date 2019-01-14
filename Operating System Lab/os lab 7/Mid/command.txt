@@ -1,0 +1,17 @@
+1.
+
+cd dir1 && head -3 file1.txt && cd dir2 tail -4 file2.txt && mkdir dir3 && touch file3.txt && cp -r file1.txt file2.txt file3.txt 
+2.
+
+ls *.txt
+cd Desktop && ls *.txt
+cd Music && ls *.txt
+3.
+
+$ cd dir1 && mv file1.txt cd /home/student
+/Downloads
+4.
+
+cd /home/student/Music && ls -al
+
+

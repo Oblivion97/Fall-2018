@@ -1,0 +1,9 @@
+D:\Ballons
+D:\DOS_Games\Acumen
+D:\DOS_Games\Abuse
+D:\DOS_Games\DX_Ball
+
+--------------------------Dos Command--------------
+MOUNT C D:\DOS_Games\Abuse
+C:
+Abuse

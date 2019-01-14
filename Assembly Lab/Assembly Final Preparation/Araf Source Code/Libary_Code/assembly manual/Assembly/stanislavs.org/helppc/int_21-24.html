@@ -1,0 +1,31 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-24.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:06 GMT -->
+<HEAD>
+<TITLE>int 21,24</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 21,24 - Set Relative Record Field in FCB</H2>
+
+<PRE>
+
+
+	AH = 24h
+	DS:DX = pointer to an opened <A HREF="fcb.html">FCB</A>
+
+
+	returns nothing
+
+
+	- modifies opened FCB for random operation
+	- sets FCB random record field to current sequential block
+	  and record fields
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-24.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:06 GMT -->
+</HTML>

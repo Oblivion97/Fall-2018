@@ -1,0 +1,80 @@
+step1:creat database
+---------------------
+create database project
+
+step2:create table
+---------------------
+CREATE TABLE users(
+name varchar(20) PRIMARY KEY,
+    PASSWORD varchar(20)
+
+);
+
+step3:script create
+---------------------
+login.php
+
+step4:script concept:
+---------------------
+form fields:
+------------
+<input type ="text" id="yourid" name="yourname">
+<input type ="password" id="..." name="...">
+<input type ="date" id="..." name="...">
+<input type ="email" id="..." name="...">
+<input type ="button" id="..." name="...">
+<input type ="radio" id="..." name="...">
+<input type ="check" id="..." name="...">
+<input type ="search" id="..." name="...">
+<input type ="reset" id="..." name="...">
+<input type ="submit" id="..." name="...">
+<input type ="range" id="..." name="...">
+<input type ="number" id="..." name="...">
+<input type ="color" id="..." name="...">
+
+<textarea>
+
+</textarea>
+
+<select>
+
+<option>option1</option>
+<option>option2</option>
+
+</select>
+
+basic flow of website:
+-----------------------
+1.client side
+2.server side
+
+1.client side:
+--------------
+software:browser>url>
+
+www.example.com/html/h1.html
+
+www.example.com>>DNS server>>eq.ip address>>
+
+2.server side:
+--------------
+html folder>>h1.php>>check access ability>>if yes>>compile php to HTML[html/css/js]>>send to client HTTP response[200/404]
+
+
+
+js:
+----
+<script>
+	window.location.assign("path");
+</script>
+
+
+query:
+select
+exec:
+insert
+update
+delete
+create
+alter table
+drop table

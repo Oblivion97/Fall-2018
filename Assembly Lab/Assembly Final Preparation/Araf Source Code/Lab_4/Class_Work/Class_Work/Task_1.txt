@@ -1,0 +1,33 @@
+
+org 100h
+
+.stack 100h
+
+.data
+
+
+.code
+
+proc main
+ 
+   mov dx, @data
+ 
+   mov ds, dx
+  
+  
+
+   mov bl,5
+    
+   shl bl,1 ;When it is LEFT SHIFT we get (2*1=2) and (5*2=10) Left shift means Multiply
+
+    
+
+   mov ah,4ch
+  
+  int 21h
+
+endp main
+
+
+end main
+

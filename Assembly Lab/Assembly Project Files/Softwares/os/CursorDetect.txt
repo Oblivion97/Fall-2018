@@ -1,0 +1,109 @@
+;Detecting Cursor Pointer
+
+org 100h
+
+.model small
+.stack 100h
+
+.data
+   col db "Col: $" 
+   row db "Row: $"
+   
+   nl db 10, 13, '$'
+   
+   c dw 0
+   r dw 0
+   i db 0
+
+.code
+main proc
+    
+    mov dx, @data
+    mov ds, dx
+    
+    mov ah, 0
+    mov al, 12h
+    int 10h
+    
+    mov ax, 01h
+    int 33h
+    
+    L1:
+        mov ax, 03h
+        int 33h
+        cmp bx, 0
+        jg colLoop
+        
+        
+        jmp L1
+        
+    colLoop: 
+        mov r, dx
+        mov c, cx
+        
+        lea dx, col
+        mov ah, 9
+        int 21h
+        
+        
+         colPush:
+            
+           mov ax, c
+           mov bx, 10
+           mov dx, 0
+           div bx
+           push dx
+           mov c, ax
+           inc i
+           cmp ax, 0
+           jne colPush
+           
+         colPop:
+            pop dx
+            add dx, 48
+            mov ah, 2
+            int 21h
+            dec i
+            cmp i, 0
+            jne colPop
+            
+      lea dx, nl
+      mov ah, 9 
+      int 21h 
+      
+      rowLoop:
+        lea dx, row
+        mov ah, 9
+        int 21h
+        
+        
+           rowPush:
+              
+              mov ax, r
+              mov bx, 10
+              mov dx, 0
+              div bx
+              push dx
+              mov r, ax
+              inc i
+              cmp ax, 0
+              jne rowPush
+              
+           rowPop:
+              pop dx
+              add dx, 48
+              mov ah, 2
+              int 21h
+              dec i
+              cmp i, 0
+              jne rowPop
+        
+           
+      Exit:  
+        mov ah, 4ch
+        int 21h
+        
+    
+    
+    main endp
+end main

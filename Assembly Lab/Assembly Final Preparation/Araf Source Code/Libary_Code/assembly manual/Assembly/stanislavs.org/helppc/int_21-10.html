@@ -1,0 +1,33 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-10.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:04 GMT -->
+<HEAD>
+<TITLE>int 21,10</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 21,10 - Close a File Using FCB</H2>
+
+<PRE>
+
+
+	AH = 10h
+	DS:DX = pointer to opened <A HREF="fcb.html">FCB</A>
+
+
+	on return:
+	AL = 00  if file closed
+	   = FF  if file not closed
+
+
+	- closes a previously opened file opened with an FCB
+	- FCB must be setup with drive id, filename, and extension
+	  before call
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_21-10.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:00:04 GMT -->
+</HTML>

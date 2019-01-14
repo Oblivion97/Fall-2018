@@ -1,0 +1,39 @@
+org 100h
+
+.stack 100h
+.data
+
+nl db 0dh, 0ah, '$'    ;arrays  
+m db 10, 15, 16
+msg dw  'H','e',108,'l','o',' ','w','o','r','l','d','$' ;'Hello',' ','world$' || 'H','e','l','lo',' ','world$' || 'H','e',108,'lo',' ','world$' || 'Hello world$'
+n dw 10, 20, 30, 40, 50   
+x db ?
+sum dw 0
+
+.code
+
+main proc
+    mov dx, @data
+    mov ds, dx  
+    
+  mov cx, 5
+  lea si, n
+    
+    L1:
+      mov ax, [si]
+      add sum, ax
+      add si, 2
+      
+      loop L1 ;divide sum by 5 for avg 
+        
+    done:
+      mov ah, 4ch
+      int 21h
+    
+endp main
+
+end main
+
+
+
+

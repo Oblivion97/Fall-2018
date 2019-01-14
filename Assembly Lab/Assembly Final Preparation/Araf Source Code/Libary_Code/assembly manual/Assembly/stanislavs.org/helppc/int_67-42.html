@@ -1,0 +1,32 @@
+<HTML>
+
+<!-- Mirrored from stanislavs.org/helppc/int_67-42.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:35 GMT -->
+<HEAD>
+<TITLE>int 67,42</TITLE>
+</HEAD>
+
+<BODY><PRE></PRE>
+
+<H2 ALIGN=Center>INT 67,42 - Get Page Counts  (LIM EMS 3.2+)</H2>
+
+<PRE>
+
+
+	AH = 42h
+
+
+	on return:
+	AH = 00  success
+	   = error code (see <A HREF="int_67-40.html">EMS STATUS</A>)
+	BX = number of unallocated or available pages
+	DX = total number of pages in EMM system
+
+
+	- registers not listed are preserved
+
+</PRE>
+
+</BODY>
+
+<!-- Mirrored from stanislavs.org/helppc/int_67-42.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Oct 2018 16:01:35 GMT -->
+</HTML>

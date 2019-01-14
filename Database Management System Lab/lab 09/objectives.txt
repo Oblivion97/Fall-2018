@@ -1,0 +1,67 @@
+(SELECT [DISTINCT] subquery_select_argument
+FROM {table_name | view_name}
+{table_name | view_name} ...
+[WHERE search_conditions]
+[GROUP BY aggregate_expression [, aggregate_expression] ...]
+[HAVING search_conditions])
+
+
+maximum employee handle by manager:
+
+SELECT
+    *
+FROM
+    (
+    SELECT
+        COUNT(*) AS total
+    FROM
+        employees e1
+    GROUP BY
+        e1.Manager_id
+) AS manage where HAVING count(*)>=4
+
+
+highest salary & last name:
+SELECT
+    LAST_name
+FROM
+    (
+    SELECT
+        MAX(e1.salary) AS highest
+    FROM
+        employees e1
+)
+
+employee don't work in it prog recieve lower than any it prog:
+
+SELECT
+    *
+FROM
+    employees
+WHERE
+    salary < ANY(
+    SELECT
+        employee_id
+    FROM
+        employees e1
+    WHERE
+        job_id =('IT_PROG') && job_id != 'IT_PROG'
+)
+
+show all those emplyee details who receive & works in sam department austin does:
+
+SELECT
+    t1.SALARY,
+    t1.department_id
+FROM
+    employees t1
+WHERE
+    (SALARY, department_id) =(
+    SELECT
+        t2.SALARY,
+        t2.department_id
+    FROM
+        employees t2
+    WHERE
+        LAST_NAME = 'Austin'
+)

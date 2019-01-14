@@ -1,0 +1,55 @@
+org 100h
+
+.stack 100h
+.data 
+matrix db 0,1,2,
+       db 3,4,5,
+       db 6,7,8 
+
+n db 3 
+m db 3
+nl db 10,13, '$'
+
+       
+;matrixreloaded db 1,0,0,0,1,0,0,0,1       
+
+.code
+
+main proc
+    mov dx, @data
+    mov ds, dx  
+    
+    lea si, matrix
+    mov cl,m
+    ;mov cx, 3  
+    ;add si,1 matrix [0][1]
+    ;add si, 2  matrix[1][0] 
+    ;matrix[i][j]=i*rowsize*j  
+    
+ L0:
+    push cx
+    mov cl,n
+     L1: 
+     
+       mov dl,[si]  
+       add dl, '0'
+       mov ah, 2
+       int 21h 
+       inc si
+       loop L1
+    lea dx, nl
+    mov ah, 9
+    int 21h
+    pop cx
+    loop L0  
+       
+    mov ah, 4ch
+    int 21h
+    
+endp main
+
+end main
+
+
+
+
